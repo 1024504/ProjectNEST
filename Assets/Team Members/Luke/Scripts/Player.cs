@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
 	[Header("Logic")]
 	public float lateralMoveInput;
-	[SerializeField] private bool _isJumping;
+	private bool _isJumping;
 	private float _distanceToGround;
 	private Coroutine _coroutine;
 
@@ -65,9 +65,7 @@ public class Player : MonoBehaviour
 		float decelerationDuration = jumpSpeed / gravityScale / Physics.gravity.magnitude;
 		StartCoroutine(CeilingCheck());
 		yield return new WaitForSeconds(jumpTime - decelerationDuration);
-		_rb.gravityScale = gravityScale;/*
-		yield return new WaitForSeconds(decelerationDuration);
-		CancelJump();*/
+		_rb.gravityScale = gravityScale;
 	}
 
 	private IEnumerator CeilingCheck()
@@ -75,6 +73,6 @@ public class Player : MonoBehaviour
 		yield return new WaitUntil(() => _rb.velocity.y <= 0);
 		if (_coroutine != null) CancelJump();
 	}
-	
-	public bool IsOnGround => Physics2D.Raycast(_transform.position, Vector2.down, _distanceToGround + 0.1f, groundLayerMask);
+
+	private bool IsOnGround => Physics2D.Raycast(_transform.position, Vector2.down, _distanceToGround + 0.1f, groundLayerMask);
 }
