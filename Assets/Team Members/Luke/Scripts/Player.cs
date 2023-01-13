@@ -1,8 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,11 +10,12 @@ public class Player : MonoBehaviour
 	public float jumpTime;
 	public float gravityScale; 
 	public LayerMask groundLayerMask;
-
+	[SerializeField] private Vector3 groundCheckCentre = new (0, -0.55f, 0);
+	[SerializeField] private float groundCheckRadius = 0.5f;
+	
 	[Header("Logic")]
 	public float lateralMoveInput;
 	private bool _isJumping;
-	private float _distanceToGround;
 	private Coroutine _coroutine;
 
 	private Transform _transform;
@@ -28,7 +26,6 @@ public class Player : MonoBehaviour
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
 		_rb.gravityScale = gravityScale;
-		_distanceToGround = GetComponent<Collider2D>().bounds.extents.y;
 	}
 
 	private void FixedUpdate()
@@ -74,5 +71,5 @@ public class Player : MonoBehaviour
 		if (_coroutine != null) CancelJump();
 	}
 
-	private bool IsOnGround => Physics2D.Raycast(_transform.position, Vector2.down, _distanceToGround + 0.1f, groundLayerMask);
+	private bool IsOnGround => Physics2D.OverlapCircle(_transform.position + groundCheckCentre, groundCheckRadius, groundLayerMask);
 }

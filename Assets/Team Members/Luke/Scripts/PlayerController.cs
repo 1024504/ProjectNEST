@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 	private PlayerControls _controls;
 	private InputAction _moveInput;
 	private InputAction _jumpInput;
-	// Add attack/interact/etc.
+	// Add attack/interact/etc. here
 
 
 	[SerializeField] private Player _player;
