@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
 	private void MovePerformed(InputAction.CallbackContext context)
 	{
-		_player.lateralMoveInput = context.ReadValue<Vector2>().x;
+		_player.lateralMoveInput = Mathf.Ceil(context.ReadValue<Vector2>().x);
 	}
 
 	private void MoveCancelled(InputAction.CallbackContext context)
