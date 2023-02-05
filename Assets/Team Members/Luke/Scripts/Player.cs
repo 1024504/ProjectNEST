@@ -7,19 +7,30 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour, IControllable
 {
 	[Header("Design")]
+	[Tooltip("How fast the player moves along the floor.")]
 	public float moveSpeed;
+	[Tooltip("The highest slope the player can walk up, in degrees.")]
 	public float maxSlopeAngle;
+	[Tooltip("How fast the player jumps upwards.")]
 	public float jumpSpeed;
+	[Tooltip("How long after jumping, before the player starts falling naturally.")]
 	public float jumpTime;
+	[Tooltip("How fast the player falls downwards, does not affect jump time, slightly affects maximum jump height.")]
 	public float gravityScale;
+	public bool grappleEnabled;
+	public float grappleShootSpeed;
+	public float grappleRange;
+	public float grappleReturnSpeed;
+	public float grapplePullSpeed;
 	
-	[Header("Logic")]
-	public float lateralMoveInput;
+	private float _lateralMoveInput;
+	private Vector2 _aimInput;
 	private Coroutine _coroutine;
 
 	private Transform _transform;
 	private Rigidbody2D _rb;
 	private PlayerFoot _foot;
+	[SerializeField] private Grapple _grapple;
 
 	private void OnEnable()
 	{
@@ -27,11 +38,12 @@ public class Player : MonoBehaviour, IControllable
 		_rb = GetComponent<Rigidbody2D>();
 		_rb.gravityScale = gravityScale;
 		_foot = GetComponentInChildren<PlayerFoot>();
+		_grapple = GetComponentInChildren<Grapple>(true);
 	}
 
 	private void FixedUpdate()
 	{
-		Move(lateralMoveInput);
+		Move(_lateralMoveInput);
 	}
 	
 	private void Move(float input)
@@ -51,6 +63,10 @@ public class Player : MonoBehaviour, IControllable
 		}
 	}
 
+	/// <summary>
+	/// Triggers natural arc to finish jump on time if jump input isn't cancelled.
+	/// </summary>
+	/// <returns></returns>
 	private IEnumerator JumpTimer()
 	{
 		float decelerationDuration = jumpSpeed / gravityScale / Physics.gravity.magnitude;
@@ -60,14 +76,14 @@ public class Player : MonoBehaviour, IControllable
 
 	public void MovePerformed(InputAction.CallbackContext context)
 	{
-		lateralMoveInput = Mathf.Ceil(context.ReadValue<Vector2>().x);
+		_lateralMoveInput = Mathf.Ceil(context.ReadValue<Vector2>().x);
 	}
 
 	public void MoveCancelled(InputAction.CallbackContext context)
 	{
-		lateralMoveInput = 0;
+		_lateralMoveInput = 0;
 	}
-
+	
 	public void JumpPerformed(InputAction.CallbackContext context)
 	{
 		if (!_foot.isGrounded) return;
@@ -99,7 +115,8 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Action1Performed(InputAction.CallbackContext context)
 	{
-		
+		if (!grappleEnabled) return;
+		// _grapple.rend.enabled = true;
 	}
 
 	public void Action1Cancelled(InputAction.CallbackContext context)

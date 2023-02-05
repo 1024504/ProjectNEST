@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
 		_controls.UI.Disable();
 		_moveInput = _controls.Player.Move;
 		_jumpInput = _controls.Player.Jump;
-		_shootInput = _controls.Player.Jump;
-		_action1Input = _controls.Player.Jump;
+		_shootInput = _controls.Player.Fire;
+		_action1Input = _controls.Player.Action1;
 
 		if ((IControllable)player != null) EnableInputs((IControllable)player);
 	}
