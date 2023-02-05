@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IControllable
 {
 	[Header("Design")]
 	public float moveSpeed;
@@ -49,8 +50,25 @@ public class Player : MonoBehaviour
 			_rb.velocity = new Vector2(Mathf.Sign(_foot.normal.x)*_foot.normal.y*moveSpeed, -Mathf.Abs(_foot.normal.x)*moveSpeed);
 		}
 	}
-	
-	public void Jump()
+
+	private IEnumerator JumpTimer()
+	{
+		float decelerationDuration = jumpSpeed / gravityScale / Physics.gravity.magnitude;
+		yield return new WaitForSeconds(jumpTime - decelerationDuration);
+		_rb.gravityScale = gravityScale;
+	}
+
+	public void MovePerformed(InputAction.CallbackContext context)
+	{
+		lateralMoveInput = Mathf.Ceil(context.ReadValue<Vector2>().x);
+	}
+
+	public void MoveCancelled(InputAction.CallbackContext context)
+	{
+		lateralMoveInput = 0;
+	}
+
+	public void JumpPerformed(InputAction.CallbackContext context)
 	{
 		if (!_foot.isGrounded) return;
 		if (Vector2.Angle(Vector2.up, _foot.normal) > maxSlopeAngle) return;
@@ -61,7 +79,7 @@ public class Player : MonoBehaviour
 		_coroutine = StartCoroutine(JumpTimer());
 	}
 
-	public void CancelJump()
+	public void JumpCancelled(InputAction.CallbackContext context)
 	{
 		if (_foot.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
@@ -69,17 +87,23 @@ public class Player : MonoBehaviour
 		if (_rb.velocity.y > 0) _rb.velocity = new Vector2(_rb.velocity.x, 0);
 	}
 
-	private IEnumerator JumpTimer()
+	public void ShootPerformed(InputAction.CallbackContext context)
 	{
-		float decelerationDuration = jumpSpeed / gravityScale / Physics.gravity.magnitude;
-		StartCoroutine(CeilingCheck());
-		yield return new WaitForSeconds(jumpTime - decelerationDuration);
-		_rb.gravityScale = gravityScale;
+		
 	}
 
-	private IEnumerator CeilingCheck()
+	public void ShootCancelled(InputAction.CallbackContext context)
 	{
-		yield return new WaitUntil(() => _rb.velocity.y <= 0);
-		if (_coroutine != null) CancelJump();
+		
+	}
+
+	public void Action1Performed(InputAction.CallbackContext context)
+	{
+		
+	}
+
+	public void Action1Cancelled(InputAction.CallbackContext context)
+	{
+		
 	}
 }
