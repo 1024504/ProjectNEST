@@ -6,19 +6,23 @@ using UnityEngine.InputSystem;
 
 public interface IControllable
 {
-	public void MovePerformed(InputAction.CallbackContext context);
+	public void MovePerformed(float lateralInput);
 
-	public void MoveCancelled(InputAction.CallbackContext context);
+	public void MoveCancelled();
 
-	public void JumpPerformed(InputAction.CallbackContext context);
-
-	public void JumpCancelled(InputAction.CallbackContext context);
-
-	public void ShootPerformed(InputAction.CallbackContext context);
+	public void AimPerformed(Vector2 input);
 	
-	public void ShootCancelled(InputAction.CallbackContext context);
+	public void AimCancelled();
+	
+	public void JumpPerformed();
 
-	public void Action1Performed(InputAction.CallbackContext context);
+	public void JumpCancelled();
 
-	public void Action1Cancelled(InputAction.CallbackContext context);
+	public void ShootPerformed();
+	
+	public void ShootCancelled();
+
+	public void Action1Performed();
+
+	public void Action1Cancelled();
 }

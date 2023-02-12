@@ -74,17 +74,27 @@ public class Player : MonoBehaviour, IControllable
 		_rb.gravityScale = gravityScale;
 	}
 
-	public void MovePerformed(InputAction.CallbackContext context)
+	public void MovePerformed(float lateralInput)
 	{
-		_lateralMoveInput = Mathf.Ceil(context.ReadValue<Vector2>().x);
+		_lateralMoveInput = lateralInput;
 	}
 
-	public void MoveCancelled(InputAction.CallbackContext context)
+	public void MoveCancelled()
 	{
 		_lateralMoveInput = 0;
 	}
-	
-	public void JumpPerformed(InputAction.CallbackContext context)
+
+	public void AimPerformed(Vector2 aimInput)
+	{
+		
+	}
+
+	public void AimCancelled()
+	{
+		
+	}
+
+	public void JumpPerformed()
 	{
 		if (!_foot.isGrounded) return;
 		if (Vector2.Angle(Vector2.up, _foot.normal) > maxSlopeAngle) return;
@@ -95,7 +105,7 @@ public class Player : MonoBehaviour, IControllable
 		_coroutine = StartCoroutine(JumpTimer());
 	}
 
-	public void JumpCancelled(InputAction.CallbackContext context)
+	public void JumpCancelled()
 	{
 		if (_foot.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
@@ -103,23 +113,23 @@ public class Player : MonoBehaviour, IControllable
 		if (_rb.velocity.y > 0) _rb.velocity = new Vector2(_rb.velocity.x, 0);
 	}
 
-	public void ShootPerformed(InputAction.CallbackContext context)
+	public void ShootPerformed()
 	{
 		
 	}
 
-	public void ShootCancelled(InputAction.CallbackContext context)
+	public void ShootCancelled()
 	{
 		
 	}
 
-	public void Action1Performed(InputAction.CallbackContext context)
+	public void Action1Performed()
 	{
 		if (!grappleEnabled) return;
 		// _grapple.rend.enabled = true;
 	}
 
-	public void Action1Cancelled(InputAction.CallbackContext context)
+	public void Action1Cancelled()
 	{
 		
 	}
