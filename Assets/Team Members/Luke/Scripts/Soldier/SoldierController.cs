@@ -8,6 +8,7 @@ public class SoldierController : ControllerBase
 	private enum SoldierState
 	{
 		Idle,
+		Patrolling,
 		Attacking,
 		Grappled,
 		Dead
@@ -33,6 +34,11 @@ public class SoldierController : ControllerBase
 		switch (_state)
 		{
 			case SoldierState.Idle:
+			{
+				((IControllable)Agent).MovePerformed(0);
+				break;
+			}
+			case SoldierState.Patrolling:
 			{
 				((IControllable)Agent).MovePerformed(lateralMoveInput);
 				break;
