@@ -12,6 +12,11 @@ public class PlayerController : ControllerBase
 	private InputAction _jumpInput;
 	private InputAction _shootInput;
 	private InputAction _action1Input;
+	
+	//testing for weapons
+	private InputAction _weapon1Input;
+	private InputAction _weapon2Input;
+	private InputAction _weapon3Input;
 
 	private void OnEnable()
 	{
@@ -22,6 +27,9 @@ public class PlayerController : ControllerBase
 		_jumpInput = _controls.Player.Jump;
 		_shootInput = _controls.Player.Fire;
 		_action1Input = _controls.Player.Action1;
+		_weapon1Input = _controls.Player.Weapon1;
+		_weapon2Input = _controls.Player.Weapon2;
+		_weapon3Input = _controls.Player.Weapon3;
 
 		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);
 	}
@@ -48,6 +56,19 @@ public class PlayerController : ControllerBase
 		_action1Input.Enable();
 		_action1Input.performed += Action1Performed;
 		_action1Input.canceled += Action1Cancelled;
+		
+		//weapons test
+		_weapon1Input.Enable();
+		_weapon1Input.performed += Weapon1Performed;
+		_weapon1Input.canceled += Weapon1Cancelled;
+		
+		_weapon2Input.Enable();
+		_weapon2Input.performed += Weapon2Performed;
+		_weapon2Input.canceled += Weapon2Cancelled;
+		
+		_weapon3Input.Enable();
+		_weapon3Input.performed += Weapon3Performed;
+		_weapon3Input.canceled += Weapon3Cancelled;
 	}
 
 	protected override void DisableInputs(IControllable iControllable)
@@ -119,4 +140,38 @@ public class PlayerController : ControllerBase
 	{
 		((IControllable)Agent).Action1Cancelled();
 	}
+
+	#region Weapons Testing
+
+	public void Weapon1Performed(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Weapon1Performed();
+	}
+	
+	public void Weapon1Cancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Weapon1Cancelled();
+	}
+	public void Weapon2Performed(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Weapon2Performed();
+	}
+	
+	public void Weapon2Cancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Weapon2Cancelled();
+	}
+	
+	public void Weapon3Performed(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Weapon3Performed();
+	}
+	
+	public void Weapon3Cancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Weapon3Cancelled();
+	}
+
+	#endregion
+	
 }

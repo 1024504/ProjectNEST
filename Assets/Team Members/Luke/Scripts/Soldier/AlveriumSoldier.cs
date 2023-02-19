@@ -131,7 +131,40 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 		
 	}
 
-	
+	#region Weapons Testing
+
+	public void Weapon1Performed()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Weapon1Cancelled()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Weapon2Performed()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Weapon2Cancelled()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Weapon3Performed()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Weapon3Cancelled()
+	{
+		throw new NotImplementedException();
+	}
+
+	#endregion
+
 	// Everything below is for Debugging and can be deleted eventually
 
 	private void Awake()

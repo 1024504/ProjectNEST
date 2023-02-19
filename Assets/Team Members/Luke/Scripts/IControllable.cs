@@ -25,4 +25,17 @@ public interface IControllable
 	public void Action1Performed();
 
 	public void Action1Cancelled();
+
+	public void Weapon1Performed();
+
+	public void Weapon1Cancelled();
+	
+	public void Weapon2Performed();
+
+	public void Weapon2Cancelled();
+	
+	public void Weapon3Performed();
+
+	public void Weapon3Cancelled();
+	
 }

@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(Vector3.right * speed);
+        rb.AddForce(transform.right * speed);
         StartCoroutine(ShotRange());
     }
     private IEnumerator ShotRange()
