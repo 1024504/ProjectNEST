@@ -23,6 +23,8 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	}
 	
 	private Rigidbody2D _rb;
+
+    private SoldierTerrainCollider _terrainCollider;
 	
 	[SerializeField] private float moveSpeed = 5;
 	
@@ -48,6 +50,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	private void OnEnable()
 	{
 		_rb = GetComponent<Rigidbody2D>();
+        _terrainCollider = (SoldierTerrainCollider)GetComponentInChildren<TerrainCollider>();
 		neutralAngles = new float[joints.Length];
 		for (int i = 0; i < joints.Length; i++)
 		{
@@ -59,12 +62,14 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	{
 		MotionProgress += Time.fixedDeltaTime;
 		Move(_lateralMoveInput);
-		MoveBody(Vector2.down*Mathf.Sin(MotionProgress*motionFrequencies[0]+motionPhaseOffsets[0]*2*Mathf.PI)*motionAmplitudes[0]);
-		for (int i = 1; i < joints.Length; i++)
-		{
-			RotateJoint((Joints) i, Mathf.Sin(MotionProgress*motionFrequencies[i]+motionPhaseOffsets[i]*2*Mathf.PI)*motionAmplitudes[i], neutralAngles[i]);
-		}
+		// MoveBody(Vector2.down*Mathf.Sin(MotionProgress*motionFrequencies[0]+motionPhaseOffsets[0]*2*Mathf.PI)*motionAmplitudes[0]);
+		// for (int i = 1; i < joints.Length; i++)
+		// {
+		// 	RotateJoint((Joints) i, Mathf.Sin(MotionProgress*motionFrequencies[i]+motionPhaseOffsets[i]*2*Mathf.PI)*motionAmplitudes[i], neutralAngles[i]);
+		// }
 	}
+    
+    
 
 	private void MoveBody(Vector2 deltaPosition)
 	{
@@ -76,20 +81,29 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 		joints[(int) joint].localRotation = Quaternion.Euler(0, 0, neutralAngle + deltaAngle);
 	}
 
-	private void Move(float input)
-	{
-		_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
-	}
+    private void Move(float lateralInput)
+    {
+        if (!_terrainCollider.isGrounded)
+        {
+            _rb.velocity = new Vector2(lateralInput * moveSpeed, _rb.velocity.y);
+        }
+        else
+        {
+            _rb.velocity = new Vector2(lateralInput * moveSpeed * _terrainCollider.normal.y,
+                lateralInput * moveSpeed * -_terrainCollider.normal.x);
+        }
+    }
 
 	public void MovePerformed(float lateralInput)
 	{
 		_lateralMoveInput = lateralInput;
-	}
+        _terrainCollider.lateralMoveInput = lateralInput;
+    }
 
 	public void MoveCancelled()
-	{
-		
-	}
+    {
+        _lateralMoveInput = 0;
+    }
 
 	public void AimPerformed(Vector2 input)
 	{

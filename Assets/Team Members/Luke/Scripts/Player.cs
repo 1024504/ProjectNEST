@@ -40,7 +40,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private Transform _transform;
 	private Rigidbody2D _rb;
-	private PlayerFoot _foot;
+	private TerrainCollider _terrainCollider;
 	[SerializeField] private Grapple _grapple;
 	
 
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour, IControllable
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
 		_rb.gravityScale = gravityScale;
-		_foot = GetComponentInChildren<PlayerFoot>();
+		_terrainCollider = GetComponentInChildren<TerrainCollider>();
 		_grapple = GetComponentInChildren<Grapple>(true);
 	}
 
@@ -70,18 +70,18 @@ public class Player : MonoBehaviour, IControllable
 	
 	private void Move(float input)
 	{
-		if (!_foot.isGrounded)
+		if (!_terrainCollider.isGrounded)
 		{
 			_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
 		}
-		else if (Vector2.Angle(Vector2.up, _foot.normal) <= maxSlopeAngle)
+		else if (Vector2.Angle(Vector2.up, _terrainCollider.normal) <= maxSlopeAngle)
 		{
-			_rb.velocity = new Vector2(input * moveSpeed * _foot.normal.y,
-				input * moveSpeed * -_foot.normal.x);
+			_rb.velocity = new Vector2(input * moveSpeed * _terrainCollider.normal.y,
+				input * moveSpeed * -_terrainCollider.normal.x);
 		}
 		else
 		{
-			_rb.velocity = new Vector2(Mathf.Sign(_foot.normal.x)*_foot.normal.y*moveSpeed, -Mathf.Abs(_foot.normal.x)*moveSpeed);
+			_rb.velocity = new Vector2(Mathf.Sign(_terrainCollider.normal.x)*_terrainCollider.normal.y*moveSpeed, -Mathf.Abs(_terrainCollider.normal.x)*moveSpeed);
 		}
 	}
 
@@ -118,10 +118,10 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpPerformed()
 	{
-		if (!_foot.isGrounded) return;
-		if (Vector2.Angle(Vector2.up, _foot.normal) > maxSlopeAngle) return;
+		if (!_terrainCollider.isGrounded) return;
+		if (Vector2.Angle(Vector2.up, _terrainCollider.normal) > maxSlopeAngle) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
-		_foot.isGrounded = false;
+		_terrainCollider.isGrounded = false;
 		_rb.gravityScale = 0f;
 		_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
 		_coroutine = StartCoroutine(JumpTimer());
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpCancelled()
 	{
-		if (_foot.isGrounded) return;
+		if (_terrainCollider.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
 		_rb.gravityScale = gravityScale;
 		if (_rb.velocity.y > 0) _rb.velocity = new Vector2(_rb.velocity.x, 0);

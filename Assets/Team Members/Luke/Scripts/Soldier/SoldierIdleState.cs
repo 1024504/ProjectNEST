@@ -1,30 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Anthill.AI;
 using UnityEngine;
 
-public class SoldierIdleState : StateBase
+public class SoldierIdleState : AntAIState
 {
-	public override void OnStateEnter()
-	{
-		base.OnStateEnter();
-		
-	}
-	
-	public override void OnStateUpdate()
-	{
-		base.OnStateUpdate();
-		
-	}
-	
-	public override void OnStateFixedUpdate()
-	{
-		base.OnStateFixedUpdate();
-		
-	}
-	
-	public override void OnStateExit()
-	{
-		base.OnStateExit();
-		
-	}
+    public override void Create(GameObject aGameObject)
+    {
+        base.Create(aGameObject);
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
+
+    public override void Execute(float aDeltaTime, float aTimeScale)
+    {
+        base.Execute(aDeltaTime, aTimeScale);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void Destroy(GameObject aGameObject)
+    {
+        base.Destroy(aGameObject);
+    }
 }
