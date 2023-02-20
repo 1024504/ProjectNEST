@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 403ed6df9af6da84ab58c28b5ee5b60f
+guid: d4ada620cb225af4597e6e2f7686fec8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 175
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -50,7 +50,7 @@ ScriptedImporter:
     flipbookColumns: 0
     ignorePngGamma: 0
     cookieMode: 0
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -94,7 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 2
+  - name: Rectangle 1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -103,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 404
-      height: 143
-    spriteID: 8ca749f7a4800584a9379e9a1bcc3386
+      width: 1600
+      height: 100
+    spriteID: 99b1e398429cd054bba4f16ff30732b2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,71 +113,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 54, y: 193}
-  - name: Barrrel_Colour
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 416
-      y: 212
-      width: 89
-      height: 18
-    spriteID: 45ca60004c2516c41b6e05dfed21aae9
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 414, y: 210}
-    spritePosition: {x: 208, y: 283}
-  - name: Mag_Colour
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 416
-      y: 113
-      width: 38
-      height: 91
-    spriteID: 43de06c17d9b5ef4fb4da5d13e87416c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 416, y: 113}
-    spritePosition: {x: 245, y: 207}
-  - name: Blue_BG
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 416
-      y: 4
-      width: 88
-      height: 101
-    spriteID: 623713d7d56ef87489c919aac81a222c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 416, y: 4}
-    spritePosition: {x: 213, y: 201}
+    uvTransform: {x: 3, y: 3}
+    spritePosition: {x: -1, y: 749}
   characterData:
     bones: []
     parts: []
@@ -199,7 +136,7 @@ ScriptedImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
     crunchedCompression: 0
@@ -227,7 +164,40 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   - name: iPhone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Windows Store Apps
     overridden: 0
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -256,43 +226,13 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Layer 2
-    spriteName: Layer 2
+  - name: Rectangle 1
+    spriteName: Rectangle 1
     isGroup: 0
     parentIndex: -1
-    spriteID: 8ca749f7a4800584a9379e9a1bcc3386
-    layerID: 21
+    spriteID: 99b1e398429cd054bba4f16ff30732b2
+    layerID: 3
     mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: Barrrel_Colour
-    spriteName: Barrrel_Colour
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 45ca60004c2516c41b6e05dfed21aae9
-    layerID: 8
-    mosaicPosition: {x: 416, y: 212}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: Mag_Colour
-    spriteName: Mag_Colour
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 43de06c17d9b5ef4fb4da5d13e87416c
-    layerID: 7
-    mosaicPosition: {x: 416, y: 113}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: Blue_BG
-    spriteName: Blue_BG
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 623713d7d56ef87489c919aac81a222c
-    layerID: 19
-    mosaicPosition: {x: 416, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -300,7 +240,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: -1
-    spriteID: 41bfdd7244f4a2b4b99b0c0bf9ba1a41
+    spriteID: bdd10a66d6bb90544b9d8a730864abb8
     layerID: 1
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -309,7 +249,7 @@ ScriptedImporter:
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638124864493438853
   spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 

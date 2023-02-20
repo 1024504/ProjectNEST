@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b827666a85dc5574389ea683db236674
+guid: c0dcab42ce1a6bb4990eed195696d7ae
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -27,7 +27,7 @@ ScriptedImporter:
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -49,6 +49,7 @@ ScriptedImporter:
     flipbookRows: 0
     flipbookColumns: 0
     ignorePngGamma: 0
+    cookieMode: 0
     filterMode: 0
     aniso: 1
     mipBias: 0
@@ -90,9 +91,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Layer 1
+  - name: Rectangle 1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -101,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1600
+      width: 400
       height: 100
-    spriteID: 3afcd2d3c4f1bc64f803994327ed934c
+    spriteID: e7b557d6660c6b743a41545c30cad11d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -111,7 +113,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: -746}
+    uvTransform: {x: 3, y: 3}
+    spritePosition: {x: 599, y: 699}
   characterData:
     bones: []
     parts: []
@@ -161,7 +164,40 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   - name: iPhone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Windows Store Apps
     overridden: 0
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -183,28 +219,29 @@ ScriptedImporter:
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
   padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Layer 1
-    spriteName: Layer 1
+  - name: Rectangle 1
+    spriteName: Rectangle 1
     isGroup: 0
     parentIndex: -1
-    spriteID: 3afcd2d3c4f1bc64f803994327ed934c
-    layerID: 7
+    spriteID: e7b557d6660c6b743a41545c30cad11d
+    layerID: 3
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 0
+  - name: Background
     spriteName: 
     isGroup: 0
     parentIndex: -1
-    spriteID: c2232f96a442a8b4297e216e0b16bc6b
-    layerID: 2
+    spriteID: 75be1a7feadd31e4e9bbfed793565547
+    layerID: 1
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
@@ -212,6 +249,8 @@ ScriptedImporter:
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
+  platformSettingsDirtyTick: 638124872685802585
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
   prefabAssetName: 

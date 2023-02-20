@@ -27,7 +27,7 @@ ScriptedImporter:
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -49,6 +49,7 @@ ScriptedImporter:
     flipbookRows: 0
     flipbookColumns: 0
     ignorePngGamma: 0
+    cookieMode: 0
     filterMode: 1
     aniso: 1
     mipBias: 0
@@ -90,6 +91,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: Gun_Body
@@ -111,7 +113,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 1, y: -184}
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 3, y: 188}
   - name: Barrel_Colour
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -131,7 +134,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 284, y: -169}
+    uvTransform: {x: 518, y: 97}
+    spritePosition: {x: 234, y: 266}
   - name: Mag_Colour
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -151,7 +155,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: -32, y: -45}
+    uvTransform: {x: 4, y: 153}
+    spritePosition: {x: 36, y: 198}
   - name: Gun_BG
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -171,7 +176,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 483, y: -192}
+    uvTransform: {x: 518, y: 4}
+    spritePosition: {x: 35, y: 196}
   characterData:
     bones: []
     parts: []
@@ -243,6 +249,7 @@ ScriptedImporter:
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
   padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -302,6 +309,8 @@ ScriptedImporter:
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
   prefabAssetName: 
