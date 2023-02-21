@@ -27,7 +27,7 @@ ScriptedImporter:
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMipmapLimit: 0
+    ignoreMasterTextureLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 175
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -49,8 +49,7 @@ ScriptedImporter:
     flipbookRows: 0
     flipbookColumns: 0
     ignorePngGamma: 0
-    cookieMode: 0
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -91,7 +90,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: Layer 2
@@ -105,7 +103,7 @@ ScriptedImporter:
       y: 4
       width: 404
       height: 143
-    spriteID: 8ca749f7a4800584a9379e9a1bcc3386
+    spriteID: 2eb2be4648cf244408904a8c7420e142
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,8 +111,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 54, y: 193}
+    uvTransform: {x: -50, y: -189}
   - name: Barrrel_Colour
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -126,7 +123,7 @@ ScriptedImporter:
       y: 212
       width: 89
       height: 18
-    spriteID: 45ca60004c2516c41b6e05dfed21aae9
+    spriteID: df7d0f62cdd5bc148802f83032b5bbc4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,8 +131,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 414, y: 210}
-    spritePosition: {x: 208, y: 283}
+    uvTransform: {x: 206, y: -73}
   - name: Mag_Colour
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -147,7 +143,7 @@ ScriptedImporter:
       y: 113
       width: 38
       height: 91
-    spriteID: 43de06c17d9b5ef4fb4da5d13e87416c
+    spriteID: 2dce1f89f9712754f98297680d277dfb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -155,8 +151,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 416, y: 113}
-    spritePosition: {x: 245, y: 207}
+    uvTransform: {x: 171, y: -94}
   - name: Blue_BG
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -168,7 +163,7 @@ ScriptedImporter:
       y: 4
       width: 88
       height: 101
-    spriteID: 623713d7d56ef87489c919aac81a222c
+    spriteID: 9b787538e65fc2f428c8e7a08389ca14
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -176,8 +171,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 416, y: 4}
-    spritePosition: {x: 213, y: 201}
+    uvTransform: {x: 203, y: -197}
   characterData:
     bones: []
     parts: []
@@ -199,7 +193,7 @@ ScriptedImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
     crunchedCompression: 0
@@ -249,7 +243,6 @@ ScriptedImporter:
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
   padding: 4
-  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -260,7 +253,7 @@ ScriptedImporter:
     spriteName: Layer 2
     isGroup: 0
     parentIndex: -1
-    spriteID: 8ca749f7a4800584a9379e9a1bcc3386
+    spriteID: 2eb2be4648cf244408904a8c7420e142
     layerID: 21
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
@@ -270,7 +263,7 @@ ScriptedImporter:
     spriteName: Barrrel_Colour
     isGroup: 0
     parentIndex: -1
-    spriteID: 45ca60004c2516c41b6e05dfed21aae9
+    spriteID: df7d0f62cdd5bc148802f83032b5bbc4
     layerID: 8
     mosaicPosition: {x: 416, y: 212}
     flatten: 0
@@ -280,7 +273,7 @@ ScriptedImporter:
     spriteName: Mag_Colour
     isGroup: 0
     parentIndex: -1
-    spriteID: 43de06c17d9b5ef4fb4da5d13e87416c
+    spriteID: 2dce1f89f9712754f98297680d277dfb
     layerID: 7
     mosaicPosition: {x: 416, y: 113}
     flatten: 0
@@ -290,7 +283,7 @@ ScriptedImporter:
     spriteName: Blue_BG
     isGroup: 0
     parentIndex: -1
-    spriteID: 623713d7d56ef87489c919aac81a222c
+    spriteID: 9b787538e65fc2f428c8e7a08389ca14
     layerID: 19
     mosaicPosition: {x: 416, y: 4}
     flatten: 0
@@ -300,7 +293,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: -1
-    spriteID: 41bfdd7244f4a2b4b99b0c0bf9ba1a41
+    spriteID: 3ef3254d16e16034288d7e517efacc1e
     layerID: 1
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -309,11 +302,11 @@ ScriptedImporter:
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
-  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
   prefabAssetName: 
   spriteLibAssetName: 
   skeletonAssetName: 
-  secondarySpriteTextures: []
+  secondarySpriteTextures:
+  - name: Player_Rifle_Emission
+    texture: {fileID: 2800000, guid: d6698350a0202374f8ec8400e9ad4c60, type: 3}
