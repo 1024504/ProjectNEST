@@ -114,7 +114,8 @@ public class PlayerController : ControllerBase
 
 	private void AimPerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).AimPerformed(context.ReadValue<Vector2>());
+		if (context.control.device == Mouse.current) ((IControllable)Agent).AimPerformed(context.ReadValue<Vector2>());
+		else if (context.control.device == Gamepad.current) ((IControllable)Agent).AimPerformed(context.ReadValue<Vector2>());
 	}
 
 	private void AimCancelled(InputAction.CallbackContext context)

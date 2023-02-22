@@ -28,14 +28,15 @@ public class Player : MonoBehaviour, IControllable
 	private Vector2 _aimInput;
 	private Coroutine _coroutine;
 
-	[Header("Weapons")] 
+	[Header("Weapons")]
 	//public GameObject equippedWeapon;
 	public GameObject bulletPrefab;
 	public Transform barrelTransform;
 	public List<GameObject> weaponsList;
 	public List<GameObject> bulletList;
 	public List<Transform> barrelTransforms;
-	public GameObject playerArms;
+	public Transform playerArms;
+	public Transform lookTransform;
 
 	public Vector3 mousePos;
 	//public Camera camera;
@@ -53,28 +54,11 @@ public class Player : MonoBehaviour, IControllable
 		_rb.gravityScale = gravityScale;
 		_terrainCollider = GetComponentInChildren<TerrainCollider>();
 		_grapple = GetComponentInChildren<Grapple>(true);
-
-		
 	}
 
 	private void FixedUpdate()
 	{
 		Move(_lateralMoveInput);
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		//Vector3 gunPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		/*if (mousePos.x < transform.position.x)
-		{
-			gameObject.transform.eulerAngles = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
-		}
-		else
-		{
-			gameObject.transform.eulerAngles = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
-		}*/
-
-		Vector3 rotation = mousePos - transform.position;
-		float rotationZ = Mathf.Clamp((Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg),-70f,230f);
-		playerArms.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
-
 	}
 	
 	private void Move(float input)
@@ -117,7 +101,13 @@ public class Player : MonoBehaviour, IControllable
 
 	public void AimPerformed(Vector2 aimInput)
 	{
+		Vector2 aimRes = aimInput * 0.05f;
+		Vector3 position = _transform.position;
+		Vector3 target = lookTransform.position + new Vector3(aimRes.x, aimRes.y, 0);
 		
+		lookTransform.position = position + 5*Vector3.Normalize(target-position);
+		
+		playerArms.LookAt(lookTransform.position);
 	}
 
 	public void AimCancelled()
