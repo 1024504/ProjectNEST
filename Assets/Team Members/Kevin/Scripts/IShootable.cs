@@ -1,9 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rifle : WeaponBase
+public interface  IShootable
 {
-    
+   public void Shoot();
+
+   public void Reload();
 }

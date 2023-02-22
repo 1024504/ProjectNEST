@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IControllable
 	public Transform playerArms;
 	public Transform lookTransform;
 	public float mouseAimSensitivity = 1;
-
+	//public WeaponBase weaponBase;
 	public Vector3 mousePos;
 	//public Camera camera;
 
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour, IControllable
 		_rb.gravityScale = gravityScale;
 		_terrainCollider = GetComponentInChildren<TerrainCollider>();
 		_grapple = GetComponentInChildren<Grapple>(true);
+		
 	}
 
 	private void FixedUpdate()
@@ -146,7 +147,8 @@ public class Player : MonoBehaviour, IControllable
 
 	public void ShootPerformed()
 	{
-		Instantiate(bulletPrefab, barrelTransform.position, transform.rotation);
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.Shoot();
 	}
 
 	public void ShootCancelled()
@@ -169,12 +171,13 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Weapon1Performed()
 	{
-		SetBulletPrefab(bulletList[0]);
-		SetBarrelTransform(barrelTransforms[0]);
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.isShotgun = false;
+		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(true);
 		weaponsList[1].SetActive(false);
 		weaponsList[2].SetActive(false);
-		//equippedWeapon = weaponsList[0];
+		
 	}
 
 	public void Weapon1Cancelled()
@@ -184,12 +187,13 @@ public class Player : MonoBehaviour, IControllable
 	
 	public void Weapon2Performed()
 	{
-		SetBulletPrefab(bulletList[1]);
-		SetBarrelTransform(barrelTransforms[1]);
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.isShotgun = true; 
+		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
 		weaponsList[1].SetActive(true);
 		weaponsList[2].SetActive(false);
-		//equippedWeapon = weaponsList[1];
+		
 	}
 	
 	public void Weapon2Cancelled()
@@ -198,30 +202,19 @@ public class Player : MonoBehaviour, IControllable
 	}
 	public void Weapon3Performed()
 	{
-		SetBulletPrefab(bulletList[2]);
-		SetBarrelTransform(barrelTransforms[2]);
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.isShotgun = false; 
+		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
 		weaponsList[1].SetActive(false);
 		weaponsList[2].SetActive(true);
-		//equippedWeapon = weaponsList[2];
+		
 	}
 	
 	public void Weapon3Cancelled()
 	{
 		
 	}
-	
-	private void SetBarrelTransform(Transform newTransform)
-	{
-		barrelTransform = newTransform;
-	}
-	private void SetBulletPrefab(GameObject newBullet)
-	{
-		bulletPrefab = newBullet;
-	}
-	
+
 	#endregion
-	
-	
-	
 }

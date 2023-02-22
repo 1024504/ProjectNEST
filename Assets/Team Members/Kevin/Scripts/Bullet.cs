@@ -9,22 +9,17 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     public float speed;
     public float bulletDmg;
-    public Vector3 mousePos;
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePos - transform.position;
-        Vector3 rotation = transform.position - mousePos;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * speed/10f;
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-        //rb.AddForce(transform.right * speed);
+        rb.velocity = transform.right * speed;
+        /*WeaponBase weaponBase = GetComponentInParent<WeaponBase>();
+        bulletDmg = weaponBase.dmg;*/
         StartCoroutine(ShotRange());
     }
     private IEnumerator ShotRange()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         BulletDestroy();
     }
 
@@ -33,7 +28,7 @@ public class Bullet : MonoBehaviour
         EnemyTest enemyTest = colliderObject.GetComponent<EnemyTest>();
         if (enemyTest != null)
         {
-            Debug.Log("Hit!");
+            Debug.Log("Hit! "+ bulletDmg);
             enemyTest.GotHit(bulletDmg);
             BulletDestroy();
         }
