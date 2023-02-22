@@ -10,7 +10,9 @@ public interface IControllable
 
 	public void MoveCancelled();
 
-	public void AimPerformed(Vector2 input);
+	public void AimPerformedMouse(Vector2 input);
+	
+	public void AimPerformedGamepad(Vector2 input);
 	
 	public void AimCancelled();
 	

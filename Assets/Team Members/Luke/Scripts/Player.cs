@@ -37,7 +37,7 @@ public class Player : MonoBehaviour, IControllable
 	public List<Transform> barrelTransforms;
 	public Transform playerArms;
 	public Transform lookTransform;
-	public float aimSpeed = 1;
+	public float mouseAimSensitivity = 1;
 
 	public Vector3 mousePos;
 	//public Camera camera;
@@ -100,15 +100,24 @@ public class Player : MonoBehaviour, IControllable
 		_lateralMoveInput = 0;
 	}
 
-	public void AimPerformed(Vector2 aimInput)
+	public void AimPerformedMouse(Vector2 aimInput)
 	{
-		Vector2 aimRes = aimInput * (0.05f * aimSpeed);
+		Vector2 aimRes = aimInput * (0.05f * mouseAimSensitivity);
 		Vector3 position = _transform.position;
-		Vector3 target = lookTransform.position + new Vector3(aimRes.x, aimRes.y, 0);
+		Vector3 lookPosition = lookTransform.position;
+		lookPosition += new Vector3(aimRes.x, aimRes.y, 0);
 		
-		lookTransform.position = position + 5*Vector3.Normalize(target-position);
-		
-		playerArms.LookAt(lookTransform.position);
+		lookPosition = position + 5*Vector3.Normalize(lookPosition-position);
+		lookTransform.position = lookPosition;
+
+		playerArms.LookAt(lookPosition);
+	}
+
+	// Someone with XBox controller please test this :)
+	public void AimPerformedGamepad(Vector2 input)
+	{
+		Vector3 position = _transform.position;
+		playerArms.LookAt(position + new Vector3(input.x*5, input.y*5, 0));
 	}
 
 	public void AimCancelled()
