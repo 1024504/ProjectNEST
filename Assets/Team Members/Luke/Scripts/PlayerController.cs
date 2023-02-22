@@ -45,6 +45,12 @@ public class PlayerController : ControllerBase
 		_moveInput.performed += MovePerformed;
 		_moveInput.canceled += MoveCancelled;
 		
+		Cursor.lockState = CursorLockMode.Confined;
+		Cursor.visible = false;
+		_aimInput.Enable();
+		_aimInput.performed += AimPerformed;
+		_aimInput.canceled += AimCancelled;
+		
 		_jumpInput.Enable();
 		_jumpInput.performed += JumpPerformed;
 		_jumpInput.canceled += JumpCancelled;
@@ -76,6 +82,12 @@ public class PlayerController : ControllerBase
 		_moveInput.Disable();
 		_moveInput.performed -= MovePerformed;
 		_moveInput.canceled -= MoveCancelled;
+		
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		_aimInput.Disable();
+		_aimInput.performed -= AimPerformed;
+		_aimInput.canceled -= AimCancelled;
 
 		_jumpInput.Disable();
 		_jumpInput.performed -= JumpPerformed;
@@ -90,53 +102,52 @@ public class PlayerController : ControllerBase
 		_action1Input.canceled -= Action1Cancelled;
 	}
 
-	public void MovePerformed(InputAction.CallbackContext context)
+	private void MovePerformed(InputAction.CallbackContext context)
 	{
-		
 		((IControllable)Agent).MovePerformed(Mathf.Ceil(context.ReadValue<Vector2>().x));
 	}
 
-	public void MoveCancelled(InputAction.CallbackContext context)
+	private void MoveCancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).MoveCancelled();
 	}
 
-	public void AimPerformed(InputAction.CallbackContext context)
+	private void AimPerformed(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).AimPerformed(context.ReadValue<Vector2>());
 	}
 
-	public void AimCancelled(InputAction.CallbackContext context)
+	private void AimCancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).AimCancelled();
 	}
 
-	public void JumpPerformed(InputAction.CallbackContext context)
+	private void JumpPerformed(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).JumpPerformed();
 	}
 
-	public void JumpCancelled(InputAction.CallbackContext context)
+	private void JumpCancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).JumpCancelled();
 	}
 
-	public void ShootPerformed(InputAction.CallbackContext context)
+	private void ShootPerformed(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).ShootPerformed();
 	}
 
-	public void ShootCancelled(InputAction.CallbackContext context)
+	private void ShootCancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).ShootCancelled();
 	}
 
-	public void Action1Performed(InputAction.CallbackContext context)
+	private void Action1Performed(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Action1Performed();
 	}
 
-	public void Action1Cancelled(InputAction.CallbackContext context)
+	private void Action1Cancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Action1Cancelled();
 	}
