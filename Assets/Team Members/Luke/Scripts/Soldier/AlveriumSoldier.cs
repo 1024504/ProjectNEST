@@ -7,12 +7,12 @@ using UnityEngine.InputSystem;
 
 public class AlveriumSoldier : MonoBehaviour, IControllable
 {
-	[SerializeField] private Transform[] joints;
-	[SerializeField] private float[] neutralAngles;
-	[SerializeField] private float[] motionAmplitudes;
-	[SerializeField] private float[] motionFrequencies;
-	[Range(0,1)]
-	[SerializeField] private float[] motionPhaseOffsets;
+	// [SerializeField] private Transform[] joints;
+	// [SerializeField] private float[] neutralAngles;
+	// [SerializeField] private float[] motionAmplitudes;
+	// [SerializeField] private float[] motionFrequencies;
+	// [Range(0,1)]
+	// [SerializeField] private float[] motionPhaseOffsets;
 	
 	// [SerializeField] private float motionProgress;
 	//
@@ -22,6 +22,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	// 	set => motionProgress = value % (2*Mathf.PI);
 	// }
 	
+	private Transform _t;
 	private Rigidbody2D _rb;
 
     private SoldierTerrainCollider _terrainCollider;
@@ -49,18 +50,20 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	
 	private void OnEnable()
 	{
+		_t = transform;
 		_rb = GetComponent<Rigidbody2D>();
         _terrainCollider = (SoldierTerrainCollider)GetComponentInChildren<TerrainCollider>();
-		neutralAngles = new float[joints.Length];
-		for (int i = 0; i < joints.Length; i++)
-		{
-			neutralAngles[i] = joints[i].localEulerAngles.z;
-		}
+		// neutralAngles = new float[joints.Length];
+		// for (int i = 0; i < joints.Length; i++)
+		// {
+		// 	neutralAngles[i] = joints[i].localEulerAngles.z;
+		// }
 	}
 
 	private void FixedUpdate()
 	{
 		Move(_lateralMoveInput);
+		Rotate();
 		// MotionProgress += Time.fixedDeltaTime;
 		// MoveBody(Vector2.down*Mathf.Sin(MotionProgress*motionFrequencies[0]+motionPhaseOffsets[0]*2*Mathf.PI)*motionAmplitudes[0]);
 		// for (int i = 1; i < joints.Length; i++)
@@ -91,6 +94,13 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
                 lateralInput * moveSpeed * -_terrainCollider.normal.x);
         }
     }
+    
+    private void Rotate()
+	{
+		float angularVelocity = _rb.angularVelocity;
+		// Debug.Log(Vector3.Angle(_t.TransformDirection(Vector3.up), _terrainCollider.normal));
+		_rb.angularVelocity = Mathf.Lerp(angularVelocity,angularVelocity+Vector3.Angle(_t.TransformDirection(Vector3.up),_terrainCollider.normal),0.1f);
+	}
 
 	public void MovePerformed(float lateralInput)
 	{
@@ -103,9 +113,14 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
         _lateralMoveInput = 0;
     }
 
-	public void AimPerformed(Vector2 input)
+	public void AimPerformedMouse(Vector2 input)
 	{
 		
+	}
+
+	public void AimPerformedGamepad(Vector2 input)
+	{
+		throw new NotImplementedException();
 	}
 
 	public void AimCancelled()
