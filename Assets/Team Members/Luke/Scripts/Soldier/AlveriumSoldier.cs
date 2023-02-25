@@ -158,6 +158,16 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 		
 	}
 
+	public void Action2Performed()
+	{
+		
+	}
+
+	public void Action2Cancelled()
+	{
+		
+	}
+
 	#region Weapons Testing
 
 	public void Weapon1Performed()

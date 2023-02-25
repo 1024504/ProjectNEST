@@ -12,6 +12,7 @@ public class PlayerController : ControllerBase
 	private InputAction _jumpInput;
 	private InputAction _shootInput;
 	private InputAction _action1Input;
+	private InputAction _action2Input;
 	
 	//testing for weapons
 	private InputAction _weapon1Input;
@@ -27,6 +28,7 @@ public class PlayerController : ControllerBase
 		_jumpInput = _controls.Player.Jump;
 		_shootInput = _controls.Player.Fire;
 		_action1Input = _controls.Player.Action1;
+		_action2Input = _controls.Player.Action2;
 		_weapon1Input = _controls.Player.Weapon1;
 		_weapon2Input = _controls.Player.Weapon2;
 		_weapon3Input = _controls.Player.Weapon3;
@@ -61,7 +63,11 @@ public class PlayerController : ControllerBase
 		
 		_action1Input.Enable();
 		_action1Input.performed += Action1Performed;
-		_action1Input.canceled += Action1Cancelled;
+		_action1Input.canceled += Action1Cancelled;	
+		
+		_action2Input.Enable();
+		_action2Input.performed += Action2Performed;
+		_action2Input.canceled += Action2Cancelled;
 		
 		//weapons test
 		_weapon1Input.Enable();
@@ -100,6 +106,23 @@ public class PlayerController : ControllerBase
 		_action1Input.Disable();
 		_action1Input.performed -= Action1Performed;
 		_action1Input.canceled -= Action1Cancelled;
+		
+		_action2Input.Disable();
+		_action2Input.performed -= Action2Performed;
+		_action2Input.canceled -= Action2Cancelled;
+		
+		//weapons test
+		_weapon1Input.Disable();
+		_weapon1Input.performed -= Weapon1Performed;
+		_weapon1Input.canceled -= Weapon1Cancelled;
+		
+		_weapon2Input.Disable();
+		_weapon2Input.performed -= Weapon2Performed;
+		_weapon2Input.canceled -= Weapon2Cancelled;
+		
+		_weapon3Input.Disable();
+		_weapon3Input.performed -= Weapon3Performed;
+		_weapon3Input.canceled -= Weapon3Cancelled;
 	}
 
 	private void MovePerformed(InputAction.CallbackContext context)
@@ -153,33 +176,42 @@ public class PlayerController : ControllerBase
 		((IControllable)Agent).Action1Cancelled();
 	}
 
+	private void Action2Performed(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Action2Performed();
+	}
+
+	private void Action2Cancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).Action2Cancelled();
+	}
 	#region Weapons Testing
 
-	public void Weapon1Performed(InputAction.CallbackContext context)
+	private void Weapon1Performed(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Weapon1Performed();
 	}
 	
-	public void Weapon1Cancelled(InputAction.CallbackContext context)
+	private void Weapon1Cancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Weapon1Cancelled();
 	}
-	public void Weapon2Performed(InputAction.CallbackContext context)
+	private void Weapon2Performed(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Weapon2Performed();
 	}
 	
-	public void Weapon2Cancelled(InputAction.CallbackContext context)
+	private void Weapon2Cancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Weapon2Cancelled();
 	}
 	
-	public void Weapon3Performed(InputAction.CallbackContext context)
+	private void Weapon3Performed(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Weapon3Performed();
 	}
 	
-	public void Weapon3Cancelled(InputAction.CallbackContext context)
+	private void Weapon3Cancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Weapon3Cancelled();
 	}

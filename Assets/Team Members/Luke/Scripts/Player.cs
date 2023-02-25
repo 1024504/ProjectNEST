@@ -30,17 +30,16 @@ public class Player : MonoBehaviour, IControllable
 
 	[Header("Weapons")]
 	//public GameObject equippedWeapon;
-	public GameObject bulletPrefab;
-	public Transform barrelTransform;
+	//public GameObject bulletPrefab;
+	//public Transform barrelTransform;
 	public List<GameObject> weaponsList;
-	public List<GameObject> bulletList;
-	public List<Transform> barrelTransforms;
+	//public List<GameObject> bulletList;
+	//public List<Transform> barrelTransforms;
 	public Transform playerArms;
 	public Transform lookTransform;
 	public float mouseAimSensitivity = 1;
-	//public WeaponBase weaponBase;
 	public Vector3 mousePos;
-	//public Camera camera;
+	
 
 	private Transform _transform;
 	private Rigidbody2D _rb;
@@ -55,7 +54,6 @@ public class Player : MonoBehaviour, IControllable
 		_rb.gravityScale = gravityScale;
 		_terrainCollider = GetComponentInChildren<TerrainCollider>();
 		_grapple = GetComponentInChildren<Grapple>(true);
-		
 	}
 
 	private void FixedUpdate()
@@ -94,6 +92,16 @@ public class Player : MonoBehaviour, IControllable
 	public void MovePerformed(float lateralInput)
 	{
 		_lateralMoveInput = lateralInput;
+		
+		//turn the player when moving left and right tests
+		/*if (_lateralMoveInput < 0)
+		{
+			gameObject.transform.Rotate(new Vector3(0, 180, 0));
+		}
+		else if (_lateralMoveInput > 0)
+		{
+			gameObject.transform.Rotate(new Vector3(0, -180, 0));
+		}*/
 	}
 
 	public void MoveCancelled()
@@ -148,12 +156,16 @@ public class Player : MonoBehaviour, IControllable
 	public void ShootPerformed()
 	{
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.isShootingRifle = true;
 		weaponBase.Shoot();
+		Debug.Log("Shooting");
 	}
 
 	public void ShootCancelled()
 	{
-		
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.isShootingRifle = false;
+		Debug.Log("Not Shooting");
 	}
 
 	public void Action1Performed()
@@ -167,17 +179,26 @@ public class Player : MonoBehaviour, IControllable
 		
 	}
 
+	public void Action2Performed()
+	{
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.Reload();
+	}
+
+	public void Action2Cancelled()
+	{
+		
+	}
+
 	#region Weapons Testing
 
 	public void Weapon1Performed()
 	{
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
-		weaponBase.isShotgun = false;
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(true);
 		weaponsList[1].SetActive(false);
 		weaponsList[2].SetActive(false);
-		
 	}
 
 	public void Weapon1Cancelled()
@@ -188,12 +209,10 @@ public class Player : MonoBehaviour, IControllable
 	public void Weapon2Performed()
 	{
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
-		weaponBase.isShotgun = true; 
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
 		weaponsList[1].SetActive(true);
 		weaponsList[2].SetActive(false);
-		
 	}
 	
 	public void Weapon2Cancelled()
@@ -203,12 +222,10 @@ public class Player : MonoBehaviour, IControllable
 	public void Weapon3Performed()
 	{
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
-		weaponBase.isShotgun = false; 
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
 		weaponsList[1].SetActive(false);
 		weaponsList[2].SetActive(true);
-		
 	}
 	
 	public void Weapon3Cancelled()
