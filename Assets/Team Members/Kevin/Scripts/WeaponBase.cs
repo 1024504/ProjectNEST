@@ -18,15 +18,33 @@ public class WeaponBase : MonoBehaviour, IShootable
     public AudioClip gunShot;
     public AudioClip reload;
 
+    public bool isRifle;
+    public bool isShootingRifle;
+    public bool isNotShooting;
+    
+    //shot gun spread test
+    public Transform[] shotgunBarrelTransforms;
+
+    public void Update()
+    {
+        /*if (isRifle && isShootingRifle)
+        {
+            Shoot();
+        }*/
+    }
     public void Shoot()
     {
+        if (isReloading) return;
         if (currentMagazine > 0)
         {
             if (isShotgun)
             {
                 //add shot gun sound here
                 AudioSource.PlayClipAtPoint(gunShot,transform.position);
-                Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
+                for (int i = 0; i < shotgunBarrelTransforms.Length; i++)
+                {
+                    Instantiate(bulletPrefab, shotgunBarrelTransforms[i].position, transform.rotation);
+                }
                 currentMagazine-= 2;
                 Debug.Log("Shotgun: " + dmg);
             }
@@ -44,15 +62,24 @@ public class WeaponBase : MonoBehaviour, IShootable
             //add reload sound here
             //Or out of ammo UI
             Reload();
-            AudioSource.PlayClipAtPoint(reload,transform.position);
-            isReloading = true;
         }
        
     }
-
     public void Reload()
     {
-        StartCoroutine(ReloadTimer());
+        if (currentMagazine == magazineMax)
+        {
+            Debug.Log("Full Clip");
+            return;
+        }
+
+        if (isReloading == false)
+        {
+            isReloading = true;
+            AudioSource.PlayClipAtPoint(reload,transform.position);
+            Debug.Log("Reloading");
+            StartCoroutine(ReloadTimer());
+        }
     }
 
     IEnumerator ReloadTimer()
