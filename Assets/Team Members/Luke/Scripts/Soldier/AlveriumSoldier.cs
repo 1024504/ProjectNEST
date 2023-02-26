@@ -28,8 +28,11 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
     private SoldierTerrainCollider _terrainCollider;
 	
 	[SerializeField] private float moveSpeed = 5;
+	[SerializeField] private float gravityScale = 1;
 	
 	[SerializeField] private float _lateralMoveInput;
+
+	public float rotateSpeed = 1;
 	
 	private enum Joints
 	{
@@ -63,7 +66,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	private void FixedUpdate()
 	{
 		Move(_lateralMoveInput);
-		Rotate();
+		StickToWall();
 		// MotionProgress += Time.fixedDeltaTime;
 		// MoveBody(Vector2.down*Mathf.Sin(MotionProgress*motionFrequencies[0]+motionPhaseOffsets[0]*2*Mathf.PI)*motionAmplitudes[0]);
 		// for (int i = 1; i < joints.Length; i++)
@@ -86,20 +89,20 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
     {
         if (!_terrainCollider.isGrounded)
         {
-            _rb.velocity = new Vector2(lateralInput * moveSpeed, _rb.velocity.y);
+	        _rb.gravityScale = gravityScale;
+	        _rb.velocity = new Vector2(lateralInput * moveSpeed, _rb.velocity.y);
         }
         else
         {
-            _rb.velocity = new Vector2(lateralInput * moveSpeed * _terrainCollider.normal.y,
-                lateralInput * moveSpeed * -_terrainCollider.normal.x);
+	        _rb.gravityScale = 0;
+	        _rb.velocity = new Vector2(lateralInput * moveSpeed * _terrainCollider.normal.y-_terrainCollider.normal.x,
+                lateralInput * moveSpeed * -_terrainCollider.normal.x-_terrainCollider.normal.y);
         }
     }
     
-    private void Rotate()
+    private void StickToWall()
 	{
-		float angularVelocity = _rb.angularVelocity;
-		// Debug.Log(Vector3.Angle(_t.TransformDirection(Vector3.up), _terrainCollider.normal));
-		_rb.angularVelocity = Mathf.Lerp(angularVelocity,angularVelocity+Vector3.Angle(_t.TransformDirection(Vector3.up),_terrainCollider.normal),0.1f);
+		_rb.angularVelocity = Vector3.SignedAngle(_t.TransformDirection(Vector3.up),_terrainCollider.normal, Vector3.forward)*rotateSpeed;
 	}
 
 	public void MovePerformed(float lateralInput)
@@ -120,7 +123,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 
 	public void AimPerformedGamepad(Vector2 input)
 	{
-		throw new NotImplementedException();
+		
 	}
 
 	public void AimCancelled()

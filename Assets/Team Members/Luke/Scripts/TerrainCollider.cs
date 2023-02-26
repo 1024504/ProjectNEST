@@ -23,6 +23,12 @@ public class TerrainCollider : MonoBehaviour
 		isGrounded = true;
 	}
 
+    protected void OnTriggerStay2D(Collider2D other)
+    { 
+	    // if (!_groundColliders.Contains(other)) _groundColliders.Add(other);
+		// isGrounded = true;
+    }
+
     protected virtual void OnTriggerExit2D(Collider2D other)
 	{
 		if (_groundColliders.Contains(other)) _groundColliders.Remove(other);
