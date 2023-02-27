@@ -27,8 +27,9 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 
     private SoldierTerrainCollider _terrainCollider;
 	
-	[SerializeField] private float moveSpeed = 5;
+	[SerializeField] private float moveSpeed = 15;
 	[SerializeField] private float gravityScale = 1;
+	[SerializeField] private float jumpSpeed = 15;
 	
 	[SerializeField] private float _lateralMoveInput;
 

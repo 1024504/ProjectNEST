@@ -18,7 +18,7 @@ public class SoldierTerrainCollider : TerrainCollider
     
     private void FixedUpdate()
     {
-        Vector3 position = _t.position + _t.TransformDirection(new Vector3(lateralMoveInput*0.1f, 0, 0));
+        Vector3 position = _t.position + _t.TransformDirection(new Vector3(lateralMoveInput*1f, 0, 0));
         
         if (_groundColliders.Count > 0)
         {
