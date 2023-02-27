@@ -115,6 +115,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	public void MoveCancelled()
     {
         _lateralMoveInput = 0;
+        _terrainCollider.lateralMoveInput = 0;
     }
 
 	public void AimPerformedMouse(Vector2 input)
@@ -133,9 +134,18 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	}
 
 	public void JumpPerformed()
-	{
-		
-	}
+    {
+        StartCoroutine(JumpTimer());
+    }
+
+    private IEnumerator JumpTimer()
+    {
+        _rb.gravityScale = 0;
+        // _rb.velocity += _terrainCollider.normal*
+        yield return null;
+        
+        _rb.gravityScale = gravityScale;
+    }
 
 	public void JumpCancelled()
 	{

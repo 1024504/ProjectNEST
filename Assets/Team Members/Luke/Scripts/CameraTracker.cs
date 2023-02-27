@@ -27,7 +27,7 @@ public class CameraTracker : MonoBehaviour
 	    _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, playerTransform.position+cameraDistance*Vector3.back, 0.1f*cameraSpeed);
     }
 
-    private void UpdateCollider()
+    public void UpdateCollider()
     {
 	    _collider.size = new Vector2(2*_cam.orthographicSize*_cam.aspect, 2*_cam.orthographicSize);
     }
