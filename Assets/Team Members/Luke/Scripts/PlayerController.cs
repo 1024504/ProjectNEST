@@ -127,7 +127,7 @@ public class PlayerController : ControllerBase
 
 	private void MovePerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).MovePerformed(Mathf.Ceil(context.ReadValue<Vector2>().x));
+		((IControllable)Agent).MovePerformed(Mathf.Ceil(context.ReadValue<float>()));
 	}
 
 	private void MoveCancelled(InputAction.CallbackContext context)

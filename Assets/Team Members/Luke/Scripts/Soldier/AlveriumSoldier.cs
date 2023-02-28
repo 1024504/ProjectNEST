@@ -25,11 +25,16 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	private Transform _t;
 	private Rigidbody2D _rb;
 
+	[SerializeField] private Transform _view;
+
     private SoldierTerrainCollider _terrainCollider;
 	
 	[SerializeField] private float moveSpeed = 15;
 	[SerializeField] private float gravityScale = 1;
 	[SerializeField] private float jumpSpeed = 15;
+	[SerializeField] private float wallSuctionStrength = 1;
+
+	private bool _isJumping = false;
 	
 	[SerializeField] private float _lateralMoveInput;
 
@@ -67,7 +72,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	private void FixedUpdate()
 	{
 		Move(_lateralMoveInput);
-		StickToWall();
+		RotateToWall();
 		// MotionProgress += Time.fixedDeltaTime;
 		// MoveBody(Vector2.down*Mathf.Sin(MotionProgress*motionFrequencies[0]+motionPhaseOffsets[0]*2*Mathf.PI)*motionAmplitudes[0]);
 		// for (int i = 1; i < joints.Length; i++)
@@ -96,20 +101,28 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
         else
         {
 	        _rb.gravityScale = 0;
-	        _rb.velocity = new Vector2(lateralInput * moveSpeed * _terrainCollider.normal.y-_terrainCollider.normal.x,
-                lateralInput * moveSpeed * -_terrainCollider.normal.x-_terrainCollider.normal.y);
+	        _rb.velocity = new Vector2(lateralInput * moveSpeed * _terrainCollider.normal.y-_terrainCollider.normal.x*wallSuctionStrength,
+                lateralInput * moveSpeed * -_terrainCollider.normal.x-_terrainCollider.normal.y*wallSuctionStrength);
         }
     }
     
-    private void StickToWall()
+    private void RotateToWall()
 	{
 		_rb.angularVelocity = Vector3.SignedAngle(_t.TransformDirection(Vector3.up),_terrainCollider.normal, Vector3.forward)*rotateSpeed;
 	}
 
 	public void MovePerformed(float lateralInput)
 	{
+		if (_lateralMoveInput >= 0 && lateralInput < 0)
+		{
+			_view.localRotation = Quaternion.identity;
+		}
+		else if (_lateralMoveInput <= 0 && lateralInput > 0)
+		{
+			_view.localRotation = Quaternion.Euler(0, 180, 0);
+		}
 		_lateralMoveInput = lateralInput;
-        _terrainCollider.lateralMoveInput = lateralInput;
+        _terrainCollider.lateralMoveInput = -Mathf.Abs(lateralInput);
     }
 
 	public void MoveCancelled()
@@ -141,8 +154,8 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
     private IEnumerator JumpTimer()
     {
         _rb.gravityScale = 0;
-        // _rb.velocity += _terrainCollider.normal*
-        yield return null;
+        _rb.velocity += _terrainCollider.normal * jumpSpeed;
+        yield return new WaitForSeconds(1f);
         
         _rb.gravityScale = gravityScale;
     }
