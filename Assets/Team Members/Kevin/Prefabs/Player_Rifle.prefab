@@ -104,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2387260810225560749, guid: 403ed6df9af6da84ab58c28b5ee5b60f, type: 3}
+  m_Sprite: {fileID: 366186151253392131, guid: 403ed6df9af6da84ab58c28b5ee5b60f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -247,6 +247,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebcbb7fd81cac944a18f7a19bef1161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
+  currentMagazine: 0
+  magazineMax: 0
+  shotRange: 0
+  gunBarrelTransform: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  isReloading: 0
+  rifleSound: {fileID: 0}
+  rifleReload: {fileID: 0}
+  reloadTime: 0
 --- !u!1 &8415375096817499323
 GameObject:
   m_ObjectHideFlags: 0

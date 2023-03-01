@@ -164,6 +164,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebcbb7fd81cac944a18f7a19bef1161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
+  currentMagazine: 0
+  magazineMax: 0
+  shotRange: 0
+  gunBarrelTransform: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  isReloading: 0
+  rifleSound: {fileID: 0}
+  rifleReload: {fileID: 0}
+  reloadTime: 0
 --- !u!1 &5848543987015749525
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +415,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 180205840557511841, guid: cb09d1640754f8340b6a82e0e8629864, type: 3}
+  m_Sprite: {fileID: -497676032073689642, guid: cb09d1640754f8340b6a82e0e8629864, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
