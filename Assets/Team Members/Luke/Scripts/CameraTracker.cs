@@ -12,19 +12,31 @@ public class CameraTracker : MonoBehaviour
 
 	[Range(0,5)]
 	public float cameraSpeed = 1f;
-	public float cameraDistance = 10f;
-
+	[SerializeField] private float cameraSize = 10f;
+	
+	public float CameraSize
+	{
+		get => cameraSize;
+		set
+		{
+			cameraSize = value;
+			_cam.orthographicSize = cameraSize;
+			UpdateCollider();
+		}
+	}
+	
 	private void OnEnable()
 	{
 		_cam = GetComponent<Camera>();
 	    _cameraTransform = transform;
+	    _cam.orthographicSize = cameraSize;
 	    _collider = GetComponent<BoxCollider2D>();
 	    UpdateCollider();
     }
 
     private void FixedUpdate()
     {
-	    _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, playerTransform.position+cameraDistance*Vector3.back, 0.1f*cameraSpeed);
+	    _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, playerTransform.position+Vector3.back, 0.1f*cameraSpeed);
     }
 
     public void UpdateCollider()

@@ -663,6 +663,67 @@ PolygonCollider2D:
       - {x: -0.016666668, y: -0.7316667}
       - {x: 0.06333333, y: -0.6716667}
   m_UseDelaunayMesh: 0
+--- !u!1 &1313056563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1313056564}
+  - component: {fileID: 1313056565}
+  - component: {fileID: 1313056566}
+  m_Layer: 0
+  m_Name: VisionTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1313056564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313056563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3263152609679383676}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1313056565
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313056563}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 15
+--- !u!114 &1313056566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313056563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348135ebc282f78439bb2827e89ce834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1333097728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1670,7 @@ Transform:
   - {fileID: 8161518671352968396}
   - {fileID: 1027269069354162328}
   - {fileID: 2809239327958294473}
+  - {fileID: 1313056564}
   m_Father: {fileID: 3569488082446310913}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1654,7 +1716,8 @@ GameObject:
   - component: {fileID: 3569488082446310913}
   - component: {fileID: 9000500780212009494}
   - component: {fileID: 659618697220847538}
-  - component: {fileID: 768925358}
+  - component: {fileID: 2640590135735736451}
+  - component: {fileID: 2640590135735736455}
   m_Layer: 0
   m_Name: AlveriumSoldier
   m_TagString: Untagged
@@ -1676,7 +1739,7 @@ Transform:
   m_Children:
   - {fileID: 3263152609679383676}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9000500780212009494
 MonoBehaviour:
@@ -1691,12 +1754,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 3263152609679383676}
-  moveSpeed: 15
+  targetLocations: []
+  currentTarget: {fileID: 0}
+  beginsPatrolLeft: 1
+  patrolSpeed: 10
+  chaseSpeed: 15
+  currentMoveSpeed: 15
   gravityScale: 6
   jumpSpeed: 5
   wallSuctionStrength: 2
-  _lateralMoveInput: 0
+  idleDuration: 2
+  patrolDuration: 3
+  memoryDuration: 5
+  lateralMoveInput: 0
   rotateSpeed: 4
+  visionLayerMask:
+    serializedVersion: 2
+    m_Bits: 520
 --- !u!50 &659618697220847538
 Rigidbody2D:
   serializedVersion: 4
@@ -1718,7 +1792,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &768925358
+--- !u!95 &2640590135735736451
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2336883827527267525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 31f5e32735d028347b0da28353419b05, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2640590135735736455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1727,10 +1821,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2336883827527267525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a10015bd92fb542912b540248f84ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 9000500780212009494}
+  manualUpdate: 0
+  thinkInterval: 0.1
+  scenario: {fileID: 11400000, guid: ac76e8152fa078144a234a748e285f67, type: 2}
 --- !u!1 &3152302179965623591
 GameObject:
   m_ObjectHideFlags: 0

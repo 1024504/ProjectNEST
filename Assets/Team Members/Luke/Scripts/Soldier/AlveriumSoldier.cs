@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Anthill.AI;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AlveriumSoldier : MonoBehaviour, IControllable
+public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 {
 	// [SerializeField] private Transform[] joints;
 	// [SerializeField] private float[] neutralAngles;
@@ -27,16 +28,28 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 
 	[SerializeField] private Transform _view;
 
+	public List<Transform> targetLocations;
+	public Transform currentTarget;
+
     private SoldierTerrainCollider _terrainCollider;
-	
-	[SerializeField] private float moveSpeed = 15;
+
+    public bool beginsPatrolLeft = true;
+    public float patrolSpeed = 8f;
+    public float chaseSpeed = 15f;
+    
+	public float currentMoveSpeed = 15;
 	[SerializeField] private float gravityScale = 1;
 	[SerializeField] private float jumpSpeed = 15;
 	[SerializeField] private float wallSuctionStrength = 1;
 
-	private bool _isJumping = false;
+	public float idleDuration = 2f;
+	public float patrolDuration = 3f;
+	public float memoryDuration = 5f;
 	
-	[SerializeField] private float _lateralMoveInput;
+	private bool _isJumping = false;
+	private bool _canPatrol = true;
+	
+	public float lateralMoveInput;
 
 	public float rotateSpeed = 1;
 	
@@ -71,7 +84,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 
 	private void FixedUpdate()
 	{
-		Move(_lateralMoveInput);
+		Move(lateralMoveInput);
 		RotateToWall();
 		// MotionProgress += Time.fixedDeltaTime;
 		// MoveBody(Vector2.down*Mathf.Sin(MotionProgress*motionFrequencies[0]+motionPhaseOffsets[0]*2*Mathf.PI)*motionAmplitudes[0]);
@@ -90,19 +103,64 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 	// {
 	// 	joints[(int) joint].localRotation = Quaternion.Euler(0, 0, neutralAngle + deltaAngle);
 	// }
+	
+	
+	public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
+	{
+		aWorldState.Set(SoldierScenario.CanPatrol, _canPatrol);
+		aWorldState.Set(SoldierScenario.SeesTarget, ChooseTarget());
+		aWorldState.Set(SoldierScenario.TargetWithinRange, false);
+		aWorldState.Set(SoldierScenario.CanReachTarget, true);
+		aWorldState.Set(SoldierScenario.CanAttack, false);
+		aWorldState.Set(SoldierScenario.AllTargetsDead, false);
+	}
+
+	public IEnumerator CanPatrolTimer(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		_canPatrol = !_canPatrol;
+	}
+
+	[SerializeField] private LayerMask visionLayerMask = 520;
+
+	private bool ChooseTarget()
+	{
+		if (targetLocations.Count == 0)
+		{
+			currentTarget = null;
+			return false;
+		}
+		
+		KeyValuePair<float, int> closestTarget = new KeyValuePair<float, int>(Mathf.Infinity, -1);
+		foreach (Transform target in targetLocations)
+		{
+			RaycastHit2D hit = Physics2D.Linecast(_t.position, target.position, visionLayerMask);
+			if (hit.collider.gameObject.GetComponentInParent<Player>() == null) continue;
+			float distance = Vector2.Distance(_t.position, target.position);
+			if (distance < closestTarget.Key) closestTarget = new KeyValuePair<float, int>(distance, targetLocations.IndexOf(target));
+		}
+
+		if (closestTarget.Value == -1)
+		{
+			currentTarget = null;
+			return false;
+		}
+		currentTarget = targetLocations[closestTarget.Value];
+		return true;
+	}
 
     private void Move(float lateralInput)
     {
         if (!_terrainCollider.isGrounded)
         {
 	        _rb.gravityScale = gravityScale;
-	        _rb.velocity = new Vector2(lateralInput * moveSpeed, _rb.velocity.y);
+	        _rb.velocity = new Vector2(lateralInput * currentMoveSpeed, _rb.velocity.y);
         }
         else
         {
 	        _rb.gravityScale = 0;
-	        _rb.velocity = new Vector2(lateralInput * moveSpeed * _terrainCollider.normal.y-_terrainCollider.normal.x*wallSuctionStrength,
-                lateralInput * moveSpeed * -_terrainCollider.normal.x-_terrainCollider.normal.y*wallSuctionStrength);
+	        _rb.velocity = new Vector2(lateralInput * currentMoveSpeed * _terrainCollider.normal.y-_terrainCollider.normal.x*wallSuctionStrength,
+                lateralInput * currentMoveSpeed * -_terrainCollider.normal.x-_terrainCollider.normal.y*wallSuctionStrength);
         }
     }
     
@@ -113,21 +171,21 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 
 	public void MovePerformed(float lateralInput)
 	{
-		if (_lateralMoveInput >= 0 && lateralInput < 0)
+		if (lateralMoveInput >= 0 && lateralInput < 0)
 		{
 			_view.localRotation = Quaternion.identity;
 		}
-		else if (_lateralMoveInput <= 0 && lateralInput > 0)
+		else if (lateralMoveInput <= 0 && lateralInput > 0)
 		{
 			_view.localRotation = Quaternion.Euler(0, 180, 0);
 		}
-		_lateralMoveInput = lateralInput;
+		lateralMoveInput = lateralInput;
         _terrainCollider.lateralMoveInput = -Mathf.Abs(lateralInput);
     }
 
 	public void MoveCancelled()
     {
-        _lateralMoveInput = 0;
+        lateralMoveInput = 0;
         _terrainCollider.lateralMoveInput = 0;
     }
 
@@ -229,6 +287,16 @@ public class AlveriumSoldier : MonoBehaviour, IControllable
 
 	#endregion
 
+	public enum SoldierScenario
+	{
+		SeesTarget = 0,
+		AllTargetsDead = 1,
+		TargetWithinRange = 2,
+		CanReachTarget = 3,
+		CanAttack = 4,
+		CanPatrol = 5
+	}
+	
 	// Everything below is for Debugging and can be deleted eventually
 
 	// private void Awake()
