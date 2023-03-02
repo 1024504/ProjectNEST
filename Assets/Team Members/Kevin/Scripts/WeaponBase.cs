@@ -13,7 +13,7 @@ public class WeaponBase : MonoBehaviour, IShootable
     public Transform gunBarrelTransform;
     public GameObject bulletPrefab;
     public bool isReloading;
-
+    public bool isShooting;
 
     public virtual void Shoot()
     {

@@ -9,9 +9,27 @@ public class Rifle : WeaponBase
     public List<AudioClip> rifleSound;
     public AudioClip rifleReload;
     public float reloadTime;
-
+    public float shotCounter;
+    public float rateOfFire = 0.1f;
+    public void Update()
+    {
+        if (isShooting)
+        {
+            shotCounter -= Time.deltaTime;
+            if (shotCounter <= 0)
+            {
+                shotCounter = rateOfFire;
+                Shoot();
+            }
+        }
+        else
+        {
+            shotCounter -= Time.deltaTime;
+        }
+    }
+    
     #region Shooting
-
+    
     public override void Shoot()
     {
         if (isReloading) return;

@@ -156,12 +156,14 @@ public class Player : MonoBehaviour, IControllable
 	public void ShootPerformed()
 	{
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.isShooting = true;
 		weaponBase.Shoot();
 	}
 
 	public void ShootCancelled()
 	{
-		
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		weaponBase.isShooting = false;
 	}
 
 	public void Action1Performed()
