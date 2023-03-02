@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI rifleAmmoText;
     public TextMeshProUGUI shotgunAmmoText;
     public TextMeshProUGUI sniperAmmoText;
+    public TextMeshProUGUI medkitAmountText;
 
     public void Update()
     {
@@ -20,6 +21,7 @@ public class UIManager : MonoBehaviour
         rifleAmmoText.text = rifle.GetComponent<Rifle>().currentMagazine.ToString();
         shotgunAmmoText.text = shotgun.GetComponent<Shotgun>().currentMagazine.ToString();
         sniperAmmoText.text = sniper.GetComponent<Sniper>().currentMagazine.ToString();
+        medkitAmountText.text = player.medkitCount.ToString();
     }
     
     [SerializeField] private GameObject pauseMenu;

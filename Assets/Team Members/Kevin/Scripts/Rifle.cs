@@ -41,7 +41,6 @@ public class Rifle : WeaponBase
             currentMagazine--;
             if(currentMagazine < 1 && isReloading == false)
             {
-                //add reload sound here
                 StartCoroutine(AutoReloadTimer());
             }
         }
@@ -56,19 +55,12 @@ public class Rifle : WeaponBase
     public override void Reload()
     {
         if (currentMagazine == magazineMax) return;
-        {
-            Debug.Log("Full Clip");
-        }
-
         if (isReloading) return;
-        {
-            Debug.Log("Is Reloading");
-        }
+        
         if (isReloading == false)
         {
             isReloading = true;
             AudioSource.PlayClipAtPoint(rifleReload,transform.position);
-            Debug.Log("Reloading");
             StartCoroutine(ReloadTimer());
         }
     }
@@ -88,9 +80,16 @@ public class Rifle : WeaponBase
     
     private IEnumerator AutoReloadTimer()
     {
-        isReloading = true;
         yield return new WaitForSeconds(3f);
-        AutoReload();
+        if (isReloading)
+        {
+            Debug.Log("reloading already!");
+        }
+        else
+        {
+            AutoReload();
+        }
+        
     }
 
   

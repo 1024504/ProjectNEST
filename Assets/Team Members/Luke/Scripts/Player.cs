@@ -49,6 +49,8 @@ public class Player : MonoBehaviour, IControllable
 	//UI controls
 	[SerializeField] private UIManager _uiManager;
 
+	public int medkitCount;
+	public int maxMedkit = 3;
 	private void OnEnable()
 	{
 		_transform = transform;
@@ -249,6 +251,16 @@ public class Player : MonoBehaviour, IControllable
 	public void Weapon3Cancelled()
 	{
 		
+	}
+
+	#endregion
+
+	#region ItemPickupTest
+
+	public void PickUp()
+	{
+		if (medkitCount == maxMedkit) return;
+		medkitCount++;
 	}
 
 	#endregion
