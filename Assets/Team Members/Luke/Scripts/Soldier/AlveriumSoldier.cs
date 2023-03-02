@@ -255,6 +255,16 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		
 	}
 
+	public void PausePerformed()
+	{
+		
+	}
+
+	public void PauseCancelled()
+	{
+		
+	}
+
 	#region Weapons Testing
 
 	public void Weapon1Performed()

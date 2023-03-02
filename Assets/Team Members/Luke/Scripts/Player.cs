@@ -46,6 +46,8 @@ public class Player : MonoBehaviour, IControllable
 	private TerrainCollider _terrainCollider;
 	[SerializeField] private Grapple _grapple;
 	
+	//UI controls
+	[SerializeField] private UIManager _uiManager;
 
 	private void OnEnable()
 	{
@@ -184,6 +186,24 @@ public class Player : MonoBehaviour, IControllable
 	}
 
 	public void Action2Cancelled()
+	{
+		
+	}
+
+	public void PausePerformed()
+	{
+		if (UIManager.IsPaused == false)
+		{
+			_uiManager.Pause();
+		}
+		else if (UIManager.IsPaused)
+		{
+			_uiManager.ResumeButton();
+		}
+		
+	}
+
+	public void PauseCancelled()
 	{
 		
 	}

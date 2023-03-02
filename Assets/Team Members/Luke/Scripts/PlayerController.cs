@@ -13,6 +13,9 @@ public class PlayerController : ControllerBase
 	private InputAction _shootInput;
 	private InputAction _action1Input;
 	private InputAction _action2Input;
+
+	//pause game
+	private InputAction _pauseInput;
 	
 	//testing for weapons
 	private InputAction _weapon1Input;
@@ -32,6 +35,8 @@ public class PlayerController : ControllerBase
 		_weapon1Input = _controls.Player.Weapon1;
 		_weapon2Input = _controls.Player.Weapon2;
 		_weapon3Input = _controls.Player.Weapon3;
+		_pauseInput = _controls.Player.Pause;
+		
 
 		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);
 	}
@@ -69,6 +74,10 @@ public class PlayerController : ControllerBase
 		_action2Input.performed += Action2Performed;
 		_action2Input.canceled += Action2Cancelled;
 		
+		//pause menu
+		_pauseInput.Enable();
+		_pauseInput.performed += PausePerformed;
+		_pauseInput.canceled += PauseCancelled;
 		//weapons test
 		_weapon1Input.Enable();
 		_weapon1Input.performed += Weapon1Performed;
@@ -110,6 +119,11 @@ public class PlayerController : ControllerBase
 		_action2Input.Disable();
 		_action2Input.performed -= Action2Performed;
 		_action2Input.canceled -= Action2Cancelled;
+		
+		//pause menu
+		_pauseInput.Enable();
+		_pauseInput.performed -= PausePerformed;
+		_pauseInput.canceled -= PauseCancelled;
 		
 		//weapons test
 		_weapon1Input.Disable();
@@ -184,6 +198,15 @@ public class PlayerController : ControllerBase
 	private void Action2Cancelled(InputAction.CallbackContext context)
 	{
 		((IControllable)Agent).Action2Cancelled();
+	}
+
+	private void PausePerformed(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).PausePerformed();
+	}
+	private void PauseCancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).PauseCancelled();
 	}
 	#region Weapons Testing
 
