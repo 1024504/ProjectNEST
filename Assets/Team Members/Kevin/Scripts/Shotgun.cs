@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shotgun : WeaponBase
 {
     public Transform[] shotgunBarrelTransforms;
-    public AudioClip shotgunSound;
+    public AudioClip[] shotgunSound;
     public AudioClip shotgunReload;
     public float reloadTime;
     public override void Shoot()
@@ -14,7 +14,7 @@ public class Shotgun : WeaponBase
         if (currentMagazine > 0)
         {
             //add shot gun sound here
-            AudioSource.PlayClipAtPoint(shotgunSound, transform.position);
+            AudioSource.PlayClipAtPoint(shotgunSound[Random.Range(0,3)], transform.position);
             for (int i = 0; i < shotgunBarrelTransforms.Length; i++)
             {
                 Instantiate(bulletPrefab, shotgunBarrelTransforms[i].position, transform.rotation);

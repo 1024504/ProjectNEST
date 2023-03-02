@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Rifle : WeaponBase
 {
-    public AudioClip rifleSound;
+    public List<AudioClip> rifleSound;
     public AudioClip rifleReload;
     public float reloadTime;
 
@@ -17,7 +18,7 @@ public class Rifle : WeaponBase
         if(currentMagazine > 0)
         {
             //add rifle sound here
-            AudioSource.PlayClipAtPoint(rifleSound,transform.position);
+            AudioSource.PlayClipAtPoint(rifleSound[Random.Range(0,3)],transform.position);
             Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
             currentMagazine--;
             if(currentMagazine < 1 && isReloading == false)

@@ -955,8 +955,11 @@ MonoBehaviour:
   gunBarrelTransform: {fileID: 7427332763595557118}
   bulletPrefab: {fileID: 8542998801946814849, guid: efc9400f38999644e8b7ba24efb56942, type: 3}
   isReloading: 0
-  sniperSound: {fileID: 0}
-  sniperReload: {fileID: 0}
+  sniperSound:
+  - {fileID: 8300000, guid: 54ce102f6ab3b9a4b9666d1b30610a91, type: 3}
+  - {fileID: 8300000, guid: bc5e7e17fa7f1b44c984c32238bbec8d, type: 3}
+  - {fileID: 8300000, guid: afc4e47ecadf0c74480c8116a543bb36, type: 3}
+  sniperReload: {fileID: 8300000, guid: bdb4988f43e975f49a07882d96e72360, type: 3}
   reloadTime: 2
 --- !u!4 &7427332763595557118 stripped
 Transform:
@@ -1174,8 +1177,11 @@ MonoBehaviour:
   - {fileID: 2675139125427984389}
   - {fileID: 4543619212476770317}
   - {fileID: 2808997950924231954}
-  shotgunSound: {fileID: 0}
-  shotgunReload: {fileID: 0}
+  shotgunSound:
+  - {fileID: 8300000, guid: 2fd91af6c9245ae468d029845e2eb9dd, type: 3}
+  - {fileID: 8300000, guid: 087e3f472e218764eb728c4e3dd97922, type: 3}
+  - {fileID: 8300000, guid: cb6ef21e4484b3e48b251c06f5d107ea, type: 3}
+  shotgunReload: {fileID: 8300000, guid: 9d4c5d853aa23f84ca2cf7a8781fadfa, type: 3}
   reloadTime: 2
 --- !u!4 &6820326831830429884 stripped
 Transform:
@@ -1283,6 +1289,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6379515591204918714, guid: 33a5fd086dc741f49a9966e988651940, type: 3}
+      propertyPath: rifleReload
+      value: 
+      objectReference: {fileID: 8300000, guid: bdb4988f43e975f49a07882d96e72360, type: 3}
+    - target: {fileID: 6379515591204918714, guid: 33a5fd086dc741f49a9966e988651940, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 8542998801946814849, guid: 1821cd6a3ff233d45bee21f78bdd96e1, type: 3}
@@ -1294,6 +1304,22 @@ PrefabInstance:
       propertyPath: gunBarrelTransform
       value: 
       objectReference: {fileID: 8968809774156201604}
+    - target: {fileID: 6379515591204918714, guid: 33a5fd086dc741f49a9966e988651940, type: 3}
+      propertyPath: rifleSound.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6379515591204918714, guid: 33a5fd086dc741f49a9966e988651940, type: 3}
+      propertyPath: rifleSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 485802df82dd74140a8e4950cd46f8cf, type: 3}
+    - target: {fileID: 6379515591204918714, guid: 33a5fd086dc741f49a9966e988651940, type: 3}
+      propertyPath: rifleSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 507bec9cc6ddfaf409abdc7dd53514e0, type: 3}
+    - target: {fileID: 6379515591204918714, guid: 33a5fd086dc741f49a9966e988651940, type: 3}
+      propertyPath: rifleSound.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: e683ba1d6b855204dba86203b887733e, type: 3}
     - target: {fileID: 6876812456460252165, guid: 33a5fd086dc741f49a9966e988651940, type: 3}
       propertyPath: m_Name
       value: Player_Rifle
