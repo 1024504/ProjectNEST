@@ -20,9 +20,27 @@ public class SoldierPatrolState : AntAIState
 	public override void Enter()
 	{
 		base.Enter();
+		if (_agent.currentMoveSpeed > _agent.patrolSpeed)
+		{
+			_agent.MoveCancelled();
+			_agent.anim.CrossFade("Lost_Player", 0);
+			_coroutine = StartCoroutine(LostTarget());
+		}
+		else BeginWalk();
 		_agent.currentMoveSpeed = _agent.patrolSpeed;
+	}
+	
+	private IEnumerator LostTarget()
+	{
+		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+		BeginWalk();
+	}
+	
+	private void BeginWalk()
+	{
 		_coroutine = StartCoroutine(_agent.CanPatrolTimer(_agent.patrolDuration));
 		_agent.MovePerformed(_moveInput);
+		_agent.anim.CrossFade("Walk", 0);
 	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)

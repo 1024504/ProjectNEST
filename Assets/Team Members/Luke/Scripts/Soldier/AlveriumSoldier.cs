@@ -25,6 +25,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	
 	private Transform _t;
 	private Rigidbody2D _rb;
+	public Animator anim;
 
 	[SerializeField] private Transform _view;
 
@@ -80,6 +81,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		// {
 		// 	neutralAngles[i] = joints[i].localEulerAngles.z;
 		// }
+		anim = GetComponent<Animator>();
 	}
 
 	private void FixedUpdate()
