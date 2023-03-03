@@ -4994,11 +4994,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7034475746669827672, guid: f1d57545601cea04fb4ecab8c18de8a4, type: 3}
   m_PrefabInstance: {fileID: 644550688}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &658709120 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9121541318292422055, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
-  m_PrefabInstance: {fileID: 1912478685}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &699436296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6844,6 +6839,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7034475746669827672, guid: f1d57545601cea04fb4ecab8c18de8a4, type: 3}
   m_PrefabInstance: {fileID: 946798480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &951343891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1402405635, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
+  m_PrefabInstance: {fileID: 1912478685}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &951943694
 PrefabInstance:
@@ -14392,6 +14392,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402405635, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2371049611179770646, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: rifle
       value: 
@@ -14411,7 +14415,7 @@ PrefabInstance:
     - target: {fileID: 2371049611179770646, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: pauseMenu
       value: 
-      objectReference: {fileID: 658709120}
+      objectReference: {fileID: 951343891}
     - target: {fileID: 2371049611179770648, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: m_Name
       value: PlayerUIManager
@@ -14479,6 +14483,10 @@ PrefabInstance:
     - target: {fileID: 6902491335684986169, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121541318292422055, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
