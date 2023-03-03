@@ -154,7 +154,7 @@ Transform:
   - {fileID: 6892926049702200472}
   - {fileID: 1317605524}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7425688498930848919
 MonoBehaviour:
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e836642270ff6c341840c3cffae7c576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 16
   maxSlopeAngle: 45
-  jumpSpeed: 16
+  jumpSpeed: 36
   jumpTime: 0.35
   gravityScale: 6
   grappleEnabled: 0
@@ -188,6 +188,8 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0, z: 0}
   _grapple: {fileID: 0}
   _uiManager: {fileID: 0}
+  medkitCount: 0
+  maxMedkit: 3
 --- !u!114 &8727429382220082491
 MonoBehaviour:
   m_ObjectHideFlags: 0

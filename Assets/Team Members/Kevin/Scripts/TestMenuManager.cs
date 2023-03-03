@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestMenuManager : MonoBehaviour
 {
@@ -12,12 +13,12 @@ public class TestMenuManager : MonoBehaviour
 
     public void MovementTestOneSceneButton()
     {
-        //load movement test 1 scene
+        SceneManager.LoadScene("Playtest_1_BUILD/Platforming Test A1");
     }
 
     public void MovementTestTwoSceneButton()
     {
-        //load movement test 2 scene
+        SceneManager.LoadScene("Playtest_1_BUILD/Platforming Test A2");
     }
 
     public void FeedbackFormButton()
