@@ -48,12 +48,6 @@ public class Sniper : WeaponBase
       }
    }
     
-   private void AutoReload()
-   {
-      AudioSource.PlayClipAtPoint(sniperReload,transform.position);
-      Debug.Log("AutoReloading");
-      StartCoroutine(ReloadTimer());
-   }
    private IEnumerator ReloadTimer()
    {
       yield return new WaitForSeconds(reloadTime);
@@ -63,9 +57,8 @@ public class Sniper : WeaponBase
     
    private IEnumerator AutoReloadTimer()
    {
-      isReloading = true;
       yield return new WaitForSeconds(3f);
-      AutoReload();
+      Reload();
    }
 
   

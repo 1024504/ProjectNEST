@@ -35,7 +35,6 @@ public class Rifle : WeaponBase
         if (isReloading) return;
         if(currentMagazine > 0)
         {
-            //add rifle sound here
             AudioSource.PlayClipAtPoint(rifleSound[Random.Range(0,3)],transform.position);
             Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
             currentMagazine--;
@@ -46,7 +45,6 @@ public class Rifle : WeaponBase
         }
         
     }
-
     #endregion
 
 
@@ -65,12 +63,6 @@ public class Rifle : WeaponBase
         }
     }
     
-    private void AutoReload()
-    {
-        AudioSource.PlayClipAtPoint(rifleReload,transform.position);
-        Debug.Log("AutoReloading");
-        StartCoroutine(ReloadTimer());
-    }
     private IEnumerator ReloadTimer()
     {
         yield return new WaitForSeconds(reloadTime);
@@ -81,19 +73,14 @@ public class Rifle : WeaponBase
     private IEnumerator AutoReloadTimer()
     {
         yield return new WaitForSeconds(3f);
-        if (isReloading)
+        if (isReloading == false)
         {
-            Debug.Log("reloading already!");
-        }
-        else
-        {
-            AutoReload();
+            Reload();
         }
         
+        
     }
-
-  
-
+    
     #endregion
   
 }

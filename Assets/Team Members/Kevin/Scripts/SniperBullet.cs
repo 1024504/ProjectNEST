@@ -1,25 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class SniperBullet : BulletBase
 {
-    private Rigidbody2D rb;
-    public float speed;
-    public float bulletDmg;
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
-        /*WeaponBase weaponBase = GetComponentInParent<WeaponBase>();
-        bulletDmg = weaponBase.dmg;*/
         StartCoroutine(ShotRange());
     }
     private IEnumerator ShotRange()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(bulletLife);
         BulletDestroy();
     }
 
@@ -35,6 +28,6 @@ public class Bullet : MonoBehaviour
     }
     private void BulletDestroy()
     {
-        Destroy(this.GameObject());
+        Destroy(this.gameObject);
     }
 }

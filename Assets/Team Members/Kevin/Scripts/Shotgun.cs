@@ -46,12 +46,6 @@ public class Shotgun : WeaponBase
         }
     }
     
-    private void AutoReload()
-    {
-        AudioSource.PlayClipAtPoint(shotgunReload,transform.position);
-        Debug.Log("AutoReloading");
-        StartCoroutine(ReloadTimer());
-    }
     private IEnumerator ReloadTimer()
     {
         yield return new WaitForSeconds(reloadTime);
@@ -61,9 +55,8 @@ public class Shotgun : WeaponBase
     
     private IEnumerator AutoReloadTimer()
     {
-        isReloading = true;
         yield return new WaitForSeconds(3f);
-        AutoReload();
+        Reload();
     }
 
   
