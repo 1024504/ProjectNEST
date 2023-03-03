@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,6 +18,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI sniperAmmoText;
     public TextMeshProUGUI medkitAmountText;
 
+    public GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     public void Update()
     {
         //place holder until events are added
@@ -25,15 +35,16 @@ public class UIManager : MonoBehaviour
     }
     
     [SerializeField] private GameObject pauseMenu;
-    public static bool IsPaused = false;
     public void Pause()
     {
+        gameManager.gamePaused = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void ResumeButton()
     {
+        gameManager.gamePaused = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }

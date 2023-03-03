@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IControllable
 {
@@ -194,11 +196,11 @@ public class Player : MonoBehaviour, IControllable
 
 	public void PausePerformed()
 	{
-		if (UIManager.IsPaused == false)
+		if (GameManager.Instance.gamePaused == false)
 		{
 			_uiManager.Pause();
 		}
-		else if (UIManager.IsPaused)
+		else if (GameManager.Instance.gamePaused)
 		{
 			_uiManager.ResumeButton();
 		}

@@ -19,11 +19,11 @@ public class LaserPointer : MonoBehaviour
         {
             Debug.DrawRay(transform.position,transform.TransformDirection(Vector2.right) * hitInfo.distance, Color.blue);
             hitDistance = hitInfo.distance;
-            gameObject.transform.localScale = new Vector3(hitDistance,1f);
+            gameObject.transform.localScale = new Vector3(hitDistance,0.3f);
         }
         else
         {
-            gameObject.transform.localScale = new Vector3(maxDistance,1f);
+            gameObject.transform.localScale = new Vector3(maxDistance,0.3f);
         }
         
 
