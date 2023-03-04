@@ -21,7 +21,6 @@ public class RifleBullet : BulletBase
         EnemyTest enemyTest = colliderObject.GetComponent<EnemyTest>();
         if (enemyTest != null)
         {
-            Debug.Log("Hit! "+ bulletDmg);
             enemyTest.GotHit(bulletDmg);
             BulletDestroy();
         }

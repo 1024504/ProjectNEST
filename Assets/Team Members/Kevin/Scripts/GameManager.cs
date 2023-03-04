@@ -1,24 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   private static GameManager _instance;
+   public static GameManager Instance { get; private set; }
+
+   [Header("Game Tracking")] 
+   public float survivalTimer;
+
+   public int killCount;
 
    public bool gamePaused;
-
-   public static GameManager Instance
-   {
-      get
-      {
-         if(_instance == null)
-            Debug.LogError("Game Manager Null!!!");
-         return _instance;
-      }
-   }
+   
    private void Awake()
    {
-      _instance = this; 
+      if (Instance == null)
+      {
+         Instance = this; 
+         DontDestroyOnLoad(gameObject);
+      }
+      else
+      {
+         Destroy(gameObject);
+      }
+      
+   }
+
+   public void Update()
+   {
+      survivalTimer += Time.deltaTime;
+   }
+   public void KillCountUpdate()
+   {
+      killCount++;
    }
 }
