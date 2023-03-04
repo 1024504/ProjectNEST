@@ -41,6 +41,7 @@ public class Rifle : WeaponBase
             if(currentMagazine < 1 && isReloading == false)
             {
                 StartCoroutine(AutoReloadTimer());
+                
             }
         }
         
@@ -54,13 +55,10 @@ public class Rifle : WeaponBase
     {
         if (currentMagazine == magazineMax) return;
         if (isReloading) return;
+        isReloading = true;
+        AudioSource.PlayClipAtPoint(rifleReload,transform.position);
+        StartCoroutine(ReloadTimer());
         
-        if (isReloading == false)
-        {
-            isReloading = true;
-            AudioSource.PlayClipAtPoint(rifleReload,transform.position);
-            StartCoroutine(ReloadTimer());
-        }
     }
     
     private IEnumerator ReloadTimer()
@@ -72,13 +70,11 @@ public class Rifle : WeaponBase
     
     private IEnumerator AutoReloadTimer()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         if (isReloading == false)
         {
             Reload();
         }
-        
-        
     }
     
     #endregion

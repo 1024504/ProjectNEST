@@ -6,20 +6,19 @@ using UnityEngine.SceneManagement;
 public class TestMenuManager : MonoBehaviour
 {
     public string testFormLink;
-    public List<string> scenes;
     public void CombatSceneButton()
     {
-        SceneManager.LoadScene(scenes[0]);
+        SceneManager.LoadScene("CombatScene");
     }
 
     public void MovementTestOneSceneButton()
     {
-        SceneManager.LoadScene(scenes[1]);
+        SceneManager.LoadScene("Playtest_1_BUILD/Platforming Test A1");
     }
 
     public void MovementTestTwoSceneButton()
     {
-        SceneManager.LoadScene(scenes[2]);
+        SceneManager.LoadScene("Playtest_1_BUILD/Platforming Test A2");
     }
 
     public void FeedbackFormButton()

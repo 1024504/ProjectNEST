@@ -22,7 +22,6 @@ public class Sniper : WeaponBase
          currentMagazine--;
          if(currentMagazine < 1 && isReloading == false)
          {
-            //add reload sound here
             StartCoroutine(AutoReloadTimer());
          }
       }
@@ -36,16 +35,11 @@ public class Sniper : WeaponBase
    public override void Reload()
    {
       if (currentMagazine == magazineMax) return;
-      {
-         Debug.Log("Full Clip");
-      }
-      if (isReloading == false)
-      {
-         isReloading = true;
-         AudioSource.PlayClipAtPoint(sniperReload,transform.position);
-         Debug.Log("Reloading");
-         StartCoroutine(ReloadTimer());
-      }
+      if (isReloading) return;
+      isReloading = true;
+      AudioSource.PlayClipAtPoint(sniperReload,transform.position);
+      StartCoroutine(ReloadTimer());
+        
    }
     
    private IEnumerator ReloadTimer()
@@ -57,8 +51,11 @@ public class Sniper : WeaponBase
     
    private IEnumerator AutoReloadTimer()
    {
-      yield return new WaitForSeconds(3f);
-      Reload();
+      yield return new WaitForSeconds(1f);
+      if (isReloading == false)
+      {
+         Reload();
+      }
    }
 
   

@@ -13,7 +13,6 @@ public class Shotgun : WeaponBase
         if (isReloading) return;
         if (currentMagazine > 0)
         {
-            //add shot gun sound here
             AudioSource.PlayClipAtPoint(shotgunSound[Random.Range(0,3)], transform.position);
             for (int i = 0; i < shotgunBarrelTransforms.Length; i++)
             {
@@ -22,10 +21,8 @@ public class Shotgun : WeaponBase
             currentMagazine -= 2;
             if(currentMagazine < 1 && isReloading == false)
             {
-                //add reload sound here
                 StartCoroutine(AutoReloadTimer());
             }
-            //Debug.Log("Shotgun: " + dmg);
         }
     }
     
@@ -34,16 +31,11 @@ public class Shotgun : WeaponBase
     public override void Reload()
     {
         if (currentMagazine == magazineMax) return;
-        {
-            Debug.Log("Full Clip");
-        }
-        if (isReloading == false)
-        {
-            isReloading = true;
-            AudioSource.PlayClipAtPoint(shotgunReload,transform.position);
-            Debug.Log("Reloading");
-            StartCoroutine(ReloadTimer());
-        }
+        if (isReloading) return;
+        isReloading = true;
+        AudioSource.PlayClipAtPoint(shotgunReload,transform.position);
+        StartCoroutine(ReloadTimer());
+        
     }
     
     private IEnumerator ReloadTimer()
@@ -55,12 +47,12 @@ public class Shotgun : WeaponBase
     
     private IEnumerator AutoReloadTimer()
     {
-        yield return new WaitForSeconds(3f);
-        Reload();
+        yield return new WaitForSeconds(1f);
+        if (isReloading == false)
+        {
+            Reload();
+        }
     }
-
-  
-
     #endregion
     
 }
