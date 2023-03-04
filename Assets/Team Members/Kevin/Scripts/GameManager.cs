@@ -27,11 +27,6 @@ public class GameManager : MonoBehaviour
       }
       
    }
-
-   public void Update()
-   {
-      survivalTimer += Time.deltaTime;
-   }
    public void KillCountUpdate()
    {
       killCount++;

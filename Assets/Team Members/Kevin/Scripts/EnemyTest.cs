@@ -26,7 +26,6 @@ public class EnemyTest : MonoBehaviour
 
     private void EnemyKilled()
     {
-        GameManager.Instance.KillCountUpdate();
         Destroy(this.GameObject());
     }
     

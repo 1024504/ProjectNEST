@@ -17,8 +17,6 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI shotgunAmmoText;
     public TextMeshProUGUI sniperAmmoText;
     public TextMeshProUGUI medkitAmountText;
-    public TextMeshProUGUI killCountText;
-    public TextMeshProUGUI gameTimerText;
 
     public void Update()
     {
@@ -27,8 +25,6 @@ public class UIManager : MonoBehaviour
         shotgunAmmoText.text = shotgun.GetComponent<Shotgun>().currentMagazine.ToString();
         sniperAmmoText.text = sniper.GetComponent<Sniper>().currentMagazine.ToString();
         medkitAmountText.text = player.medkitCount.ToString();
-        killCountText.text = GameManager.Instance.killCount.ToString();
-        gameTimerText.text = GameManager.Instance.survivalTimer.ToString("F1");
     }
     
     [SerializeField] private GameObject pauseMenu;
