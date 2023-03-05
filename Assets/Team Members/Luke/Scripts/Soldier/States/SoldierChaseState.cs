@@ -37,12 +37,23 @@ public class SoldierChaseState : AntAIState
 	public override void Execute(float aDeltaTime, float aTimeScale)
 	{
 		base.Execute(aDeltaTime, aTimeScale);
-		if(_animationFinished) _agent.MovePerformed(Mathf.Sign(_agentTransform.TransformDirection(_agent.currentTarget.position - _agentTransform.position).x));
+		if (!_animationFinished) return;
+		
+		if (_agent.lastKnownTargetDirection != 0)  _agent.MovePerformed(_agent.lastKnownTargetDirection);
+		else
+		{
+			_agent.MoveCancelled();
+			// check absolute distance for canAttack
+			// if canAttack, transition to attack
+			// if !canAttack, start timer for can't reach target
+			// at end of timer, if can still sense player, jump
+		}
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
+		_agent.MoveCancelled();
 		_animationFinished = false;
 		StopCoroutine(_coroutine);
 	}

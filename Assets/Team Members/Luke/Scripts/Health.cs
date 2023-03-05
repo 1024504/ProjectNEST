@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
         get => healthLevel;
         set
         {
-            if (value < 0) Die();
+            if (value <= 0) Die();
             else if (value > maxHealth) healthLevel = maxHealth;
             else healthLevel = value;
         }

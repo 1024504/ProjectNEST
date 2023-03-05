@@ -16,7 +16,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	// [SerializeField] private float[] motionPhaseOffsets;
 	
 	// [SerializeField] private float motionProgress;
-	//
+	
 	// private float MotionProgress
 	// {
 	// 	get => motionProgress;
@@ -31,12 +31,14 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 
 	public List<Transform> targetLocations;
 	public Transform currentTarget;
+	public float lastKnownTargetDirection;
 
     private SoldierTerrainCollider _terrainCollider;
 
     public bool beginsPatrolLeft = true;
     public float patrolSpeed = 8f;
     public float chaseSpeed = 15f;
+    public float attackRange = 2.5f;
     
 	public float currentMoveSpeed = 15;
 	[SerializeField] private float gravityScale = 1;
@@ -46,10 +48,14 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	public float idleDuration = 2f;
 	public float patrolDuration = 3f;
 	public float memoryDuration = 5f;
+	public float attackDamage = 10f;
+	public float attackCooldown = 2f;
 	
 	private bool _isJumping = false;
 	private bool _canPatrol = true;
-	
+	public bool targetWithinRange = false;
+	public bool _canAttack = true;
+
 	public float lateralMoveInput;
 
 	public float rotateSpeed = 1;
@@ -111,9 +117,9 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	{
 		aWorldState.Set(SoldierScenario.CanPatrol, _canPatrol);
 		aWorldState.Set(SoldierScenario.SeesTarget, ChooseTarget());
-		aWorldState.Set(SoldierScenario.TargetWithinRange, false);
+		aWorldState.Set(SoldierScenario.TargetWithinRange, targetWithinRange);
 		aWorldState.Set(SoldierScenario.CanReachTarget, true);
-		aWorldState.Set(SoldierScenario.CanAttack, false);
+		aWorldState.Set(SoldierScenario.CanAttack, _canAttack);
 		aWorldState.Set(SoldierScenario.AllTargetsDead, false);
 	}
 
@@ -144,14 +150,30 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 
 		if (closestTarget.Value == -1)
 		{
-			currentTarget = null;
-			return false;
+			return true;
 		}
+		
 		currentTarget = targetLocations[closestTarget.Value];
+
+		float lateralDistance = _t.InverseTransformDirection(currentTarget.position - _t.position).x;
+		if (Mathf.Abs(lateralDistance) > attackRange) lastKnownTargetDirection = Mathf.Sign(_t.InverseTransformDirection(currentTarget.position - _t.position).x);
+		else lastKnownTargetDirection = 0;
 		return true;
 	}
 
-    private void Move(float lateralInput)
+	public void CooldownAttack()
+	{
+		StartCoroutine(CooldownAttackTimer());
+	}
+	
+	private IEnumerator CooldownAttackTimer()
+	{
+		_canAttack = false;
+		yield return new WaitForSeconds(attackCooldown);
+		_canAttack = true;
+	}
+
+	private void Move(float lateralInput)
     {
         if (!_terrainCollider.isGrounded)
         {
