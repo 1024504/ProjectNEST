@@ -44,6 +44,7 @@ public class Player : MonoBehaviour, IControllable
 	
 
 	private Transform _transform;
+	[SerializeField] private Transform _view;
 	private Rigidbody2D _rb;
 	private TerrainCollider _terrainCollider;
 	[SerializeField] private Grapple _grapple;
@@ -54,7 +55,10 @@ public class Player : MonoBehaviour, IControllable
 	public int medkitCount;
 	public int maxMedkit = 3;
 
-	public Animator _anim;
+	public Action OnPlayerIdle;
+	public Action OnPlayerWalk;
+	public Action OnPlayerJump;
+	
 	private void OnEnable()
 	{
 		_transform = transform;
@@ -72,13 +76,18 @@ public class Player : MonoBehaviour, IControllable
 	private void Move(float input)
 	{
 		if (GameManager.Instance.gamePaused) return;
-		_anim.CrossFade("PT_Walk", 0, 0);
 		if (!_terrainCollider.isGrounded)
 		{
+			OnPlayerJump?.Invoke();
 			_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
 		}
 		else if (Vector2.Angle(Vector2.up, _terrainCollider.normal) <= maxSlopeAngle)
 		{
+			if (input != 0)
+			{
+				OnPlayerWalk?.Invoke();
+			}
+			else OnPlayerIdle?.Invoke();
 			_rb.velocity = new Vector2(input * moveSpeed * _terrainCollider.normal.y,
 				input * moveSpeed * -_terrainCollider.normal.x);
 		}
@@ -102,22 +111,11 @@ public class Player : MonoBehaviour, IControllable
 	public void MovePerformed(float lateralInput)
 	{
 		_lateralMoveInput = lateralInput;
-		//turn the player when moving left and right tests
-		/*if (_lateralMoveInput < 0)
-		{
-			gameObject.transform.Rotate(new Vector3(0, 180, 0));
-		}
-		else if (_lateralMoveInput > 0)
-		{
-			gameObject.transform.Rotate(new Vector3(0, -180, 0));
-		}*/
 	}
 
 	public void MoveCancelled()
 	{
 		_lateralMoveInput = 0;
-		if (!_terrainCollider.isGrounded) return;
-		_anim.CrossFade("PT_Stop", 0, 0);
 	}
 
 	public void AimPerformedMouse(Vector2 aimInput)
@@ -132,6 +130,15 @@ public class Player : MonoBehaviour, IControllable
 		lookTransform.position = lookPosition;
 
 		playerArms.LookAt(lookPosition);
+		
+		if (lookTransform.localPosition.x >= 0)
+		{
+			_view.localRotation = Quaternion.identity;
+		}
+		else
+		{
+			_view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+		}
 	}
 
 	// Someone with XBox controller please test this :)
@@ -151,7 +158,6 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (GameManager.Instance.gamePaused) return;
 		if (!_terrainCollider.isGrounded) return;
-		_anim.CrossFade("PT_Jump", 0, 0);
 		if (Vector2.Angle(Vector2.up, _terrainCollider.normal) > maxSlopeAngle) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
 		_terrainCollider.isGrounded = false;
@@ -163,7 +169,6 @@ public class Player : MonoBehaviour, IControllable
 	public void JumpCancelled()
 	{
 		if (GameManager.Instance.gamePaused) return;
-		_anim.CrossFade("PT_Jump", 0, 0);
 		if (_terrainCollider.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
 		_rb.gravityScale = gravityScale;
