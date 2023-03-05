@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
    [Header("Game Tracking")] 
    public float survivalTimer;
 
+   public int winCondition;
+
    public int killCount;
 
    public bool gamePaused;
@@ -30,5 +32,9 @@ public class GameManager : MonoBehaviour
    public void KillCountUpdate()
    {
       killCount++;
+      /*if (killCount == winCondition)
+      {
+         //win game take to main menu
+      }*/
    }
 }
