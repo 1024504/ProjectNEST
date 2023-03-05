@@ -69,6 +69,7 @@ public class Player : MonoBehaviour, IControllable
 	
 	private void Move(float input)
 	{
+		if (GameManager.Instance.gamePaused) return;
 		if (!_terrainCollider.isGrounded)
 		{
 			_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
@@ -117,6 +118,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void AimPerformedMouse(Vector2 aimInput)
 	{
+		if (GameManager.Instance.gamePaused) return;
 		Vector2 aimRes = aimInput * (0.05f * mouseAimSensitivity);
 		Vector3 position = _transform.position;
 		Vector3 lookPosition = lookTransform.position;
@@ -131,6 +133,7 @@ public class Player : MonoBehaviour, IControllable
 	// Someone with XBox controller please test this :)
 	public void AimPerformedGamepad(Vector2 input)
 	{
+		if (GameManager.Instance.gamePaused) return;
 		Vector3 position = _transform.position;
 		playerArms.LookAt(position + new Vector3(input.x*5, input.y*5, 0));
 	}
@@ -142,6 +145,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpPerformed()
 	{
+		if (GameManager.Instance.gamePaused) return;
 		if (!_terrainCollider.isGrounded) return;
 		if (Vector2.Angle(Vector2.up, _terrainCollider.normal) > maxSlopeAngle) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
@@ -153,6 +157,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpCancelled()
 	{
+		if (GameManager.Instance.gamePaused) return;
 		if (_terrainCollider.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
 		_rb.gravityScale = gravityScale;
@@ -161,6 +166,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void ShootPerformed()
 	{
+		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		weaponBase.isShooting = true;
 		weaponBase.Shoot();
@@ -185,6 +191,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Action2Performed()
 	{
+		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		weaponBase.Reload();
 	}
@@ -216,6 +223,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Weapon1Performed()
 	{
+		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(true);
@@ -230,6 +238,7 @@ public class Player : MonoBehaviour, IControllable
 	
 	public void Weapon2Performed()
 	{
+		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
@@ -243,6 +252,7 @@ public class Player : MonoBehaviour, IControllable
 	}
 	public void Weapon3Performed()
 	{
+		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
