@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI sniperAmmoText;
     public TextMeshProUGUI medkitAmountText;
 
+    public TextMeshProUGUI playerHPAmountText;
+    //public Slider hpSlider;
+
     public void Update()
     {
         //place holder until events are added
@@ -25,6 +28,8 @@ public class UIManager : MonoBehaviour
         shotgunAmmoText.text = shotgun.GetComponent<Shotgun>().currentMagazine.ToString();
         sniperAmmoText.text = sniper.GetComponent<Sniper>().currentMagazine.ToString();
         medkitAmountText.text = player.medkitCount.ToString();
+        playerHPAmountText.text = player.GetComponent<Health>().HealthLevel.ToString();
+        //hpSlider.value = player.GetComponent<Health>().HealthLevel;
     }
     
     [SerializeField] private GameObject pauseMenu;
