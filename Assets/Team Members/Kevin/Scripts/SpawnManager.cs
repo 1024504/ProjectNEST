@@ -25,15 +25,6 @@ public class SpawnManager : MonoBehaviour
             SpawnAvlerium();
         }
     }
-
-    public void Awake()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            Instantiate(alveriumPrefab, spawnPosition[i].position, Quaternion.identity);
-        }
-    }
-    
     private void SpawnAvlerium()
     {
         if (alveriumCount >= spawnLimit) return;
