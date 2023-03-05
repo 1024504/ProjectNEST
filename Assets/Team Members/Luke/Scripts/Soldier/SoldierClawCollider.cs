@@ -17,7 +17,7 @@ public class SoldierClawCollider : MonoBehaviour
 		Player player = col.gameObject.GetComponent<Player>();
 		if (player != null)
 		{
-			player.GetComponent<Health>().HealthLevel -= _agent.attackDamage;
+			player.GetComponent<HealthBase>().HealthLevel -= _agent.attackDamage;
 		}
 	}
 }

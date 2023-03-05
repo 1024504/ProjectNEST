@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class HealthBase : MonoBehaviour
 {
-    [SerializeField] [Min(0)] private float healthLevel;
+    [SerializeField] [Min(0)] protected float healthLevel;
 
-    [SerializeField] [Min(1f)] private float maxHealth = 1;
+    [SerializeField] [Min(1f)] protected float maxHealth = 1;
 
     public float HealthLevel
     {
@@ -26,8 +26,8 @@ public class Health : MonoBehaviour
         healthLevel = maxHealth;
     }
 
-    private void Die()
+    protected virtual void Die()
     {
-        Destroy(gameObject);
+	    Destroy(gameObject);
     }
 }

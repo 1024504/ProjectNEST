@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class EnemyBody : MonoBehaviour
 {
-	public Health health;
+	public HealthBase health;
 
 	private void OnEnable()
 	{
-		health = GetComponentInParent<Health>();
+		health = GetComponentInParent<HealthBase>();
 	}
 }
