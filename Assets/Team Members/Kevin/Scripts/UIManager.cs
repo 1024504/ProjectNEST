@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI shotgunAmmoText;
     public TextMeshProUGUI sniperAmmoText;
     public TextMeshProUGUI medkitAmountText;
-
+    public TextMeshProUGUI killCountText;
     public TextMeshProUGUI playerHPAmountText;
     //public Slider hpSlider;
 
@@ -28,7 +28,8 @@ public class UIManager : MonoBehaviour
         shotgunAmmoText.text = shotgun.GetComponent<Shotgun>().currentMagazine.ToString();
         sniperAmmoText.text = sniper.GetComponent<Sniper>().currentMagazine.ToString();
         medkitAmountText.text = player.medkitCount.ToString();
-        playerHPAmountText.text = player.GetComponent<Health>().HealthLevel.ToString();
+        playerHPAmountText.text = player.GetComponent<PlayerHealth>().HealthLevel.ToString();
+        killCountText.text = GameManager.Instance.killCount.ToString();
         //hpSlider.value = player.GetComponent<Health>().HealthLevel;
     }
     
