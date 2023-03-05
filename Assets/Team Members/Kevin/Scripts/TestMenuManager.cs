@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class TestMenuManager : MonoBehaviour
 {
     public string testFormLink;
+
+    public void Awake()
+    {
+        Cursor.visible = true;
+    }
+
     public void CombatSceneButton()
     {
         SceneManager.LoadScene("CombatScene");

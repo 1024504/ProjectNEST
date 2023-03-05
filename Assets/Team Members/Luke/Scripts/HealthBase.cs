@@ -29,6 +29,5 @@ public class HealthBase : MonoBehaviour
     protected virtual void Die()
     {
         Destroy(gameObject);
-        GameManager.Instance.KillCountUpdate();
     }
 }

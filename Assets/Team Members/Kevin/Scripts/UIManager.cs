@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI medkitAmountText;
     public TextMeshProUGUI killCountText;
     public TextMeshProUGUI playerHPAmountText;
+
+    public TextMeshProUGUI survivalTimeText;
     //public Slider hpSlider;
 
     public void Update()
@@ -38,13 +40,15 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.gamePaused = true;
         pauseMenu.SetActive(true);
+        Cursor.visible = true;
         Time.timeScale = 0f;
     }
-
+    
     public void ResumeButton()
     {
         GameManager.Instance.gamePaused = false;
         pauseMenu.SetActive(false);
+        Cursor.visible = false;
         Time.timeScale = 1f;
     }
 
@@ -52,6 +56,14 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("TestDemoMainMenu");
+    }
+
+    public void RetryCombatButton()
+    {
+        GameManager.Instance.gamePaused = false;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("CombatScene");
     }
     
 }

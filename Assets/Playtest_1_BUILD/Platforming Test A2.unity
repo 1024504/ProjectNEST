@@ -2237,6 +2237,21 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+--- !u!1 &130202292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1934702410193766974, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+  m_PrefabInstance: {fileID: 130202291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &130202293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3649773771382143884, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+  m_PrefabInstance: {fileID: 130202291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &130202294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7498664971362841584, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+  m_PrefabInstance: {fileID: 130202291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &130202295 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7425688498930848919, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
@@ -6136,7 +6151,7 @@ PrefabInstance:
     - target: {fileID: 2371049611179770646, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: rifle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 130202294}
     - target: {fileID: 2371049611179770646, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: player
       value: 
@@ -6144,18 +6159,18 @@ PrefabInstance:
     - target: {fileID: 2371049611179770646, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: sniper
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 130202292}
     - target: {fileID: 2371049611179770646, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: shotgun
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 130202293}
     - target: {fileID: 2371049611179770648, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: m_Name
       value: PlayerUIManager
       objectReference: {fileID: 0}
     - target: {fileID: 2371049611179770648, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2371049611179770649, guid: cdfd76805326315468a2137588a3ac2c, type: 3}
       propertyPath: m_RootOrder
