@@ -32,7 +32,6 @@ public class PlayerTerrainCollider : TerrainCollider
                 }
             }
             normal = Physics2D.Linecast(position, _groundColliders[closestIndex].ClosestPoint(position)).normal;
-            Debug.DrawRay(_groundColliders[closestIndex].ClosestPoint(position),normal, Color.green);
         }
         else
         {

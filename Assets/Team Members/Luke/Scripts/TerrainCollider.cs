@@ -17,19 +17,23 @@ public class TerrainCollider : MonoBehaviour
 		_t = transform;
 	}
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+	protected void Update()
+	{
+		foreach (Collider2D collider in _groundColliders)
+		{
+			if (collider != null) continue;
+			_groundColliders.Remove(collider);
+			if (_groundColliders.Count == 0) isGrounded = false;
+		}
+	}
+
+	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
 		if (!_groundColliders.Contains(other)) _groundColliders.Add(other);
 		isGrounded = true;
 	}
 
-    protected void OnTriggerStay2D(Collider2D other)
-    { 
-	    // if (!_groundColliders.Contains(other)) _groundColliders.Add(other);
-		// isGrounded = true;
-    }
-
-    protected virtual void OnTriggerExit2D(Collider2D other)
+	protected virtual void OnTriggerExit2D(Collider2D other)
 	{
 		if (_groundColliders.Contains(other)) _groundColliders.Remove(other);
 	}
