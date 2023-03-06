@@ -19,6 +19,7 @@ public class TerrainCollider : MonoBehaviour
 
 	protected void Update()
 	{
+		if (_groundColliders.Count == 0) return;
 		foreach (Collider2D collider in _groundColliders)
 		{
 			if (collider != null) continue;
