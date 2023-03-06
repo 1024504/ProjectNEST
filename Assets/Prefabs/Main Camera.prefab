@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7049448470381020304}
   - component: {fileID: 7049448470381020306}
   - component: {fileID: 7049448470381020271}
-  - component: {fileID: 7049448470381020269}
   - component: {fileID: 7049448470381020305}
   - component: {fileID: 303707251}
   - component: {fileID: 303707250}
+  - component: {fileID: 8948611563169608583}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7049448470381020306
 MonoBehaviour:
@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
-  cameraSpeed: 1
-  cameraDistance: 10
+  cameraSpeed: 1.33
+  cameraSize: 14
 --- !u!20 &7049448470381020271
 Camera:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -95,14 +95,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7049448470381020269
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049448470381020268}
-  m_Enabled: 1
 --- !u!114 &7049448470381020305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,3 +175,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8948611563169608583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049448470381020268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
