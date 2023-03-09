@@ -11,6 +11,9 @@ public class Rifle : WeaponBase
     public float reloadTime;
     public float shotCounter;
     public float rateOfFire = 0.1f;
+
+    public delegate void OnBulletUpdate();
+    public event OnBulletUpdate OnShoot;
     public void Update()
     {
         if (isShooting)
@@ -38,6 +41,7 @@ public class Rifle : WeaponBase
             AudioSource.PlayClipAtPoint(rifleSound[Random.Range(0,3)],transform.position);
             Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
             currentMagazine--;
+            OnShoot?.Invoke();
             if(currentMagazine < 1 && isReloading == false)
             {
                 StartCoroutine(AutoReloadTimer());

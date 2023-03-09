@@ -9,33 +9,41 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject pauseMenu;
     public Player player;
-    public GameObject rifle;
-    public GameObject shotgun;
-    public GameObject sniper;
-    public TextMeshProUGUI rifleAmmoText;
-    public TextMeshProUGUI shotgunAmmoText;
-    public TextMeshProUGUI sniperAmmoText;
-    public TextMeshProUGUI medkitAmountText;
-    public TextMeshProUGUI killCountText;
-    public TextMeshProUGUI playerHPAmountText;
+    [SerializeField] private Rifle _rifle;
+    [SerializeField] private Shotgun _shotgun;
+    [SerializeField] private Sniper _sniper;
 
-    public TextMeshProUGUI survivalTimeText;
-    //public Slider hpSlider;
-
-    public void Update()
+    [SerializeField] private TextMeshProUGUI rifleAmmoText;
+    [SerializeField] private TextMeshProUGUI shotgunAmmoText;
+    [SerializeField] private TextMeshProUGUI sniperAmmoText;
+    public void Awake()
     {
-        //place holder until events are added
-        rifleAmmoText.text = rifle.GetComponent<Rifle>().currentMagazine.ToString();
-        shotgunAmmoText.text = shotgun.GetComponent<Shotgun>().currentMagazine.ToString();
-        sniperAmmoText.text = sniper.GetComponent<Sniper>().currentMagazine.ToString();
-        medkitAmountText.text = player.medkitCount.ToString();
-        playerHPAmountText.text = player.GetComponent<PlayerHealth>().HealthLevel.ToString();
-        killCountText.text = GameManager.Instance.killCount.ToString();
-        //hpSlider.value = player.GetComponent<Health>().HealthLevel;
+        player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
+        _rifle = player.GetComponentInChildren<Rifle>();
+        _shotgun = player.GetComponentInChildren<Shotgun>();
+        _sniper = player.GetComponentInChildren<Sniper>();
     }
     
-    [SerializeField] private GameObject pauseMenu;
+    
+    #region UI Update
+    public void OnEnable()
+    {
+        _rifle.OnShoot += UpdateRifleAmmo; 
+    }
+
+    public void OnDisable()
+    {
+        _rifle.OnShoot -= UpdateRifleAmmo;
+    }
+
+    private void UpdateRifleAmmo()
+    {
+        rifleAmmoText.SetText(_rifle.currentMagazine.ToString());
+    }
+
+    #endregion
     public void Pause()
     {
         GameManager.Instance.gamePaused = true;
@@ -57,13 +65,4 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("TestDemoMainMenu");
     }
-
-    public void RetryCombatButton()
-    {
-        GameManager.Instance.gamePaused = false;
-        Cursor.visible = false;
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("CombatScene");
-    }
-    
 }

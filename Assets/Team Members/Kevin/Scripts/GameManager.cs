@@ -1,20 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
    public static GameManager Instance { get; private set; }
-
-   [Header("Game Tracking")] 
-   public float survivalTimer;
-
-   public int winCondition;
-
-   public int killCount;
-
    public bool gamePaused;
+   public GameObject playerPrefabRef;
    
    private void Awake()
    {
@@ -27,15 +17,5 @@ public class GameManager : MonoBehaviour
       {
          Destroy(gameObject);
       }
-      
-      
-   }
-   public void KillCountUpdate()
-   {
-      killCount++;
-      /*if (killCount == winCondition)
-      {
-         //win game take to main menu
-      }*/
    }
 }
