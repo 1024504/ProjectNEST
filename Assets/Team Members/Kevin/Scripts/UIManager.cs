@@ -21,26 +21,40 @@ public class UIManager : MonoBehaviour
     public void Awake()
     {
         player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
-        _rifle = player.GetComponentInChildren<Rifle>();
-        _shotgun = player.GetComponentInChildren<Shotgun>();
-        _sniper = player.GetComponentInChildren<Sniper>();
+        _rifle = player.weaponsList[0].GetComponent<Rifle>();
+        _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
+        _sniper = player.weaponsList[2].GetComponent<Sniper>();
     }
     
     
     #region UI Update
     public void OnEnable()
     {
-        _rifle.OnShoot += UpdateRifleAmmo; 
+        _rifle.OnShoot += UpdateRifleAmmo;
+        _shotgun.OnShoot += UpdateShotGunAmmo;
+        _sniper.OnShoot += UpdateSniperAmmo;
     }
 
     public void OnDisable()
     {
         _rifle.OnShoot -= UpdateRifleAmmo;
+        _shotgun.OnShoot -= UpdateShotGunAmmo;
+        _sniper.OnShoot -= UpdateSniperAmmo;
     }
 
     private void UpdateRifleAmmo()
     {
         rifleAmmoText.SetText(_rifle.currentMagazine.ToString());
+    }
+
+    private void UpdateShotGunAmmo()
+    {
+        shotgunAmmoText.SetText(_shotgun.currentMagazine.ToString());
+    }
+
+    private void UpdateSniperAmmo()
+    {
+        sniperAmmoText.SetText(_sniper.currentMagazine.ToString());
     }
 
     #endregion

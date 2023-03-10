@@ -48,9 +48,6 @@ public class Player : MonoBehaviour, IControllable
 	private Rigidbody2D _rb;
 	private TerrainCollider _terrainCollider;
 	[SerializeField] private Grapple _grapple;
-	
-	//UI controls
-	[SerializeField] private UIManager _uiManager;
 
 	public int medkitCount;
 	public int maxMedkit = 3;
@@ -216,11 +213,11 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (GameManager.Instance.gamePaused == false)
 		{
-			_uiManager.Pause();
+			GameManager.Instance._uiManager.Pause();
 		}
 		else if (GameManager.Instance.gamePaused)
 		{
-			_uiManager.ResumeButton();
+			GameManager.Instance._uiManager.ResumeButton();
 		}
 		
 	}

@@ -8,6 +8,9 @@ public class Shotgun : WeaponBase
     public AudioClip[] shotgunSound;
     public AudioClip shotgunReload;
     public float reloadTime;
+    
+    public delegate void OnBulletUpdate();
+    public event OnBulletUpdate OnShoot;
     public override void Shoot()
     {
         if (isReloading) return;
@@ -19,6 +22,7 @@ public class Shotgun : WeaponBase
                 Instantiate(bulletPrefab, shotgunBarrelTransforms[i].position, transform.rotation);
             }
             currentMagazine -= 2;
+            OnShoot?.Invoke();
             if(currentMagazine < 1 && isReloading == false)
             {
                 StartCoroutine(AutoReloadTimer());
@@ -42,6 +46,7 @@ public class Shotgun : WeaponBase
     {
         yield return new WaitForSeconds(reloadTime);
         currentMagazine = magazineMax;
+        OnShoot?.Invoke();
         isReloading = false;
     }
     

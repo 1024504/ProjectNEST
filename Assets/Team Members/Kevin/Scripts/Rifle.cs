@@ -14,6 +14,7 @@ public class Rifle : WeaponBase
 
     public delegate void OnBulletUpdate();
     public event OnBulletUpdate OnShoot;
+    
     public void Update()
     {
         if (isShooting)
@@ -69,6 +70,7 @@ public class Rifle : WeaponBase
     {
         yield return new WaitForSeconds(reloadTime);
         currentMagazine = magazineMax;
+        OnShoot?.Invoke();
         isReloading = false;
     }
     

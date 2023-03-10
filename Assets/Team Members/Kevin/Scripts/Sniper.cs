@@ -8,6 +8,8 @@ public class Sniper : WeaponBase
    public AudioClip sniperReload;
    public float reloadTime;
    
+   public delegate void OnBulletUpdate();
+   public event OnBulletUpdate OnShoot;
    
    #region Shooting
 
@@ -20,6 +22,7 @@ public class Sniper : WeaponBase
          AudioSource.PlayClipAtPoint(sniperSound[Random.Range(0,3)],transform.position);
          Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
          currentMagazine--;
+         OnShoot?.Invoke();
          if(currentMagazine < 1 && isReloading == false)
          {
             StartCoroutine(AutoReloadTimer());
@@ -46,6 +49,7 @@ public class Sniper : WeaponBase
    {
       yield return new WaitForSeconds(reloadTime);
       currentMagazine = magazineMax;
+      OnShoot?.Invoke();
       isReloading = false;
    }
     
