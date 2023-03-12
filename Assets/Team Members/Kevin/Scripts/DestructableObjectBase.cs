@@ -7,6 +7,7 @@ public class DestructableObjectBase : MonoBehaviour, IDestructable
 {
     [SerializeField] private int hitCounter;
     public ParticleSystem explosiveParticle;
+    public GameObject halfCrate;
 
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -20,7 +21,8 @@ public class DestructableObjectBase : MonoBehaviour, IDestructable
 
     public void Destroyed()
     {
-        Instantiate(explosiveParticle, transform.position, Quaternion.identity);
+        //Instantiate(explosiveParticle, transform.position, Quaternion.identity);
+        Instantiate(halfCrate, new Vector3(transform.position.x,transform.position.y/2,transform.position.z), Quaternion.identity);
         Destroy(gameObject);
         //animations and spawn logic
         //destroy function
