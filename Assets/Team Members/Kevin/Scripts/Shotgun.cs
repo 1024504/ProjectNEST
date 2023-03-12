@@ -5,8 +5,6 @@ using UnityEngine;
 public class Shotgun : WeaponBase
 {
     public Transform[] shotgunBarrelTransforms;
-    public AudioClip[] shotgunSound;
-    public AudioClip shotgunReload;
     public float reloadTime;
     
     public delegate void OnBulletUpdate();
@@ -16,7 +14,6 @@ public class Shotgun : WeaponBase
         if (isReloading) return;
         if (currentMagazine > 0)
         {
-            AudioSource.PlayClipAtPoint(shotgunSound[Random.Range(0,3)], transform.position);
             for (int i = 0; i < shotgunBarrelTransforms.Length; i++)
             {
                 Instantiate(bulletPrefab, shotgunBarrelTransforms[i].position, transform.rotation);
@@ -37,7 +34,6 @@ public class Shotgun : WeaponBase
         if (currentMagazine == magazineMax) return;
         if (isReloading) return;
         isReloading = true;
-        AudioSource.PlayClipAtPoint(shotgunReload,transform.position);
         StartCoroutine(ReloadTimer());
         
     }

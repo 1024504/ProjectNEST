@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Sniper : WeaponBase
 {
-   public AudioClip[] sniperSound;
-   public AudioClip sniperReload;
    public float reloadTime;
    
    public delegate void OnBulletUpdate();
@@ -18,8 +16,6 @@ public class Sniper : WeaponBase
       if (isReloading) return;
       if(currentMagazine > 0)
       {
-         //add rifle sound here
-         AudioSource.PlayClipAtPoint(sniperSound[Random.Range(0,3)],transform.position);
          Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
          currentMagazine--;
          OnShoot?.Invoke();
@@ -40,7 +36,6 @@ public class Sniper : WeaponBase
       if (currentMagazine == magazineMax) return;
       if (isReloading) return;
       isReloading = true;
-      AudioSource.PlayClipAtPoint(sniperReload,transform.position);
       StartCoroutine(ReloadTimer());
         
    }

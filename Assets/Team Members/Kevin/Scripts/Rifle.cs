@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 
 public class Rifle : WeaponBase
 {
-    public List<AudioClip> rifleSound;
-    public AudioClip rifleReload;
     public float reloadTime;
     public float shotCounter;
     public float rateOfFire = 0.1f;
@@ -39,7 +37,6 @@ public class Rifle : WeaponBase
         if (isReloading) return;
         if(currentMagazine > 0)
         {
-            AudioSource.PlayClipAtPoint(rifleSound[Random.Range(0,3)],transform.position);
             Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
             currentMagazine--;
             OnShoot?.Invoke();
@@ -61,7 +58,6 @@ public class Rifle : WeaponBase
         if (currentMagazine == magazineMax) return;
         if (isReloading) return;
         isReloading = true;
-        AudioSource.PlayClipAtPoint(rifleReload,transform.position);
         StartCoroutine(ReloadTimer());
         
     }

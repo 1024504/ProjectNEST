@@ -10,9 +10,6 @@ public class BulletBase : MonoBehaviour
     public float speed;
     public float bulletDmg;
     public float bulletLife;
-    //public AudioSource audioSource;
-    public AudioClip hitAudioEnemy;
-    public AudioClip hitAudioTerrain;
 
     private void OnEnable()
     {
@@ -27,12 +24,10 @@ public class BulletBase : MonoBehaviour
 	    if (enemy != null)
 	    {
 		    enemy.health.HealthLevel -= bulletDmg;
-		    AudioSource.PlayClipAtPoint(hitAudioEnemy, transform.position); // Copilot wrote this, test it
 		    Destroy(gameObject);
 	    }
 	    else
 	    {
-		    AudioSource.PlayClipAtPoint(hitAudioTerrain, transform.position); // Copilot wrote this, test it
 		    Destroy(gameObject);
 	    }
     }
