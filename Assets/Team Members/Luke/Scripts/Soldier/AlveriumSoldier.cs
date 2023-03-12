@@ -33,7 +33,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	public Transform currentTarget;
 	public float lastKnownTargetDirection;
 
-    private SoldierTerrainCollider _terrainCollider;
+    private SoldierTerrainDetection _terrainDetection;
 
     public bool beginsPatrolLeft = true;
     public float patrolSpeed = 8f;
@@ -81,7 +81,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	{
 		_t = transform;
 		_rb = GetComponent<Rigidbody2D>();
-        _terrainCollider = (SoldierTerrainCollider)GetComponentInChildren<TerrainCollider>();
+        _terrainDetection = (SoldierTerrainDetection)GetComponentInChildren<TerrainDetection>();
 		// neutralAngles = new float[joints.Length];
 		// for (int i = 0; i < joints.Length; i++)
 		// {
@@ -175,7 +175,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 
 	private void Move(float lateralInput)
     {
-        if (!_terrainCollider.isGrounded)
+        if (!_terrainDetection.isGrounded)
         {
 	        _rb.gravityScale = gravityScale;
 	        _rb.velocity = new Vector2(lateralInput * currentMoveSpeed, _rb.velocity.y);
@@ -183,14 +183,14 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
         else
         {
 	        _rb.gravityScale = 0;
-	        _rb.velocity = new Vector2(lateralInput * currentMoveSpeed * _terrainCollider.normal.y-_terrainCollider.normal.x*wallSuctionStrength,
-                lateralInput * currentMoveSpeed * -_terrainCollider.normal.x-_terrainCollider.normal.y*wallSuctionStrength);
+	        _rb.velocity = new Vector2(lateralInput * currentMoveSpeed * _terrainDetection.mainNormal.y-_terrainDetection.mainNormal.x*wallSuctionStrength,
+                lateralInput * currentMoveSpeed * -_terrainDetection.mainNormal.x-_terrainDetection.mainNormal.y*wallSuctionStrength);
         }
     }
     
     private void RotateToWall()
 	{
-		_rb.angularVelocity = Vector3.SignedAngle(_t.TransformDirection(Vector3.up),_terrainCollider.normal, Vector3.forward)*rotateSpeed;
+		_rb.angularVelocity = Vector3.SignedAngle(_t.TransformDirection(Vector3.up),_terrainDetection.mainNormal, Vector3.forward)*rotateSpeed;
 	}
 
 	public void MovePerformed(float lateralInput)
@@ -204,13 +204,13 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 			_view.localRotation = Quaternion.Euler(0, 180, 0);
 		}
 		lateralMoveInput = lateralInput;
-        _terrainCollider.lateralMoveInput = -Mathf.Abs(lateralInput);
+        _terrainDetection.lateralMoveInput = -Mathf.Abs(lateralInput);
     }
 
 	public void MoveCancelled()
     {
         lateralMoveInput = 0;
-        _terrainCollider.lateralMoveInput = 0;
+        _terrainDetection.lateralMoveInput = 0;
     }
 
 	public void AimPerformedMouse(Vector2 input)
@@ -236,7 +236,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
     private IEnumerator JumpTimer()
     {
         _rb.gravityScale = 0;
-        _rb.velocity += _terrainCollider.normal * jumpSpeed;
+        _rb.velocity += _terrainDetection.mainNormal * jumpSpeed;
         yield return new WaitForSeconds(1f);
         
         _rb.gravityScale = gravityScale;

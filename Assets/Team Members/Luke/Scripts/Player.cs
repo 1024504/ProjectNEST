@@ -25,13 +25,11 @@ public class Player : MonoBehaviour, IControllable
 	public float grappleRange;
 	public float grappleReturnSpeed;
 	public float grapplePullSpeed;
-	[Tooltip("Coyote Jump Timer")] 
-	public float coyoteTime = 0.2f;
-	public float coyoteTimeCounter;
 	
 	private float _lateralMoveInput;
 	private Vector2 _aimInput;
 	private Coroutine _coroutine;
+	[SerializeField]private bool _isJumping = false;
 
 	[Header("Weapons")]
 	//public GameObject equippedWeapon;
@@ -49,7 +47,7 @@ public class Player : MonoBehaviour, IControllable
 	private Transform _transform;
 	[SerializeField] private Transform _view;
 	private Rigidbody2D _rb;
-	private TerrainCollider _terrainCollider;
+	private PlayerTerrainDetection _terrainDetection;
 	[SerializeField] private Grapple _grapple;
 
 	public int medkitCount;
@@ -64,46 +62,60 @@ public class Player : MonoBehaviour, IControllable
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
 		_rb.gravityScale = gravityScale;
-		_terrainCollider = GetComponentInChildren<TerrainCollider>();
+		_terrainDetection = GetComponentInChildren<PlayerTerrainDetection>();
 		_grapple = GetComponentInChildren<Grapple>(true);
 	}
 
 	private void FixedUpdate()
 	{
 		Move(_lateralMoveInput);
-
-		/*if (_terrainCollider.isGrounded)
-		{
-			coyoteTimeCounter = coyoteTime;
-		}
-		else if(!_terrainCollider.isGrounded)
-		{
-			coyoteTimeCounter -= Time.deltaTime;
-		}*/
 	}
 	
 	private void Move(float input)
 	{
 		if (GameManager.Instance.gamePaused) return;
-		if (!_terrainCollider.isGrounded)
+		
+		if (CheckIfOnSlope())
 		{
-			OnPlayerJump?.Invoke();
-			_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
+			MoveDownSlope();
+			return;
 		}
-		else if (Vector2.Angle(Vector2.up, _terrainCollider.normal) <= maxSlopeAngle)
+		
+		if (!_terrainDetection.isGrounded || _isJumping)
 		{
-			if (input != 0)
-			{
-				OnPlayerWalk?.Invoke();
-			}
-			else OnPlayerIdle?.Invoke();
-			_rb.velocity = new Vector2(input * moveSpeed * _terrainCollider.normal.y,
-				input * moveSpeed * -_terrainCollider.normal.x);
+			MoveInAir(input);
+			return;
 		}
-		else
+		
+		MoveOnGround(input);
+	}
+
+	private bool CheckIfOnSlope() => Vector2.Angle(Vector2.up, _terrainDetection.mainNormal) > maxSlopeAngle;
+
+	private void MoveOnGround(float input)
+	{
+		if (input < 0 && _terrainDetection.leftAngle < maxSlopeAngle ||
+		    input > 0 && _terrainDetection.rightAngle < maxSlopeAngle)
 		{
-			_rb.velocity = new Vector2(Mathf.Sign(_terrainCollider.normal.x)*_terrainCollider.normal.y*moveSpeed, -Mathf.Abs(_terrainCollider.normal.x)*moveSpeed);
+			OnPlayerWalk?.Invoke();
+			_rb.velocity = new Vector2(input * moveSpeed * _terrainDetection.mainNormal.y,
+				input * moveSpeed * -_terrainDetection.mainNormal.x);
+			return;
 		}
+		
+		OnPlayerIdle?.Invoke();
+		_rb.velocity = new Vector2(0, 0);
+	}
+
+	private void MoveDownSlope()
+	{
+		_rb.velocity = new Vector2(Mathf.Sign(_terrainDetection.mainNormal.x)*_terrainDetection.mainNormal.y*moveSpeed, -Mathf.Abs(_terrainDetection.mainNormal.x)*moveSpeed);
+	}
+
+	private void MoveInAir(float input)
+	{
+		OnPlayerJump?.Invoke();
+		_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
 	}
 
 	/// <summary>
@@ -166,10 +178,10 @@ public class Player : MonoBehaviour, IControllable
 	public void JumpPerformed()
 	{
 		if (GameManager.Instance.gamePaused) return;
-		if (!_terrainCollider.isGrounded) return;
-		if (Vector2.Angle(Vector2.up, _terrainCollider.normal) > maxSlopeAngle) return;
+		if (!_terrainDetection.isGrounded) return;
+		if (Vector2.Angle(Vector2.up, _terrainDetection.mainNormal) > maxSlopeAngle) return;
+		_isJumping = true;
 		if (_coroutine != null) StopCoroutine(_coroutine);
-		_terrainCollider.isGrounded = false;
 		_rb.gravityScale = 0f;
 		_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
 		_coroutine = StartCoroutine(JumpTimer());
@@ -177,8 +189,9 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpCancelled()
 	{
+		_isJumping = false;
 		if (GameManager.Instance.gamePaused) return;
-		if (_terrainCollider.isGrounded) return;
+		if (_terrainDetection.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
 		_rb.gravityScale = gravityScale;
 		if (_rb.velocity.y > 0) _rb.velocity = new Vector2(_rb.velocity.x, 0);
@@ -231,7 +244,6 @@ public class Player : MonoBehaviour, IControllable
 		{
 			GameManager.Instance._uiManager.ResumeButton();
 		}
-		
 	}
 
 	public void PauseCancelled()
