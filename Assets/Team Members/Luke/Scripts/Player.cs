@@ -25,6 +25,9 @@ public class Player : MonoBehaviour, IControllable
 	public float grappleRange;
 	public float grappleReturnSpeed;
 	public float grapplePullSpeed;
+	[Tooltip("Coyote Jump Timer")] 
+	public float coyoteTime = 0.2f;
+	public float coyoteTimeCounter;
 	
 	private float _lateralMoveInput;
 	private Vector2 _aimInput;
@@ -68,6 +71,15 @@ public class Player : MonoBehaviour, IControllable
 	private void FixedUpdate()
 	{
 		Move(_lateralMoveInput);
+
+		/*if (_terrainCollider.isGrounded)
+		{
+			coyoteTimeCounter = coyoteTime;
+		}
+		else if(!_terrainCollider.isGrounded)
+		{
+			coyoteTimeCounter -= Time.deltaTime;
+		}*/
 	}
 	
 	private void Move(float input)
