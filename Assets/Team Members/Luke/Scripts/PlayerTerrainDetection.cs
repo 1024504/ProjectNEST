@@ -8,6 +8,9 @@ public class PlayerTerrainDetection : TerrainDetection
 	public float raycastSideDistance = 0.5f;
 	public LayerMask groundLayerMask;
 
+	public int coyoteFrames = 1;
+	private Coroutine _coyoteCoroutine;
+
 	private Vector2 _leftRaycastLocalOrigin;
 	private Vector2 _rightRaycastLocalOrigin;
 
@@ -41,7 +44,7 @@ public class PlayerTerrainDetection : TerrainDetection
 		}
 		else
 		{
-			isGrounded = false;
+			_coyoteCoroutine = StartCoroutine(CoyoteTimer());
 			mainNormal = Vector2.up;
 		}
 		
@@ -53,5 +56,14 @@ public class PlayerTerrainDetection : TerrainDetection
 		else leftAngle = 0;
 		if (hitDataRight) rightAngle = Vector2.Angle(Vector2.up, hitDataRight.normal);
 		else rightAngle = 0;
+	}
+
+	private IEnumerator CoyoteTimer()
+	{
+		for (int i = 0; i < coyoteFrames; i++)
+		{
+			yield return null;
+		}
+		isGrounded = false;
 	}
 }
