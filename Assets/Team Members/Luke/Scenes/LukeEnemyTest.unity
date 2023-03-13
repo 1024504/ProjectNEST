@@ -848,9 +848,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1839794021652041638, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 3360820584377717504, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+      propertyPath: m_Name
+      value: TerrainDetection
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_RootOrder
@@ -896,25 +896,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6944090429689604754, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 7425688498930848919, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+      propertyPath: grappleDamping
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7425688498930848919, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
-      propertyPath: jumpSpeed
-      value: 39
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996149211863835566, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
-      propertyPath: raycastDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996149211863835566, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
-      propertyPath: raycastSideDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996149211863835566, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
-      propertyPath: groundLayerMask.m_Bits
-      value: 136
+      propertyPath: grapplePullStrength
+      value: 2.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1030,11 +1018,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &573278405 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 932542970485735862, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
-  m_PrefabInstance: {fileID: 451367491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &605437607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,32 +2041,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
   m_PrefabInstance: {fileID: 451367491}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1418177732
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573278405}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.00026249886}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.603836, y: 5.652003}
-  m_EdgeRadius: 0
 --- !u!1 &1547503928
 GameObject:
   m_ObjectHideFlags: 0

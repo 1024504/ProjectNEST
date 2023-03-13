@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IControllable
 {
-	[Header("Design")]
+	[Header("Movement")]
 	[Tooltip("How fast the player moves along the floor.")]
 	public float moveSpeed;
 	[Tooltip("The highest slope the player can walk up, in degrees.")]
@@ -20,16 +20,23 @@ public class Player : MonoBehaviour, IControllable
 	public float jumpTime;
 	[Tooltip("How fast the player falls downwards, does not affect jump time, slightly affects maximum jump height.")]
 	public float gravityScale;
+	
+	[Header("Grapple")]
 	public bool grappleEnabled;
-	public float grappleShootSpeed;
-	public float grappleRange;
-	public float grappleReturnSpeed;
-	public float grapplePullSpeed;
+	private bool _canGrapple = true;
+	public float grappleVelocity = 35f;
+	public float grappleRange = 20;
+	public float grappleCooldown = 5;
+	public float grapplePullStrength = 1;
+	public float grapplePowerRatio = 1.6f;
+	public float grappleDamping;
+	private bool _isGrappled;
+	private Vector3 _grapplePoint;
 	
 	private float _lateralMoveInput;
 	private Vector2 _aimInput;
 	private Coroutine _coroutine;
-	[SerializeField]private bool _isJumping = false;
+	private bool _isJumping = false;
 
 	[Header("Weapons")]
 	//public GameObject equippedWeapon;
@@ -42,7 +49,6 @@ public class Player : MonoBehaviour, IControllable
 	public Transform lookTransform;
 	public float mouseAimSensitivity = 1;
 	public Vector3 mousePos;
-	
 
 	private Transform _transform;
 	[SerializeField] private Transform _view;
@@ -64,16 +70,24 @@ public class Player : MonoBehaviour, IControllable
 		_rb.gravityScale = gravityScale;
 		_terrainDetection = GetComponentInChildren<PlayerTerrainDetection>();
 		_grapple = GetComponentInChildren<Grapple>(true);
+		_grapple.OnHit += GrappleHit;
 	}
 
 	private void FixedUpdate()
 	{
+		if(_isGrappled) GrappleMovement();
 		Move(_lateralMoveInput);
 	}
 	
 	private void Move(float input)
 	{
 		if (GameManager.Instance.gamePaused) return;
+
+		if (_isGrappled)
+		{
+			_rb.velocity += new Vector2(input * moveSpeed * Time.fixedDeltaTime, 0);
+			return;
+		}
 		
 		if (CheckIfOnSlope())
 		{
@@ -94,6 +108,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void MoveOnGround(float input)
 	{
+		_canGrapple = true;
 		if (input < 0 && _terrainDetection.leftAngle < maxSlopeAngle ||
 		    input > 0 && _terrainDetection.rightAngle < maxSlopeAngle)
 		{
@@ -109,6 +124,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void MoveDownSlope()
 	{
+		// _canGrapple = true;
 		_rb.velocity = new Vector2(Mathf.Sign(_terrainDetection.mainNormal.x)*_terrainDetection.mainNormal.y*moveSpeed, -Mathf.Abs(_terrainDetection.mainNormal.x)*moveSpeed);
 	}
 
@@ -116,6 +132,20 @@ public class Player : MonoBehaviour, IControllable
 	{
 		OnPlayerJump?.Invoke();
 		_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
+	}
+
+	private void GrappleHit(Vector3 grapplePoint)
+	{
+		_grapplePoint = grapplePoint;
+		_isGrappled = true;
+		_rb.gravityScale = gravityScale;
+	}
+
+	private void GrappleMovement()
+	{
+		Vector2 grappleDir = _grapplePoint - transform.position;
+		_rb.AddForce(grappleDir.normalized * (Mathf.Pow(grappleDir.magnitude,grapplePowerRatio) * grapplePullStrength * Time.fixedDeltaTime), ForceMode2D.Impulse);
+		_rb.velocity -= _rb.velocity * grappleDamping * Time.fixedDeltaTime;
 	}
 
 	/// <summary>
@@ -189,8 +219,10 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpCancelled()
 	{
-		_isJumping = false;
 		if (GameManager.Instance.gamePaused) return;
+		
+		if (!_isJumping) return;
+		_isJumping = false;
 		if (_terrainDetection.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
 		_rb.gravityScale = gravityScale;
@@ -214,12 +246,16 @@ public class Player : MonoBehaviour, IControllable
 	public void Action1Performed()
 	{
 		if (!grappleEnabled) return;
-		// _grapple.rend.enabled = true;
+		if (!_canGrapple) return;
+		_canGrapple = false;
+		_grapple.Shoot(grappleVelocity, grappleRange, grappleCooldown);
 	}
 	
 	public void Action1Cancelled()
 	{
-		
+		if (!grappleEnabled) return;
+		_isGrappled = false;
+		_grapple.ResetGrapple();
 	}
 
 	public void Action2Performed()
