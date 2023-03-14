@@ -39,6 +39,7 @@ public class Player : MonoBehaviour, IControllable
 	private bool _isJumping = false;
 
 	[Header("Weapons")]
+	public float gamePadReticleDistance = 5f;
 	//public GameObject equippedWeapon;
 	//public GameObject bulletPrefab;
 	//public Transform barrelTransform;
@@ -173,11 +174,14 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (GameManager.Instance.gamePaused) return;
 		Vector2 aimRes = aimInput * (0.05f * mouseAimSensitivity);
-		Vector3 position = _transform.position;
+		Vector3 position = playerArms.position;
 		Vector3 lookPosition = lookTransform.position;
 		lookPosition += new Vector3(aimRes.x, aimRes.y, 0);
 		
-		lookPosition = position + 5*Vector3.Normalize(lookPosition-position);
+		// Old Aiming Method
+		// lookPosition = position + 5*Vector3.Normalize(lookPosition-position);
+		
+		// Need a way to keep this in screen space
 		lookTransform.position = lookPosition;
 
 		playerArms.LookAt(lookPosition);
@@ -197,7 +201,7 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (GameManager.Instance.gamePaused) return;
 		Vector3 position = _transform.position;
-		playerArms.LookAt(position + new Vector3(input.x*5, input.y*5, 0));
+		playerArms.LookAt(position + new Vector3(input.x*gamePadReticleDistance, input.y*gamePadReticleDistance, 0));
 	}
 
 	public void AimCancelled()
