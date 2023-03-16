@@ -13,6 +13,10 @@ public class Rifle : WeaponBase
     public delegate void OnBulletUpdate();
     public event OnBulletUpdate OnShoot;
     
+    private void OnEnable()
+    {
+        if (currentMagazine <= 0) Reload();
+    }
     public void Update()
     {
         if (isShooting)
@@ -24,10 +28,10 @@ public class Rifle : WeaponBase
                 Shoot();
             }
         }
-        else
+        /*else
         {
             shotCounter -= Time.deltaTime;
-        }
+        }*/
     }
     
     #region Shooting
@@ -35,7 +39,7 @@ public class Rifle : WeaponBase
     public override void Shoot()
     {
         if (isReloading) return;
-        if(currentMagazine > 0)
+        if(currentMagazine > 0 && isShooting)
         {
             Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
             currentMagazine--;

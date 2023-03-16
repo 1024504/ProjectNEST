@@ -311,6 +311,7 @@ public class Player : MonoBehaviour, IControllable
 	public void Weapon2Performed()
 	{
 		if (GameManager.Instance.gamePaused) return;
+		if (!GameManager.Instance.hasShotgun) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
@@ -325,6 +326,7 @@ public class Player : MonoBehaviour, IControllable
 	public void Weapon3Performed()
 	{
 		if (GameManager.Instance.gamePaused) return;
+		if (!GameManager.Instance.hasSniper) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 		weaponsList[0].SetActive(false);
