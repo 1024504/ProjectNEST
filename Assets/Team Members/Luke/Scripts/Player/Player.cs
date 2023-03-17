@@ -37,6 +37,9 @@ public class Player : MonoBehaviour, IControllable
 	private Vector2 _aimInput;
 	private Coroutine _coroutine;
 	private bool _isJumping = false;
+	
+	public bool doubleJumpEnabled = false;
+	private bool _doubleJumped = false;
 
 	[Header("Weapons")]
 	public float gamePadReticleDistance = 5f;
@@ -74,6 +77,11 @@ public class Player : MonoBehaviour, IControllable
 		_grapple.OnHit += GrappleHit;
 	}
 
+	private void OnDisable()
+	{
+		_grapple.OnHit -= GrappleHit;
+	}
+
 	private void FixedUpdate()
 	{
 		if(_isGrappled) GrappleMovement();
@@ -109,6 +117,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void MoveOnGround(float input)
 	{
+		_doubleJumped = false;
 		_canGrapple = true;
 		if (input < 0 && _terrainDetection.leftAngle < maxSlopeAngle ||
 		    input > 0 && _terrainDetection.rightAngle < maxSlopeAngle)
@@ -125,7 +134,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void MoveDownSlope()
 	{
-		// _canGrapple = true;
+		if (_doubleJumped) return;
 		_rb.velocity = new Vector2(Mathf.Sign(_terrainDetection.mainNormal.x)*_terrainDetection.mainNormal.y*moveSpeed, -Mathf.Abs(_terrainDetection.mainNormal.x)*moveSpeed);
 	}
 
@@ -212,13 +221,23 @@ public class Player : MonoBehaviour, IControllable
 	public void JumpPerformed()
 	{
 		if (GameManager.Instance.gamePaused) return;
-		if (!_terrainDetection.isGrounded) return;
-		if (Vector2.Angle(Vector2.up, _terrainDetection.mainNormal) > maxSlopeAngle) return;
-		_isJumping = true;
-		if (_coroutine != null) StopCoroutine(_coroutine);
-		_rb.gravityScale = 0f;
-		_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
-		_coroutine = StartCoroutine(JumpTimer());
+		if (_terrainDetection.isGrounded && Vector2.Angle(Vector2.up, _terrainDetection.mainNormal) <= maxSlopeAngle)
+		{
+			_isJumping = true;
+			if (_coroutine != null) StopCoroutine(_coroutine);
+			_rb.gravityScale = 0f;
+			_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
+			_coroutine = StartCoroutine(JumpTimer());
+		}
+		else if (doubleJumpEnabled && !_doubleJumped)
+		{
+			_doubleJumped = true;
+			_isJumping = true;
+			if (_coroutine != null) StopCoroutine(_coroutine);
+			_rb.gravityScale = 0f;
+			_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
+			_coroutine = StartCoroutine(JumpTimer());
+		}
 	}
 
 	public void JumpCancelled()

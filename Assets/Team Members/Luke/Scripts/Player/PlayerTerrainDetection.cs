@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class PlayerTerrainDetection : TerrainDetection
 
 	public float leftAngle;
 	public float rightAngle;
-	
+
 	protected override void OnEnable()
 	{
 		base.OnEnable();
@@ -44,6 +45,7 @@ public class PlayerTerrainDetection : TerrainDetection
 		}
 		else
 		{
+			if (_coyoteCoroutine != null) StopCoroutine(_coyoteCoroutine);
 			_coyoteCoroutine = StartCoroutine(CoyoteTimer());
 			mainNormal = Vector2.up;
 		}
