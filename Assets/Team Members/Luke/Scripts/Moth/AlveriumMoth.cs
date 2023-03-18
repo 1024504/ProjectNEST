@@ -112,6 +112,16 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 	    throw new System.NotImplementedException();
     }
 
+    public void MedKitPerformed()
+    {
+	    throw new System.NotImplementedException();
+    }
+
+    public void MedKitCancelled()
+    {
+	    throw new System.NotImplementedException();
+    }
+
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
 	    throw new System.NotImplementedException();

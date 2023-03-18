@@ -13,6 +13,7 @@ public class PlayerController : ControllerBase
 	private InputAction _shootInput;
 	private InputAction _action1Input;
 	private InputAction _action2Input;
+	
 
 	//pause game
 	private InputAction _pauseInput;
@@ -21,6 +22,9 @@ public class PlayerController : ControllerBase
 	private InputAction _weapon1Input;
 	private InputAction _weapon2Input;
 	private InputAction _weapon3Input;
+	
+	//use medkit
+	private InputAction _useMedKit;
 
 	private void OnEnable()
 	{
@@ -36,6 +40,7 @@ public class PlayerController : ControllerBase
 		_weapon2Input = _controls.Player.Weapon2;
 		_weapon3Input = _controls.Player.Weapon3;
 		_pauseInput = _controls.Player.Pause;
+		_useMedKit = _controls.Player.MedKit;
 		
 
 		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);
@@ -90,6 +95,11 @@ public class PlayerController : ControllerBase
 		_weapon3Input.Enable();
 		_weapon3Input.performed += Weapon3Performed;
 		_weapon3Input.canceled += Weapon3Cancelled;
+		
+		//medkit
+		_useMedKit.Enable();
+		_useMedKit.performed += MedKitPerformed;
+		_useMedKit.canceled += MedKitCancelled;
 	}
 
 	protected override void DisableInputs(IControllable iControllable)
@@ -137,6 +147,11 @@ public class PlayerController : ControllerBase
 		_weapon3Input.Disable();
 		_weapon3Input.performed -= Weapon3Performed;
 		_weapon3Input.canceled -= Weapon3Cancelled;
+		
+		//medkit
+		_useMedKit.Disable();
+		_useMedKit.performed -= MedKitPerformed;
+		_useMedKit.canceled -= MedKitCancelled;
 	}
 
 	private void MovePerformed(InputAction.CallbackContext context)
@@ -240,5 +255,16 @@ public class PlayerController : ControllerBase
 	}
 
 	#endregion
-	
+
+	#region MedKit Inputs
+
+	private void MedKitPerformed(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).MedKitPerformed();
+	}
+	private void MedKitCancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).MedKitCancelled();
+	}
+	#endregion
 }

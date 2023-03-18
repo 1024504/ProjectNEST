@@ -42,7 +42,11 @@ public class SoldierVisionTrigger : MonoBehaviour
 	private IEnumerator TargetMemory(Transform target)
 	{
 		yield return new WaitForSeconds(_agent.memoryDuration);
-		if (Vector3.Distance(target.position, _agent.transform.position) > _radius) _agent.targetLocations.Remove(target);
+		if (target == null)
+		{
+			Debug.Log("Null Target");
+		}
+		else if (Vector3.Distance(target.position, _agent.transform.position) > _radius) _agent.targetLocations.Remove(target);
 		else StartTimer(target);
 	}
 }

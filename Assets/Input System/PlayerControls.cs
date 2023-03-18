@@ -116,6 +116,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MedKit"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2a2c15b-7ec6-4647-8a4e-6d91336400b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -380,6 +389,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""337213d5-5e11-434f-b601-6bbcc6cd9819"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MedKit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -977,6 +997,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Weapon3 = m_Player.FindAction("Weapon3", throwIfNotFound: true);
         m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_MedKit = m_Player.FindAction("MedKit", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1058,6 +1079,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Weapon3;
     private readonly InputAction m_Player_Action2;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_MedKit;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1072,6 +1094,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Weapon3 => m_Wrapper.m_Player_Weapon3;
         public InputAction @Action2 => m_Wrapper.m_Player_Action2;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @MedKit => m_Wrapper.m_Player_MedKit;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1111,6 +1134,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @MedKit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMedKit;
+                @MedKit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMedKit;
+                @MedKit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMedKit;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1145,6 +1171,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @MedKit.started += instance.OnMedKit;
+                @MedKit.performed += instance.OnMedKit;
+                @MedKit.canceled += instance.OnMedKit;
             }
         }
     }
@@ -1311,6 +1340,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnWeapon3(InputAction.CallbackContext context);
         void OnAction2(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnMedKit(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -319,6 +319,16 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		
 	}
 
+	public void MedKitPerformed()
+	{
+		
+	}
+
+	public void MedKitCancelled()
+	{
+		
+	}
+
 	#endregion
 
 	public enum SoldierScenario

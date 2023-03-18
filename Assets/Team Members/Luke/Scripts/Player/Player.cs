@@ -65,6 +65,8 @@ public class Player : MonoBehaviour, IControllable
 
 	public int medkitCount;
 	public int maxMedkit = 3;
+	public delegate void MedKit();
+	public event MedKit OnPickUp;
 
 	public Action OnPlayerIdle;
 	public Action OnPlayerWalk;
@@ -353,6 +355,16 @@ public class Player : MonoBehaviour, IControllable
 	public void Weapon3Cancelled()
 	{
 		
+	}
+
+	public void MedKitPerformed()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void MedKitCancelled()
+	{
+		throw new NotImplementedException();
 	}
 
 	private void ChangeWeapon(int weaponNo)
