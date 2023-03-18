@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public string testFormLink;
     public void StartNewGameButton()
     {
         SceneManager.LoadScene("MainScene");
@@ -15,9 +16,9 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Load Saved Game");
     }
 
-    public void SettingsButton()
+    public void FeedbackFormButton()
     {
-        
+        Application.OpenURL(testFormLink);
     }
     public void ExitGameButton()
     {
