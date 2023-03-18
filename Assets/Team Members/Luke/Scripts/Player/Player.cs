@@ -67,6 +67,11 @@ public class Player : MonoBehaviour, IControllable
 	public int maxMedkit = 3;
 	public delegate void MedKit();
 	public event MedKit OnPickUp;
+	
+	public delegate void UpdateHealth();
+	public event UpdateHealth OnChangeHealth;
+	
+	
 
 	public Action OnPlayerIdle;
 	public Action OnPlayerWalk;
@@ -359,12 +364,18 @@ public class Player : MonoBehaviour, IControllable
 
 	public void MedKitPerformed()
 	{
-		throw new NotImplementedException();
+		HealthBase healthBase = gameObject.GetComponent<HealthBase>();
+		if (healthBase.HealthLevel >= 100f) return;
+		if (medkitCount <= 0) return;
+		healthBase.HealthLevel += 10f;
+		medkitCount--;
+		OnPickUp?.Invoke();
+		OnChangeHealth?.Invoke();
 	}
 
 	public void MedKitCancelled()
 	{
-		throw new NotImplementedException();
+		
 	}
 
 	private void ChangeWeapon(int weaponNo)
@@ -391,6 +402,7 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (medkitCount == maxMedkit) return;
 		medkitCount++;
+		OnPickUp?.Invoke();
 	}
 
 	#endregion

@@ -19,12 +19,12 @@ public class HealthManager : HealthBase
     }
     private void OnEnable()
     {
-        playerHealth.OnGotHit += DrawHealth;
+        playerHealth.OnChangeHealth += DrawHealth;
     }
     
     private void OnDisable()
     {
-        playerHealth.OnGotHit -= DrawHealth;
+        playerHealth.OnChangeHealth -= DrawHealth;
     }
 
     public void DrawHealth()
