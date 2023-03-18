@@ -46,5 +46,9 @@ public interface IControllable
 	public void Weapon3Performed();
 
 	public void Weapon3Cancelled();
-	
+
+	public void MedKitPerformed();
+
+	public void MedKitCancelled();
+
 }

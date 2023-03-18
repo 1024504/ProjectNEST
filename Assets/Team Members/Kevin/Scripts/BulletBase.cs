@@ -18,7 +18,14 @@ public class BulletBase : MonoBehaviour
 	    Destroy(gameObject, bulletLife);
     }
 
+    
+    
     private void OnCollisionEnter2D(Collision2D col)
+    {
+	    OnHit(col);
+    }
+
+    public virtual void OnHit(Collision2D col)
     {
 	    EnemyBody enemy = col.gameObject.GetComponent<EnemyBody>();
 	    if (enemy != null)

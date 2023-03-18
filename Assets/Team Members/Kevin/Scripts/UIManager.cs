@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rifleAmmoText;
     [SerializeField] private TextMeshProUGUI shotgunAmmoText;
     [SerializeField] private TextMeshProUGUI sniperAmmoText;
+    [SerializeField] private TextMeshProUGUI medKitText;
     public void Awake()
     {
         player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour
         _rifle.OnShoot += UpdateRifleAmmo;
         _shotgun.OnShoot += UpdateShotGunAmmo;
         _sniper.OnShoot += UpdateSniperAmmo;
+        player.OnPickUp += UpdateMedKitCount;
     }
 
     public void OnDisable()
@@ -40,6 +42,7 @@ public class UIManager : MonoBehaviour
         _rifle.OnShoot -= UpdateRifleAmmo;
         _shotgun.OnShoot -= UpdateShotGunAmmo;
         _sniper.OnShoot -= UpdateSniperAmmo;
+        player.OnPickUp -= UpdateMedKitCount;
     }
 
     private void UpdateRifleAmmo()
@@ -55,6 +58,11 @@ public class UIManager : MonoBehaviour
     private void UpdateSniperAmmo()
     {
         sniperAmmoText.SetText(_sniper.currentMagazine.ToString());
+    }
+
+    private void UpdateMedKitCount()
+    {
+        medKitText.SetText(player.medkitCount.ToString());
     }
 
     #endregion

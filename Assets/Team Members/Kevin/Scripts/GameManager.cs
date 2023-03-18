@@ -4,8 +4,10 @@ public class GameManager : MonoBehaviour
 {
    public static GameManager Instance { get; private set; }
    
-   //Universal If Paused Bool
+   //Universal Bools
    public bool gamePaused;
+   public bool hasShotgun;
+   public bool hasSniper;
    
    //Global Reference to player prefab
    public GameObject playerPrefabRef;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraTracker : MonoBehaviour
@@ -23,6 +24,8 @@ public class CameraTracker : MonoBehaviour
 	[Range(0,5)]
 	public float cameraSpeed = 1f;
 	[SerializeField] private float cameraSize = 10f;
+
+	private Coroutine _coroutine;
 	
 	public float CameraSize
 	{
@@ -30,9 +33,21 @@ public class CameraTracker : MonoBehaviour
 		set
 		{
 			cameraSize = value;
-			_cam.orthographicSize = cameraSize;
-			UpdateCollider();
+			_coroutine = StartCoroutine(ChangeCameraSize(_cam.orthographicSize, cameraSize));
 		}
+	}
+
+	private IEnumerator ChangeCameraSize(float originalSize, float newSize)
+	{
+		for (int i = 1; i < Mathf.RoundToInt(Mathf.Abs(newSize-originalSize)); i++)
+		{
+			_cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, newSize, 0.1f);
+			UpdateCollider();
+			yield return new WaitForEndOfFrame();
+		}
+		
+		_cam.orthographicSize = newSize;
+		UpdateCollider();
 	}
 	
 	private void OnEnable()
@@ -41,6 +56,7 @@ public class CameraTracker : MonoBehaviour
 	    _cameraTransform = transform;
 	    _cam.orthographicSize = cameraSize;
 	    _collider = GetComponent<BoxCollider2D>();
+	    playerTransform.GetComponent<Player>().cameraTransform = _cameraTransform;
 	    UpdateCollider();
 	    _playerPrevPosition = playerTransform.position+Vector3.back;
     }
@@ -70,5 +86,6 @@ public class CameraTracker : MonoBehaviour
     public void UpdateCollider()
     {
 	    _collider.size = new Vector2(2*_cam.orthographicSize*_cam.aspect, 2*_cam.orthographicSize);
+	    if(playerTransform != null) playerTransform.GetComponent<Player>().cameraSize = _collider.size;
     }
 }

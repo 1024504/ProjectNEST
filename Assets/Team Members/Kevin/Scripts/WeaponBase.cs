@@ -6,14 +6,13 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour, IShootable
 {
-    public float dmg;
     public int currentMagazine;
     public int magazineMax;
-    public float shotRange;
     public Transform gunBarrelTransform;
     public GameObject bulletPrefab;
     public bool isReloading;
     public bool isShooting;
+    public float cameraSize;
 
     public virtual void Shoot()
     {

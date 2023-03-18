@@ -9,23 +9,23 @@ public class HealthBase : MonoBehaviour
 
     [SerializeField] [Min(1f)] protected float maxHealth = 1;
     
-    public delegate void OnTakeDamage();
-    public event OnTakeDamage OnGotHit;
+    public delegate void UpdateHealth();
+    public event UpdateHealth OnChangeHealth;
     
     public float HealthLevel
     {
         get => healthLevel;
         set
         {
-            OnGotHit?.Invoke();
             if (value <= 0) Die();
             else if (value > maxHealth) healthLevel = maxHealth;
             else healthLevel = value;
+            OnChangeHealth?.Invoke();
         }
     }
 
 
-    private void Start()
+    private void Awake()
     {
         healthLevel = maxHealth;
     }
