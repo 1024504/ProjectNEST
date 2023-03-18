@@ -20,6 +20,8 @@ public class Player : MonoBehaviour, IControllable
 	public float jumpTime;
 	[Tooltip("How fast the player falls downwards, does not affect jump time, slightly affects maximum jump height.")]
 	public float gravityScale;
+	[Tooltip("The force that is applied to the dash direction.")]
+	public float dashForce;
 	
 	[Header("Grapple")]
 	public bool grappleEnabled;
@@ -40,6 +42,12 @@ public class Player : MonoBehaviour, IControllable
 	
 	public bool doubleJumpEnabled = false;
 	private bool _doubleJumped = false;
+
+	[Header("Dash")] 
+	public bool dashEnabled;
+	private bool _canDash = true;
+	public float dashVelocity;
+	public float dashCooldown;
 
 	[Header("Weapons")]
 	public Transform cameraTransform;
@@ -76,6 +84,7 @@ public class Player : MonoBehaviour, IControllable
 	public Action OnPlayerIdle;
 	public Action OnPlayerWalk;
 	public Action OnPlayerJump;
+	private IControllable _controllableImplementation;
 
 	private void OnEnable()
 	{
@@ -376,6 +385,20 @@ public class Player : MonoBehaviour, IControllable
 	public void MedKitCancelled()
 	{
 		
+	}
+	
+
+	public void DashPerformed()
+	{
+		if (!dashEnabled && !_canDash) return;
+		Debug.Log("Dashing!");
+		_rb.velocity = new Vector2(_lateralMoveInput,0) * dashVelocity;
+		//dashing logic
+	}
+
+	public void DashCancelled()
+	{
+		//after dash. Collisions etc. 
 	}
 
 	private void ChangeWeapon(int weaponNo)

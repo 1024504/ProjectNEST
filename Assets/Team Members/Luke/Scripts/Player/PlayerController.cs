@@ -25,6 +25,9 @@ public class PlayerController : ControllerBase
 	
 	//use medkit
 	private InputAction _useMedKit;
+	
+	//dash
+	private InputAction _dashInput;
 
 	private void OnEnable()
 	{
@@ -41,6 +44,7 @@ public class PlayerController : ControllerBase
 		_weapon3Input = _controls.Player.Weapon3;
 		_pauseInput = _controls.Player.Pause;
 		_useMedKit = _controls.Player.MedKit;
+		_dashInput = _controls.Player.Dash;
 		
 
 		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);
@@ -100,6 +104,12 @@ public class PlayerController : ControllerBase
 		_useMedKit.Enable();
 		_useMedKit.performed += MedKitPerformed;
 		_useMedKit.canceled += MedKitCancelled;
+		
+		//dash
+		_dashInput.Enable();
+		_dashInput.performed += DashPerformed;
+		_dashInput.canceled += DashCancelled;
+
 	}
 
 	protected override void DisableInputs(IControllable iControllable)
@@ -152,6 +162,12 @@ public class PlayerController : ControllerBase
 		_useMedKit.Disable();
 		_useMedKit.performed -= MedKitPerformed;
 		_useMedKit.canceled -= MedKitCancelled;
+		
+		//dash
+		_dashInput.Disable();
+		_dashInput.performed -= DashPerformed;
+		_dashInput.canceled -= DashCancelled;
+
 	}
 
 	private void MovePerformed(InputAction.CallbackContext context)
@@ -266,5 +282,19 @@ public class PlayerController : ControllerBase
 	{
 		((IControllable)Agent).MedKitCancelled();
 	}
+	#endregion
+
+	#region Dash Inputs
+
+	private void DashPerformed(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).DashPerformed();
+	}
+	private void DashCancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)Agent).DashCancelled();
+	}
+	
+
 	#endregion
 }

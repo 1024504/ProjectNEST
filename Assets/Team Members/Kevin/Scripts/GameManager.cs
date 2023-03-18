@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
    public bool gamePaused;
    public bool hasShotgun;
    public bool hasSniper;
+   public bool canDoubleJump;
    
    //Global Reference to player prefab
    public GameObject playerPrefabRef;

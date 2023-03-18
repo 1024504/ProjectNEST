@@ -329,6 +329,16 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		
 	}
 
+	public void DashPerformed()
+	{
+		
+	}
+
+	public void DashCancelled()
+	{
+		
+	}
+
 	#endregion
 
 	public enum SoldierScenario

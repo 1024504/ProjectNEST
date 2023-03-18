@@ -51,4 +51,8 @@ public interface IControllable
 
 	public void MedKitCancelled();
 
+	public void DashPerformed();
+
+	public void DashCancelled();
+
 }

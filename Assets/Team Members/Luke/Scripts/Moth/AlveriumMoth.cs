@@ -122,6 +122,16 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 	    throw new System.NotImplementedException();
     }
 
+    public void DashPerformed()
+    {
+	    throw new System.NotImplementedException();
+    }
+
+    public void DashCancelled()
+    {
+	    throw new System.NotImplementedException();
+    }
+
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
 	    throw new System.NotImplementedException();
