@@ -14,6 +14,11 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Load Saved Game");
     }
+
+    public void SettingsButton()
+    {
+        
+    }
     public void ExitGameButton()
     {
         Debug.Log("Game Exited");
