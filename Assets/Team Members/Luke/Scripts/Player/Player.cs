@@ -328,12 +328,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Weapon1Performed()
 	{
-		if (GameManager.Instance.gamePaused) return;
-		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
-		if (weaponBase.isReloading) return;
-		weaponsList[0].SetActive(true);
-		weaponsList[1].SetActive(false);
-		weaponsList[2].SetActive(false);
+		ChangeWeapon(0);
 	}
 
 	public void Weapon1Cancelled()
@@ -343,13 +338,7 @@ public class Player : MonoBehaviour, IControllable
 	
 	public void Weapon2Performed()
 	{
-		if (GameManager.Instance.gamePaused) return;
-		if (!GameManager.Instance.hasShotgun) return;
-		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
-		if (weaponBase.isReloading) return;
-		weaponsList[0].SetActive(false);
-		weaponsList[1].SetActive(true);
-		weaponsList[2].SetActive(false);
+		ChangeWeapon(1);
 	}
 	
 	public void Weapon2Cancelled()
@@ -358,18 +347,28 @@ public class Player : MonoBehaviour, IControllable
 	}
 	public void Weapon3Performed()
 	{
-		if (GameManager.Instance.gamePaused) return;
-		if (!GameManager.Instance.hasSniper) return;
-		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
-		if (weaponBase.isReloading) return;
-		weaponsList[0].SetActive(false);
-		weaponsList[1].SetActive(false);
-		weaponsList[2].SetActive(true);
+		ChangeWeapon(2);
 	}
 	
 	public void Weapon3Cancelled()
 	{
 		
+	}
+
+	private void ChangeWeapon(int weaponNo)
+	{
+		if (GameManager.Instance.gamePaused) return;
+		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
+		if (weaponBase.isReloading) return;
+
+		for (int i = 0; i < weaponsList.Count; i++)
+		{
+			if (i == weaponNo) weaponsList[i].SetActive(true);
+			else weaponsList[i].SetActive(false);
+		}
+		
+		weaponBase = GetComponentInChildren<WeaponBase>();
+		cameraTransform.GetComponent<CameraTracker>().CameraSize = weaponBase.cameraSize;
 	}
 
 	#endregion
