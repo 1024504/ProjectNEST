@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class HealthCubes : MonoBehaviour
 {
     public Sprite full, empty;
     private Image healthImage;
@@ -31,5 +31,5 @@ public class Health : MonoBehaviour
 public enum HealthStatus
 {
     Empty = 0,
-    Full = 2
+    Full = 1
 }

@@ -6,16 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : HealthBase
 {
-	public float health;
-
-	
-	public void Awake()
-	{
-		health = maxHealth;
-	}
-
 	protected override void Die()
 	{
-		//Die Logic
+		healthLevel = 0;
+		Debug.Log("Died");
 	}
 }

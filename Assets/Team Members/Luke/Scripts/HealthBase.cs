@@ -17,15 +17,15 @@ public class HealthBase : MonoBehaviour
         get => healthLevel;
         set
         {
-            OnGotHit?.Invoke();
             if (value <= 0) Die();
             else if (value > maxHealth) healthLevel = maxHealth;
             else healthLevel = value;
+            OnGotHit?.Invoke();
         }
     }
 
 
-    private void Start()
+    private void Awake()
     {
         healthLevel = maxHealth;
     }

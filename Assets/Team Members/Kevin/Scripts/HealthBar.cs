@@ -8,10 +8,16 @@ public class HealthBar : MonoBehaviour
     public GameObject healthPrefab;
     public PlayerHealth playerHealth;
     public int healthInt;
-    private List<Health> _healths = new List<Health>();
+    private List<HealthCubes> _healths = new List<HealthCubes>();
 
     public void Start()
     {
+        StartCoroutine(DelayDrawHealth());
+    }
+
+    public IEnumerator DelayDrawHealth()
+    {
+        yield return new WaitForSeconds(2f);
         DrawHealth();
     }
 
@@ -27,7 +33,7 @@ public class HealthBar : MonoBehaviour
     private void DrawHealth()
     {
         ClearHealth();
-        float playerCurrentHp = playerHealth.health;
+        float playerCurrentHp = playerHealth.HealthLevel;
         healthInt = (int) (playerCurrentHp/10);
 
         for (int i = 0; i < healthInt; i++)
@@ -35,10 +41,10 @@ public class HealthBar : MonoBehaviour
             CreateEmptyHealth();
         }
 
-        for (int i = 0; i < _healths.Count; i++)
+        for (int i = 0; i < healthInt; i++)
         {
-            int healthStatusRemainder = (int)Mathf.Clamp(playerHealth.health - (i*2),0,2);
-            _healths[i].SetHealthImage((HealthStatus)healthStatusRemainder);
+            //int healthStatusRemainder = (int)Mathf.Clamp(playerHealth.health - (i*2),0,2);
+            _healths[i].SetHealthImage(HealthStatus.Full);
         }
         
     }
@@ -48,9 +54,9 @@ public class HealthBar : MonoBehaviour
         GameObject healthGO = Instantiate(healthPrefab);
         healthGO.transform.SetParent(transform);
         
-        Health healthComponent = healthGO.GetComponent<Health>();
-        healthComponent.SetHealthImage(HealthStatus.Full);
-        _healths.Add(healthComponent);
+        HealthCubes healthCubesComponent = healthGO.GetComponent<HealthCubes>();
+        healthCubesComponent.SetHealthImage(HealthStatus.Empty);
+        _healths.Add(healthCubesComponent);
 
     }
     private void ClearHealth()
@@ -60,7 +66,7 @@ public class HealthBar : MonoBehaviour
             Destroy(t.gameObject);
         }
 
-        _healths = new List<Health>();
+        _healths = new List<HealthCubes>();
     }
     
     
