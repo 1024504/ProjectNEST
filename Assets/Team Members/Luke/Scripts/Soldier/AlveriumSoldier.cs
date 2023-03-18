@@ -54,7 +54,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	private bool _isJumping = false;
 	private bool _canPatrol = true;
 	public bool targetWithinRange = false;
-	public bool _canAttack = true;
+	public bool canAttack = true;
 
 	public float lateralMoveInput;
 
@@ -119,7 +119,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		aWorldState.Set(SoldierScenario.SeesTarget, ChooseTarget());
 		aWorldState.Set(SoldierScenario.TargetWithinRange, targetWithinRange);
 		aWorldState.Set(SoldierScenario.CanReachTarget, true);
-		aWorldState.Set(SoldierScenario.CanAttack, _canAttack);
+		aWorldState.Set(SoldierScenario.CanAttack, canAttack);
 		aWorldState.Set(SoldierScenario.AllTargetsDead, false);
 	}
 
@@ -168,9 +168,9 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	
 	private IEnumerator CooldownAttackTimer()
 	{
-		_canAttack = false;
+		canAttack = false;
 		yield return new WaitForSeconds(attackCooldown);
-		_canAttack = true;
+		canAttack = true;
 	}
 
 	private void Move(float lateralInput)

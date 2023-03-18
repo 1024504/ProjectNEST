@@ -41,6 +41,7 @@ public class CameraTracker : MonoBehaviour
 	    _cameraTransform = transform;
 	    _cam.orthographicSize = cameraSize;
 	    _collider = GetComponent<BoxCollider2D>();
+	    playerTransform.GetComponent<Player>().cameraTransform = _cameraTransform;
 	    UpdateCollider();
 	    _playerPrevPosition = playerTransform.position+Vector3.back;
     }
@@ -70,5 +71,6 @@ public class CameraTracker : MonoBehaviour
     public void UpdateCollider()
     {
 	    _collider.size = new Vector2(2*_cam.orthographicSize*_cam.aspect, 2*_cam.orthographicSize);
+	    if(playerTransform != null) playerTransform.GetComponent<Player>().cameraSize = _collider.size;
     }
 }

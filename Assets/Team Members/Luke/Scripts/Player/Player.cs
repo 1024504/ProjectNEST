@@ -42,7 +42,11 @@ public class Player : MonoBehaviour, IControllable
 	private bool _doubleJumped = false;
 
 	[Header("Weapons")]
+	public Transform cameraTransform;
 	public float gamePadReticleDistance = 5f;
+	[Tooltip("The height and width of the camera's view, respectively. Updated by camera script.")]
+	public Vector2 cameraSize;
+	public float mouseReticleMargin = 1f;
 	//public GameObject equippedWeapon;
 	//public GameObject bulletPrefab;
 	//public Transform barrelTransform;
@@ -52,7 +56,6 @@ public class Player : MonoBehaviour, IControllable
 	public Transform playerArms;
 	public Transform lookTransform;
 	public float mouseAimSensitivity = 1;
-	public Vector3 mousePos;
 
 	private Transform _transform;
 	[SerializeField] private Transform _view;
@@ -66,7 +69,7 @@ public class Player : MonoBehaviour, IControllable
 	public Action OnPlayerIdle;
 	public Action OnPlayerWalk;
 	public Action OnPlayerJump;
-	
+
 	private void OnEnable()
 	{
 		_transform = transform;
@@ -87,7 +90,12 @@ public class Player : MonoBehaviour, IControllable
 		if(_isGrappled) GrappleMovement();
 		Move(_lateralMoveInput);
 	}
-	
+
+	private void Update()
+	{
+		AimArms();
+	}
+
 	private void Move(float input)
 	{
 		if (GameManager.Instance.gamePaused) return;
@@ -155,7 +163,9 @@ public class Player : MonoBehaviour, IControllable
 	{
 		Vector2 grappleDir = _grapplePoint - transform.position;
 		_rb.AddForce(grappleDir.normalized * (Mathf.Pow(grappleDir.magnitude,grapplePowerRatio) * grapplePullStrength * Time.fixedDeltaTime), ForceMode2D.Impulse);
-		_rb.velocity -= _rb.velocity * grappleDamping * Time.fixedDeltaTime;
+		Vector2 velocity = _rb.velocity;
+		velocity -= velocity * grappleDamping * Time.fixedDeltaTime;
+		_rb.velocity = velocity;
 	}
 
 	/// <summary>
@@ -167,6 +177,28 @@ public class Player : MonoBehaviour, IControllable
 		float decelerationDuration = jumpSpeed / gravityScale / Physics.gravity.magnitude;
 		yield return new WaitForSeconds(jumpTime - decelerationDuration);
 		_rb.gravityScale = gravityScale;
+	}
+	
+	private void AimArms()
+	{
+		// Clamp the mouse reticle within cameraBounds
+		Vector3 cameraPosition = cameraTransform.position;
+		Vector3 position = lookTransform.position;
+		
+		position = new Vector3(Mathf.Clamp(position.x, cameraPosition.x-cameraSize.x/2+mouseReticleMargin, cameraPosition.x+cameraSize.x/2-mouseReticleMargin),
+			Mathf.Clamp(position.y, cameraPosition.y-cameraSize.y/2+mouseReticleMargin, cameraPosition.y+cameraSize.y/2-mouseReticleMargin));
+		lookTransform.position = position;
+
+		playerArms.LookAt(position);
+		
+		if (lookTransform.localPosition.x >= 0)
+		{
+			_view.localRotation = Quaternion.identity;
+		}
+		else
+		{
+			_view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+		}
 	}
 
 	public void MovePerformed(float lateralInput)
@@ -183,26 +215,7 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (GameManager.Instance.gamePaused) return;
 		Vector2 aimRes = aimInput * (0.05f * mouseAimSensitivity);
-		Vector3 position = playerArms.position;
-		Vector3 lookPosition = lookTransform.position;
-		lookPosition += new Vector3(aimRes.x, aimRes.y, 0);
-		
-		// Old Aiming Method
-		// lookPosition = position + 5*Vector3.Normalize(lookPosition-position);
-		
-		// Need a way to keep this in screen space
-		lookTransform.position = lookPosition;
-
-		playerArms.LookAt(lookPosition);
-		
-		if (lookTransform.localPosition.x >= 0)
-		{
-			_view.localRotation = Quaternion.identity;
-		}
-		else
-		{
-			_view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
-		}
+		lookTransform.position += new Vector3(aimRes.x, aimRes.y, 0);
 	}
 
 	// Someone with XBox controller please test this :)
@@ -210,7 +223,8 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (GameManager.Instance.gamePaused) return;
 		Vector3 position = _transform.position;
-		playerArms.LookAt(position + new Vector3(input.x*gamePadReticleDistance, input.y*gamePadReticleDistance, 0));
+
+		lookTransform.position = position + new Vector3(input.x * gamePadReticleDistance, input.y * gamePadReticleDistance, 0);
 	}
 
 	public void AimCancelled()
