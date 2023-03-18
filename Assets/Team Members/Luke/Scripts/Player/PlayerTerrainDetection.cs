@@ -64,7 +64,7 @@ public class PlayerTerrainDetection : TerrainDetection
 	{
 		for (int i = 0; i < coyoteFrames; i++)
 		{
-			yield return null;
+			yield return new WaitForEndOfFrame();
 		}
 		isGrounded = false;
 	}
