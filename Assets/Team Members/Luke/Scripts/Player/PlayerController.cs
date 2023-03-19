@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : ControllerBase
 {
-	private PlayerControls _controls;
+	public PlayerControls Controls;
 	private InputAction _moveInput;
 	private InputAction _aimInput;
 	private InputAction _jumpInput;
@@ -31,20 +31,20 @@ public class PlayerController : ControllerBase
 
 	private void OnEnable()
 	{
-		_controls = new();
-		_controls.UI.Disable();
-		_moveInput = _controls.Player.Move;
-		_aimInput = _controls.Player.Aim;
-		_jumpInput = _controls.Player.Jump;
-		_shootInput = _controls.Player.Fire;
-		_action1Input = _controls.Player.Action1;
-		_action2Input = _controls.Player.Action2;
-		_weapon1Input = _controls.Player.Weapon1;
-		_weapon2Input = _controls.Player.Weapon2;
-		_weapon3Input = _controls.Player.Weapon3;
-		_pauseInput = _controls.Player.Pause;
-		_useMedKit = _controls.Player.MedKit;
-		_dashInput = _controls.Player.Dash;
+		Controls = new();
+		Controls.UI.Disable();
+		_moveInput = Controls.Player.Move;
+		_aimInput = Controls.Player.Aim;
+		_jumpInput = Controls.Player.Jump;
+		_shootInput = Controls.Player.Fire;
+		_action1Input = Controls.Player.Action1;
+		_action2Input = Controls.Player.Action2;
+		_weapon1Input = Controls.Player.Weapon1;
+		_weapon2Input = Controls.Player.Weapon2;
+		_weapon3Input = Controls.Player.Weapon3;
+		_pauseInput = Controls.Player.Pause;
+		_useMedKit = Controls.Player.MedKit;
+		_dashInput = Controls.Player.Dash;
 		
 
 		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);

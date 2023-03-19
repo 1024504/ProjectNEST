@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     public Player player;
+    public PlayerController playerController;
     [SerializeField] private Rifle _rifle;
     [SerializeField] private Shotgun _shotgun;
     [SerializeField] private Sniper _sniper;
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
     public void Awake()
     {
         player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
+        playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
         _rifle = player.weaponsList[0].GetComponent<Rifle>();
         _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
         _sniper = player.weaponsList[2].GetComponent<Sniper>();
