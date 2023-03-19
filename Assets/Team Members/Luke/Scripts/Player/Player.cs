@@ -49,11 +49,15 @@ public class Player : MonoBehaviour, IControllable
 	public bool doubleJumpEnabled = false;
 	private bool _doubleJumped = false;
 
-	[Header("Dash")] 
-	public bool dashEnabled;
-	private bool _canDash = true;
+	[Header("Dash")]
+	[Tooltip("How fast the player moves while dashing.")]
 	public float dashVelocity;
-	public float dashCooldown;
+	[Tooltip("How long the player dashes for in seconds.")]
+	public float dashDuration;
+	[Tooltip("How long the player has to wait before dashing again in seconds.")]
+	public float dashCooldownDuration;
+	private bool _isDashing = false;
+	private bool _dashCoolingDown = false;
 
 	[Header("Weapons")]
 	public Transform cameraTransform;
@@ -123,6 +127,8 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (GameManager.Instance.gamePaused) return;
 
+		if (_isDashing) return;
+		
 		if (_isGrappled)
 		{
 			_rb.velocity += new Vector2(input * _currentSpeed * Time.fixedDeltaTime, 0);
@@ -397,10 +403,40 @@ public class Player : MonoBehaviour, IControllable
 
 	public void DashPerformed()
 	{
-		// if (!dashEnabled && !_canDash) return;
-		Debug.Log("Dashing!");
-		// _rb.velocity = new Vector2(_lateralMoveInput,0) * dashVelocity;
-		//dashing logic
+		// last a fixed number of frames
+
+		if (!_terrainDetection.isGrounded) return;
+		if (_dashCoolingDown) return;
+		
+		_isDashing = true;
+		_dashCoolingDown = true;
+
+		StartCoroutine(Dash());
+	}
+	
+	private IEnumerator Dash()
+	{
+		float counter = 0;
+		
+		float dashInput = _lateralMoveInput;
+		if (dashInput == 0) dashInput = _view.right.x;
+		
+		while (counter < dashDuration)
+		{
+			counter += Time.fixedDeltaTime;
+			_rb.velocity = new Vector2(dashInput * dashVelocity, _rb.velocity.y);
+			yield return new WaitForFixedUpdate();
+		}
+		
+		_isDashing = false;
+		StartCoroutine(DashCooldown());
+	}
+
+	private IEnumerator DashCooldown()
+	{
+		yield return new WaitForSeconds(dashCooldownDuration);
+		
+		_dashCoolingDown = false;
 	}
 
 	public void DashHeld()
