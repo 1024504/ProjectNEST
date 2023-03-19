@@ -88,6 +88,10 @@ public class Player : MonoBehaviour, IControllable
 	
 	public delegate void UpdateHealth();
 	public event UpdateHealth OnChangeHealth;
+
+	public delegate void HitGrapple();
+
+	public event HitGrapple OnGrappleHit;
 	
 	
 
@@ -183,6 +187,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void GrappleHit(Vector3 grapplePoint)
 	{
+		OnGrappleHit?.Invoke();
 		_grapplePoint = grapplePoint;
 		_isGrappled = true;
 		_rb.gravityScale = gravityScale;
