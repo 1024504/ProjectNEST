@@ -78,6 +78,7 @@ public class UIManager : MonoBehaviour
     
     public void ResumeButton()
     {
+        Debug.Log("clicked");
         GameManager.Instance.gamePaused = false;
         pauseMenu.SetActive(false);
         Cursor.visible = false;
@@ -87,6 +88,6 @@ public class UIManager : MonoBehaviour
     public void HomeButton()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TestDemoMainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
