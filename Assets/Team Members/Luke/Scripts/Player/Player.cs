@@ -92,6 +92,10 @@ public class Player : MonoBehaviour, IControllable
 	public delegate void HitGrapple();
 
 	public event HitGrapple OnGrappleHit;
+
+	public delegate void CurrentGunUI();
+
+	public event CurrentGunUI OnGunSwitch;
 	
 	
 
@@ -475,8 +479,14 @@ public class Player : MonoBehaviour, IControllable
 
 		for (int i = 0; i < weaponsList.Count; i++)
 		{
-			if (i == weaponNo) weaponsList[i].SetActive(true);
-			else weaponsList[i].SetActive(false);
+			if (i == weaponNo)
+			{
+				weaponsList[i].SetActive(true);
+			}
+			else
+			{
+				weaponsList[i].SetActive(false);
+			}
 		}
 		
 		weaponBase = GetComponentInChildren<WeaponBase>();
