@@ -16,10 +16,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Shotgun _shotgun;
     [SerializeField] private Sniper _sniper;
 
+    //Rifle HUD
     [SerializeField] private TextMeshProUGUI rifleAmmoText;
+    [SerializeField] private TextMeshProUGUI rifleMaxAmmoText;
+    [SerializeField] private RawImage rifleIMG;
+    //ShotGun HUD
     [SerializeField] private TextMeshProUGUI shotgunAmmoText;
+    [SerializeField] private TextMeshProUGUI shotgunMaxAmmoText;
+    [SerializeField] private RawImage shotgunIMG;
+    //Sniper HUD
     [SerializeField] private TextMeshProUGUI sniperAmmoText;
+    [SerializeField] private TextMeshProUGUI sniperMaxAmmoText;
+    [SerializeField] private RawImage sniperIMG;
+    
+    
     [SerializeField] private TextMeshProUGUI medKitText;
+
+    
     public void Awake()
     {
         player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
@@ -89,5 +102,11 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RetryButton()
+    {
+        Debug.Log("Retry!");
+        //load last checkpoint
     }
 }
