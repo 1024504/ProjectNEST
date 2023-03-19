@@ -9,6 +9,7 @@ public class CameraTracker : MonoBehaviour
 	private Camera _cam;
 	private Transform _cameraTransform;
 	public Transform playerTransform;
+	private Transform _playerReticleTransform;
 	private BoxCollider2D _collider;
 
 	[Header("Follow Variables")]
@@ -33,13 +34,14 @@ public class CameraTracker : MonoBehaviour
 		set
 		{
 			cameraSize = value;
-			_coroutine = StartCoroutine(ChangeCameraSize(_cam.orthographicSize, cameraSize));
+			if (_coroutine != null) StopCoroutine(_coroutine);
+			_coroutine = StartCoroutine(ChangeCameraSize(cameraSize));
 		}
 	}
 
-	private IEnumerator ChangeCameraSize(float originalSize, float newSize)
+	private IEnumerator ChangeCameraSize(float newSize)
 	{
-		for (int i = 1; i < Mathf.RoundToInt(Mathf.Abs(newSize-originalSize)); i++)
+		while (Mathf.Abs(_cam.orthographicSize - newSize) > 0.01f)
 		{
 			_cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, newSize, 0.1f);
 			UpdateCollider();
@@ -56,7 +58,9 @@ public class CameraTracker : MonoBehaviour
 	    _cameraTransform = transform;
 	    _cam.orthographicSize = cameraSize;
 	    _collider = GetComponent<BoxCollider2D>();
-	    playerTransform.GetComponent<Player>().cameraTransform = _cameraTransform;
+	    Player player = playerTransform.GetComponent<Player>();
+	    player.cameraTransform = _cameraTransform;
+	    _playerReticleTransform = player.lookTransform;
 	    UpdateCollider();
 	    _playerPrevPosition = playerTransform.position+Vector3.back;
     }
@@ -72,16 +76,11 @@ public class CameraTracker : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		Vector3 position = playerTransform.position;
+		Vector3 position = playerTransform.position/*+_playerReticleTransform.localPosition/2f*/; // Uncomment for the camera to track between the player and the reticle.
 		_cameraTransform.position = NextStep(Time.fixedDeltaTime, position+Vector3.back, _playerVelocity);
 		_playerVelocity = (position+Vector3.back - _playerPrevPosition) / Time.fixedDeltaTime;
 		_playerPrevPosition = position+Vector3.back;
 	}
-
-    /*private void FixedUpdate()
-    {
-	    _cameraTransform.position = Vector3.Lerp(_cameraTransform.position, playerTransform.position+Vector3.back, 0.1f*cameraSpeed);
-    }*/
 
     public void UpdateCollider()
     {
