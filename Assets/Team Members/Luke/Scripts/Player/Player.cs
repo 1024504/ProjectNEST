@@ -390,10 +390,15 @@ public class Player : MonoBehaviour, IControllable
 
 	public void DashPerformed()
 	{
-		if (!dashEnabled && !_canDash) return;
+		// if (!dashEnabled && !_canDash) return;
 		Debug.Log("Dashing!");
-		_rb.velocity = new Vector2(_lateralMoveInput,0) * dashVelocity;
+		// _rb.velocity = new Vector2(_lateralMoveInput,0) * dashVelocity;
 		//dashing logic
+	}
+
+	public void DashHeld()
+	{
+		Debug.Log("Held");
 	}
 
 	public void DashCancelled()

@@ -127,6 +127,11 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 	    throw new System.NotImplementedException();
     }
 
+    public void DashHeld()
+    {
+	    
+    }
+
     public void DashCancelled()
     {
 	    throw new System.NotImplementedException();

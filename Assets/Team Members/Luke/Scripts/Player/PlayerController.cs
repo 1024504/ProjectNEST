@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerController : ControllerBase
 {
@@ -109,7 +110,6 @@ public class PlayerController : ControllerBase
 		_dashInput.Enable();
 		_dashInput.performed += DashPerformed;
 		_dashInput.canceled += DashCancelled;
-
 	}
 
 	protected override void DisableInputs(IControllable iControllable)
@@ -288,7 +288,8 @@ public class PlayerController : ControllerBase
 
 	private void DashPerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).DashPerformed();
+		if (context.interaction is TapInteraction) ((IControllable)Agent).DashPerformed();
+		else if (context.interaction is HoldInteraction) ((IControllable)Agent).DashHeld();
 	}
 	private void DashCancelled(InputAction.CallbackContext context)
 	{

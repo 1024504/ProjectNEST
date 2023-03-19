@@ -53,6 +53,8 @@ public interface IControllable
 
 	public void DashPerformed();
 
+	public void DashHeld();
+
 	public void DashCancelled();
 
 }

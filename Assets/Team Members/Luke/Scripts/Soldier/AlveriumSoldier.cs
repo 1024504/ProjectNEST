@@ -334,6 +334,11 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		
 	}
 
+	public void DashHeld()
+	{
+		
+	}
+
 	public void DashCancelled()
 	{
 		
