@@ -14,7 +14,8 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 	private bool _shootCoolingDown;
 
 	[SerializeField] private Transform view;
-	[SerializeField] private Transform lookTransform;
+	[SerializeField] private Transform tailTransform;
+	[SerializeField] private Transform aimTransform;
 	[SerializeField] private Transform projectileTransform;
 
 	public GameObject projectilePrefab;
@@ -23,6 +24,11 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 	private Transform _transform;
 	private Rigidbody2D _rb;
 	public Animator anim;
+	public Action OnIdle;
+	public Action OnMoveBurst;
+	public Action OnMoveConstant;
+	public Action OnAttackBuildup;
+	public Action OnAttackShoot;
 
 	private void OnEnable()
 	{
@@ -51,7 +57,21 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 
 	private void Aim()
 	{
-		view.LookAt(lookTransform.position);
+		Vector3 aimPosition = aimTransform.position;
+		Vector3 aimLocalPosition = aimTransform.localPosition;
+
+		aimPosition = new Vector3(aimPosition.x, Mathf.Min(aimPosition.y, tailTransform.position.y),
+			aimPosition.z);
+		
+		if (aimLocalPosition.x < 0)
+		{
+			view.localRotation = Quaternion.identity;
+		}
+		else if (aimLocalPosition.x > 0)
+		{
+			view.localRotation = Quaternion.Euler(0, 180, 0);
+		}
+		tailTransform.LookAt(aimPosition, Vector3.down);
 	}
 
 	public void MovePerformed(float lateralInput) => _lateralMoveInput = lateralInput;
