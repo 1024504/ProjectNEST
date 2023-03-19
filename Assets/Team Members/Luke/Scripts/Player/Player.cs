@@ -11,7 +11,13 @@ public class Player : MonoBehaviour, IControllable
 {
 	[Header("Movement")]
 	[Tooltip("How fast the player moves along the floor.")]
-	public float moveSpeed;
+	public float walkSpeed = 18f;
+	[Tooltip("How fast the player moves while sprinting.")]
+	public float sprintSpeed = 28f;
+	
+	private float _currentSpeed;
+	private Coroutine _sprintCoroutine;
+	
 	[Tooltip("The highest slope the player can walk up, in degrees.")]
 	public float maxSlopeAngle;
 	[Tooltip("How fast the player jumps upwards.")]
@@ -88,6 +94,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void OnEnable()
 	{
+		_currentSpeed = walkSpeed;
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
 		_rb.gravityScale = gravityScale;
@@ -118,7 +125,7 @@ public class Player : MonoBehaviour, IControllable
 
 		if (_isGrappled)
 		{
-			_rb.velocity += new Vector2(input * moveSpeed * Time.fixedDeltaTime, 0);
+			_rb.velocity += new Vector2(input * _currentSpeed * Time.fixedDeltaTime, 0);
 			return;
 		}
 		
@@ -147,8 +154,8 @@ public class Player : MonoBehaviour, IControllable
 		    input > 0 && _terrainDetection.rightAngle < maxSlopeAngle)
 		{
 			OnPlayerWalk?.Invoke();
-			_rb.velocity = new Vector2(input * moveSpeed * _terrainDetection.mainNormal.y,
-				input * moveSpeed * -_terrainDetection.mainNormal.x);
+			_rb.velocity = new Vector2(input * _currentSpeed * _terrainDetection.mainNormal.y,
+				input * _currentSpeed * -_terrainDetection.mainNormal.x);
 			return;
 		}
 		
@@ -159,13 +166,13 @@ public class Player : MonoBehaviour, IControllable
 	private void MoveDownSlope()
 	{
 		if (_doubleJumped) return;
-		_rb.velocity = new Vector2(Mathf.Sign(_terrainDetection.mainNormal.x)*_terrainDetection.mainNormal.y*moveSpeed, -Mathf.Abs(_terrainDetection.mainNormal.x)*moveSpeed);
+		_rb.velocity = new Vector2(Mathf.Sign(_terrainDetection.mainNormal.x)*_terrainDetection.mainNormal.y*_currentSpeed, -Mathf.Abs(_terrainDetection.mainNormal.x)*_currentSpeed);
 	}
 
 	private void MoveInAir(float input)
 	{
 		OnPlayerJump?.Invoke();
-		_rb.velocity = new Vector2(input * moveSpeed, _rb.velocity.y);
+		_rb.velocity = new Vector2(input * _currentSpeed, _rb.velocity.y);
 	}
 
 	private void GrappleHit(Vector3 grapplePoint)
@@ -398,12 +405,25 @@ public class Player : MonoBehaviour, IControllable
 
 	public void DashHeld()
 	{
-		Debug.Log("Held");
+		//Sprint
+		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
+		_sprintCoroutine = StartCoroutine(SprintJumpCheck());
+	}
+
+	private IEnumerator SprintJumpCheck()
+	{
+		while (!_terrainDetection.isGrounded)
+		{
+			yield return new WaitForEndOfFrame();
+		}
+		_currentSpeed = sprintSpeed;
 	}
 
 	public void DashCancelled()
 	{
 		//after dash. Collisions etc. 
+		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
+		_currentSpeed = walkSpeed;
 	}
 
 	private void ChangeWeapon(int weaponNo)
