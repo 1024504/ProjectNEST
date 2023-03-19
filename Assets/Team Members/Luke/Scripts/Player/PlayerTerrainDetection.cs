@@ -45,7 +45,6 @@ public class PlayerTerrainDetection : TerrainDetection
 		}
 		else
 		{
-			if (_coyoteCoroutine != null) StopCoroutine(_coyoteCoroutine);
 			_coyoteCoroutine = StartCoroutine(CoyoteTimer());
 			mainNormal = Vector2.up;
 		}
