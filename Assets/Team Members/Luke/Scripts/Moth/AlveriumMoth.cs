@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
@@ -5,140 +6,191 @@ using UnityEngine;
 
 public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 {
-    
+	public float moveSpeed = 15f;
+	public float shootCooldownDuration = 0.5f;
 
-    public void MovePerformed(float lateralInput)
-    {
-	    throw new System.NotImplementedException();
-    }
+	private float _lateralMoveInput;
+	private float _verticalMoveInput;
+	private bool _shootCoolingDown;
 
-    public void MoveCancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
+	[SerializeField] private Transform view;
+	[SerializeField] private Transform lookTransform;
+	[SerializeField] private Transform projectileTransform;
+
+	public GameObject projectilePrefab;
+	public SpriteRenderer localProjectileRenderer;
+	
+	private Transform _transform;
+	private Rigidbody2D _rb;
+	public Animator anim;
+
+	private void OnEnable()
+	{
+		_transform = transform;
+		_rb = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator>();
+	}
+
+	private void FixedUpdate()
+	{
+		Move(_lateralMoveInput, _verticalMoveInput);
+	}
+
+	private void Update()
+	{
+		Aim();
+	}
+
+	private void Move(float lateralInput, float verticalInput = 0)
+	{
+		Vector2 input = new Vector2(lateralInput, verticalInput);
+		input = input.normalized;
+
+		_rb.velocity = input * moveSpeed;
+	}
+
+	private void Aim()
+	{
+		view.LookAt(lookTransform.position);
+	}
+
+	public void MovePerformed(float lateralInput) => _lateralMoveInput = lateralInput;
+
+	public void MoveCancelled() => _lateralMoveInput = 0;
 
     public void AimPerformedMouse(Vector2 input)
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void AimPerformedGamepad(Vector2 input)
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void AimCancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void JumpPerformed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void JumpCancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void ShootPerformed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void ShootCancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Action1Performed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Action1Cancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Action2Performed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Action2Cancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void PausePerformed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void PauseCancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Weapon1Performed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Weapon1Cancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Weapon2Performed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Weapon2Cancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Weapon3Performed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void Weapon3Cancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void MedKitPerformed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void MedKitCancelled()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void DashPerformed()
-    {
-	    throw new System.NotImplementedException();
-    }
-
-    public void DashHeld()
     {
 	    
     }
 
+    public void AimPerformedGamepad(Vector2 input)
+    {
+	    
+    }
+
+    public void AimCancelled()
+    {
+	    
+    }
+
+    public void JumpPerformed()
+    {
+	    _verticalMoveInput += 1;
+    }
+
+    public void JumpCancelled()
+    {
+	    _verticalMoveInput -= 1;
+    }
+
+    public void ShootPerformed()
+    {
+	    if (_shootCoolingDown) return;
+	    _shootCoolingDown = true;
+	    Instantiate(projectilePrefab, projectileTransform.position, projectileTransform.rotation);
+	    localProjectileRenderer.enabled = false;
+	    StartCoroutine(ShootCooldown());
+    }
+
+    private IEnumerator ShootCooldown()
+    {
+	    yield return new WaitForSeconds(shootCooldownDuration);
+	    localProjectileRenderer.enabled = true;
+	    _shootCoolingDown = false;
+    }
+
+    public void ShootCancelled()
+    {
+	    
+    }
+
+    public void Action1Performed()
+    {
+	    
+    }
+
+    public void Action1Cancelled()
+    {
+	    
+    }
+
+    public void Action2Performed()
+    {
+	    
+    }
+
+    public void Action2Cancelled()
+    {
+	    
+    }
+
+    public void PausePerformed()
+    {
+	    
+    }
+
+    public void PauseCancelled()
+    {
+	    
+    }
+
+    public void Weapon1Performed()
+    {
+	    
+    }
+
+    public void Weapon1Cancelled()
+    {
+	    
+    }
+
+    public void Weapon2Performed()
+    {
+	    
+    }
+
+    public void Weapon2Cancelled()
+    {
+	    
+    }
+
+    public void Weapon3Performed()
+    {
+	    
+    }
+
+    public void Weapon3Cancelled()
+    {
+	    
+    }
+
+    public void MedKitPerformed()
+    {
+	    
+    }
+
+    public void MedKitCancelled()
+    {
+	    
+    }
+
+    public void DashPerformed()
+    {
+	    
+    }
+
+    public void DashHeld()
+    {
+	    _verticalMoveInput -= 1;
+    }
+
     public void DashCancelled()
     {
-	    throw new System.NotImplementedException();
+	    _verticalMoveInput += 1;
     }
 
     public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
     {
-	    throw new System.NotImplementedException();
+	    
     }
 }

@@ -23,11 +23,11 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	// 	set => motionProgress = value % (2*Mathf.PI);
 	// }
 	
-	private Transform _t;
+	private Transform _transform;
 	private Rigidbody2D _rb;
 	public Animator anim;
 
-	[SerializeField] private Transform _view;
+	[SerializeField] private Transform view;
 
 	public List<Transform> targetLocations;
 	public Transform currentTarget;
@@ -51,12 +51,12 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	public float attackDamage = 10f;
 	public float attackCooldown = 2f;
 	
-	private bool _isJumping = false;
+	// private bool _isJumping = false;
 	private bool _canPatrol = true;
 	public bool targetWithinRange = false;
 	public bool canAttack = true;
 
-	public float lateralMoveInput;
+	private float _lateralMoveInput;
 
 	public float rotateSpeed = 1;
 	
@@ -79,7 +79,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 	
 	private void OnEnable()
 	{
-		_t = transform;
+		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
         _terrainDetection = (SoldierTerrainDetection)GetComponentInChildren<TerrainDetection>();
 		// neutralAngles = new float[joints.Length];
@@ -92,7 +92,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 
 	private void FixedUpdate()
 	{
-		Move(lateralMoveInput);
+		Move(_lateralMoveInput);
 		RotateToWall();
 		// MotionProgress += Time.fixedDeltaTime;
 		// MoveBody(Vector2.down*Mathf.Sin(MotionProgress*motionFrequencies[0]+motionPhaseOffsets[0]*2*Mathf.PI)*motionAmplitudes[0]);
@@ -142,9 +142,9 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		KeyValuePair<float, int> closestTarget = new KeyValuePair<float, int>(Mathf.Infinity, -1);
 		foreach (Transform target in targetLocations)
 		{
-			RaycastHit2D hit = Physics2D.Linecast(_t.position, target.position, visionLayerMask);
+			RaycastHit2D hit = Physics2D.Linecast(_transform.position, target.position, visionLayerMask);
 			if (hit.collider.gameObject.GetComponentInParent<Player>() == null) continue;
-			float distance = Vector2.Distance(_t.position, target.position);
+			float distance = Vector2.Distance(_transform.position, target.position);
 			if (distance < closestTarget.Key) closestTarget = new KeyValuePair<float, int>(distance, targetLocations.IndexOf(target));
 		}
 
@@ -155,8 +155,8 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 		
 		currentTarget = targetLocations[closestTarget.Value];
 
-		float lateralDistance = _t.InverseTransformDirection(currentTarget.position - _t.position).x;
-		if (Mathf.Abs(lateralDistance) > attackRange) lastKnownTargetDirection = Mathf.Sign(_t.InverseTransformDirection(currentTarget.position - _t.position).x);
+		float lateralDistance = _transform.InverseTransformDirection(currentTarget.position - _transform.position).x;
+		if (Mathf.Abs(lateralDistance) > attackRange) lastKnownTargetDirection = Mathf.Sign(_transform.InverseTransformDirection(currentTarget.position - _transform.position).x);
 		else lastKnownTargetDirection = 0;
 		return true;
 	}
@@ -190,26 +190,26 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
     
     private void RotateToWall()
 	{
-		_rb.angularVelocity = Vector3.SignedAngle(_t.TransformDirection(Vector3.up),_terrainDetection.mainNormal, Vector3.forward)*rotateSpeed;
+		_rb.angularVelocity = Vector3.SignedAngle(_transform.TransformDirection(Vector3.up),_terrainDetection.mainNormal, Vector3.forward)*rotateSpeed;
 	}
 
 	public void MovePerformed(float lateralInput)
 	{
-		if (lateralMoveInput >= 0 && lateralInput < 0)
+		if (_lateralMoveInput >= 0 && lateralInput < 0)
 		{
-			_view.localRotation = Quaternion.identity;
+			view.localRotation = Quaternion.identity;
 		}
-		else if (lateralMoveInput <= 0 && lateralInput > 0)
+		else if (_lateralMoveInput <= 0 && lateralInput > 0)
 		{
-			_view.localRotation = Quaternion.Euler(0, 180, 0);
+			view.localRotation = Quaternion.Euler(0, 180, 0);
 		}
-		lateralMoveInput = lateralInput;
+		_lateralMoveInput = lateralInput;
         _terrainDetection.lateralMoveInput = -Mathf.Abs(lateralInput);
     }
 
 	public void MoveCancelled()
     {
-        lateralMoveInput = 0;
+        _lateralMoveInput = 0;
         _terrainDetection.lateralMoveInput = 0;
     }
 
