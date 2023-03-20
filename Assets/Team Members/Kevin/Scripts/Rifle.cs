@@ -9,12 +9,13 @@ public class Rifle : WeaponBase
     public float reloadTime;
     public float shotCounter;
     public float rateOfFire = 0.1f;
-
+    public bool canShoot;
     public delegate void OnBulletUpdate();
     public event OnBulletUpdate OnShoot;
     
     private void OnEnable()
     {
+        canShoot = true;
         if (currentMagazine <= 0) Reload();
     }
     public void Update()
@@ -39,21 +40,26 @@ public class Rifle : WeaponBase
     public override void Shoot()
     {
         if (isReloading) return;
-        if(currentMagazine > 0 && isShooting)
+        if(currentMagazine > 0 && isShooting && canShoot)
         {
             Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
             currentMagazine--;
             OnShoot?.Invoke();
+            canShoot = false;
+            StartCoroutine(ShotCooldown());
             if(currentMagazine < 1 && isReloading == false)
             {
                 StartCoroutine(AutoReloadTimer());
-                
             }
         }
-        
     }
     #endregion
 
+    private IEnumerator ShotCooldown()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canShoot = true;
+    }
 
     #region Reloading
 

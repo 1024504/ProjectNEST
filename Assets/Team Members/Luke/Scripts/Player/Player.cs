@@ -59,7 +59,8 @@ public class Player : MonoBehaviour, IControllable
 	private bool _isDashing = false;
 	private bool _dashCoolingDown = false;
 
-	[Header("Weapons")]
+	[Header("Weapons")] 
+	public GameObject currentWeapon;
 	public Transform cameraTransform;
 	public float gamePadReticleDistance = 5f;
 	[Tooltip("The height and width of the camera's view, respectively. Updated by camera script.")]
@@ -482,6 +483,8 @@ public class Player : MonoBehaviour, IControllable
 			if (i == weaponNo)
 			{
 				weaponsList[i].SetActive(true);
+				currentWeapon = weaponsList[i];
+				OnGunSwitch?.Invoke();
 			}
 			else
 			{

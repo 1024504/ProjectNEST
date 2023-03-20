@@ -12,7 +12,7 @@ public class PlayerHealth : HealthBase
 	public event DeathMenu OnDeath;
 	protected override void Die()
 	{
-		healthLevel = 0;
 		OnDeath?.Invoke();
+		healthLevel = 0;
 	}
 }
