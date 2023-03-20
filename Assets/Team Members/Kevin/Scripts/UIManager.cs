@@ -10,8 +10,11 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject deathMenu;
+    
     public Player player;
     public PlayerController playerController;
+    
     [SerializeField] private Rifle _rifle;
     [SerializeField] private Shotgun _shotgun;
     [SerializeField] private Sniper _sniper;
@@ -32,6 +35,7 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI medKitText;
 
+    public Transform respawnPoint;
     
     public void Awake()
     {
@@ -50,6 +54,11 @@ public class UIManager : MonoBehaviour
         _shotgun.OnShoot += UpdateShotGunAmmo;
         _sniper.OnShoot += UpdateSniperAmmo;
         player.OnPickUp += UpdateMedKitCount;
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
+        }
     }
 
     public void OnDisable()
@@ -58,6 +67,11 @@ public class UIManager : MonoBehaviour
         _shotgun.OnShoot -= UpdateShotGunAmmo;
         _sniper.OnShoot -= UpdateSniperAmmo;
         player.OnPickUp -= UpdateMedKitCount;
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            player.GetComponent<PlayerHealth>().OnDeath -= ActiveDeathMenu;
+        }
     }
 
     private void UpdateRifleAmmo()
@@ -80,6 +94,14 @@ public class UIManager : MonoBehaviour
         medKitText.SetText(player.medkitCount.ToString());
     }
 
+    private void ActiveDeathMenu()
+    {
+        deathMenu.SetActive(true);
+        GameManager.Instance.gamePaused = true;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+    }
+
     #endregion
     public void Pause()
     {
@@ -91,7 +113,6 @@ public class UIManager : MonoBehaviour
     
     public void ResumeButton()
     {
-        Debug.Log("clicked");
         GameManager.Instance.gamePaused = false;
         pauseMenu.SetActive(false);
         Cursor.visible = false;
@@ -101,11 +122,14 @@ public class UIManager : MonoBehaviour
     public void HomeButton()
     {
         Time.timeScale = 1f;
+        deathMenu.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 
     public void RetryButton()
     {
+        deathMenu.SetActive(false);
+        GameManager.Instance.GameReset();
         Debug.Log("Retry!");
         //load last checkpoint
     }

@@ -28,4 +28,12 @@ public class GameManager : MonoBehaviour
          Destroy(gameObject);
       }
    }
+
+   public void GameReset()
+   {
+      playerPrefabRef.GetComponent<PlayerHealth>().HealthLevel = 100f;
+      gamePaused = false;
+      playerPrefabRef.GetComponent<Transform>().position = _uiManager.respawnPoint.position;
+      Time.timeScale = 1f;
+   }
 }
