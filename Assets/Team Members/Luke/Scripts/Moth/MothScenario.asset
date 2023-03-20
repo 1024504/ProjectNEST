@@ -13,7 +13,96 @@ MonoBehaviour:
   m_Name: MothScenario
   m_EditorClassIdentifier: 
   conditions:
-    list: []
-  actions: []
-  goals: []
-  worldStates: []
+    list:
+    - id: 0
+      name: AllTargetsDead
+    - id: 1
+      name: HasTarget
+    - id: 2
+      name: CanHitTarget
+    - id: 3
+      name: CanShoot
+    - id: 4
+      name: CanPatrol
+  actions:
+  - name: GetInRangeOfTarget
+    isDefault: 0
+    state: {fileID: 6498351890798996216, guid: 8c4b73a82109b74428152f7a89b0cdca, type: 3}
+    cost: 0
+    position: {x: 660, y: 160}
+    pre:
+    - id: 1
+      value: 1
+    post:
+    - id: 2
+      value: 1
+    - id: 3
+      value: 1
+  - name: Shoot
+    isDefault: 0
+    state: {fileID: 338971144461815413, guid: 2d5d7f96c7a43d14398348385651e36f, type: 3}
+    cost: 0
+    position: {x: 880, y: 160}
+    pre:
+    - id: 1
+      value: 1
+    - id: 2
+      value: 1
+    - id: 3
+      value: 1
+    post:
+    - id: 3
+      value: 0
+    - id: 0
+      value: 1
+  - name: Patrol
+    isDefault: 1
+    state: {fileID: 5121970189056466829, guid: ead439074b366c542b72f34517a24018, type: 3}
+    cost: 0
+    position: {x: 220, y: 160}
+    pre:
+    - id: 4
+      value: 1
+    - id: 1
+      value: 0
+    post:
+    - id: 4
+      value: 0
+    - id: 1
+      value: 1
+  - name: Idle
+    isDefault: 0
+    state: {fileID: 7463900567150536578, guid: 4451b02fac5cabd44a957f14806f5fb1, type: 3}
+    cost: 0
+    position: {x: 440, y: 160}
+    pre:
+    - id: 4
+      value: 0
+    - id: 1
+      value: 0
+    post:
+    - id: 4
+      value: 1
+    - id: 1
+      value: 1
+  goals:
+  - name: Kill All Targets
+    isDefault: 1
+    position: {x: 220, y: 40}
+    conditions:
+    - id: 0
+      value: 1
+  worldStates:
+  - position: {x: 214, y: 446}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 0
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0

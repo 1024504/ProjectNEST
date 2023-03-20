@@ -4,26 +4,33 @@ using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 
-public class AlveriumMoth : MonoBehaviour, IControllable, ISense
+public class AlveriumMoth : EnemyBody, IControllable, ISense
 {
 	public float moveSpeed = 15f;
 	public float shootCooldownDuration = 0.5f;
+	public float idleDuration = 1f;
+	public float patrolDuration = 3f;
+	public bool beginsPatrolLeft = true;
 
 	private float _lateralMoveInput;
 	private float _verticalMoveInput;
 	private bool _shootCoolingDown;
+	private bool _canPatrol;
+	private bool _hasTarget = false;
+	private bool _canHitTarget = false;
 
 	[SerializeField] private Transform view;
 	[SerializeField] private Transform tailTransform;
-	[SerializeField] private Transform aimTransform;
+	public Transform aimTransform;
 	[SerializeField] private Transform projectileTransform;
+	
+	public Vector3 localDefaultAimPosition;
 
 	public GameObject projectilePrefab;
 	public SpriteRenderer localProjectileRenderer;
 	
 	private Transform _transform;
 	private Rigidbody2D _rb;
-	public Animator anim;
 	public Action OnIdle;
 	public Action OnMoveBurst;
 	public Action OnMoveConstant;
@@ -34,7 +41,6 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 	{
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
-		anim = GetComponent<Animator>();
 	}
 
 	private void FixedUpdate()
@@ -45,6 +51,21 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
 	private void Update()
 	{
 		Aim();
+	}
+	
+	public IEnumerator CanPatrolTimer(float duration)
+	{
+		yield return new WaitForSeconds(duration);
+		_canPatrol = !_canPatrol;
+	}
+	
+	public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
+	{
+		aWorldState.Set(MothScenario.CanPatrol, _canPatrol);
+		aWorldState.Set(MothScenario.CanShoot, !_shootCoolingDown);
+		aWorldState.Set(MothScenario.HasTarget, _hasTarget);
+		aWorldState.Set(MothScenario.CanHitTarget, _canHitTarget);
+		aWorldState.Set(MothScenario.AllTargetsDead, false);
 	}
 
 	private void Move(float lateralInput, float verticalInput = 0)
@@ -208,9 +229,13 @@ public class AlveriumMoth : MonoBehaviour, IControllable, ISense
     {
 	    _verticalMoveInput += 1;
     }
-
-    public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
+    
+    private enum MothScenario
     {
-	    
+	    AllTargetsDead = 0,
+	    HasTarget = 1,
+	    CanHitTarget = 2,
+	    CanShoot = 3,
+	    CanPatrol = 4
     }
 }

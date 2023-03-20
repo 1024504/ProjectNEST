@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
+public class AlveriumSoldier : EnemyBody, IControllable, ISense
 {
 	private Transform _transform;
 	private Rigidbody2D _rb;
@@ -310,7 +310,7 @@ public class AlveriumSoldier : MonoBehaviour, IControllable, ISense
 
 	#endregion
 
-	public enum SoldierScenario
+	private enum SoldierScenario
 	{
 		SeesTarget = 0,
 		AllTargetsDead = 1,
