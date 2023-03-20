@@ -27,10 +27,10 @@ public class BulletBase : MonoBehaviour
 
     public virtual void OnHit(Collision2D col)
     {
-	    EnemyBody enemy = col.gameObject.GetComponent<EnemyBody>();
-	    if (enemy != null)
+	    HealthBase enemyHealth = col.gameObject.GetComponent<HealthBase>();
+	    if (enemyHealth != null)
 	    {
-		    enemy.health.HealthLevel -= bulletDmg;
+		    enemyHealth.HealthLevel -= bulletDmg;
 		    Destroy(gameObject);
 	    }
 	    else

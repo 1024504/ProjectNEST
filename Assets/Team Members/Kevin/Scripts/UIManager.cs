@@ -65,9 +65,8 @@ public class UIManager : MonoBehaviour
         player.OnPickUp += UpdateMedKitCount;
         player.OnGunSwitch += UpdateWeaponHUD;
         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        
+        if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
-        
     }
 
     public void OnDisable()
