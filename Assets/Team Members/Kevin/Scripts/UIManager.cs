@@ -45,8 +45,8 @@ public class UIManager : MonoBehaviour
     public Color fullAlpha;
     public void Awake()
     {
-        player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
-        playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
+        //player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
+        //playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
         _rifle = player.weaponsList[0].GetComponent<Rifle>();
         _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
         _sniper = player.weaponsList[2].GetComponent<Sniper>();
