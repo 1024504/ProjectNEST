@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public Player player;
     public PlayerController playerController;
     public Transform respawnPoint;
+    public PlayerHealth playerHealth;
     
     //Rifle HUD
     [Header("Rifle HUD")]
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
     {
         //player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
         //playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         _rifle = player.weaponsList[0].GetComponent<Rifle>();
         _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
         _sniper = player.weaponsList[2].GetComponent<Sniper>();
@@ -64,7 +66,6 @@ public class UIManager : MonoBehaviour
         _sniper.OnShoot += UpdateSniperAmmo;
         player.OnPickUp += UpdateMedKitCount;
         player.OnGunSwitch += UpdateWeaponHUD;
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
     }
@@ -76,7 +77,6 @@ public class UIManager : MonoBehaviour
         _sniper.OnShoot -= UpdateSniperAmmo;
         player.OnPickUp -= UpdateMedKitCount;
         player.OnGunSwitch -= UpdateWeaponHUD;
-        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath -= ActiveDeathMenu;
     }
@@ -215,7 +215,6 @@ public class UIManager : MonoBehaviour
     {
         deathMenu.SetActive(false);
         GameManager.Instance.GameReset();
-        Debug.Log("Retry!");
         //load last checkpoint
     }
 }
