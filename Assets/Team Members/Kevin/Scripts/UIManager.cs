@@ -113,17 +113,14 @@ public class UIManager : MonoBehaviour
     {
         if (player.currentWeapon.GetComponent<Rifle>())
         {
-            Debug.Log("Rifle");
             RifleHUD();
         }
         else if (player.currentWeapon.GetComponent<Shotgun>())
         {
-            Debug.Log("Shotgun");
             ShotgunHUD();
         }
         else if (player.currentWeapon.GetComponent<Sniper>())
         {
-            Debug.Log("Sniper");
             SniperHUD();
         }
     }

@@ -28,9 +28,11 @@ public class Player : MonoBehaviour, IControllable
 	public float gravityScale;
 	[Tooltip("The force that is applied to the dash direction.")]
 	public float dashForce;
+	[SerializeField] private Transform _view;
 	
 	[Header("Grapple")]
 	public bool grappleEnabled;
+	[SerializeField] private Grapple _grapple;
 	private bool _canGrapple = true;
 	public float grappleVelocity = 35f;
 	public float grappleRange = 20;
@@ -59,6 +61,11 @@ public class Player : MonoBehaviour, IControllable
 	private bool _isDashing = false;
 	private bool _dashCoolingDown = false;
 
+	[Header("Player AIM")]
+	public Transform playerArms;
+	public Transform lookTransform;
+	public float mouseAimSensitivity = 1;
+	
 	[Header("Weapons")] 
 	public GameObject currentWeapon;
 	public Transform cameraTransform;
@@ -66,24 +73,19 @@ public class Player : MonoBehaviour, IControllable
 	[Tooltip("The height and width of the camera's view, respectively. Updated by camera script.")]
 	public Vector2 cameraSize;
 	public float mouseReticleMargin = 1f;
-	//public GameObject equippedWeapon;
-	//public GameObject bulletPrefab;
-	//public Transform barrelTransform;
+	
+	[Header("Inventory")]
 	public List<GameObject> weaponsList;
-	//public List<GameObject> bulletList;
-	//public List<Transform> barrelTransforms;
-	public Transform playerArms;
-	public Transform lookTransform;
-	public float mouseAimSensitivity = 1;
-
-	private Transform _transform;
-	[SerializeField] private Transform _view;
-	private Rigidbody2D _rb;
-	private PlayerTerrainDetection _terrainDetection;
-	[SerializeField] private Grapple _grapple;
-
 	public int medkitCount;
 	public int maxMedkit = 3;
+	public int medKitHealLevel;
+
+	private Transform _transform;
+	private Rigidbody2D _rb;
+	private PlayerTerrainDetection _terrainDetection;
+	
+
+	
 	public delegate void MedKit();
 	public event MedKit OnPickUp;
 	
@@ -399,7 +401,7 @@ public class Player : MonoBehaviour, IControllable
 		HealthBase healthBase = gameObject.GetComponent<HealthBase>();
 		if (healthBase.HealthLevel >= 100f) return;
 		if (medkitCount <= 0) return;
-		healthBase.HealthLevel += 10f;
+		healthBase.HealthLevel += medKitHealLevel;
 		medkitCount--;
 		OnPickUp?.Invoke();
 		OnChangeHealth?.Invoke();

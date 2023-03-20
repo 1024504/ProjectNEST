@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class ObjectivesManager : MonoBehaviour
 {
-    public Image objectivesMarker;
+    public GameObject objectivesMarker;
     public Transform proceduralPanel;
     public void Start()
     {
-        Image go = Instantiate(objectivesMarker, proceduralPanel.position, Quaternion.identity);
-        go.transform.parent = proceduralPanel.transform;
+        /*Image go = Instantiate(objectivesMarker, proceduralPanel.position, Quaternion.identity);
+        go.transform.parent = proceduralPanel.transform;*/
     }
 }
 
