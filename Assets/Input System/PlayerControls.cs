@@ -73,6 +73,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Action2"",
+                    ""type"": ""Button"",
+                    ""id"": ""6888d24d-e6f1-4184-9441-8b331cd23545"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Weapon1"",
                     ""type"": ""Button"",
                     ""id"": ""3116f1af-6f26-4a72-bdbd-481db556152e"",
@@ -94,15 +103,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Weapon3"",
                     ""type"": ""Button"",
                     ""id"": ""4f192bf3-77cf-4d57-bd92-286657ba5983"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Action2"",
-                    ""type"": ""Button"",
-                    ""id"": ""6888d24d-e6f1-4184-9441-8b331cd23545"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -133,6 +133,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold,Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Action3"",
+                    ""type"": ""Button"",
+                    ""id"": ""fcea99e0-1575-42ef-88d2-d66992775352"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -370,17 +379,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""61bca4da-54a9-416b-96ff-020f40d5eef9"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Action2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d32ff44c-076b-47ff-b8d2-ea3dfb55cf0b"",
                     ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
@@ -420,6 +418,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61bca4da-54a9-416b-96ff-020f40d5eef9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f177735a-9706-48a7-8347-b96dd8ec24fc"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1012,13 +1032,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Action1 = m_Player.FindAction("Action1", throwIfNotFound: true);
+        m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
         m_Player_Weapon1 = m_Player.FindAction("Weapon1", throwIfNotFound: true);
         m_Player_Weapon2 = m_Player.FindAction("Weapon2", throwIfNotFound: true);
         m_Player_Weapon3 = m_Player.FindAction("Weapon3", throwIfNotFound: true);
-        m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_MedKit = m_Player.FindAction("MedKit", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Action3 = m_Player.FindAction("Action3", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1095,13 +1116,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Action1;
+    private readonly InputAction m_Player_Action2;
     private readonly InputAction m_Player_Weapon1;
     private readonly InputAction m_Player_Weapon2;
     private readonly InputAction m_Player_Weapon3;
-    private readonly InputAction m_Player_Action2;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_MedKit;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Action3;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1111,13 +1133,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Action1 => m_Wrapper.m_Player_Action1;
+        public InputAction @Action2 => m_Wrapper.m_Player_Action2;
         public InputAction @Weapon1 => m_Wrapper.m_Player_Weapon1;
         public InputAction @Weapon2 => m_Wrapper.m_Player_Weapon2;
         public InputAction @Weapon3 => m_Wrapper.m_Player_Weapon3;
-        public InputAction @Action2 => m_Wrapper.m_Player_Action2;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @MedKit => m_Wrapper.m_Player_MedKit;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Action3 => m_Wrapper.m_Player_Action3;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1142,6 +1165,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Action1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
                 @Action1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
                 @Action1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
+                @Action2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
+                @Action2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
+                @Action2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
                 @Weapon1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon1;
                 @Weapon1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon1;
                 @Weapon1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon1;
@@ -1151,9 +1177,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Weapon3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon3;
                 @Weapon3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon3;
                 @Weapon3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon3;
-                @Action2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
-                @Action2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
-                @Action2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
@@ -1163,6 +1186,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Action3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
+                @Action3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
+                @Action3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1182,6 +1208,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Action1.started += instance.OnAction1;
                 @Action1.performed += instance.OnAction1;
                 @Action1.canceled += instance.OnAction1;
+                @Action2.started += instance.OnAction2;
+                @Action2.performed += instance.OnAction2;
+                @Action2.canceled += instance.OnAction2;
                 @Weapon1.started += instance.OnWeapon1;
                 @Weapon1.performed += instance.OnWeapon1;
                 @Weapon1.canceled += instance.OnWeapon1;
@@ -1191,9 +1220,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Weapon3.started += instance.OnWeapon3;
                 @Weapon3.performed += instance.OnWeapon3;
                 @Weapon3.canceled += instance.OnWeapon3;
-                @Action2.started += instance.OnAction2;
-                @Action2.performed += instance.OnAction2;
-                @Action2.canceled += instance.OnAction2;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -1203,6 +1229,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Action3.started += instance.OnAction3;
+                @Action3.performed += instance.OnAction3;
+                @Action3.canceled += instance.OnAction3;
             }
         }
     }
@@ -1364,13 +1393,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAction1(InputAction.CallbackContext context);
+        void OnAction2(InputAction.CallbackContext context);
         void OnWeapon1(InputAction.CallbackContext context);
         void OnWeapon2(InputAction.CallbackContext context);
         void OnWeapon3(InputAction.CallbackContext context);
-        void OnAction2(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMedKit(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnAction3(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
