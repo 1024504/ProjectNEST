@@ -700,17 +700,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
---- !u!114 &521152661 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1432653495116723635, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
-  m_PrefabInstance: {fileID: 975560713}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d1cfd5f9b3335d40a73807b5a6ae5c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &532239301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,26 +1364,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlveriumMoth
       objectReference: {fileID: 0}
-    - target: {fileID: 993898158868597598, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 993898158868597598, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 993898158868597598, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 993898158868597598, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
+    - target: {fileID: 4809402655388729465, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
+      propertyPath: localDefaultAimPosition.x
+      value: 0.503
       objectReference: {fileID: 0}
     - target: {fileID: 4809402655388729465, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
-      propertyPath: health
-      value: 
-      objectReference: {fileID: 521152661}
+      propertyPath: localDefaultAimPosition.y
+      value: -0.836
+      objectReference: {fileID: 0}
     - target: {fileID: 5592498701801901199, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1439,9 +1416,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7782419088716364245, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 6692893744365641194, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.503
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692893744365641194, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.836
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
