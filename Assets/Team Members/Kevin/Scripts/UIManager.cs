@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RawImage sniperIMG;
     [SerializeField] private GameObject sniperHUD;
 
+    public Color noAlpha;
     public Color halfAlpha;
     public Color fullAlpha;
     public void Awake()
@@ -52,8 +53,11 @@ public class UIManager : MonoBehaviour
         _rifle = player.weaponsList[0].GetComponent<Rifle>();
         _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
         _sniper = player.weaponsList[2].GetComponent<Sniper>();
+        
+        noAlpha = new Color(0, 0, 0, 0f);
         halfAlpha = new Color(0, 0, 0, 0.5f);
         fullAlpha = new Color(0, 0, 0, 1);
+        UpdateWeaponHUD();
 
     }
     
@@ -66,6 +70,7 @@ public class UIManager : MonoBehaviour
         _sniper.OnShoot += UpdateSniperAmmo;
         player.OnPickUp += UpdateMedKitCount;
         player.OnGunSwitch += UpdateWeaponHUD;
+        UpdateWeaponHUD();
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
     }
@@ -141,9 +146,9 @@ public class UIManager : MonoBehaviour
         sniperMaxAmmoText.color = halfAlpha;
         sniperIMG.color = halfAlpha;
 
-        rifleHUD.gameObject.GetComponent<Image>().color = Color.yellow;
-        shotgunHUD.gameObject.GetComponent<Image>().color = Color.white;
-        sniperHUD.gameObject.GetComponent<Image>().color = Color.white;
+        rifleHUD.gameObject.GetComponent<Image>().color = Color.white;
+        shotgunHUD.gameObject.GetComponent<Image>().color = noAlpha;
+        sniperHUD.gameObject.GetComponent<Image>().color = noAlpha;
     }
 
     private void ShotgunHUD()
@@ -160,9 +165,9 @@ public class UIManager : MonoBehaviour
         sniperMaxAmmoText.color = halfAlpha;
         sniperIMG.color = halfAlpha;
         
-        rifleHUD.gameObject.GetComponent<Image>().color = Color.white;
-        shotgunHUD.gameObject.GetComponent<Image>().color = Color.yellow;
-        sniperHUD.gameObject.GetComponent<Image>().color = Color.white;
+        rifleHUD.gameObject.GetComponent<Image>().color = noAlpha;
+        shotgunHUD.gameObject.GetComponent<Image>().color = Color.white;
+        sniperHUD.gameObject.GetComponent<Image>().color = noAlpha;
     }
 
     private void SniperHUD()
@@ -179,9 +184,9 @@ public class UIManager : MonoBehaviour
         sniperMaxAmmoText.color = fullAlpha;
         sniperIMG.color = fullAlpha;
         
-        rifleHUD.gameObject.GetComponent<Image>().color = Color.white;
-        shotgunHUD.gameObject.GetComponent<Image>().color = Color.white;
-        sniperHUD.gameObject.GetComponent<Image>().color = Color.yellow;
+        rifleHUD.gameObject.GetComponent<Image>().color = noAlpha;
+        shotgunHUD.gameObject.GetComponent<Image>().color = noAlpha;
+        sniperHUD.gameObject.GetComponent<Image>().color = Color.white;
     }
 
     #endregion

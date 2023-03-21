@@ -40,7 +40,7 @@ public class Player : MonoBehaviour, IControllable
 	public float grapplePullStrength = 1;
 	public float grapplePowerRatio = 1.6f;
 	public float grappleDamping;
-	private bool _isGrappled;
+	public bool _isGrappled;
 	private Vector3 _grapplePoint;
 	
 	private float _lateralMoveInput;
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private Transform _transform;
 	private Rigidbody2D _rb;
-	private PlayerTerrainDetection _terrainDetection;
+	public PlayerTerrainDetection _terrainDetection;
 	
 
 	
@@ -116,6 +116,7 @@ public class Player : MonoBehaviour, IControllable
 		_terrainDetection = GetComponentInChildren<PlayerTerrainDetection>();
 		_grapple = GetComponentInChildren<Grapple>(true);
 		_grapple.OnHit += GrappleHit;
+		currentWeapon = weaponsList[0];
 	}
 
 	private void OnDisable()
@@ -333,6 +334,7 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (!grappleEnabled) return;
 		_isGrappled = false;
+		OnGrappleHit?.Invoke();
 		_grapple.ResetGrapple();
 	}
 
