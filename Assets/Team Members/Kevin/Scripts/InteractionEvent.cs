@@ -6,10 +6,10 @@ public class InteractionEvent : MonoBehaviour
 {
     public delegate void OnInteract();
     public event OnInteract onEventTriggered;
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         Player player = col.GetComponent<Player>();
-        if (player != null)
+        if (player != null && GameManager.Instance.interactButtonPressed)
         {
             onEventTriggered?.Invoke();
             gameObject.SetActive(false);

@@ -350,6 +350,16 @@ public class Player : MonoBehaviour, IControllable
 		
 	}
 
+	public void Action3Performed()
+	{
+		GameManager.Instance.interactButtonPressed = true;
+	}
+
+	public void Action3Cancelled()
+	{
+		GameManager.Instance.interactButtonPressed = false;
+	}
+
 	public void PausePerformed()
 	{
 		if (GameManager.Instance.gamePaused == false)

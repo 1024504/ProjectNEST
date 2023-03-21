@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
    public bool hasShotgun;
    public bool hasSniper;
    public bool canDoubleJump;
+
+   public bool interactButtonPressed = false;
    
    //Global Reference to player prefab
    public GameObject playerPrefabRef;

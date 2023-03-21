@@ -165,6 +165,16 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	    
     }
 
+    public void Action3Performed()
+    {
+	    
+    }
+
+    public void Action3Cancelled()
+    {
+	    
+    }
+
     public void PausePerformed()
     {
 	    
