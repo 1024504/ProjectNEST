@@ -235,6 +235,7 @@ MonoBehaviour:
   grapplePullStrength: 2.2
   grapplePowerRatio: 1.6
   grappleDamping: 1.5
+  _isGrappled: 0
   doubleJumpEnabled: 1
   dashVelocity: 35
   dashDuration: 0.2
@@ -254,6 +255,7 @@ MonoBehaviour:
   medkitCount: 0
   maxMedkit: 3
   medKitHealLevel: 20
+  _terrainDetection: {fileID: 0}
 --- !u!114 &8727429382220082491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,7 +442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4164490346348535288}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.93, y: -0.453, z: 1.44}
+  m_LocalPosition: {x: 0, y: -0.453, z: 1.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
