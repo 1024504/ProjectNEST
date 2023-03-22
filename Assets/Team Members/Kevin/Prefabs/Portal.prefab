@@ -503,7 +503,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.22, y: -0.8}
-  m_Size: {x: 5.46, y: 13.19}
+  m_Size: {x: 18.35, y: 18.05}
   m_Direction: 0
 --- !u!50 &9122268773473719967
 Rigidbody2D:
@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fdcf08ae80ece64498de03d57532dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionInt: 0
 --- !u!1001 &1128362212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -576,7 +577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8782863360997154929, guid: 4e988a2a96b54df4c9bc6ce86d74fba3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 128.5
+      value: 130.16
       objectReference: {fileID: 0}
     - target: {fileID: 8782863360997154929, guid: 4e988a2a96b54df4c9bc6ce86d74fba3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -643,4 +644,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ee6be6c0425d148922ce8959594605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionEvent: {fileID: 0}
+  interactionEventManager: {fileID: 0}

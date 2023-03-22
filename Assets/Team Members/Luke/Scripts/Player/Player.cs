@@ -339,7 +339,10 @@ public class Player : MonoBehaviour, IControllable
 		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		weaponBase.Reload();
-		GameManager.Instance._uiManager.aboveHeadUI.SetActive(true);
+		if (weaponBase.isReloading)
+		{
+			GameManager.Instance._uiManager.aboveHeadUI.SetActive(true);
+		}
 	}
 
 	public void Action2Cancelled()

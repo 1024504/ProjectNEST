@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public InteractionEvent interactionEvent;
+    public InteractionEventManager interactionEventManager;
 
     public void Awake()
     {
-        interactionEvent = GetComponentInParent<InteractionEvent>();
+        interactionEventManager = GetComponentInParent<InteractionEventManager>();
     }
     public void OnEnable()
     {
-        interactionEvent.onEventTriggered += DoStuff;
+        interactionEventManager.onEventTriggered += DoStuff;
     }
 
     public void OnDisable()
     {
-        interactionEvent.onEventTriggered -= DoStuff;
+        interactionEventManager.onEventTriggered -= DoStuff;
     }
 
     private void DoStuff()

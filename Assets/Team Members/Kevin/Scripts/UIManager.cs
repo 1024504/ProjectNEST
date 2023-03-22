@@ -41,6 +41,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sniperMaxAmmoText;
     [SerializeField] private RawImage sniperIMG;
     [SerializeField] private GameObject sniperHUD;
+    
+    //Objectives HUD
+    [Header("Objectives HUD")] 
+    public GameObject objectivesMarker;
+    public Transform branchProceduralPanel;
+    public TextMeshProUGUI objectiveText;
+    public Transform textProceduralPanel;
+    
 
     public GameObject aboveHeadUI;
 
@@ -62,6 +70,22 @@ public class UIManager : MonoBehaviour
         UpdateWeaponHUD();
 
     }
+
+    #region Objectives HUD
+    public void UpdateObjectives()
+    {
+        GameObject go = Instantiate(objectivesMarker, branchProceduralPanel.position, Quaternion.identity);
+        go.transform.SetParent(branchProceduralPanel.transform, false);
+
+        TextMeshProUGUI textGO = Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity);
+        textGO.transform.SetParent(textProceduralPanel.transform, false);
+        if (GameManager.Instance.gameObject != null)
+        {
+            textGO.text = GameManager.Instance.objectives[GameManager.Instance.currentMission];
+        }
+    }
+
+    #endregion
     
     #region UI Update
 
@@ -75,6 +99,7 @@ public class UIManager : MonoBehaviour
         UpdateWeaponHUD();
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
+        GameManager.Instance.InteractionEventManager.onEventTriggered += UpdateObjectives;
     }
 
     public void OnDisable()
@@ -86,6 +111,7 @@ public class UIManager : MonoBehaviour
         player.OnGunSwitch -= UpdateWeaponHUD;
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath -= ActiveDeathMenu;
+        GameManager.Instance.InteractionEventManager.onEventTriggered -= UpdateObjectives;
     }
 
     private void UpdateRifleAmmo()

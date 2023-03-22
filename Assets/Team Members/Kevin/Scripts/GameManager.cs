@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,9 +19,43 @@ public class GameManager : MonoBehaviour
    //Global Reference to player prefab
    public GameObject playerPrefabRef;
    
-   //Global Reference to UI Manager
+   //Global Reference to Managers
    public UIManager _uiManager;
+
+   public InteractionEventManager InteractionEventManager;
    
+   //Objectives
+   public List<String> objectives;
+   public int currentMission;
+
+   /*public enum TutorialObjectives
+   {
+      Hangar,
+      Generator,
+      Lab
+   }*/
+
+   //public TutorialObjectives theObjective;
+   public void Update()
+   {
+      /*switch (theObjective)
+      {
+         case TutorialObjectives.Hangar:
+            currentMission = 0;
+            _uiManager.UpdateObjectives();
+            break;
+         case TutorialObjectives.Generator:
+            currentMission = 1;
+            _uiManager.UpdateObjectives();
+            break;
+         case TutorialObjectives.Lab:
+            currentMission = 2;
+            _uiManager.UpdateObjectives();
+            break;
+      }*/
+   }
+
+
    private void Awake()
    {
       if (Instance == null)
@@ -29,6 +67,11 @@ public class GameManager : MonoBehaviour
       {
          Destroy(gameObject);
       }
+   }
+
+   private void OnEnable()
+   {
+      _uiManager.UpdateObjectives();
    }
 
    public void GameReset()
