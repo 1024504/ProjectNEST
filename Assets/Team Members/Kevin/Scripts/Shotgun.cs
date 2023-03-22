@@ -73,6 +73,7 @@ public class Shotgun : WeaponBase
         yield return new WaitForSeconds(1f);
         if (isReloading == false)
         {
+            GameManager.Instance._uiManager.aboveHeadUI.SetActive(true);
             Reload();
         }
     }
