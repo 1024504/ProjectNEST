@@ -42,6 +42,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RawImage sniperIMG;
     [SerializeField] private GameObject sniperHUD;
 
+    public GameObject aboveHeadUI;
+
     public Color noAlpha;
     public Color halfAlpha;
     public Color fullAlpha;

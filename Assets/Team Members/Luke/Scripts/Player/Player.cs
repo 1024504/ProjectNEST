@@ -83,9 +83,7 @@ public class Player : MonoBehaviour, IControllable
 	private Transform _transform;
 	private Rigidbody2D _rb;
 	public PlayerTerrainDetection _terrainDetection;
-	
 
-	
 	public delegate void MedKit();
 	public event MedKit OnPickUp;
 	
@@ -100,8 +98,6 @@ public class Player : MonoBehaviour, IControllable
 
 	public event CurrentGunUI OnGunSwitch;
 	
-	
-
 	public Action OnPlayerIdle;
 	public Action OnPlayerWalk;
 	public Action OnPlayerJump;
@@ -343,6 +339,7 @@ public class Player : MonoBehaviour, IControllable
 		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		weaponBase.Reload();
+		GameManager.Instance._uiManager.aboveHeadUI.SetActive(true);
 	}
 
 	public void Action2Cancelled()

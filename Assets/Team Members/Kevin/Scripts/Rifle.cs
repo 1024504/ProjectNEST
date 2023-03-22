@@ -78,6 +78,7 @@ public class Rifle : WeaponBase
         currentMagazine = magazineMax;
         OnShoot?.Invoke();
         isReloading = false;
+        GameManager.Instance._uiManager.aboveHeadUI.SetActive(false);
     }
     
     private IEnumerator AutoReloadTimer()
