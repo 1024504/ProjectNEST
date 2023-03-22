@@ -62,7 +62,7 @@ Transform:
   m_Children:
   - {fileID: 1140906813}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8148186491433386691
 MonoBehaviour:
@@ -80,5 +80,12 @@ MonoBehaviour:
   hasShotgun: 0
   hasSniper: 0
   canDoubleJump: 0
+  interactButtonPressed: 0
   playerPrefabRef: {fileID: 0}
   _uiManager: {fileID: 0}
+  InteractionEventManager: {fileID: 0}
+  objectives:
+  - Escape Hangar Bay
+  - Turn On Generator
+  - Explore the LAB
+  currentMission: 0
