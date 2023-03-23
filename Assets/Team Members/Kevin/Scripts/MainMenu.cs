@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public string testFormLink;
+    public Animator mmAnimator;
+
+    public void Awake()
+    {
+        mmAnimator.CrossFade("Opening", 0, 0);
+    }
     public void StartNewGameButton()
     {
         SceneManager.LoadScene("MainScene");
@@ -24,5 +30,15 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Game Exited");
         Application.Quit();
+    }
+
+    public void OptionsAnimIN()
+    {
+        mmAnimator.CrossFade("Options", 0, 0);
+    }
+
+    public void OptionsAnimOut()
+    {
+        mmAnimator.CrossFade("Options 0", 0, 0);
     }
 }
