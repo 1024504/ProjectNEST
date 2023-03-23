@@ -20,6 +20,13 @@ public class PlayerAnimationManager : MonoBehaviour
 		_player.OnPlayerIdle += IdleAnimation;
 		_player.OnPlayerJump += JumpAnimation;
 	}
+	
+	private void OnDisable()
+	{
+		_player.OnPlayerWalk -= WalkAnimation;
+		_player.OnPlayerIdle -= IdleAnimation;
+		_player.OnPlayerJump -= JumpAnimation;
+	}
 
 	private void SetAnimator(AnimationClip clip)
 	{

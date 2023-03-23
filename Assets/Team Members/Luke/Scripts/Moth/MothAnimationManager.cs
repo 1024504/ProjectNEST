@@ -24,6 +24,15 @@ public class MothAnimationManager : MonoBehaviour
 		_moth.OnAttackBuildup += AttackBuildupAnimation;
 		_moth.OnAttackShoot += AttackShootAnimation;
 	}
+	
+	private void OnDisable()
+	{
+		_moth.OnIdle -= IdleAnimation;
+		_moth.OnMoveBurst -= MoveBurstAnimation;
+		_moth.OnMoveConstant -= MoveConstantAnimation;
+		_moth.OnAttackBuildup -= AttackBuildupAnimation;
+		_moth.OnAttackShoot -= AttackShootAnimation;
+	}
 
 	private void SetAnimator(AnimationClip clip)
 	{

@@ -11,6 +11,12 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 	private Transform _transform;
 	private Rigidbody2D _rb;
 	public Animator anim;
+	public Action OnIdle;
+	public Action OnWalk;
+	public Action OnAttack;
+	public Action OnLostTarget;
+	public Action OnSpotTarget;
+	public Action OnRun;
 
 	[SerializeField] private Transform view;
 
