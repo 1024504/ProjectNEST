@@ -12,6 +12,8 @@ public class PlayerAnimationManager : MonoBehaviour
 	private Animator _anim;
 	private Player _player;
 
+	public FMODUnity.EventReference footStepClip;
+
 	private void OnEnable()
 	{
 		_anim = GetComponent<Animator>();
@@ -46,5 +48,11 @@ public class PlayerAnimationManager : MonoBehaviour
 	private void JumpAnimation()
 	{
 		SetAnimator(jump);
+	}
+
+	public void FootStepSFX()
+    {
+		FMODUnity.RuntimeManager.PlayOneShot(footStepClip);
+
 	}
 }
