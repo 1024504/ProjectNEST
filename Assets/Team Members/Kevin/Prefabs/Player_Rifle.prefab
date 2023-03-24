@@ -187,7 +187,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 55
   m_Sprite: {fileID: 366186151253392131, guid: 403ed6df9af6da84ab58c28b5ee5b60f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -318,7 +318,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 50
   m_Sprite: {fileID: 7404856545946056310, guid: 403ed6df9af6da84ab58c28b5ee5b60f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -411,22 +411,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebcbb7fd81cac944a18f7a19bef1161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 10
   currentMagazine: 20
   magazineMax: 20
-  shotRange: 0
   gunBarrelTransform: {fileID: 3987497277349409081}
   bulletPrefab: {fileID: 8542998801946814849, guid: 1821cd6a3ff233d45bee21f78bdd96e1, type: 3}
   isReloading: 0
   isShooting: 0
-  rifleSound:
-  - {fileID: 8300000, guid: 485802df82dd74140a8e4950cd46f8cf, type: 3}
-  - {fileID: 8300000, guid: 507bec9cc6ddfaf409abdc7dd53514e0, type: 3}
-  - {fileID: 8300000, guid: e683ba1d6b855204dba86203b887733e, type: 3}
-  rifleReload: {fileID: 8300000, guid: 031ea88e161e4d94f86fabc57dbeb235, type: 3}
+  cameraSize: 0
   reloadTime: 1
   shotCounter: 0
   rateOfFire: 0.1
+  canShoot: 0
 --- !u!1 &8415375096817499323
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +494,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 50
   m_Sprite: {fileID: -8180931169201183722, guid: 403ed6df9af6da84ab58c28b5ee5b60f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

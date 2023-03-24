@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 50
   m_Sprite: {fileID: -667933709319700018, guid: cb09d1640754f8340b6a82e0e8629864, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -183,7 +183,7 @@ Transform:
   m_Children:
   - {fileID: 7663588096856261714}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1356150838
 MonoBehaviour:
@@ -197,19 +197,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2f118485100f5499093f2790711b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 50
   currentMagazine: 1
   magazineMax: 1
-  shotRange: 0
   gunBarrelTransform: {fileID: 4818207925514748226}
   bulletPrefab: {fileID: 8542998801946814849, guid: efc9400f38999644e8b7ba24efb56942, type: 3}
   isReloading: 0
   isShooting: 0
-  sniperSound:
-  - {fileID: 8300000, guid: 54ce102f6ab3b9a4b9666d1b30610a91, type: 3}
-  - {fileID: 8300000, guid: bc5e7e17fa7f1b44c984c32238bbec8d, type: 3}
-  - {fileID: 8300000, guid: afc4e47ecadf0c74480c8116a543bb36, type: 3}
-  sniperReload: {fileID: 8300000, guid: 031ea88e161e4d94f86fabc57dbeb235, type: 3}
+  cameraSize: 0
   reloadTime: 1
 --- !u!1 &5848543987015749525
 GameObject:
@@ -283,7 +277,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 45
   m_Sprite: {fileID: -39057311219371809, guid: cb09d1640754f8340b6a82e0e8629864, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -367,7 +361,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 50
   m_Sprite: {fileID: -7720589559113081465, guid: cb09d1640754f8340b6a82e0e8629864, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -451,7 +445,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 55
   m_Sprite: {fileID: -497676032073689642, guid: cb09d1640754f8340b6a82e0e8629864, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
