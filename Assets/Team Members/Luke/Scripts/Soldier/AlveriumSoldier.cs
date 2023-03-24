@@ -50,7 +50,7 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 	private float _lateralMoveInput;
 
 	public float rotateSpeed = 1;
-	
+
 	private enum Joints
 	{
 		Body1,
@@ -173,6 +173,7 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		{
 			view.localRotation = Quaternion.Euler(0, 180, 0);
 		}
+
 		_lateralMoveInput = lateralInput;
         _terrainDetection.lateralMoveInput = -Mathf.Abs(lateralInput);
     }

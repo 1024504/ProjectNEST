@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2659453571629753931}
   - component: {fileID: 2659453571629753930}
   - component: {fileID: 2659453571629753927}
+  - component: {fileID: 2489231159319293679}
   m_Layer: 0
   m_Name: Medkit
   m_TagString: Untagged
@@ -31,10 +32,10 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.892, y: 3.892, z: 1.5568}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -174,3 +175,23 @@ MonoBehaviour:
       Data3: 1705646015
       Data4: -194159202
     Path: event:/Characters/Interactables/PickUpMedkitSFX/PickUpMedkit
+--- !u!95 &2489231159319293679
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659453571629753929}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4695ab090ea4ae45bb56e6f4b5cf3fa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
