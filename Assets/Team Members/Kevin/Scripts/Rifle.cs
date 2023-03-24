@@ -44,6 +44,7 @@ public class Rifle : WeaponBase
         {
             Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
             currentMagazine--;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/RifleSFX/RifleShots");
             OnShoot?.Invoke();
             canShoot = false;
             StartCoroutine(ShotCooldown());
@@ -67,7 +68,8 @@ public class Rifle : WeaponBase
     {
         if (currentMagazine == magazineMax) return;
         if (isReloading) return;
-        isReloading = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/ReloadSFX/Reload");
+        isReloading = true;      
         StartCoroutine(ReloadTimer());
         
     }

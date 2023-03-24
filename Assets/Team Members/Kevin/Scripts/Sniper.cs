@@ -23,6 +23,7 @@ public class Sniper : WeaponBase
       {
          Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
          currentMagazine--;
+         FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/SniperSFX/SniperShots");
          OnShoot?.Invoke();
          if(currentMagazine < 1 && isReloading == false)
          {
@@ -41,6 +42,7 @@ public class Sniper : WeaponBase
       if (currentMagazine == magazineMax) return;
       if (isReloading) return;
       isReloading = true;
+      FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/ReloadSFX/Reload");  
       StartCoroutine(ReloadTimer());
         
    }

@@ -23,8 +23,8 @@ public class SoldierAttackState : AntAIState
 
 	private IEnumerator AttackAnimation()
 	{
-		_agent.anim.CrossFade("Attack_2", 0);
-		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+		_agent.OnAttack?.Invoke();
+		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
 		_agent.CooldownAttack();
 	}
 

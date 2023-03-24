@@ -22,20 +22,20 @@ public class SoldierIdleState : AntAIState
 		_agent.MoveCancelled();
 		if (_agent.currentMoveSpeed > _agent.patrolSpeed)
 		{
-			_agent.anim.CrossFade("Lost_Player", 0);
+			_agent.OnLostTarget?.Invoke();
 			_coroutine = StartCoroutine(LostTarget());
 		}
 		else
 		{
-			_agent.anim.CrossFade("Idle", 0);
+			_agent.OnIdle?.Invoke();
 			_coroutine = StartCoroutine(_agent.CanPatrolTimer(_agent.idleDuration));
 		}
 	}
 	
 	private IEnumerator LostTarget()
 	{
-		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-		_agent.anim.CrossFade("Idle", 0);
+		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
+		_agent.OnIdle?.Invoke();
 		_coroutine = StartCoroutine(_agent.CanPatrolTimer(_agent.idleDuration));
 	}
 
