@@ -32,6 +32,7 @@ public class Shotgun : WeaponBase
                 rb.velocity = shotgunBarrelTransforms[i].right * 75f;
             }
             currentMagazine --;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/ShotgunSFX/ShotgunShots");
             shotCooldown = false;
             StartCoroutine(ShotCooldownTimer());
             OnShoot?.Invoke();
@@ -55,6 +56,7 @@ public class Shotgun : WeaponBase
         if (currentMagazine == magazineMax) return;
         if (isReloading) return;
         isReloading = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/ReloadSFX/Reload");
         StartCoroutine(ReloadTimer());
         
     }
