@@ -11,7 +11,10 @@ public class HealthBase : MonoBehaviour
     
     public delegate void UpdateHealth();
     public event UpdateHealth OnChangeHealth;
-    
+
+    public GameObject bloodParticle;
+    public FMODUnity.EventReference impactSFX;
+
     public float HealthLevel
     {
         get => healthLevel;
@@ -21,6 +24,8 @@ public class HealthBase : MonoBehaviour
             else if (value > maxHealth) healthLevel = maxHealth;
             else healthLevel = value;
             OnChangeHealth?.Invoke();
+            Instantiate(bloodParticle, transform.position, Quaternion.identity);
+            FMODUnity.RuntimeManager.PlayOneShot(impactSFX);
         }
     }
 
