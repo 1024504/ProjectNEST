@@ -10,6 +10,8 @@ public class Medkit : MonoBehaviour
         Player player = col.GetComponent<Player>();
         if (player != null && player.medkitCount < player.maxMedkit)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Interactables/PickUpMedkitSFX/PickUpMedkit");
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Dialogue/Falcon/Emotes/Medkit_Pickup");
             player.PickUp();
             Destroy(gameObject);
         }

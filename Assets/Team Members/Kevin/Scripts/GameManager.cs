@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
    {
       if (Instance == null)
       {
-         Instance = this; 
+         Instance = this;
          DontDestroyOnLoad(gameObject);
       }
       else
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
    private void OnEnable()
    {
       _uiManager.UpdateObjectives();
+      FMODUnity.RuntimeManager.PlayOneShot("event:/Music/EnteringTheShipTrack");
    }
 
    public void GameReset()
