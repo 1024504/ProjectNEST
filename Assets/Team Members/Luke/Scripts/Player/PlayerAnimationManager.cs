@@ -17,7 +17,10 @@ public class PlayerAnimationManager : AnimationManagerBase
 
 	private Player _player;
 
+	//SFX References
 	public EventReference footStepClip;
+	public EventReference landingClip;
+	public EventReference jumpClip;
 
 	protected override void OnEnable()
 	{
@@ -98,4 +101,13 @@ public class PlayerAnimationManager : AnimationManagerBase
     {
 		RuntimeManager.PlayOneShot(footStepClip);
     }
+
+	public void LandingSFX()
+    {
+		RuntimeManager.PlayOneShot(landingClip);
+	}
+	public void JumpSFX()
+	{
+		RuntimeManager.PlayOneShot(jumpClip);
+	}
 }

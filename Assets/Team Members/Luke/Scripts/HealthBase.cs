@@ -24,12 +24,11 @@ public class HealthBase : MonoBehaviour
             if (value <= 0) Die();
             else if (value > maxHealth) healthLevel = maxHealth;
             else healthLevel = value;
-            OnChangeHealth?.Invoke();
             Instantiate(bloodParticle, transform.position, Quaternion.identity);
+            OnChangeHealth?.Invoke();           
             RuntimeManager.PlayOneShot(impactSFX);
         }
     }
-
 
     private void Awake()
     {

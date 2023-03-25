@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using FMODUnity;
+
 
 public class Player : MonoBehaviour, IControllable
 {
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour, IControllable
 	public int medkitCount;
 	public int maxMedkit = 3;
 	public int medKitHealLevel;
+	public EventReference medkitEmote;
 
 	private Transform _transform;
 	private Rigidbody2D _rb;
@@ -436,9 +439,10 @@ public class Player : MonoBehaviour, IControllable
 		if (healthBase.HealthLevel >= 100f) return;
 		if (medkitCount <= 0) return;
 		healthBase.HealthLevel += medKitHealLevel;
+		RuntimeManager.PlayOneShot(medkitEmote);
 		medkitCount--;
 		OnPickUp?.Invoke();
-		OnChangeHealth?.Invoke();
+		OnChangeHealth?.Invoke();		
 	}
 
 	public void MedKitCancelled()
