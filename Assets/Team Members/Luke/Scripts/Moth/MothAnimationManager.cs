@@ -41,26 +41,31 @@ public class MothAnimationManager : MonoBehaviour
 	
 	private void IdleAnimation()
 	{
+		if (idle == null) return;
 		SetAnimator(idle);
 	}
 	
 	private void MoveBurstAnimation()
 	{
+		if (moveBurst == null) return;
 		SetAnimator(moveBurst);
 	}
 
 	private void MoveConstantAnimation()
 	{
+		if (moveConstant == null) return;
 		SetAnimator(moveConstant);
 	}
 	
 	private void AttackBuildupAnimation()
 	{
+		if (attackBuildup == null) return;
 		SetAnimator(attackBuildup);
 	}
 	
 	private void AttackShootAnimation()
 	{
+		if (attackShoot == null) return;
 		SetAnimator(attackShoot);
 	}
 }

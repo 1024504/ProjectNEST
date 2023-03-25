@@ -99,8 +99,13 @@ public class Player : MonoBehaviour, IControllable
 	public event CurrentGunUI OnGunSwitch;
 	
 	public Action OnPlayerIdle;
-	public Action OnPlayerWalk;
+	public Action OnPlayerWalkForwards;
+	public Action OnPlayerWalkBackwards;
 	public Action OnPlayerJump;
+	public Action OnPlayerMidAirFalling;
+	public Action OnPlayerLanding;
+	public Action OnPlayerDash;
+	public Action OnPlayerSprint;
 	private IControllable _controllableImplementation;
 
 	private void OnEnable()
@@ -167,7 +172,8 @@ public class Player : MonoBehaviour, IControllable
 		if (input < 0 && _terrainDetection.leftAngle < maxSlopeAngle ||
 		    input > 0 && _terrainDetection.rightAngle < maxSlopeAngle)
 		{
-			OnPlayerWalk?.Invoke();
+			if (lookTransform.localPosition.x > 0 == input < 0) OnPlayerWalkBackwards?.Invoke();
+			else OnPlayerWalkForwards?.Invoke();
 			_rb.velocity = new Vector2(input * _currentSpeed * _terrainDetection.mainNormal.y,
 				input * _currentSpeed * -_terrainDetection.mainNormal.x);
 			return;

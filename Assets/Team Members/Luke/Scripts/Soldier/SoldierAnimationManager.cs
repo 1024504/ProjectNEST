@@ -43,31 +43,37 @@ public class SoldierAnimationManager : MonoBehaviour
 	
 	private void IdleAnimation()
 	{
+		if (idle == null) return;
 		SetAnimator(idle);
 	}
 	
 	private void WalkAnimation()
 	{
+		if (walk == null) return;
 		SetAnimator(walk);
 	}
 
 	private void AttackAnimation()
 	{
+		if (attack == null) return;
 		SetAnimator(attack);
 	}
 	
 	private void LostTargetAnimation()
 	{
+		if (lostTarget == null) return;
 		SetAnimator(lostTarget);
 	}
 	
 	private void SpottedTargetAnimation()
 	{
+		if (spottedTarget == null) return;
 		SetAnimator(spottedTarget);
 	}
 	
 	private void RunAnimation()
 	{
+		if (run == null) return;
 		SetAnimator(run);
 	}
 }
