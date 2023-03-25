@@ -24,7 +24,6 @@ public class Grapple : MonoBehaviour
 	{
 		if (_hookGO == null) return;
 		if (Vector2.Distance(_t.position, _hookGO.transform.position) > _grappleRange) ResetGrapple();
-		Debug.Log(_t.rotation.eulerAngles);
 	}
 
 	public void Shoot(float grappleVelocity, float range, float cooldown)

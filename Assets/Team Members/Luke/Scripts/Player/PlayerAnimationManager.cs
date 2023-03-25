@@ -51,6 +51,13 @@ public class PlayerAnimationManager : MonoBehaviour
 		_anim.CrossFade(clip.name, 0, 0);
 	}
 	
+	private void SetAnimator(AnimationClip clip, float crossFadeTime)
+	{
+		// May need to check if the clip is already playing
+		crossFadeTime = Mathf.Clamp (crossFadeTime, 0, 1);
+		_anim.CrossFade(clip.name, crossFadeTime, 0);
+	}
+	
 	private void WalkForwardsAnimation()
 	{
 		if (walkForwards == null) return;
@@ -78,7 +85,7 @@ public class PlayerAnimationManager : MonoBehaviour
 	private void MidAirFallingAnimation()
 	{
 		if (midAirFalling == null) return;
-		SetAnimator(midAirFalling);
+		SetAnimator(midAirFalling, 0.2f);
 	}
 	
 	private void LandingAnimation()

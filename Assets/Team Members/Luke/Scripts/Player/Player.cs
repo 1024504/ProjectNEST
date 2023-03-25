@@ -46,7 +46,7 @@ public class Player : MonoBehaviour, IControllable
 	private float _lateralMoveInput;
 	private Vector2 _aimInput;
 	private Coroutine _coroutine;
-	private bool _isJumping = false;
+	private bool _justJumped = false;
 	
 	public bool doubleJumpEnabled = false;
 	private bool _doubleJumped = false;
@@ -64,6 +64,7 @@ public class Player : MonoBehaviour, IControllable
 	[Header("Player AIM")]
 	public Transform playerArms;
 	public Transform lookTransform;
+	public Transform sprintLookTransform;
 	public float mouseAimSensitivity = 1;
 	
 	[Header("Weapons")] 
@@ -103,7 +104,7 @@ public class Player : MonoBehaviour, IControllable
 	public Action OnPlayerWalkBackwards;
 	public Action OnPlayerJump;
 	public Action OnPlayerMidAirFalling;
-	public Action OnPlayerLanding;
+	public Action OnPlayerLanding; // not sure about fading with walking/sprinting animation
 	public Action OnPlayerDash;
 	public Action OnPlayerSprint;
 	private IControllable _controllableImplementation;
@@ -154,7 +155,7 @@ public class Player : MonoBehaviour, IControllable
 			return;
 		}
 		
-		if (!_terrainDetection.isGrounded || _isJumping)
+		if (!_terrainDetection.isGrounded || _justJumped)
 		{
 			MoveInAir(input);
 			return;
@@ -172,8 +173,13 @@ public class Player : MonoBehaviour, IControllable
 		if (input < 0 && _terrainDetection.leftAngle < maxSlopeAngle ||
 		    input > 0 && _terrainDetection.rightAngle < maxSlopeAngle)
 		{
-			if (lookTransform.localPosition.x > 0 == input < 0) OnPlayerWalkBackwards?.Invoke();
-			else OnPlayerWalkForwards?.Invoke();
+			if (_currentSpeed < sprintSpeed)
+			{
+				if (lookTransform.localPosition.x > 0 == input < 0) OnPlayerWalkBackwards?.Invoke();
+				else OnPlayerWalkForwards?.Invoke();
+			}
+			else OnPlayerSprint?.Invoke();
+			
 			_rb.velocity = new Vector2(input * _currentSpeed * _terrainDetection.mainNormal.y,
 				input * _currentSpeed * -_terrainDetection.mainNormal.x);
 			return;
@@ -191,7 +197,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void MoveInAir(float input)
 	{
-		OnPlayerJump?.Invoke();
+		OnPlayerMidAirFalling?.Invoke();
 		_rb.velocity = new Vector2(input * _currentSpeed, _rb.velocity.y);
 	}
 
@@ -222,7 +228,13 @@ public class Player : MonoBehaviour, IControllable
 		yield return new WaitForSeconds(jumpTime - decelerationDuration);
 		_rb.gravityScale = gravityScale;
 	}
-	
+
+	private IEnumerator JustJumped()
+	{
+		yield return new WaitForSeconds(0.2f);
+		_justJumped = false;
+	}
+
 	private void AimArms()
 	{
 		// Clamp the mouse reticle within cameraBounds
@@ -233,15 +245,17 @@ public class Player : MonoBehaviour, IControllable
 			Mathf.Clamp(position.y, cameraPosition.y-cameraSize.y/2+mouseReticleMargin, cameraPosition.y+cameraSize.y/2-mouseReticleMargin));
 		lookTransform.position = position;
 
-		playerArms.LookAt(position);
-		
-		if (lookTransform.localPosition.x >= 0)
+		if (_currentSpeed < sprintSpeed)
 		{
-			_view.localRotation = Quaternion.identity;
+			playerArms.LookAt(position);
+			if (lookTransform.localPosition.x >= 0) _view.localRotation = Quaternion.identity;
+			else _view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 		}
 		else
 		{
-			_view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+			if (_lateralMoveInput >= 0) _view.localRotation = Quaternion.identity;
+			else _view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+			playerArms.LookAt(sprintLookTransform.position);
 		}
 	}
 
@@ -281,29 +295,31 @@ public class Player : MonoBehaviour, IControllable
 		if (GameManager.Instance.gamePaused) return;
 		if (_terrainDetection.isGrounded && Vector2.Angle(Vector2.up, _terrainDetection.mainNormal) <= maxSlopeAngle)
 		{
-			_isJumping = true;
+			_justJumped = true;
 			if (_coroutine != null) StopCoroutine(_coroutine);
 			_rb.gravityScale = 0f;
 			_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
+			StartCoroutine(JustJumped());
 			_coroutine = StartCoroutine(JumpTimer());
 		}
 		else if (doubleJumpEnabled && !_doubleJumped)
 		{
 			_doubleJumped = true;
-			_isJumping = true;
+			_justJumped = true;
 			if (_coroutine != null) StopCoroutine(_coroutine);
 			_rb.gravityScale = 0f;
 			_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
 			_coroutine = StartCoroutine(JumpTimer());
 		}
+		OnPlayerJump?.Invoke();
 	}
 
 	public void JumpCancelled()
 	{
 		if (GameManager.Instance.gamePaused) return;
 		
-		if (!_isJumping) return;
-		_isJumping = false;
+		if (!_justJumped) return;
+		_justJumped = false;
 		if (_terrainDetection.isGrounded) return;
 		if (_coroutine != null) StopCoroutine(_coroutine);
 		_rb.gravityScale = gravityScale;
@@ -446,6 +462,8 @@ public class Player : MonoBehaviour, IControllable
 	
 	private IEnumerator Dash()
 	{
+		OnPlayerDash?.Invoke();
+		
 		float counter = 0;
 		
 		float dashInput = _lateralMoveInput;
