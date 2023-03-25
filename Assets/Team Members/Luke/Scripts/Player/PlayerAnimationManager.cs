@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PlayerAnimationManager : MonoBehaviour
 	private Animator _anim;
 	private Player _player;
 
-	public FMODUnity.EventReference footStepClip;
+	public EventReference footStepClip;
 
 	private void OnEnable()
 	{
@@ -50,9 +51,9 @@ public class PlayerAnimationManager : MonoBehaviour
 		SetAnimator(jump);
 	}
 
+	// Called by timeline event
 	public void FootStepSFX()
     {
-		FMODUnity.RuntimeManager.PlayOneShot(footStepClip);
-
-	}
+		RuntimeManager.PlayOneShot(footStepClip);
+    }
 }

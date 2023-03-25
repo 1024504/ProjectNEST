@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class HealthBase : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class HealthBase : MonoBehaviour
     public event UpdateHealth OnChangeHealth;
 
     public GameObject bloodParticle;
-    public FMODUnity.EventReference impactSFX;
+    public EventReference impactSFX;
 
     public float HealthLevel
     {
@@ -25,7 +26,7 @@ public class HealthBase : MonoBehaviour
             else healthLevel = value;
             OnChangeHealth?.Invoke();
             Instantiate(bloodParticle, transform.position, Quaternion.identity);
-            FMODUnity.RuntimeManager.PlayOneShot(impactSFX);
+            RuntimeManager.PlayOneShot(impactSFX);
         }
     }
 
