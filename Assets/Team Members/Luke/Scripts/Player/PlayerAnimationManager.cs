@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
 
-public class PlayerAnimationManager : MonoBehaviour
+public class PlayerAnimationManager : AnimationManagerBase
 {
 	public AnimationClip idle;
 	public AnimationClip walkForwards;
@@ -15,14 +15,13 @@ public class PlayerAnimationManager : MonoBehaviour
 	public AnimationClip dash;
 	public AnimationClip sprint;
 
-	private Animator _anim;
 	private Player _player;
 
 	public EventReference footStepClip;
 
-	private void OnEnable()
+	protected override void OnEnable()
 	{
-		_anim = GetComponent<Animator>();
+		base.OnEnable();
 		_player = GetComponentInParent<Player>();
 		_player.OnPlayerWalkForwards += WalkForwardsAnimation;
 		_player.OnPlayerWalkBackwards += WalkBackwardsAnimation;
@@ -46,18 +45,6 @@ public class PlayerAnimationManager : MonoBehaviour
 		_player.OnPlayerSprint -= SprintAnimation;
 	}
 
-	private void SetAnimator(AnimationClip clip)
-	{
-		_anim.CrossFade(clip.name, 0, 0);
-	}
-	
-	private void SetAnimator(AnimationClip clip, float crossFadeTime)
-	{
-		// May need to check if the clip is already playing
-		crossFadeTime = Mathf.Clamp (crossFadeTime, 0, 1);
-		_anim.CrossFade(clip.name, crossFadeTime, 0);
-	}
-	
 	private void WalkForwardsAnimation()
 	{
 		if (walkForwards == null) return;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierAnimationManager : MonoBehaviour
+public class SoldierAnimationManager : AnimationManagerBase
 {
 	public AnimationClip idle;
 	public AnimationClip walk;
@@ -11,12 +11,11 @@ public class SoldierAnimationManager : MonoBehaviour
 	public AnimationClip spottedTarget;
 	public AnimationClip run;
 
-	private Animator _anim;
 	private AlveriumSoldier _soldier;
 
-	private void OnEnable()
+	protected override void OnEnable()
 	{
-		_anim = GetComponent<Animator>();
+		base.OnEnable();
 		_soldier = GetComponentInParent<AlveriumSoldier>();
 		_soldier.OnIdle += IdleAnimation;
 		_soldier.OnWalk += WalkAnimation;
@@ -36,11 +35,6 @@ public class SoldierAnimationManager : MonoBehaviour
 		_soldier.OnRun -= RunAnimation;
 	}
 
-	private void SetAnimator(AnimationClip clip)
-	{
-		_anim.CrossFade(clip.name, 0, 0);
-	}
-	
 	private void IdleAnimation()
 	{
 		if (idle == null) return;
