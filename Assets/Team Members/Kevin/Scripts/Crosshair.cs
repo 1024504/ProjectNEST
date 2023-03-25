@@ -6,7 +6,11 @@ using UnityEngine;
 public class Crosshair : MonoBehaviour
 {
     public bool onTarget = false;
-    
+    private Transform originalTransform;
+    public void OnEnable()
+    {
+        originalTransform = gameObject.transform;
+    }
     public void OnTriggerStay2D(Collider2D col)
     {
         AlveriumSoldier enemy = col.GetComponent<AlveriumSoldier>();
