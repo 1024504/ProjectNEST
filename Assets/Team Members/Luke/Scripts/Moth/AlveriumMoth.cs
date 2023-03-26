@@ -11,16 +11,17 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	public float idleDuration = 1f;
 	public float patrolDuration = 3f;
 	public bool beginsPatrolLeft = true;
+	public float idealDistanceFromTarget = 16f;
 
 	private float _lateralMoveInput;
 	private float _verticalMoveInput;
 	private bool _shootCoolingDown;
 	private bool _canPatrol;
-	private bool _hasTarget = false;
 	private bool _canHitTarget = false;
 
 	[SerializeField] private Transform view;
 	[SerializeField] private Transform tailTransform;
+	private Transform _currentTarget;
 	public Transform aimTransform;
 	[SerializeField] private Transform projectileTransform;
 	
@@ -34,11 +35,13 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	
 	private Transform _transform;
 	private Rigidbody2D _rb;
+	public Animator anim;
 	public Action OnIdle;
 	public Action OnMoveBurst;
 	public Action OnMoveConstant;
 	public Action OnAttackBuildup;
 	public Action OnAttackShoot;
+	public LayerMask visionLayerMask;
 
 	private void OnEnable()
 	{
@@ -66,10 +69,45 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	{
 		aWorldState.Set(MothScenario.CanPatrol, _canPatrol);
 		aWorldState.Set(MothScenario.CanShoot, !_shootCoolingDown);
-		aWorldState.Set(MothScenario.HasTarget, _hasTarget);
-		aWorldState.Set(MothScenario.CanHitTarget, _canHitTarget);
+		aWorldState.Set(MothScenario.HasTarget, ChooseTarget());
+		aWorldState.Set(MothScenario.CanHitTarget, CheckVerticalDistanceToTarget() < 0);
 		aWorldState.Set(MothScenario.AllTargetsDead, false);
 	}
+
+	private bool ChooseTarget()
+	{
+		if (targetLocations.Count == 0)
+		{
+			_currentTarget = null;
+			return false;
+		}
+		
+		KeyValuePair<float, int> closestTarget = new KeyValuePair<float, int>(Mathf.Infinity, -1);
+		foreach (Transform target in targetLocations)
+		{
+			RaycastHit2D hit = Physics2D.Linecast(_transform.position, target.position, visionLayerMask);
+			if (hit.collider.gameObject.GetComponentInParent<Player>() == null) continue;
+			float distance = Vector2.Distance(_transform.position, target.position);
+			if (distance < closestTarget.Key) closestTarget = new KeyValuePair<float, int>(distance, targetLocations.IndexOf(target));
+		}
+
+		if (closestTarget.Value == -1)
+		{
+			_currentTarget = null;
+			return false;
+		}
+		
+		_currentTarget = targetLocations[closestTarget.Value];
+		return true;
+	}
+
+	public float CheckVerticalDistanceToTarget()
+	{
+		if (_currentTarget == null) return Mathf.Infinity;
+		return _currentTarget.position.y - tailTransform.position.y;
+	}
+	
+	public float CheckLateralDistanceToTarget() => _currentTarget.position.x - tailTransform.position.x;
 
 	private void Move(float lateralInput, float verticalInput = 0)
 	{
@@ -81,6 +119,8 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 
 	private void Aim()
 	{
+		if (_currentTarget == null) aimTransform.localPosition = localDefaultAimPosition;
+		else aimTransform.position = _currentTarget.position;
 		Vector3 aimPosition = aimTransform.position;
 		Vector3 aimLocalPosition = aimTransform.localPosition;
 
@@ -119,12 +159,12 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 
     public void JumpPerformed()
     {
-	    _verticalMoveInput += 1;
+	    _verticalMoveInput = 1;
     }
 
     public void JumpCancelled()
     {
-	    _verticalMoveInput -= 1;
+	    _verticalMoveInput = 0;
     }
 
     public void ShootPerformed()
@@ -235,12 +275,12 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 
     public void DashHeld()
     {
-	    _verticalMoveInput -= 1;
+	    _verticalMoveInput = -1;
     }
 
     public void DashCancelled()
     {
-	    _verticalMoveInput += 1;
+	    _verticalMoveInput = 0;
     }
     
     private enum MothScenario

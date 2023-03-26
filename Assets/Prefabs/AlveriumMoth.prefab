@@ -247,6 +247,7 @@ MonoBehaviour:
   idleDuration: 1
   patrolDuration: 3
   beginsPatrolLeft: 1
+  idealDistanceFromTarget: 16
   view: {fileID: 7168441490959600585}
   tailTransform: {fileID: 3941810032610336153}
   aimTransform: {fileID: 6692893744365641194}
@@ -256,6 +257,10 @@ MonoBehaviour:
   localDefaultAimPosition: {x: 0.503, y: -0.836, z: 0}
   projectilePrefab: {fileID: 1235528491264602060, guid: a5f12762553282c49b947c8f78602506, type: 3}
   localProjectileRenderer: {fileID: 5980736090734805779}
+  anim: {fileID: 6427123627629606797}
+  visionLayerMask:
+    serializedVersion: 2
+    m_Bits: 520
 --- !u!50 &6803152681189117251
 Rigidbody2D:
   serializedVersion: 4
@@ -608,8 +613,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.49359864, y: -1.2359092}
-      - {x: -0.53345263, y: -0.9295956}
+    - - {x: -0.49432322, y: -1.2284069}
+      - {x: -0.45967278, y: -0.8953977}
       - {x: 0.24213433, y: -0.84059846}
       - {x: 0.35263327, y: -1.1396472}
       - {x: 0.0032830704, y: -1.3607625}

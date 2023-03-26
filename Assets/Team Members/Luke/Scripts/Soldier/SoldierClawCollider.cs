@@ -7,8 +7,6 @@ using FMODUnity;
 public class SoldierClawCollider : MonoBehaviour
 {
 	AlveriumSoldier _agent;
-	public GameObject bloodParticle;
-	public EventReference impactSFX;
 	
 	private void OnEnable()
 	{
@@ -20,8 +18,7 @@ public class SoldierClawCollider : MonoBehaviour
 		Player player = col.gameObject.GetComponent<Player>();
 		if (player != null)
 		{
-			Instantiate(bloodParticle, player.transform.position, Quaternion.identity);
-			RuntimeManager.PlayOneShot(impactSFX);
+			
 			player.GetComponent<HealthBase>().HealthLevel -= _agent.attackDamage;
 		}
 	}
