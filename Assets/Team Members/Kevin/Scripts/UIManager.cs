@@ -247,7 +247,9 @@ public class UIManager : MonoBehaviour
     public void RetryButton()
     {
         deathMenu.SetActive(false);
-        GameManager.Instance.GameReset();
+        GameManager.Instance.gamePaused = false;
+        GameManager.Instance.GameReset();      
+        Cursor.visible = false;
         //load last checkpoint
     }
 }
