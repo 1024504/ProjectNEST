@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     }
     public void StartNewGameButton()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("GreyboxLevel1Tutorial");
     }
 
     public void LoadSavedGame()
