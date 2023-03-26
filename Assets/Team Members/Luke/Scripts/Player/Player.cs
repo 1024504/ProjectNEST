@@ -332,6 +332,8 @@ public class Player : MonoBehaviour, IControllable
 	public void ShootPerformed()
 	{
 		if (GameManager.Instance.gamePaused) return;
+		if (_isDashing) return;
+		if (_currentSpeed >= sprintSpeed) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		weaponBase.isShooting = true;
 		weaponBase.Shoot();
@@ -460,6 +462,7 @@ public class Player : MonoBehaviour, IControllable
 		
 		_isDashing = true;
 		_dashCoolingDown = true;
+		ShootCancelled();
 
 		StartCoroutine(Dash());
 	}
@@ -487,7 +490,6 @@ public class Player : MonoBehaviour, IControllable
 	private IEnumerator DashCooldown()
 	{
 		yield return new WaitForSeconds(dashCooldownDuration);
-		
 		_dashCoolingDown = false;
 	}
 
@@ -504,6 +506,7 @@ public class Player : MonoBehaviour, IControllable
 		{
 			yield return new WaitForEndOfFrame();
 		}
+		ShootCancelled();
 		_currentSpeed = sprintSpeed;
 	}
 

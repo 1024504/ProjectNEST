@@ -24,6 +24,9 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	public Transform aimTransform;
 	[SerializeField] private Transform projectileTransform;
 	
+	public List<Transform> targetLocations;
+	public float memoryDuration = 5f;
+	
 	public Vector3 localDefaultAimPosition;
 
 	public GameObject projectilePrefab;
