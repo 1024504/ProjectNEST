@@ -18,15 +18,17 @@ public class MothShootState : AntAIState
 	{
 		base.Enter();
 		_agent.MoveCancelled();
-		// StartCoroutine(AttackAnimation());
+		_agent.JumpCancelled();
+		_agent.DashCancelled();
+		StartCoroutine(AttackAnimation());
 	}
 
-	// private IEnumerator AttackAnimation()
-	// {
-	// 	_agent.anim.CrossFade("Attack_2", 0);
-	// 	yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-	// 	_agent.CooldownAttack();
-	// }
+	private IEnumerator AttackAnimation()
+	{
+		_agent.OnAttackBuildup?.Invoke();
+		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
+		_agent.ShootPerformed();
+	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)
 	{

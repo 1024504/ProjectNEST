@@ -120,7 +120,8 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 
 		if (closestTarget.Value == -1)
 		{
-			return true;
+			currentTarget = null;
+			return false;
 		}
 		
 		currentTarget = targetLocations[closestTarget.Value];

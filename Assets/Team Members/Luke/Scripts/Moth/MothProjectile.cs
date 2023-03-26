@@ -7,6 +7,7 @@ public class MothProjectile : MonoBehaviour
 {
 	public float velocity = 25f;
 	public float lifetimePostCollision = 3f;
+	public float damage = 10f;
 	
 	private Transform _transform;
 	private Rigidbody2D _rb;
@@ -38,5 +39,10 @@ public class MothProjectile : MonoBehaviour
 		_collisionPositionOffset = _transform.position - _collisionHitTransform.position;
 		_collisionRotationOffset = _transform.rotation * Quaternion.Inverse(_collisionHitTransform.rotation);
 		Destroy(gameObject, lifetimePostCollision);
+		Player player = col.gameObject.GetComponent<Player>();
+		if (player != null)
+		{
+			player.GetComponent<HealthBase>().HealthLevel -= damage;
+		}
 	}
 }
