@@ -21,6 +21,7 @@ public class PlayerAnimationManager : AnimationManagerBase
 	public EventReference footStepClip;
 	public EventReference landingClip;
 	public EventReference jumpClip;
+	public EventReference swapClip;
 
 	protected override void OnEnable()
 	{
@@ -109,5 +110,10 @@ public class PlayerAnimationManager : AnimationManagerBase
 	public void JumpSFX()
 	{
 		RuntimeManager.PlayOneShot(jumpClip);
+	}
+
+	public void WeaponSwapSFX()
+    {
+		RuntimeManager.PlayOneShot(swapClip);
 	}
 }
