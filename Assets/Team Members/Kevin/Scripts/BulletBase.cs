@@ -12,6 +12,7 @@ public class BulletBase : MonoBehaviour
     public float bulletDmg;
     public float bulletLife;
     public GameObject bloodParticle;
+
     private void OnEnable()
     {
 	    rb = GetComponent<Rigidbody2D>();
@@ -32,12 +33,14 @@ public class BulletBase : MonoBehaviour
 	    if (enemyHealth != null)
 	    {
 		    Instantiate(bloodParticle, enemyHealth.transform.position, Quaternion.identity);
-		    enemyHealth.HealthLevel -= bulletDmg;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/Grunt/Damage");
+            enemyHealth.HealthLevel -= bulletDmg;
 		    Destroy(gameObject);
 	    }
 	    else
 	    {
-		    Destroy(gameObject);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/BulletImpacts/Bullet_Metal_Impact");
+            Destroy(gameObject);
 	    }
     }
 }

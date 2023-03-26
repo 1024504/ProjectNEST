@@ -48,6 +48,18 @@ MonoBehaviour:
   speed: 0
   bulletDmg: 0
   bulletLife: 0
-  audioSource: {fileID: 0}
-  hitAudioEnemy: {fileID: 8300000, guid: e1cecc9cd11fccb44ad9cc8c9b175a64, type: 3}
-  hitAudioTerrain: {fileID: 8300000, guid: 370d60f7284f92d438b446a5f94e8aaa, type: 3}
+  bloodParticle: {fileID: 0}
+  impactEnemySFX:
+    Guid:
+      Data1: -227330030
+      Data2: 1183702727
+      Data3: 1126182846
+      Data4: -1317641008
+    Path: event:/Enemies/Grunt/Damage
+  impactSurfaceSFX:
+    Guid:
+      Data1: 1177315280
+      Data2: 1187332002
+      Data3: 376572323
+      Data4: -1995574241
+    Path: event:/Characters/Gun SFX/BulletImpacts/Bullet_Metal_Impact
