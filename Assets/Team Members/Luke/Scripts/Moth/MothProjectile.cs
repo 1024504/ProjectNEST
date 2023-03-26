@@ -32,8 +32,7 @@ public class MothProjectile : MonoBehaviour
 	}
 
 	private void OnTriggerEnter2D(Collider2D col)
-	{
-		Debug.Log(col.transform.name);
+	{		
 		_rb.velocity = Vector2.zero;
 		_collider.enabled = false;
 		_collisionHitTransform = col.transform;
