@@ -13,7 +13,7 @@ public class Crosshair : MonoBehaviour
     }
     public void OnTriggerStay2D(Collider2D col)
     {
-        AlveriumSoldier enemy = col.GetComponent<AlveriumSoldier>();
+        EnemyBody enemy = col.GetComponentInParent<EnemyBody>();
         if (enemy != null)
         {
             onTarget = true;
