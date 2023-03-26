@@ -71,8 +71,7 @@ public class GameManager : MonoBehaviour
 
    private void OnEnable()
    {
-      _uiManager.UpdateObjectives();
-      FMODUnity.RuntimeManager.PlayOneShot("event:/Music/EnteringTheShipTrack");
+      _uiManager.UpdateObjectives();     
    }
 
    public void GameReset()
