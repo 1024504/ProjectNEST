@@ -11,7 +11,6 @@ public class BulletBase : MonoBehaviour
     public float speed;
     public float bulletDmg;
     public float bulletLife;
-    public GameObject bloodParticle;
 
     private void OnEnable()
     {
@@ -29,12 +28,10 @@ public class BulletBase : MonoBehaviour
 
     public virtual void OnHit(Collision2D col)
     {
-	    HealthBase enemyHealth = col.gameObject.GetComponent<HealthBase>();
+	    HealthBase enemyHealth = col.gameObject.GetComponentInParent<HealthBase>();
 	    if (enemyHealth != null)
 	    {
-		    Instantiate(bloodParticle, enemyHealth.transform.position, Quaternion.identity);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemies/Grunt/Damage");
-            enemyHealth.HealthLevel -= bulletDmg;
+		    enemyHealth.HealthLevel -= bulletDmg;
 		    Destroy(gameObject);
 	    }
 	    else
