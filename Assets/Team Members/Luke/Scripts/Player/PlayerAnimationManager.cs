@@ -35,6 +35,7 @@ public class PlayerAnimationManager : AnimationManagerBase
 		_player.OnPlayerLanding += LandingAnimation;
 		_player.OnPlayerDash += DashAnimation;
 		_player.OnPlayerSprint += SprintAnimation;
+		_player.OnGunSwitch += WeaponSwapSFX;
 	}
 	
 	private void OnDisable()
@@ -47,6 +48,7 @@ public class PlayerAnimationManager : AnimationManagerBase
 		_player.OnPlayerLanding -= LandingAnimation;
 		_player.OnPlayerDash -= DashAnimation;
 		_player.OnPlayerSprint -= SprintAnimation;
+		_player.OnGunSwitch -= WeaponSwapSFX;
 	}
 
 	private void WalkForwardsAnimation()

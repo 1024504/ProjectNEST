@@ -469,6 +469,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthLevel: 0
   maxHealth: 100
+  bloodParticle: {fileID: 0}
+  impactSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!61 &1418177732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1573,6 +1581,13 @@ MonoBehaviour:
       Data3: 400723614
       Data4: -181164439
     Path: event:/Characters/Movement/Jump/Jumping
+  swapClip:
+    Guid:
+      Data1: -566499310
+      Data2: 1138895691
+      Data3: -1589293678
+      Data4: 1653099802
+    Path: event:/Characters/Gun SFX/WeaponSwap/SwappingWeapon
 --- !u!4 &1791036141870291508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1791036141787622174, guid: 023b1cd67e3e49a4f94e2916eaac5e43, type: 3}

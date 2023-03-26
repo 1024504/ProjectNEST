@@ -523,6 +523,8 @@ public class Player : MonoBehaviour, IControllable
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 
+		if (weaponsList[weaponNo].activeSelf) return;
+		
 		for (int i = 0; i < weaponsList.Count; i++)
 		{
 			if (i == weaponNo)
