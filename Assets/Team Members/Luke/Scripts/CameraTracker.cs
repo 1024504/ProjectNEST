@@ -76,7 +76,7 @@ public class CameraTracker : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		Vector3 position = playerTransform.position/*+_playerReticleTransform.localPosition/2f*/; // Uncomment for the camera to track between the player and the reticle.
+		Vector3 position = playerTransform.position+_playerReticleTransform.localPosition/3f+Vector3.up*3; // Uncomment for the camera to track between the player and the reticle.
 		_cameraTransform.position = NextStep(Time.fixedDeltaTime, position+Vector3.back, _playerVelocity);
 		_playerVelocity = (position+Vector3.back - _playerPrevPosition) / Time.fixedDeltaTime;
 		_playerPrevPosition = position+Vector3.back;
