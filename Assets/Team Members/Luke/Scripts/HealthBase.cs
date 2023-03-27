@@ -20,18 +20,14 @@ public class HealthBase : MonoBehaviour
         get => healthLevel;
         set
         {
-            if (value <= 0) Die();
-            else if (value > maxHealth) healthLevel = maxHealth;
-            else
+            if (value < healthLevel)
             {
-	            if (value < healthLevel)
-	            {
-		            if (bloodParticle != null) Instantiate(bloodParticle, transform.position, Quaternion.identity);
-		            if (!impactSFX.IsNull) RuntimeManager.PlayOneShot(impactSFX);
-	            }
-	            healthLevel = value;
+                if (bloodParticle != null) Instantiate(bloodParticle, transform.position, Quaternion.identity);
+                if (!impactSFX.IsNull) RuntimeManager.PlayOneShot(impactSFX);
             }
+            healthLevel = Mathf.Min(value, maxHealth);
             OnChangeHealth?.Invoke();
+            if (value <= 0) Die();
         }
     }
 
