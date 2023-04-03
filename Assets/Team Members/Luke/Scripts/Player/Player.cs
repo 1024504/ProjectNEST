@@ -43,7 +43,7 @@ public class Player : MonoBehaviour, IControllable
 	public float grapplePowerRatio = 1.6f;
 	public float grappleDamping;
 	public bool _isGrappled;
-	private Vector3 _grapplePoint;
+	private Transform _grappleHitTransform;
 	
 	private float _lateralMoveInput;
 	private Vector2 _aimInput;
@@ -204,17 +204,17 @@ public class Player : MonoBehaviour, IControllable
 		_rb.velocity = new Vector2(input * _currentSpeed, _rb.velocity.y);
 	}
 
-	private void GrappleHit(Vector3 grapplePoint)
+	private void GrappleHit(Transform grappleHitTransform)
 	{
 		OnGrappleHit?.Invoke();
-		_grapplePoint = grapplePoint;
+		_grappleHitTransform = grappleHitTransform;
 		_isGrappled = true;
 		_rb.gravityScale = gravityScale;
 	}
 
 	private void GrappleMovement()
 	{
-		Vector2 grappleDir = _grapplePoint - transform.position;
+		Vector2 grappleDir = _grappleHitTransform.position - transform.position;
 		_rb.AddForce(grappleDir.normalized * (Mathf.Pow(grappleDir.magnitude,grapplePowerRatio) * grapplePullStrength * Time.fixedDeltaTime), ForceMode2D.Impulse);
 		Vector2 velocity = _rb.velocity;
 		velocity -= velocity * grappleDamping * Time.fixedDeltaTime;

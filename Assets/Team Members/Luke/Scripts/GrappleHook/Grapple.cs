@@ -11,7 +11,7 @@ public class Grapple : MonoBehaviour
 	private GameObject _hookGO;
 	private Coroutine _grappleTimer;
 	private bool _canGrapple = true;
-	public Action<Vector3> OnHit;
+	public Action<Transform> OnHit;
 
 	private Transform _t;
 
@@ -39,10 +39,10 @@ public class Grapple : MonoBehaviour
 		_grappleTimer = StartCoroutine(ResetTimer(cooldown));
 	}
 
-	private void GrappleHit(Vector3 grapplePoint)
+	private void GrappleHit(Transform grappleHitTransform)
 	{
 		StopCoroutine(_grappleTimer);
-		OnHit?.Invoke(grapplePoint);
+		OnHit?.Invoke(grappleHitTransform);
 	}
 	private IEnumerator ResetTimer(float cooldown)
 	{

@@ -7,25 +7,15 @@ public class GrapplePlatform : MonoBehaviour
 {
     public bool movablePlatform;
     public bool constantlyMoving;
-    public float moveSpeed;
+    public float moveSpeed = 1f;
 
-    private Vector3 _firstPosition;
-    public Vector3 secondPosition;
+    public Vector3 firstPositionWorld;
+    public Vector3 secondPositionLocal;
 
     private Transform _transform;
     private float _progress = 0;
-    private bool _isMoving = false;
-    private bool _isGrappled = false;
-
-    public bool IsGrappled
-    {
-        get => _isGrappled;
-        set
-        {
-            _isGrappled = true;
-            _isMoving = true;
-        }
-    }
+    public bool isMoving = false;
+    public bool isGrappled = false;
 
     private float Progress
     {
@@ -40,13 +30,13 @@ public class GrapplePlatform : MonoBehaviour
     private void OnEnable()
     {
         _transform = transform;
-        _firstPosition = _transform.position;
-        if (constantlyMoving) _isMoving = true;
+        firstPositionWorld = _transform.position;
+        if (constantlyMoving) isMoving = true;
     }
 
     private void FixedUpdate()
     {
-        if (!_isMoving) return;
+        if (!isMoving) return;
         {
             MovePlatform();
         }
@@ -57,16 +47,16 @@ public class GrapplePlatform : MonoBehaviour
         if (_progress > 2 * Mathf.PI)
         {
             _progress = 0;
-            if (constantlyMoving !| _isGrappled)
+            if (!(constantlyMoving || isGrappled))
             {
-                _isMoving = false;
+                isMoving = false;
                 return;
             }
         }
         
-        Vector3 secondPositionVector = secondPosition-_firstPosition;
-
-        _transform.position = _firstPosition + Mathf.Sin(_progress) * secondPositionVector;
+        float pathProgress = (-Mathf.Cos(_progress*moveSpeed)+1f)/2f;
+        
+        _transform.position = firstPositionWorld + pathProgress * secondPositionLocal;
         
         _progress += Time.fixedDeltaTime;
     }

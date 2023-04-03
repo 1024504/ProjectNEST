@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -14,18 +15,19 @@ public class GrapplePlatformEditor : Editor
         _target = (GrapplePlatform) target;
     }
 
-    public override void OnInspectorGUI()
+    private void OnSceneGUI()
     {
-        base.OnInspectorGUI();
+	    if (!_target.movablePlatform) return;
 
-        if (!_target.movablePlatform) return;
+	    EditorGUI.BeginChangeCheck();
 
-        EditorGUI.BeginChangeCheck();
-
-        Vector3 newSecondPosition = Handles.PositionHandle(_target.transform.position+_target.secondPosition, Quaternion.identity);
+	    Vector3 newSecondPosition;
+	    
+	    if (Application.isPlaying) newSecondPosition = Handles.PositionHandle(_target.firstPositionWorld+_target.secondPositionLocal,Quaternion.identity);
+	    else newSecondPosition = Handles.PositionHandle(_target.transform.position+_target.secondPositionLocal,Quaternion.identity);
         
-        if (!EditorGUI.EndChangeCheck()) return;
-        Undo.RecordObject(_target, "Change Second Position");
-        _target.secondPosition = newSecondPosition;
+	    if (!EditorGUI.EndChangeCheck()) return;
+	    Undo.RecordObject(_target, "Change Second Position");
+	    _target.secondPositionLocal = newSecondPosition-_target.transform.position;
     }
 }
