@@ -267,7 +267,7 @@ public class UIManager : MonoBehaviour
 
     public void ResumeButton()
     {
-	    // GameManager.Instance.Resume();
+	    GameManager.Instance.Resume();
     }
 
     public void HomeButton()
