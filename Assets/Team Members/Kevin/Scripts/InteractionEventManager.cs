@@ -13,7 +13,7 @@ public class InteractionEventManager : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         Player player = col.GetComponent<Player>();
-        if (player != null && GameManager.Instance.interactButtonPressed)
+        if (player != null && player.interactButtonPressed)
         {
             FMODUnity.RuntimeManager.PlayOneShot(interactSFX);
             GameManager.Instance.currentMission++;

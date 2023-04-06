@@ -102,6 +102,10 @@ public class Player : MonoBehaviour, IControllable
 
 	public event CurrentGunUI OnGunSwitch;
 	
+	//UI events
+	public Action OnReload;
+
+	// Animation events
 	public Action OnPlayerIdle;
 	public Action OnPlayerWalkForwards;
 	public Action OnPlayerWalkBackwards;
@@ -111,6 +115,7 @@ public class Player : MonoBehaviour, IControllable
 	public Action OnPlayerDash;
 	public Action OnPlayerSprint;
 	private IControllable _controllableImplementation;
+	public bool interactButtonPressed;
 
 	private void OnEnable()
 	{
@@ -122,6 +127,13 @@ public class Player : MonoBehaviour, IControllable
 		_grapple = GetComponentInChildren<Grapple>(true);
 		_grapple.OnHit += GrappleHit;
 		currentWeapon = weaponsList[0];
+	}
+
+	private void Start()
+	{
+		UIManager ui = UIManager.Instance;
+		ui.player = this;
+		ui.SubscribeToPlayerEvents();
 	}
 
 	private void OnDisable()
@@ -374,7 +386,7 @@ public class Player : MonoBehaviour, IControllable
 		weaponBase.Reload();
 		if (weaponBase.isReloading)
 		{
-			GameManager.Instance._uiManager.aboveHeadUI.SetActive(true);
+			OnReload?.Invoke();
 		}
 	}
 
@@ -385,24 +397,21 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Action3Performed()
 	{
-		GameManager.Instance.interactButtonPressed = true;
+		interactButtonPressed = true;
 	}
 
 	public void Action3Cancelled()
 	{
-		GameManager.Instance.interactButtonPressed = false;
+		interactButtonPressed = false;
 	}
 
 	public void PausePerformed()
 	{
-		if (GameManager.Instance.gamePaused == false)
+		if (!GameManager.Instance.gamePaused)
 		{
-			GameManager.Instance._uiManager.Pause();
+			GameManager.Instance.Pause();
 		}
-		else if (GameManager.Instance.gamePaused)
-		{
-			GameManager.Instance._uiManager.ResumeButton();
-		}
+		else GameManager.Instance.Resume();
 	}
 
 	public void PauseCancelled()

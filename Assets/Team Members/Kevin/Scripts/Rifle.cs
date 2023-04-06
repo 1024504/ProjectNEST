@@ -81,7 +81,7 @@ public class Rifle : WeaponBase
         currentMagazine = magazineMax;
         OnShoot?.Invoke();
         isReloading = false;
-        GameManager.Instance._uiManager.aboveHeadUI.SetActive(false);
+        GameManager.Instance.uiManager.aboveHeadUI.SetActive(false);
     }
     
     private IEnumerator AutoReloadTimer()
@@ -89,7 +89,7 @@ public class Rifle : WeaponBase
         yield return new WaitForSeconds(1f);
         if (isReloading == false)
         {
-            GameManager.Instance._uiManager.aboveHeadUI.SetActive(true);
+            GameManager.Instance.uiManager.aboveHeadUI.SetActive(true);
             Reload();
         }
     }

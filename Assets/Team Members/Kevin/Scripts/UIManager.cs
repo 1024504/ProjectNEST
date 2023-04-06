@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager UIInstance { get; private set; }
-    public GameManager instance;
+    public static UIManager Instance { get; private set; }
+    public GameManager gm;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private TextMeshProUGUI medKitText;
@@ -60,9 +60,9 @@ public class UIManager : MonoBehaviour
     
     public void Awake()
     {
-        if (UIInstance == null)
+        if (Instance == null)
         {
-            UIInstance = this;
+            Instance = this;
             //Debug.Log("UI Manager = NULL!");
             //DontDestroyOnLoad(gameObject);
         }
@@ -71,34 +71,59 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        instance = GameManager.Instance;
+        gm = GameManager.Instance;
         
         //player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
         //playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
-        playerHealth = player.GetComponent<PlayerHealth>();
-        _rifle = player.weaponsList[0].GetComponent<Rifle>();
-        _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
-        _sniper = player.weaponsList[2].GetComponent<Sniper>();
         
-        noAlpha = new Color(0, 0, 0, 0f);
-        halfAlpha = new Color(0, 0, 0, 0.5f);
-        fullAlpha = new Color(0, 0, 0, 1);
-        UpdateWeaponHUD();
 
     }
 
-    #region Objectives HUD
-    public void UpdateObjectives()
+    public void SubscribeToPlayerEvents()
     {
-        GameObject go = Instantiate(objectivesMarker, branchProceduralPanel.position, Quaternion.identity);
-        go.transform.SetParent(branchProceduralPanel.transform, false);
+	    player.OnReload += OnPlayerReload;
+	    
+	    playerHealth = player.GetComponent<PlayerHealth>();
+	    _rifle = player.weaponsList[0].GetComponent<Rifle>();
+	    _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
+	    _sniper = player.weaponsList[2].GetComponent<Sniper>();
+        
+	    noAlpha = new Color(0, 0, 0, 0f);
+	    halfAlpha = new Color(0, 0, 0, 0.5f);
+	    fullAlpha = new Color(0, 0, 0, 1);
+	    _rifle.OnShoot += UpdateRifleAmmo;
+	    _shotgun.OnShoot += UpdateShotGunAmmo;
+	    _sniper.OnShoot += UpdateSniperAmmo;
+	    player.OnPickUp += UpdateMedKitCount;
+	    player.OnGunSwitch += UpdateWeaponHUD;
+	    UpdateWeaponHUD();
+	    if (playerHealth == null) return;
+	    player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
+	    GetComponentInChildren<GrappleCooldown>().SetPlayer();
+	    GetComponent<HealthManager>().SetPlayer();
+    }
 
-        TextMeshProUGUI textGO = Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity);
-        textGO.transform.SetParent(textProceduralPanel.transform, false);
-        if (instance.gameObject != null)
-        {
-            textGO.text = instance.objectives[instance.currentMission];
-        }
+    private void OnPlayerReload()
+    {
+	    aboveHeadUI.SetActive(true);
+    }
+
+    #region Objectives HUD
+    public void UpdateObjective(ObjectiveStringPair objective)
+    {
+	    // illuminate objective marker based on bool
+	    
+	    
+	    
+        // GameObject go = Instantiate(objectivesMarker, branchProceduralPanel.position, Quaternion.identity);
+        // go.transform.SetParent(branchProceduralPanel.transform, false);
+        //
+        // TextMeshProUGUI textGO = Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity);
+        // textGO.transform.SetParent(textProceduralPanel.transform, false);
+        // if (gm.gameObject != null)
+        // {
+        //     textGO.text = gm.objectives[gm.currentMission];
+        // }
     }
 
     #endregion
@@ -107,15 +132,7 @@ public class UIManager : MonoBehaviour
 
     public void OnEnable()
     {
-        _rifle.OnShoot += UpdateRifleAmmo;
-        _shotgun.OnShoot += UpdateShotGunAmmo;
-        _sniper.OnShoot += UpdateSniperAmmo;
-        player.OnPickUp += UpdateMedKitCount;
-        player.OnGunSwitch += UpdateWeaponHUD;
-        UpdateWeaponHUD();
-        if (playerHealth == null) return;
-        player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
-        instance.InteractionEventManager.onEventTriggered += UpdateObjectives;
+        
     }
 
     public void OnDisable()
@@ -127,7 +144,6 @@ public class UIManager : MonoBehaviour
         player.OnGunSwitch -= UpdateWeaponHUD;
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath -= ActiveDeathMenu;
-        instance.InteractionEventManager.onEventTriggered -= UpdateObjectives;
     }
 
     private void UpdateRifleAmmo()
@@ -153,7 +169,7 @@ public class UIManager : MonoBehaviour
     private void ActiveDeathMenu()
     {
         deathMenu.SetActive(true);
-        instance.gamePaused = true;
+        gm.gamePaused = true;
         Cursor.visible = true;
         Time.timeScale = 0f;
     }
@@ -239,18 +255,19 @@ public class UIManager : MonoBehaviour
     #endregion
     public void Pause()
     {
-        instance.gamePaused = true;
-        pauseMenu.SetActive(true);
+	    pauseMenu.SetActive(true);
         Cursor.visible = true;
-        Time.timeScale = 0f;
     }
     
-    public void ResumeButton()
+    public void Resume()
     {
-        instance.gamePaused = false;
         pauseMenu.SetActive(false);
         Cursor.visible = false;
-        Time.timeScale = 1f;
+    }
+
+    public void ResumeButton()
+    {
+	    // GameManager.Instance.Resume();
     }
 
     public void HomeButton()
@@ -263,8 +280,8 @@ public class UIManager : MonoBehaviour
     public void RetryButton()
     {
         deathMenu.SetActive(false);
-        instance.gamePaused = false;
-        instance.GameReset();      
+        gm.gamePaused = false;
+        gm.GameReset();      
         Cursor.visible = false;
         //load last checkpoint
     }

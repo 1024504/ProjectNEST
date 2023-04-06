@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.Interactions;
 public class PlayerController : ControllerBase
 {
 	public PlayerControls Controls;
+	
+	// Game Controls
 	private InputAction _moveInput;
 	private InputAction _aimInput;
 	private InputAction _jumpInput;
@@ -16,6 +18,11 @@ public class PlayerController : ControllerBase
 	private InputAction _action2Input;
 	private InputAction _action3Input;
 	
+	// UI Controls
+	private InputAction _navigateInput;
+	private InputAction _pointInput;
+	private InputAction _clickInput;
+	private InputAction _resumeInput;
 
 	//pause game
 	private InputAction _pauseInput;
@@ -49,9 +56,17 @@ public class PlayerController : ControllerBase
 		_useMedKit = Controls.Player.MedKit;
 		_dashInput = Controls.Player.Dash;
 		
-		
+		_navigateInput = Controls.UI.Navigate;
+		_pointInput = Controls.UI.Point;
+		_clickInput = Controls.UI.Click;
+		_resumeInput = Controls.UI.Resume;
 
 		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);
+	}
+
+	private void Start()
+	{
+		GameManager.Instance.playerController = this;
 	}
 
 	private void OnDisable()
@@ -117,6 +132,23 @@ public class PlayerController : ControllerBase
 		_dashInput.Enable();
 		_dashInput.performed += DashPerformed;
 		_dashInput.canceled += DashCancelled;
+		
+		//UI
+		_navigateInput.Enable();
+		_navigateInput.performed += NavigatePerformed;
+		_navigateInput.canceled += NavigateCancelled;
+		
+		_pointInput.Enable();
+		_pointInput.performed += PointPerformed;
+		_pointInput.canceled += PointCancelled;
+		
+		_clickInput.Enable();
+		_clickInput.performed += ClickPerformed;
+		_clickInput.canceled += ClickCancelled;
+		
+		_resumeInput.Enable();
+		_resumeInput.performed += ResumePerformed;
+		_resumeInput.canceled += ResumeCancelled;
 	}
 
 	protected override void DisableInputs(IControllable iControllable)
@@ -175,6 +207,22 @@ public class PlayerController : ControllerBase
 		_dashInput.performed -= DashPerformed;
 		_dashInput.canceled -= DashCancelled;
 
+		//UI
+		_navigateInput.Disable();
+		_navigateInput.performed -= NavigatePerformed;
+		_navigateInput.canceled -= NavigateCancelled;
+		
+		_pointInput.Disable();
+		_pointInput.performed -= PointPerformed;
+		_pointInput.canceled -= PointCancelled;
+		
+		_clickInput.Disable();
+		_clickInput.performed -= ClickPerformed;
+		_clickInput.canceled -= ClickCancelled;
+		
+		_resumeInput.Disable();
+		_resumeInput.performed -= ResumePerformed;
+		_resumeInput.canceled -= ResumeCancelled;
 	}
 
 	private void MovePerformed(InputAction.CallbackContext context)
@@ -313,6 +361,49 @@ public class PlayerController : ControllerBase
 		((IControllable)Agent).DashCancelled();
 	}
 	
-
+	#endregion
+	
+	#region UI Inputs
+	
+	private void NavigatePerformed(InputAction.CallbackContext obj)
+	{
+		
+	}
+	
+	private void NavigateCancelled(InputAction.CallbackContext obj)
+	{
+		
+	}
+	
+	private void PointPerformed(InputAction.CallbackContext obj)
+	{
+		
+	}
+	
+	private void PointCancelled(InputAction.CallbackContext obj)
+	{
+		
+	}
+	
+	private void ClickPerformed(InputAction.CallbackContext obj)
+	{
+		
+	}
+	
+	private void ClickCancelled(InputAction.CallbackContext obj)
+	{
+		
+	}
+	
+	private void ResumePerformed(InputAction.CallbackContext obj)
+	{
+		GameManager.Instance.Resume();
+	}
+	
+	private void ResumeCancelled(InputAction.CallbackContext obj)
+	{
+		
+	}
+	
 	#endregion
 }

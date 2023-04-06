@@ -10,26 +10,32 @@ public class HealthManager : HealthBase
     public Sprite fullHealth;
     public Sprite emptyHealth;
     
-    public PlayerHealth playerHealth;
+    private PlayerHealth _playerHealth;
 
     public void Start()
     {
         healthLevel = maxHealth;
-        DrawHealth();
     }
     private void OnEnable()
     {
-        playerHealth.OnChangeHealth += DrawHealth;
+	    if (_playerHealth != null) SetPlayer();
+    }
+
+    public void SetPlayer()
+    {
+	    _playerHealth = UIManager.Instance.player.GetComponent<PlayerHealth>();
+	    _playerHealth.OnChangeHealth += DrawHealth;
+	    DrawHealth();
     }
     
     private void OnDisable()
     {
-        playerHealth.OnChangeHealth -= DrawHealth;
+        _playerHealth.OnChangeHealth -= DrawHealth;
     }
 
     public void DrawHealth()
     {
-        healthLevel = (int) playerHealth.HealthLevel/10;
+        healthLevel = (int) _playerHealth.HealthLevel/10f;
         foreach (Image img in healthBoxes)
         {
             img.sprite = emptyHealth;

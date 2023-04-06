@@ -9,25 +9,32 @@ public class GrappleCooldown : MonoBehaviour
 {
     public Slider grappleSlider;
     public float grappleCooldown;
-    public Player player;
+    private Player _player;
     
     public void OnEnable()
     {
-        player.OnGrappleHit += UpdateGrappleCooldown;
+	    if (_player != null) SetPlayer();
+    }
+
+    public void SetPlayer()
+    {
+	    _player = UIManager.Instance.player;
+	    _player.OnGrappleHit += UpdateGrappleCooldown;
     }
 
     public void OnDisable()
     {
-        player.OnGrappleHit -= UpdateGrappleCooldown;
+        _player.OnGrappleHit -= UpdateGrappleCooldown;
     }
 
     public void Update()
     {
-        if (player._isGrappled)
+	    if (_player == null) return;
+        if (_player._isGrappled)
         {
             grappleSlider.value = 5f;
         }
-        else if (!player._isGrappled && player._terrainDetection.isGrounded)
+        else if (!_player._isGrappled && _player._terrainDetection.isGrounded)
         {
             grappleSlider.value = 0f;
         }

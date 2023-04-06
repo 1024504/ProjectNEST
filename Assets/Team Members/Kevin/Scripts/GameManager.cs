@@ -14,19 +14,32 @@ public class GameManager : MonoBehaviour
    public bool hasShotgun;
    public bool hasSniper;
    public bool canDoubleJump;
-
-   public bool interactButtonPressed = false;
+   
+   //Player Controller
+   public PlayerController playerController;
    
    //Global Reference to player prefab
    public GameObject playerPrefabRef;
    
    //Global Reference to Managers
-   public UIManager _uiManager;
+   public UIManager uiManager;
 
    public InteractionEventManager InteractionEventManager;
+
+   [Serializable]
+   public enum Objectives
+   {
+	   None,
+	   EscapeHangar,
+	   TurnOnGenerator,
+	   ExploreLab
+   }
+   
+   // List of objective strings for UI, fill out in inspector
+   public List<ObjectiveStringPair> objectives = new();
    
    //Objectives
-   public List<String> objectives;
+   // public List<String> objectives;
    public int currentMission;
    
    private void Awake()
@@ -41,19 +54,54 @@ public class GameManager : MonoBehaviour
       {
          Destroy(gameObject);
       }
-      _uiManager = GetComponentInChildren<UIManager>();
+      uiManager = GetComponentInChildren<UIManager>();
    }
 
    private void Start()
    {
-      _uiManager.UpdateObjectives();     
+	   foreach (ObjectiveStringPair objective in objectives)
+	   {
+		   uiManager.UpdateObjective(objective);
+	   }
    }
 
    public void GameReset()
    {
       playerPrefabRef.GetComponent<PlayerHealth>().HealthLevel = 100f;
       gamePaused = false;
-      playerPrefabRef.GetComponent<Transform>().position = _uiManager.respawnPoint.position;
+      playerPrefabRef.GetComponent<Transform>().position = uiManager.respawnPoint.position;
       Time.timeScale = 1f;
+   }
+
+   public void Pause()
+   {
+	   gamePaused = true;
+	   playerController.Controls.Player.Disable();
+	   playerController.Controls.UI.Enable();
+	   Time.timeScale = 0f;
+	   uiManager.Pause();
+   }
+   
+   public void Resume()
+   {
+	   gamePaused = false;
+	   playerController.Controls.Player.Enable();
+	   playerController.Controls.UI.Disable();
+	   Time.timeScale = 1f;
+	   uiManager.Resume();
+   }
+
+   public void UpdateObjective(Objectives objective)
+   {
+	   ObjectiveStringPair objectiveToUpdate = new ();
+	   foreach (ObjectiveStringPair objectiveStringPair in objectives)
+	   {
+		   if (objectiveStringPair.objective != objective) continue;
+		   objectiveToUpdate = objectiveStringPair;
+		   objectiveStringPair.isCompleted = true;
+		   break;
+	   }
+	   if (objectiveToUpdate.objective == Objectives.None) return;
+	   uiManager.UpdateObjective(objectiveToUpdate);
    }
 }
