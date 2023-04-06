@@ -228,13 +228,19 @@ public class Player : MonoBehaviour, IControllable
 	private IEnumerator JumpTimer()
 	{
 		float decelerationDuration = jumpSpeed / gravityScale / Physics.gravity.magnitude;
-		yield return new WaitForSeconds(jumpTime - decelerationDuration);
+		for (float t = jumpTime - decelerationDuration; t > 0; t -= Time.fixedDeltaTime)
+		{
+			yield return new WaitForFixedUpdate();
+		}
 		_rb.gravityScale = gravityScale;
 	}
 
 	private IEnumerator JustJumped()
 	{
-		yield return new WaitForSeconds(0.2f);
+		for (float t = 0.2f; t > 0; t -= Time.fixedDeltaTime)
+		{
+			yield return new WaitForFixedUpdate();
+		}
 		_justJumped = false;
 	}
 
