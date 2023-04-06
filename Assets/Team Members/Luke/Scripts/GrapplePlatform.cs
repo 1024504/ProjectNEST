@@ -31,20 +31,18 @@ public class GrapplePlatform : MonoBehaviour
     {
         _transform = transform;
         firstPositionWorld = _transform.position;
-        if (constantlyMoving) isMoving = true;
     }
 
     private void FixedUpdate()
     {
-        if (!isMoving) return;
-        {
-            MovePlatform();
-        }
+	    if (!movablePlatform) return;
+        if (isMoving || constantlyMoving) MovePlatform();
     }
 
     private void MovePlatform()
     {
-        if (_progress > 2 * Mathf.PI)
+	    if (constantlyMoving) isMoving = true;
+        if (_progress > 2 * Mathf.PI || _progress < 0)
         {
             _progress = 0;
             if (!(constantlyMoving || isGrappled))
@@ -58,6 +56,7 @@ public class GrapplePlatform : MonoBehaviour
         
         _transform.position = firstPositionWorld + pathProgress * secondPositionLocal;
         
-        _progress += Time.fixedDeltaTime;
+        if ( _progress > Mathf.PI || isGrappled || constantlyMoving) _progress += Time.fixedDeltaTime;
+        else _progress -= Time.fixedDeltaTime;
     }
 }
