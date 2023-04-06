@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using TMPro;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,49 +28,23 @@ public class GameManager : MonoBehaviour
    //Objectives
    public List<String> objectives;
    public int currentMission;
-
-   /*public enum TutorialObjectives
-   {
-      Hangar,
-      Generator,
-      Lab
-   }*/
-
-   //public TutorialObjectives theObjective;
-   public void Update()
-   {
-      /*switch (theObjective)
-      {
-         case TutorialObjectives.Hangar:
-            currentMission = 0;
-            _uiManager.UpdateObjectives();
-            break;
-         case TutorialObjectives.Generator:
-            currentMission = 1;
-            _uiManager.UpdateObjectives();
-            break;
-         case TutorialObjectives.Lab:
-            currentMission = 2;
-            _uiManager.UpdateObjectives();
-            break;
-      }*/
-   }
-
-
+   
    private void Awake()
    {
       if (Instance == null)
       {
          Instance = this;
+         //Debug.Log("GameManager == Null!");
          DontDestroyOnLoad(gameObject);
       }
       else
       {
          Destroy(gameObject);
       }
+      _uiManager = GetComponentInChildren<UIManager>();
    }
 
-   private void OnEnable()
+   private void Start()
    {
       _uiManager.UpdateObjectives();     
    }

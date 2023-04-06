@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager UIInstance { get; private set; }
-    
+    public GameManager instance;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private TextMeshProUGUI medKitText;
@@ -63,13 +63,15 @@ public class UIManager : MonoBehaviour
         if (UIInstance == null)
         {
             UIInstance = this;
-            Debug.Log("UI Manager = NULL!");
+            //Debug.Log("UI Manager = NULL!");
             //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+
+        instance = GameManager.Instance;
         
         //player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
         //playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
@@ -93,9 +95,9 @@ public class UIManager : MonoBehaviour
 
         TextMeshProUGUI textGO = Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity);
         textGO.transform.SetParent(textProceduralPanel.transform, false);
-        if (GameManager.Instance.gameObject != null)
+        if (instance.gameObject != null)
         {
-            textGO.text = GameManager.Instance.objectives[GameManager.Instance.currentMission];
+            textGO.text = instance.objectives[instance.currentMission];
         }
     }
 
@@ -113,7 +115,7 @@ public class UIManager : MonoBehaviour
         UpdateWeaponHUD();
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
-        GameManager.Instance.InteractionEventManager.onEventTriggered += UpdateObjectives;
+        instance.InteractionEventManager.onEventTriggered += UpdateObjectives;
     }
 
     public void OnDisable()
@@ -125,7 +127,7 @@ public class UIManager : MonoBehaviour
         player.OnGunSwitch -= UpdateWeaponHUD;
         if (playerHealth == null) return;
         player.GetComponent<PlayerHealth>().OnDeath -= ActiveDeathMenu;
-        GameManager.Instance.InteractionEventManager.onEventTriggered -= UpdateObjectives;
+        instance.InteractionEventManager.onEventTriggered -= UpdateObjectives;
     }
 
     private void UpdateRifleAmmo()
@@ -151,7 +153,7 @@ public class UIManager : MonoBehaviour
     private void ActiveDeathMenu()
     {
         deathMenu.SetActive(true);
-        GameManager.Instance.gamePaused = true;
+        instance.gamePaused = true;
         Cursor.visible = true;
         Time.timeScale = 0f;
     }
@@ -237,7 +239,7 @@ public class UIManager : MonoBehaviour
     #endregion
     public void Pause()
     {
-        GameManager.Instance.gamePaused = true;
+        instance.gamePaused = true;
         pauseMenu.SetActive(true);
         Cursor.visible = true;
         Time.timeScale = 0f;
@@ -245,7 +247,7 @@ public class UIManager : MonoBehaviour
     
     public void ResumeButton()
     {
-        GameManager.Instance.gamePaused = false;
+        instance.gamePaused = false;
         pauseMenu.SetActive(false);
         Cursor.visible = false;
         Time.timeScale = 1f;
@@ -261,8 +263,8 @@ public class UIManager : MonoBehaviour
     public void RetryButton()
     {
         deathMenu.SetActive(false);
-        GameManager.Instance.gamePaused = false;
-        GameManager.Instance.GameReset();      
+        instance.gamePaused = false;
+        instance.GameReset();      
         Cursor.visible = false;
         //load last checkpoint
     }
