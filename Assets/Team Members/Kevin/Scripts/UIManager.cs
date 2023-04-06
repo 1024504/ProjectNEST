@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager UIInstance { get; private set; }
+    
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private TextMeshProUGUI medKitText;
@@ -55,8 +57,20 @@ public class UIManager : MonoBehaviour
     public Color noAlpha;
     public Color halfAlpha;
     public Color fullAlpha;
+    
     public void Awake()
     {
+        if (UIInstance == null)
+        {
+            UIInstance = this;
+            Debug.Log("UI Manager = NULL!");
+            //DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         //player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
         //playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
         playerHealth = player.GetComponent<PlayerHealth>();

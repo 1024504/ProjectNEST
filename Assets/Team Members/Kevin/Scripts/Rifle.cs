@@ -15,6 +15,7 @@ public class Rifle : WeaponBase
     
     private void OnEnable()
     {
+        isShooting = false;
         canShoot = true;
         if (currentMagazine <= 0) Reload();
     }
