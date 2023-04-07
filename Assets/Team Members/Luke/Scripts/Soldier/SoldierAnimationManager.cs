@@ -16,6 +16,9 @@ public class SoldierAnimationManager : AnimationManagerBase
 
 	public GameObject distanceSFX;
 
+	public FMODUnity.EventReference attackSFX;
+	public FMODUnity.EventReference spottedSFX;
+
 	protected override void OnEnable()
 	{
 		base.OnEnable();
@@ -54,6 +57,7 @@ public class SoldierAnimationManager : AnimationManagerBase
 	{
 		if (attack == null) return;
 		SetAnimator(attack);
+		FMODUnity.RuntimeManager.PlayOneShot(attackSFX);
 	}
 	
 	private void LostTargetAnimation()
@@ -66,6 +70,7 @@ public class SoldierAnimationManager : AnimationManagerBase
 	{
 		if (spottedTarget == null) return;
 		SetAnimator(spottedTarget);
+		FMODUnity.RuntimeManager.PlayOneShot(spottedSFX);
 	}
 	
 	private void RunAnimation()
