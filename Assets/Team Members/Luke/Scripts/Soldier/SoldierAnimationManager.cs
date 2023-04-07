@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class SoldierAnimationManager : AnimationManagerBase
 {
@@ -12,6 +13,8 @@ public class SoldierAnimationManager : AnimationManagerBase
 	public AnimationClip run;
 
 	private AlveriumSoldier _soldier;
+
+	public GameObject distanceSFX;
 
 	protected override void OnEnable()
 	{
@@ -69,5 +72,10 @@ public class SoldierAnimationManager : AnimationManagerBase
 	{
 		if (run == null) return;
 		SetAnimator(run);
+	}
+
+	public void MovementSFX()
+    {
+		distanceSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
 	}
 }
