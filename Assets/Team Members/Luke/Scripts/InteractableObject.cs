@@ -12,14 +12,14 @@ public class InteractableObject : MonoBehaviour
 	public FMODUnity.EventReference interactSFX;
 	public bool singleUse;
 
-	protected virtual void Interact() { }
+	protected virtual void Interact(Collider2D other) { }
 	
 	private void OnTriggerStay2D(Collider2D other)
 	{
 		Player player = other.GetComponent<Player>();
 		if (player == null || !player.interactButtonPressed) return;
 		FMODUnity.RuntimeManager.PlayOneShot(interactSFX);
-		Interact();
+		Interact(other);
 		if (singleUse) gameObject.SetActive(false);
 	}
 }
