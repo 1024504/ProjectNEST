@@ -2701,8 +2701,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6690f22d55081aa46b4b95bd70f82218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManagerPrefab: {fileID: 8148186491433386690, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
   testFormLink: https://docs.google.com/forms/d/e/1FAIpQLSdFD0IwkZO9qQj66V1nxSlIlPoQY5gp6xpHHwpcAOOo_KDZ1w/viewform?usp=sf_link
   mmAnimator: {fileID: 1788801878}
+  loadButton: {fileID: 1150528983}
+  saveData:
+    sceneName: 
+    playerPosition: {x: 0, y: 0, z: 0}
+    playerHealth: 0
+    hasShotgun: 0
+    hasSniper: 0
+    canDoubleJump: 0
+    canGrapple: 0
+    totalMedkits: 0
+    objectives: []
 --- !u!4 &463518158
 Transform:
   m_ObjectHideFlags: 0
@@ -5202,7 +5214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Load Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7f488dd2db58b64fa57c782c3acbaa2, type: 2}
   m_sharedMaterial: {fileID: 6079536226081966665, guid: d7f488dd2db58b64fa57c782c3acbaa2, type: 2}
@@ -8914,7 +8926,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: New Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7f488dd2db58b64fa57c782c3acbaa2, type: 2}
   m_sharedMaterial: {fileID: 6079536226081966665, guid: d7f488dd2db58b64fa57c782c3acbaa2, type: 2}

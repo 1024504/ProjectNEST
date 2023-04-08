@@ -19,7 +19,7 @@ public class TestMenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sniperAmmoText;
     public void Awake()
     {
-        player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
+        player = GameManager.Instance.playerPrefab.GetComponent<Player>();
         _rifle = player.GetComponentInChildren<Rifle>();
         _shotgun = player.GetComponentInChildren<Shotgun>();
         _sniper = player.GetComponentInChildren<Sniper>();

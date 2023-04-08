@@ -24,7 +24,7 @@ public class GrappleCooldown : MonoBehaviour
 
     public void OnDisable()
     {
-        _player.OnGrappleHit -= UpdateGrappleCooldown;
+        if (_player != null) _player.OnGrappleHit -= UpdateGrappleCooldown;
     }
 
     public void Update()

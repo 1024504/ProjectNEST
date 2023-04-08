@@ -30,7 +30,7 @@ public class HealthManager : HealthBase
     
     private void OnDisable()
     {
-        _playerHealth.OnChangeHealth -= DrawHealth;
+        if (_playerHealth != null) _playerHealth.OnChangeHealth -= DrawHealth;
     }
 
     public void DrawHealth()

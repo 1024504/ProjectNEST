@@ -11,6 +11,8 @@ using FMODUnity;
 
 public class Player : MonoBehaviour, IControllable
 {
+	public GameObject aboveHeadUI;
+	
 	[Header("Movement")]
 	[Tooltip("How fast the player moves along the floor.")]
 	public float walkSpeed = 18f;

@@ -63,13 +63,17 @@ public class CameraTracker : MonoBehaviour
 	    _cameraTransform = transform;
 	    _cam.orthographicSize = cameraSize;
 	    _collider = GetComponent<BoxCollider2D>();
-	    Player player = playerTransform.GetComponent<Player>();
-	    player.cameraTransform = _cameraTransform;
-	    _playerReticleTransform = player.lookTransform;
-	    UpdateCollider();
-	    _playerPrevPosition = playerTransform.position+Vector3.back;
-    }
-	
+	}
+
+	private void Start()
+	{
+		Player player = playerTransform.GetComponent<Player>();
+		player.cameraTransform = _cameraTransform;
+		_playerReticleTransform = player.lookTransform;
+		UpdateCollider();
+		_playerPrevPosition = playerTransform.position+Vector3.back;
+	}
+
 	private Vector3 NextStep(float timeStep, Vector3 x, Vector3 xd)
 	{
 		float constant1 = zeta / (Mathf.PI * f);

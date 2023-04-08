@@ -411,7 +411,6 @@ GameObject:
   - component: {fileID: 1542141777785332764}
   - component: {fileID: 9122268773473719967}
   - component: {fileID: 138842305}
-  - component: {fileID: 535238226}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -435,7 +434,7 @@ Transform:
   - {fileID: 8782863359877189781}
   - {fileID: 2048277448}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1047455563195291236
 SpriteRenderer:
@@ -538,26 +537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ceb9733a32d0c94fa47d7d063d72951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &535238226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4497438542448475803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fdcf08ae80ece64498de03d57532dbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactSFX:
-    Guid:
-      Data1: -34629463
-      Data2: 1296264056
-      Data3: -1319922044
-      Data4: -177828073
-    Path: event:/Characters/Interactables/PickUpGenericSFX/PickUpGeneric
-  missionInt: 0
 --- !u!1001 &1128362212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -634,21 +613,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8782863360997154929, guid: 4e988a2a96b54df4c9bc6ce86d74fba3, type: 3}
   m_PrefabInstance: {fileID: 1128362212}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8833145649585680153 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8833145650705473533, guid: 4e988a2a96b54df4c9bc6ce86d74fba3, type: 3}
-  m_PrefabInstance: {fileID: 1128362212}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2062487026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8833145649585680153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ee6be6c0425d148922ce8959594605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionEventManager: {fileID: 0}

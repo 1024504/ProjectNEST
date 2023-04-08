@@ -63,12 +63,6 @@ public class UIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //Debug.Log("UI Manager = NULL!");
-            //DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
 
         gm = GameManager.Instance;
@@ -137,6 +131,7 @@ public class UIManager : MonoBehaviour
 
     public void OnDisable()
     {
+	    if (player == null) return;
         _rifle.OnShoot -= UpdateRifleAmmo;
         _shotgun.OnShoot -= UpdateShotGunAmmo;
         _sniper.OnShoot -= UpdateSniperAmmo;
