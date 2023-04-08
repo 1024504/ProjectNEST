@@ -28,7 +28,6 @@ public class TransLevelDoor : InteractableObject
 	private void Start()
 	{
 		LevelManager.Instance.doors.Add(this);
-		_cameraTracker = Camera.main.GetComponent<CameraTracker>();
 	}
 
 	private void OnDisable()
@@ -46,6 +45,7 @@ public class TransLevelDoor : InteractableObject
 		}
 
 		GameManager.Instance.DisableInput();
+		_cameraTracker = Camera.main.GetComponent<CameraTracker>();
 		_cameraTracker.OnFadeOutComplete += LoadStage1;
 		_cameraTracker.FadeOut();
 	}

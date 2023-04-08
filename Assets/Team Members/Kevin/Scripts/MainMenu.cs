@@ -39,6 +39,10 @@ public class MainMenu : MonoBehaviour
     }
     public void StartNewGameButton()
     {
+	    GameObject go = Instantiate(gameManagerPrefab);
+        _gm = go.GetComponent<GameManager>();
+        _gm.gameLoadedFromFile = false;
+        SceneManager.sceneLoaded += _gm.SetupAfterLevelLoad;
         SceneManager.LoadScene("GreyboxLevel1Tutorial");
     }
 

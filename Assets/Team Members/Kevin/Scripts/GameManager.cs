@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
 	   
 	   saveData = new
 	   (
-		   UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,
+		   SceneManager.GetActiveScene().name,
 		   checkpoint.transform.position,
 		   player.GetComponent<PlayerHealth>().HealthLevel,
 		   true,
