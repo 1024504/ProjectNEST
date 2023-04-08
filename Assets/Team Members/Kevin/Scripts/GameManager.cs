@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
    //Global Reference to Managers
    public UIManager uiManager;
 
-   public InteractionEventManager InteractionEventManager;
-
    [Serializable]
    public enum Objectives
    {
@@ -73,10 +71,14 @@ public class GameManager : MonoBehaviour
       Time.timeScale = 1f;
    }
 
+   public void DisableInput() => playerController.Controls.Player.Disable();
+   
+   public void EnableInput() => playerController.Controls.Player.Enable();
+
    public void Pause()
    {
 	   gamePaused = true;
-	   playerController.Controls.Player.Disable();
+	   DisableInput();
 	   playerController.Controls.UI.Enable();
 	   Time.timeScale = 0f;
 	   uiManager.Pause();
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour
    public void Resume()
    {
 	   gamePaused = false;
-	   playerController.Controls.Player.Enable();
+	   EnableInput();
 	   playerController.Controls.UI.Disable();
 	   Time.timeScale = 1f;
 	   uiManager.Resume();

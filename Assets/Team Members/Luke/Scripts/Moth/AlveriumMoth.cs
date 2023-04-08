@@ -17,7 +17,7 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	private float _verticalMoveInput;
 	private bool _shootCoolingDown;
 	private bool _canPatrol;
-	private bool _canHitTarget = false;
+	// private bool _canHitTarget = false;
 
 	[SerializeField] private Transform view;
 	[SerializeField] private Transform tailTransform;

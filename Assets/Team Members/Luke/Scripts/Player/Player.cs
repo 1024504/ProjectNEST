@@ -115,10 +115,12 @@ public class Player : MonoBehaviour, IControllable
 	public Action OnPlayerDash;
 	public Action OnPlayerSprint;
 	private IControllable _controllableImplementation;
-	public bool interactButtonPressed;
+	public Action OnInteract;
+
 
 	private void OnEnable()
 	{
+		DontDestroyOnLoad(gameObject);
 		_currentSpeed = walkSpeed;
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
@@ -397,12 +399,12 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Action3Performed()
 	{
-		interactButtonPressed = true;
+		OnInteract?.Invoke();
 	}
 
 	public void Action3Cancelled()
 	{
-		interactButtonPressed = false;
+		
 	}
 
 	public void PausePerformed()

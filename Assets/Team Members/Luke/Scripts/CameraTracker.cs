@@ -11,6 +11,10 @@ public class CameraTracker : MonoBehaviour
 	public Transform playerTransform;
 	private Transform _playerReticleTransform;
 	private BoxCollider2D _collider;
+	public SpriteRenderer fadeSprite;
+	public float fadeDuration = 1f;
+	public Action OnFadeOutComplete;
+	public Action OnFadeInComplete;
 
 	[Header("Follow Variables")]
 	public float f = 1f;
@@ -54,6 +58,7 @@ public class CameraTracker : MonoBehaviour
 	
 	private void OnEnable()
 	{
+		DontDestroyOnLoad(gameObject);
 		_cam = GetComponent<Camera>();
 	    _cameraTransform = transform;
 	    _cam.orthographicSize = cameraSize;
@@ -87,4 +92,42 @@ public class CameraTracker : MonoBehaviour
 	    _collider.size = new Vector2(2*_cam.orthographicSize*_cam.aspect, 2*_cam.orthographicSize);
 	    if(playerTransform != null) playerTransform.GetComponent<Player>().cameraSize = _collider.size;
     }
+    
+    public void FadeIn()
+	{
+	    fadeSprite.transform.localScale = new Vector3(2*_cam.orthographicSize*_cam.aspect, 2*_cam.orthographicSize,1);
+	    StartCoroutine(FadeInCoroutine());
+	}
+    
+    private IEnumerator FadeInCoroutine()
+	{
+		float counter = 0;
+		while (counter < fadeDuration)
+		{
+			counter += Time.deltaTime;
+			fadeSprite.color = new Color(0,0,0,1-counter/fadeDuration);
+			yield return new WaitForEndOfFrame();
+		}
+		fadeSprite.color = new Color(0,0,0,0);
+		OnFadeInComplete?.Invoke();
+	}
+
+    public void FadeOut()
+    {
+	    fadeSprite.transform.localScale = new Vector3(2*_cam.orthographicSize*_cam.aspect, 2*_cam.orthographicSize,1);
+	    StartCoroutine(FadeOutCoroutine());
+    }
+    
+    private IEnumerator FadeOutCoroutine()
+    {
+	    float counter = 0;
+	    while (counter < fadeDuration)
+	    {
+		    counter += Time.deltaTime;
+		    fadeSprite.color = new Color(0,0,0,counter/fadeDuration);
+		    yield return new WaitForEndOfFrame();
+	    }
+	    fadeSprite.color = new Color(0,0,0,1);
+	    OnFadeOutComplete?.Invoke();
+	}
 }
