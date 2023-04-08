@@ -23,7 +23,7 @@ public class DestructableObjectBase : MonoBehaviour, IDestructable
     public void Destroyed()
     {
         //Instantiate(explosiveParticle, transform.position, Quaternion.identity);
-        //Instantiate(halfCrate, new Vector3(transform.position.x,transform.position.y/2,transform.position.z), Quaternion.identity);
+        Instantiate(halfCrate, new Vector3(transform.position.x,transform.position.y/2,transform.position.z), Quaternion.identity);
         Instantiate(alveriumPrefab, new Vector3(transform.position.x,transform.position.y/2,transform.position.z), Quaternion.identity);
         Destroy(gameObject);
         //animations and spawn logic
