@@ -26,7 +26,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 233
+  Length: 375
+--- !u!114 &-8771440367551060209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Healing/Healing
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Healing/Healing
+  Guid:
+    Data1: -796101264
+    Data2: 1146257825
+    Data3: -1898560613
+    Data4: 50090230
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3200
 --- !u!114 &-8426461179068670656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,7 +76,7 @@ MonoBehaviour:
   - {fileID: 5247386296128520972}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -162,6 +189,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 153600
+--- !u!114 &-4748234776383581992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Grunt/Damage
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Grunt/Damage
+  Guid:
+    Data1: -227330030
+    Data2: 1183702727
+    Data3: 1126182846
+    Data4: -1317641008
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4128302729078493670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +243,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 179160
+--- !u!114 &-3254921357165144989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Damage/PlayerTakingDamage
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Damage/PlayerTakingDamage
+  Guid:
+    Data1: 644306565
+    Data2: 1260340521
+    Data3: -148489339
+    Data4: -344597583
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 800
+--- !u!114 &-2319733349722675507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environment/EnergySFX
+  m_EditorClassIdentifier: 
+  Path: event:/Environment/EnergySFX
+  Guid:
+    Data1: 1601953589
+    Data2: 1336609648
+    Data3: -1975227715
+    Data4: 387696189
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1594901690757952092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,12 +358,21 @@ MonoBehaviour:
   - {fileID: 2540144465072518987}
   - {fileID: -7630928892441644761}
   - {fileID: 54852898063568855}
+  - {fileID: 621469187950142560}
+  - {fileID: 8234309996797500888}
+  - {fileID: 5405191866033369190}
+  - {fileID: -4748234776383581992}
+  - {fileID: 304375907334989558}
+  - {fileID: -2319733349722675507}
+  - {fileID: -8771440367551060209}
+  - {fileID: -3254921357165144989}
+  - {fileID: 6011042767974047558}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5247386296128520972}
   StringsBanks:
   - {fileID: 2957950418204311301}
-  cacheTime: 638150833634180637
+  cacheTime: 638164833319842866
   cacheVersion: 131601
 --- !u!114 &54852898063568855
 MonoBehaviour:
@@ -284,6 +401,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 784
+--- !u!114 &304375907334989558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Gun SFX/WeaponSwap/SwappingWeapon
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Gun SFX/WeaponSwap/SwappingWeapon
+  Guid:
+    Data1: -566499310
+    Data2: 1138895691
+    Data3: -1589293678
+    Data4: 1653099802
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 750
+--- !u!114 &621469187950142560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Grunt/Movement
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Grunt/Movement
+  Guid:
+    Data1: 63238916
+    Data2: 1259676987
+    Data3: -1556921190
+    Data4: 1297128711
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 50
+  Length: 0
 --- !u!114 &2041999904655092774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,10 +524,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638150833634180637
+  lastModified: 638164833319842866
   FileSizes:
   - Name: Desktop
-    Value: 1790
+    Value: 2304
   Exists: 1
 --- !u!114 &3667680364172277373
 MonoBehaviour:
@@ -400,11 +571,65 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638150833634129509
+  lastModified: 638164833319832888
   FileSizes:
   - Name: Desktop
-    Value: 7896384
+    Value: 8253632
   Exists: 1
+--- !u!114 &5405191866033369190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Grunt/GruntSnarl
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Grunt/GruntSnarl
+  Guid:
+    Data1: 717443341
+    Data2: 1097550253
+    Data3: 1748531391
+    Data4: -40296584
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6011042767974047558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Gun SFX/BulletImpacts/Bullet_Metal_Impact
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Gun SFX/BulletImpacts/Bullet_Metal_Impact
+  Guid:
+    Data1: 1177315280
+    Data2: 1187332002
+    Data3: 376572323
+    Data4: -1995574241
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 750
 --- !u!114 &6074069790748946296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +656,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 950
+  Length: 440
 --- !u!114 &6548188214528387153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +738,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5040
+--- !u!114 &8234309996797500888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Interactables/PickUpMedkitSFX/MedkitPickup
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Interactables/PickUpMedkitSFX/MedkitPickup
+  Guid:
+    Data1: -383504379
+    Data2: 1076671924
+    Data3: -1075906926
+    Data4: 797017335
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8589699506295689310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,7 +786,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 5247386296128520972}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
