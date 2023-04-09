@@ -65,28 +65,31 @@ public class GameManager : MonoBehaviour
    public void SetupAfterLevelLoad(Scene scene, LoadSceneMode mode)
    {
 	   SceneManager.sceneLoaded -= SetupAfterLevelLoad;
+	   Player player;
+	   CameraTracker cameraTracker;
 	   if (gameLoadedFromFile)
 	   {
 		   GameObject go = Instantiate(playerPrefab, saveData.playerPosition, Quaternion.identity);
-		   Player player = go.GetComponent<Player>();
+		   player = go.GetComponent<Player>();
 		   player.GetComponent<PlayerHealth>().HealthLevel = saveData.playerHealth;
 		   player.doubleJumpEnabled = saveData.canDoubleJump;
 		   player.grappleEnabled = saveData.canGrapple;
 		   player.medkitCount = saveData.totalMedkits;
 		   objectives = saveData.objectives;
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
-		   CameraTracker cameraTracker = go.GetComponent<CameraTracker>();
-		   cameraTracker.playerTransform = player.transform;
-		   uiManager.aboveHeadUI = player.aboveHeadUI;
+		   cameraTracker = go.GetComponent<CameraTracker>();
 	   }
 	   else
 	   {
 		   GameObject go = Instantiate(playerPrefab, defaultSpawnPoint, Quaternion.identity);
-		   Player player = go.GetComponent<Player>();
+		   player = go.GetComponent<Player>();
 		   go = Instantiate(cameraPrefab, defaultSpawnPoint+Vector3.back, Quaternion.identity);
-		   CameraTracker cameraTracker = go.GetComponent<CameraTracker>();
-		   cameraTracker.playerTransform = player.transform;
+		   cameraTracker = go.GetComponent<CameraTracker>();
 	   }
+	   
+	   cameraTracker.playerTransform = player.transform;
+	   uiManager.aboveHeadUI = player.aboveHeadUI;
+	   
 	   foreach (ObjectiveStringPair objective in objectives)
 	   {
 		   uiManager.UpdateObjective(objective);
