@@ -13,10 +13,7 @@ public class GameManager : MonoBehaviour
    public static GameManager Instance { get; private set; }
 
    public bool gameLoadedFromFile;
-   
-   //Universal Bools
-   public bool gamePaused;
-   
+
    //Player Controller
    public PlayerController playerController;
    
@@ -99,7 +96,6 @@ public class GameManager : MonoBehaviour
    public void GameReset()
    {
       playerPrefab.GetComponent<PlayerHealth>().HealthLevel = 100f;
-      gamePaused = false;
       playerPrefab.GetComponent<Transform>().position = uiManager.respawnPoint.position;
       Time.timeScale = 1f;
    }
@@ -110,7 +106,6 @@ public class GameManager : MonoBehaviour
 
    public void Pause()
    {
-	   gamePaused = true;
 	   DisableInput();
 	   playerController.Controls.UI.Enable();
 	   Time.timeScale = 0f;
@@ -119,7 +114,6 @@ public class GameManager : MonoBehaviour
    
    public void Resume()
    {
-	   gamePaused = false;
 	   EnableInput();
 	   playerController.Controls.UI.Disable();
 	   Time.timeScale = 1f;

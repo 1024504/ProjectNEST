@@ -110,6 +110,7 @@ public class PlayerController : ControllerBase
 		_pauseInput.Enable();
 		_pauseInput.performed += PausePerformed;
 		_pauseInput.canceled += PauseCancelled;
+		
 		//weapons test
 		_weapon1Input.Enable();
 		_weapon1Input.performed += Weapon1Performed;

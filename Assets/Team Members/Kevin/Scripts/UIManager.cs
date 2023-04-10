@@ -164,7 +164,7 @@ public class UIManager : MonoBehaviour
     private void ActiveDeathMenu()
     {
         deathMenu.SetActive(true);
-        gm.gamePaused = true;
+        gm.Pause();
         Cursor.visible = true;
         Time.timeScale = 0f;
     }
@@ -275,7 +275,7 @@ public class UIManager : MonoBehaviour
     public void RetryButton()
     {
         deathMenu.SetActive(false);
-        gm.gamePaused = false;
+        gm.Resume();
         gm.GameReset();      
         Cursor.visible = false;
         //load last checkpoint

@@ -158,8 +158,6 @@ public class Player : MonoBehaviour, IControllable
 
 	private void Move(float input)
 	{
-		if (GameManager.Instance.gamePaused) return;
-
 		if (_isDashing) return;
 		
 		if (_isGrappled)
@@ -296,7 +294,6 @@ public class Player : MonoBehaviour, IControllable
 
 	public void AimPerformedMouse(Vector2 aimInput)
 	{
-		if (GameManager.Instance.gamePaused) return;
 		Vector2 aimRes = aimInput * (0.05f * mouseAimSensitivity);
 		lookTransform.position += new Vector3(aimRes.x, aimRes.y, 0);
 	}
@@ -304,7 +301,6 @@ public class Player : MonoBehaviour, IControllable
 	// Someone with XBox controller please test this :)
 	public void AimPerformedGamepad(Vector2 input)
 	{
-		if (GameManager.Instance.gamePaused) return;
 		Vector3 position = _transform.position;
 
 		lookTransform.position = position + new Vector3(input.x * gamePadReticleDistance, input.y * gamePadReticleDistance, 0);
@@ -317,7 +313,6 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpPerformed()
 	{
-		if (GameManager.Instance.gamePaused) return;
 		if (_terrainDetection.isGrounded && Vector2.Angle(Vector2.up, _terrainDetection.mainNormal) <= maxSlopeAngle)
 		{
 			_justJumped = true;
@@ -341,7 +336,6 @@ public class Player : MonoBehaviour, IControllable
 
 	public void JumpCancelled()
 	{
-		if (GameManager.Instance.gamePaused) return;
 		
 		if (!_justJumped) return;
 		_justJumped = false;
@@ -353,7 +347,6 @@ public class Player : MonoBehaviour, IControllable
 
 	public void ShootPerformed()
 	{
-		if (GameManager.Instance.gamePaused) return;
 		if (_isDashing) return;
 		if (_currentSpeed >= sprintSpeed) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
@@ -385,7 +378,6 @@ public class Player : MonoBehaviour, IControllable
 
 	public void Action2Performed()
 	{
-		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		weaponBase.Reload();
 		if (weaponBase.isReloading)
@@ -411,11 +403,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void PausePerformed()
 	{
-		if (!GameManager.Instance.gamePaused)
-		{
-			GameManager.Instance.Pause();
-		}
-		else GameManager.Instance.Resume();
+		GameManager.Instance.Pause();
 	}
 
 	public void PauseCancelled()
@@ -538,7 +526,6 @@ public class Player : MonoBehaviour, IControllable
 
 	private void ChangeWeapon(int weaponNo)
 	{
-		if (GameManager.Instance.gamePaused) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 
