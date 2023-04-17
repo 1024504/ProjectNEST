@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject aboveHeadUI;
     public GameObject visualiserHUD;
     public GameObject saveIconUI;
-    
+
     [Header("Space")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject deathMenu;
@@ -270,7 +270,7 @@ public class UIManager : MonoBehaviour
     {
 	    GameManager.Instance.Resume();
     }
-
+    
     public void HomeButton()
     {
         Time.timeScale = 1f;
