@@ -11,6 +11,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
     public GameManager gm;
+    
+    [Header("Direct References")]
+    public GameObject aboveHeadUI;
+    public GameObject visualiserHUD;
+    public GameObject saveIconUI;
+    
+    [Header("Space")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject deathMenu;
     [SerializeField] private TextMeshProUGUI medKitText;
@@ -51,9 +58,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI objectiveText;
     public Transform textProceduralPanel;
     
-
-    public GameObject aboveHeadUI;
-
+    
+    
     public Color noAlpha;
     public Color halfAlpha;
     public Color fullAlpha;
