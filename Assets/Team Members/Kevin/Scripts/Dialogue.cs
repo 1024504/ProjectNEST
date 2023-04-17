@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Dialogue : DialogueEventBase
 {
-    public override void RunDialogue(Player playerScript)
+    public override void RunDialogue()
     {
-        base.RunDialogue(playerScript);
+        base.RunDialogue();
     }
 }

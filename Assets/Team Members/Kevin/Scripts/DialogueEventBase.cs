@@ -14,14 +14,15 @@ public class DialogueEventBase : MonoBehaviour
         if (player != null && isSingleUse)
         {
             //GameManager.Instance.uiManager.saveIconUI.GetComponent<Animator>().SetTrigger("TriggerSaveANIM");
-            RunDialogue(player);
+            RunDialogue();
         }
     }
 
-    public virtual void RunDialogue(Player playerScript)
+    public virtual void RunDialogue()
     {
         isSingleUse = false;
         FMODUnity.RuntimeManager.PlayOneShot(eventToTrigger);
+        GameManager.Instance.uiManager.visualiserHUD.SetActive(true);
         GameManager.Instance.DisableInput();
         StartCoroutine(UnpauseTimer());
     }
@@ -29,6 +30,7 @@ public class DialogueEventBase : MonoBehaviour
     private IEnumerator UnpauseTimer()
     {
         yield return new WaitForSeconds(pauseTimer);
+        GameManager.Instance.uiManager.visualiserHUD.SetActive(false);
         GameManager.Instance.EnableInput();
     }
 }
