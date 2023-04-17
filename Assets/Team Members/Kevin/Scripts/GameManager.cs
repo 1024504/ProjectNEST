@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
 
    public void SetupAfterLevelLoad(Scene scene, LoadSceneMode mode)
    {
+	   // ui stuff?
+	   
 	   SceneManager.sceneLoaded -= SetupAfterLevelLoad;
 	   Player player;
 	   CameraTracker cameraTracker;
@@ -91,6 +93,8 @@ public class GameManager : MonoBehaviour
 	   {
 		   uiManager.UpdateObjective(objective);
 	   }
+	   
+	   Resume();
    }
 
    public void GameReset()

@@ -32,6 +32,15 @@ public class MothPatrolState : AntAIState
 		_coroutine = StartCoroutine(_agent.CanPatrolTimer(_agent.patrolDuration));
 		_agent.aimTransform.localPosition = _agent.localDefaultAimPosition;
 		_agent.MovePerformed(_moveInput);
+		StartCoroutine(BurstAccelerate());
+	}
+	
+	private IEnumerator BurstAccelerate()
+	{
+		_agent.OnMoveBurst?.Invoke();
+		string currentStateName = _agent.anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+		yield return new WaitWhile(() => _agent.anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
+		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
 		_agent.OnMoveConstant?.Invoke();
 	}
 	

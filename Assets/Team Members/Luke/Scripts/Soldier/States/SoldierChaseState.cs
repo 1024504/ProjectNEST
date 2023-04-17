@@ -23,12 +23,14 @@ public class SoldierChaseState : AntAIState
 		base.Enter();
 		_agent.currentMoveSpeed = _agent.chaseSpeed;
 		_agent.MoveCancelled();
-		_agent.OnSpotTarget?.Invoke();
 		_coroutine = StartCoroutine(SpottingTarget());
 	}
 
 	private IEnumerator SpottingTarget()
 	{
+		_agent.OnSpotTarget?.Invoke();
+		string currentStateName = _agent.anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+		yield return new WaitWhile(() => _agent.anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
 		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
 		_agent.OnRun?.Invoke();
 		_animationFinished = true;

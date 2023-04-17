@@ -31,7 +31,7 @@ public class MothGetInRangeOfTargetState : AntAIState
 			_agent.DashCancelled();
 			_agent.JumpCancelled();
 		}
-		if (_verticalMovementInput > 0)
+		else if (_verticalMovementInput > 0)
 		{
 			_agent.DashCancelled();
 			_agent.JumpPerformed();
@@ -41,9 +41,24 @@ public class MothGetInRangeOfTargetState : AntAIState
 			_agent.JumpCancelled();
 			_agent.DashHeld();
 		}
-		
-		if (Mathf.Abs(_lateralMovementInput) < 1f) _agent.MoveCancelled();
-		else _agent.MovePerformed(_lateralMovementInput);
+
+		if (Mathf.Abs(_lateralMovementInput) < 1f)
+		{
+			_agent.MoveCancelled();
+			_agent.OnIdle?.Invoke();
+			return;
+		}
+		_agent.MovePerformed(_lateralMovementInput);
+		StartCoroutine(BurstAccelerate());
+	}
+
+	private IEnumerator BurstAccelerate()
+	{
+		_agent.OnMoveBurst?.Invoke();
+		string currentStateName = _agent.anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+		yield return new WaitWhile(() => _agent.anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
+		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
+		_agent.OnMoveConstant?.Invoke();
 	}
 
 	public override void Exit()

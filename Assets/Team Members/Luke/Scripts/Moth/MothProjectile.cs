@@ -14,7 +14,8 @@ public class MothProjectile : MonoBehaviour
 	private PolygonCollider2D _collider;
 	private Transform _collisionHitTransform;
 	private Vector3 _collisionPositionOffset;
-	private Quaternion _collisionRotationOffset;
+	private Quaternion _rotationWhenHit;
+	private Quaternion _collisionRotationWhenHit;
 
 	private void OnEnable()
 	{
@@ -27,17 +28,19 @@ public class MothProjectile : MonoBehaviour
 	private void FixedUpdate()
 	{
 		if (_collisionHitTransform == null) return;
-		_transform.position = _collisionHitTransform.position + _collisionPositionOffset;
-		_transform.rotation = _collisionHitTransform.rotation * _collisionRotationOffset;
+		Quaternion rotation = _collisionHitTransform.rotation * Quaternion.Inverse(_collisionRotationWhenHit);
+		_transform.position = _collisionHitTransform.position + rotation*_collisionPositionOffset;
+		_transform.rotation = rotation * _rotationWhenHit;
 	}
 
 	private void OnTriggerEnter2D(Collider2D col)
-	{		
+	{
 		_rb.velocity = Vector2.zero;
 		_collider.enabled = false;
 		_collisionHitTransform = col.transform;
 		_collisionPositionOffset = _transform.position - _collisionHitTransform.position;
-		_collisionRotationOffset = _transform.rotation * Quaternion.Inverse(_collisionHitTransform.rotation);
+		_rotationWhenHit = _transform.rotation;
+		_collisionRotationWhenHit = _collisionHitTransform.rotation;
 		Destroy(gameObject, lifetimePostCollision);
 		Player player = col.gameObject.GetComponent<Player>();
 		if (player != null)

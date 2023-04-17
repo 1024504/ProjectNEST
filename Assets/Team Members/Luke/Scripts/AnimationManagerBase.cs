@@ -13,13 +13,15 @@ public class AnimationManagerBase : MonoBehaviour
 	
 	protected void SetAnimator(AnimationClip clip)
 	{
-		Anim.CrossFade(clip.name, 0, 0);
+		string clipName = clip.name; 
+		Anim.CrossFade(clipName, 0, 0);
 	}
 	
 	protected void SetAnimator(AnimationClip clip, float crossFadeTime)
 	{
 		// May need to check if the clip is already playing
 		crossFadeTime = Mathf.Clamp (crossFadeTime, 0, 1);
-		Anim.CrossFade(clip.name, crossFadeTime, 0);
+		string clipName = clip.name; 
+		Anim.CrossFade(clipName, crossFadeTime, 0);
 	}
 }

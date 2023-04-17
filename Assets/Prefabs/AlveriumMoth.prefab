@@ -182,9 +182,9 @@ GameObject:
   - component: {fileID: 6427123627629606797}
   - component: {fileID: 4809402655388729465}
   - component: {fileID: 6803152681189117251}
-  - component: {fileID: 975560719}
   - component: {fileID: 7782419088716364245}
   - component: {fileID: 1432653495116723635}
+  - component: {fileID: 2536775206803525621}
   m_Layer: 0
   m_Name: AlveriumMoth
   m_TagString: Untagged
@@ -208,7 +208,7 @@ Transform:
   - {fileID: 6692893744365641194}
   - {fileID: 1239439952629844480}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6427123627629606797
 Animator:
@@ -283,19 +283,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &975560719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406736547841803788}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a10015bd92fb542912b540248f84ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 4809402655388729465}
 --- !u!114 &7782419088716364245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +320,23 @@ MonoBehaviour:
       Data3: 1126182846
       Data4: -1317641008
     Path: event:/Enemies/Grunt/Damage
+--- !u!114 &2536775206803525621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406736547841803788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f3d5754ccadb047823d7b655209b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: {fileID: 7400000, guid: 22839d691f43aaa46b0c70212e1cc008, type: 2}
+  moveBurst: {fileID: 7400000, guid: d85b24a1f92ed0e4bbe7b9057aa5e688, type: 2}
+  moveConstant: {fileID: 7400000, guid: a2072db6f7d856e449e9d9982e441cf4, type: 2}
+  attackBuildup: {fileID: 7400000, guid: 4d9b55541588bd5438c8f5a07c0dbc67, type: 2}
+  attackShoot: {fileID: 7400000, guid: afcba4069adf5c341a282f9cc7dec24c, type: 2}
 --- !u!1 &442832656021665594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1131,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2247744909488281415}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1697,11 +1701,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.4419785, y: -0.7735709}
-      - {x: -0.6949197, y: -0.27871186}
-      - {x: -0.8428404, y: 0.4020724}
-      - {x: 0.21234433, y: 0.34392488}
-      - {x: 0.7433824, y: -0.38361335}
+    - - {x: 0.6681787, y: -0.7731359}
+      - {x: -0.2837785, y: -0.43598422}
+      - {x: -0.7642367, y: -0.010078917}
+      - {x: -0.7511616, y: 0.44309258}
+      - {x: -0.028664798, y: 0.47889864}
+      - {x: 0.6016866, y: -0.1313504}
   m_UseDelaunayMesh: 0
 --- !u!1 &4384985631485557530
 GameObject:

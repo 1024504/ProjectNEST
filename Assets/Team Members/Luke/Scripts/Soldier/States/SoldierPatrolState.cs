@@ -23,7 +23,6 @@ public class SoldierPatrolState : AntAIState
 		if (_agent.currentMoveSpeed > _agent.patrolSpeed)
 		{
 			_agent.MoveCancelled();
-			_agent.OnLostTarget?.Invoke();
 			_coroutine = StartCoroutine(LostTarget());
 		}
 		else BeginWalk();
@@ -32,6 +31,9 @@ public class SoldierPatrolState : AntAIState
 	
 	private IEnumerator LostTarget()
 	{
+		_agent.OnLostTarget?.Invoke();
+		string currentStateName = _agent.anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+		yield return new WaitWhile(() => _agent.anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
 		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
 		BeginWalk();
 	}

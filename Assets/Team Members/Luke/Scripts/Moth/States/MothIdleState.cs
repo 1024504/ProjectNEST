@@ -17,9 +17,9 @@ public class MothIdleState : AntAIState
 	public override void Enter()
 	{
 		base.Enter();
+		_coroutine = StartCoroutine(_agent.CanPatrolTimer(_agent.idleDuration));
 		_agent.MoveCancelled();
 		_agent.OnIdle?.Invoke();
-		_coroutine = StartCoroutine(_agent.CanPatrolTimer(_agent.idleDuration));
 	}
 	
 	public override void Exit()

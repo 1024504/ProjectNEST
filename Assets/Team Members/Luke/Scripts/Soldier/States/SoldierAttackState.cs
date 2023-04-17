@@ -24,6 +24,8 @@ public class SoldierAttackState : AntAIState
 	private IEnumerator AttackAnimation()
 	{
 		_agent.OnAttack?.Invoke();
+		string currentStateName = _agent.anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+		yield return new WaitWhile(() => _agent.anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
 		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
 		_agent.CooldownAttack();
 	}

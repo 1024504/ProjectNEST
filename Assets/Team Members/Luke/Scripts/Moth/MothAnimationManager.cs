@@ -36,19 +36,19 @@ public class MothAnimationManager : AnimationManagerBase
 	private void IdleAnimation()
 	{
 		if (idle == null) return;
-		SetAnimator(idle);
+		SetAnimator(idle, 0.2f);
 	}
 	
 	private void MoveBurstAnimation()
 	{
 		if (moveBurst == null) return;
-		SetAnimator(moveBurst);
+		SetAnimator(moveBurst, 0.2f);
 	}
 
 	private void MoveConstantAnimation()
 	{
 		if (moveConstant == null) return;
-		SetAnimator(moveConstant);
+		SetAnimator(moveConstant, 0.2f);
 	}
 	
 	private void AttackBuildupAnimation()
