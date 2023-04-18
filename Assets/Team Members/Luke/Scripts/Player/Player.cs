@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using FMODUnity;
+using Unity.Mathematics;
 
 
 public class Player : MonoBehaviour, IControllable
@@ -72,7 +73,7 @@ public class Player : MonoBehaviour, IControllable
 	public float mouseAimSensitivity = 1;
 	
 	[Header("Weapons")] 
-	public GameObject currentWeapon;
+	public WeaponBase currentWeapon;
 	public Transform cameraTransform;
 	public float gamePadReticleDistance = 5f;
 	[Tooltip("The height and width of the camera's view, respectively. Updated by camera script.")]
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour, IControllable
 	public float mouseReticleMargin = 1f;
 	
 	[Header("Inventory")]
-	public List<GameObject> weaponsList;
+	public List<WeaponBase> weaponsList;
 	public int medkitCount;
 	public int maxMedkit = 3;
 	public int medKitHealLevel;
@@ -267,10 +268,17 @@ public class Player : MonoBehaviour, IControllable
 		position = new Vector3(Mathf.Clamp(position.x, cameraPosition.x-cameraSize.x/2+mouseReticleMargin, cameraPosition.x+cameraSize.x/2-mouseReticleMargin),
 			Mathf.Clamp(position.y, cameraPosition.y-cameraSize.y/2+mouseReticleMargin, cameraPosition.y+cameraSize.y/2-mouseReticleMargin));
 		lookTransform.position = position;
+		
+		// Update position based on gun equipped so bullets go through crosshair
+		Vector3 armPosition = playerArms.position;
+		Vector3 offset = currentWeapon.gunBarrelTransform.position - armPosition;
+		float barrelDistance = currentWeapon.gunBarrelTransform.InverseTransformPoint(position - offset).x;
+		if (barrelDistance > 0.2f) position -= offset;
+		else if (barrelDistance > 0) position -= offset * (barrelDistance / 0.2f);
 
 		if (_currentSpeed < sprintSpeed)
 		{
-			playerArms.LookAt(position);
+			playerArms.rotation = Quaternion.LookRotation(position - armPosition)*Quaternion.LookRotation(Vector3.left);
 			if (lookTransform.localPosition.x >= 0) _view.localRotation = Quaternion.identity;
 			else _view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 		}
@@ -278,7 +286,7 @@ public class Player : MonoBehaviour, IControllable
 		{
 			if (_lateralMoveInput >= 0) _view.localRotation = Quaternion.identity;
 			else _view.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
-			playerArms.LookAt(sprintLookTransform.position);
+			playerArms.rotation = Quaternion.LookRotation(sprintLookTransform.position - armPosition)*Quaternion.LookRotation(Vector3.left);
 		}
 	}
 
@@ -529,19 +537,19 @@ public class Player : MonoBehaviour, IControllable
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		if (weaponBase.isReloading) return;
 
-		if (weaponsList[weaponNo].activeSelf) return;
+		if (weaponsList[weaponNo].gameObject.activeSelf) return;
 		
 		for (int i = 0; i < weaponsList.Count; i++)
 		{
 			if (i == weaponNo)
 			{
-				weaponsList[i].SetActive(true);
+				weaponsList[i].gameObject.SetActive(true);
 				currentWeapon = weaponsList[i];
 				OnGunSwitch?.Invoke();
 			}
 			else
 			{
-				weaponsList[i].SetActive(false);
+				weaponsList[i].gameObject.SetActive(false);
 			}
 		}
 		
