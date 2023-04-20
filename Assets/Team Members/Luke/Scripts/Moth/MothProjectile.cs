@@ -8,6 +8,7 @@ public class MothProjectile : MonoBehaviour
 	public float velocity = 25f;
 	public float lifetimePostCollision = 3f;
 	public float damage = 10f;
+	private bool isSpent = false;
 	
 	private Transform _transform;
 	private Rigidbody2D _rb;
@@ -35,6 +36,8 @@ public class MothProjectile : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
+		if (isSpent) return;
+		isSpent = true;
 		_rb.velocity = Vector2.zero;
 		_collider.enabled = false;
 		_collisionHitTransform = col.transform;
