@@ -9,11 +9,6 @@ public class Sniper : WeaponBase
    public delegate void OnBulletUpdate();
    public event OnBulletUpdate OnShoot;
    
-   private void OnEnable()
-   {
-      if (currentMagazine <= 0) Reload();
-   }
-   
    #region Shooting
 
    public override void Shoot()

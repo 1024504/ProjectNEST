@@ -8,8 +8,7 @@ public class PlayerHealth : HealthBase
 {
 
 	public delegate void DeathMenu();
-
-	public event DeathMenu OnDeath;
+	
 	protected override void Die()
 	{
 		OnDeath?.Invoke();

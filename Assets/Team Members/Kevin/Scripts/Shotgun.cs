@@ -14,10 +14,10 @@ public class Shotgun : WeaponBase
     public delegate void OnBulletUpdate();
     public event OnBulletUpdate OnShoot;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+	    base.OnEnable();
         shotCooldown = true;
-        if (currentMagazine <= 0) Reload();
     }
     public override void Shoot()
     {

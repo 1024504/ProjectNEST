@@ -1,53 +1,80 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Crosshair : MonoBehaviour
 {
-    public bool onTarget = false;
-    private Transform originalTransform;
+	public LayerMask hitBoxLayer;
+    private EnemyBody _enemy;
+    private Transform _transform;
+    private Player _player;
+    [SerializeField]
+    private Transform viewTransform;
+    private SpriteRenderer _viewRenderer;
+    private Vector3 _viewLocalScale;
+    
     public void OnEnable()
     {
-        originalTransform = gameObject.transform;
-    }
-    public void OnTriggerStay2D(Collider2D col)
-    {
-        EnemyBody enemy = col.GetComponentInParent<EnemyBody>();
-        if (enemy != null)
-        {
-            onTarget = true;
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        onTarget = false;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
-    }
-
-    private IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(1.5f);
+	    _transform = transform;
+	    _player = GetComponentInParent<Player>();
+	    _viewRenderer = viewTransform.GetComponent<SpriteRenderer>();
+	    _viewLocalScale = viewTransform.localScale;
     }
     
+    private void UnselectTarget()
+    {
+	    if (_enemy != null) _enemy.GetComponent<HealthBase>().OnDeath -= UnselectTarget;
+	    _enemy = null;
+	    _viewRenderer.color = Color.cyan;
+    }
+
     public void Update()
     {
-        if (onTarget)
+	    RaycastHit2D closestValidHit = new RaycastHit2D();
+	    Vector3 barrelPosition = _player.currentWeapon.gunBarrelTransform.position;
+	    RaycastHit2D[] hits = Physics2D.RaycastAll(barrelPosition, _transform.position-barrelPosition, _player.currentWeapon.bulletRange, hitBoxLayer);
+
+	    foreach (RaycastHit2D hit in hits)
+	    {
+		    if (!hit.transform.IsChildOf(_player.gameObject.transform) &&
+		        (closestValidHit.collider == null || closestValidHit.distance > hit.distance))
+		    {
+			    closestValidHit = hit;
+		    }
+	    }
+
+	    LaserPointer laserPointer = _player.currentWeapon.laserPointer;
+	    if (closestValidHit.collider != null)
+	    {
+		    laserPointer.NewSize(closestValidHit.point);
+		    EnemyBody enemy = closestValidHit.collider.GetComponentInParent<EnemyBody>();
+		    if (enemy != null && enemy != _enemy)
+		    {
+			    _viewRenderer.color = Color.red;
+			    if (_enemy != null) _enemy.GetComponent<HealthBase>().OnDeath -= UnselectTarget;
+			    _enemy = enemy;
+			    _enemy.GetComponent<HealthBase>().OnDeath += UnselectTarget;
+		    }
+	    }
+	    else
+	    {
+		    laserPointer.DefaultSize();
+		    UnselectTarget();
+	    }
+	    
+        if (_enemy != null)
         {
-            gameObject.transform.rotation =
-                Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, -45f), 10f);
-            gameObject.transform.localScale = new Vector3(0.0630299002f, 0.0630299002f, 0.0630299002f) * 2;
-            
-            
+	        
+	        viewTransform.rotation = Quaternion.RotateTowards(viewTransform.rotation, Quaternion.Euler(0, 0, -45f), 10f);
+	        viewTransform.localScale = _viewLocalScale * 2;
         }
-        else if(!onTarget)
+        else
         {
-            gameObject.transform.rotation =
-                Quaternion.RotateTowards(transform.rotation,Quaternion.Euler(0, 0, 0) , 10f);
-            gameObject.transform.localScale = new Vector3(0.0630299002f, 0.0630299002f, 0.0630299002f);
+	        viewTransform.localPosition = Vector3.zero;
+	        viewTransform.rotation = Quaternion.RotateTowards(viewTransform.rotation,Quaternion.Euler(0, 0, 0) , 10f);
+	        viewTransform.localScale = _viewLocalScale;
         }
     }
-    
 }

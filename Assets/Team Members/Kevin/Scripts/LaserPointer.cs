@@ -4,45 +4,30 @@ using UnityEngine;
 
 public class LaserPointer : MonoBehaviour
 {
-    public float hitDistance;
     public float maxDistance;
-    private RaycastHit2D hit2D;
-    private void Start()
+    private Transform _transform;
+    private Transform _laserTransform;
+    private void OnEnable()
     {
-        gameObject.transform.localScale = new Vector3(maxDistance,1f);
+	    _transform = transform;
+	    _laserTransform = GetComponentInChildren<SpriteRenderer>().transform;
     }
-    private void Update()
+    
+    public void DefaultSize()
+	{
+	   ChangeSize(maxDistance);
+	}
+
+    public void NewSize(Vector3 targetPosition)
     {
-        RaycastHit hitInfo;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector2.right), out hitInfo,
-                maxDistance))
-        {
-            Debug.DrawRay(transform.position,transform.TransformDirection(Vector2.right) * hitInfo.distance, Color.blue);
-            hitDistance = hitInfo.distance;
-            gameObject.transform.localScale = new Vector3(hitDistance,0.3f);
-        }
-        else
-        {
-            gameObject.transform.localScale = new Vector3(maxDistance,0.3f);
-        }
-        
-
-        /*hit2D = Physics2D.Raycast(transform.position, Vector2.right, maxDistance);
-
-        if (hit2D.collider != null)
-        {
-            Debug.DrawRay(transform.position,transform.TransformDirection(Vector2.right),Color.green);
-            hitDistance = hit2D.distance;
-            //hitDistance = hit2D.distance;
-            Debug.Log(hit2D.distance);
-            gameObject.transform.localScale = new Vector3(hitDistance, 1f);
-        }
-        else
-        {
-            Debug.DrawRay(transform.position,transform.TransformDirection(Vector2.right)*maxDistance,Color.green);
-            gameObject.transform.localScale = new Vector3(maxDistance,1f);
-        }*/
+	    Vector3 heading = targetPosition - _transform.position;
+	    ChangeSize(Mathf.Min(maxDistance, heading.magnitude));
     }
 
-  
+    private void ChangeSize(float newSize)
+    {
+	    Vector3 laserLocalScale = _laserTransform.localScale;
+	    _laserTransform.localScale = new Vector3(newSize, laserLocalScale.y, laserLocalScale.z);
+	    _laserTransform.localPosition = new Vector3(newSize/2f, 0, 0);
+    }
 }

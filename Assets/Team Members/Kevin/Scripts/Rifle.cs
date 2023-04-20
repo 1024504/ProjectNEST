@@ -13,11 +13,11 @@ public class Rifle : WeaponBase
     public delegate void OnBulletUpdate();
     public event OnBulletUpdate OnShoot;
     
-    private void OnEnable()
+    protected override void OnEnable()
     {
+	    base.OnEnable();
         isShooting = false;
         canShoot = true;
-        if (currentMagazine <= 0) Reload();
     }
     public void Update()
     {

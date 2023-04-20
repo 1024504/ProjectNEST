@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using Unity.VisualScripting;
 
 public class HealthBase : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class HealthBase : MonoBehaviour
     
     public delegate void UpdateHealth();
     public event UpdateHealth OnChangeHealth;
+    public Action OnDeath;
 
     public GameObject bloodParticle;
     public EventReference impactSFX;
@@ -38,6 +40,7 @@ public class HealthBase : MonoBehaviour
 
     protected virtual void Die()
     {
+	    OnDeath?.Invoke();
         Destroy(gameObject);
     }
 }
