@@ -18,16 +18,7 @@ public class SoldierAttackState : AntAIState
 	{
 		base.Enter();
 		_agent.MoveCancelled();
-		StartCoroutine(AttackAnimation());
-	}
-
-	private IEnumerator AttackAnimation()
-	{
-		_agent.OnAttack?.Invoke();
-		string currentStateName = _agent.anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
-		yield return new WaitWhile(() => _agent.anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
-		yield return new WaitForSeconds(_agent.anim.GetCurrentAnimatorStateInfo(0).length);
-		_agent.CooldownAttack();
+		_agent.ShootPerformed();
 	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)
@@ -38,6 +29,7 @@ public class SoldierAttackState : AntAIState
 	public override void Exit()
 	{
 		base.Exit();
+		_agent.canDealDamage = true;
 	}
 
 	public override void Destroy(GameObject aGameObject)

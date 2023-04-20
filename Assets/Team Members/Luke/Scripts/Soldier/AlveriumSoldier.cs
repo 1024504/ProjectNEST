@@ -46,6 +46,7 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 	private bool _canPatrol = true;
 	public bool targetWithinRange = false;
 	public bool canAttack = true;
+	public bool canDealDamage = true;
 
 	private float _lateralMoveInput;
 
@@ -221,7 +222,16 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 
 	public void ShootPerformed()
 	{
-		
+		StartCoroutine(AttackAnimation());
+	}
+	
+	private IEnumerator AttackAnimation()
+	{
+		OnAttack?.Invoke();
+		string currentStateName = anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+		yield return new WaitWhile(() => anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
+		yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+		CooldownAttack();
 	}
 
 	public void ShootCancelled()

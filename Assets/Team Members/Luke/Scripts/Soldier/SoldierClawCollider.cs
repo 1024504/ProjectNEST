@@ -15,11 +15,11 @@ public class SoldierClawCollider : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D col)
 	{
+		if (!_agent.canDealDamage) return;
 		Player player = col.gameObject.GetComponent<Player>();
-		if (player != null)
-		{
-			
-			player.GetComponent<HealthBase>().HealthLevel -= _agent.attackDamage;
-		}
+		if (player == null) return;
+		
+		player.GetComponent<HealthBase>().HealthLevel -= _agent.attackDamage;
+		_agent.canDealDamage = false;
 	}
 }
