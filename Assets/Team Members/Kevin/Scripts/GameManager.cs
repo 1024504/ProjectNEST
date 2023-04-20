@@ -179,7 +179,5 @@ public class GameManager : MonoBehaviour
 	   
 	   string json = JsonUtility.ToJson(saveData);
 	   File.WriteAllText(destination, json);
-	   
-	   Debug.Log("Saved on the GM!");
    }
 }
