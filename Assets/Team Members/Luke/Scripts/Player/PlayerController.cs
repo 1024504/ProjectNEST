@@ -40,6 +40,7 @@ public class PlayerController : ControllerBase
 
 	private void OnEnable()
 	{
+		GameManager.Instance.playerController = this;
 		Controls = new();
 		Controls.UI.Disable();
 		_moveInput = Controls.Player.Move;
@@ -62,11 +63,6 @@ public class PlayerController : ControllerBase
 		_resumeInput = Controls.UI.Resume;
 
 		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);
-	}
-
-	private void Start()
-	{
-		GameManager.Instance.playerController = this;
 	}
 
 	private void OnDisable()

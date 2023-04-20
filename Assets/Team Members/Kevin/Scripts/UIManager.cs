@@ -275,7 +275,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         deathMenu.SetActive(false);
-        SceneManager.LoadScene("MainMenu");
+        gm.BeginQuitGame();
     }
 
     public void RetryButton()

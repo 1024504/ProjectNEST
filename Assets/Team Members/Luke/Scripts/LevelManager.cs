@@ -12,11 +12,19 @@ public class LevelManager : MonoBehaviour
 
 	public Action OnSceneLoaded;
 	public Action OnSceneUnloaded;
+	public GameObject destroyOnLoad;
 
 	private void Awake()
 	{
 		if (Instance == null) Instance = this;
 		else Destroy(gameObject);
+		InstantiateDestroyOnLoad();
+	}
+	
+	public void InstantiateDestroyOnLoad()
+	{
+		destroyOnLoad = Instantiate(new GameObject());
+		destroyOnLoad.name = "DestroyOnLoad";
 	}
 
 	public void LoadScene(string sceneToLoad)
@@ -49,7 +57,7 @@ public class LevelManager : MonoBehaviour
 		{
 			yield return new WaitForEndOfFrame();
 		}
-		
+		InstantiateDestroyOnLoad();
 		OnSceneUnloaded?.Invoke();
 	}
 	

@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
 
    //Player Controller
    public PlayerController playerController;
-   
+   private Player _player;
+   [HideInInspector]
+   public CameraTracker cameraTracker;
+
    //Global Reference to player prefab
    public GameObject playerPrefab;
    public Vector3 defaultSpawnPoint;
@@ -56,24 +59,23 @@ public class GameManager : MonoBehaviour
       {
          Destroy(gameObject);
       }
-      uiManager = GetComponentInChildren<UIManager>();
+      uiManager = GetComponentInChildren<UIManager>(true);
    }
 
    public void SetupAfterLevelLoad(Scene scene, LoadSceneMode mode)
    {
-	   // ui stuff?
-	   
+	   uiManager.gameObject.SetActive(true);
+	   LevelManager.Instance.InstantiateDestroyOnLoad();
+
 	   SceneManager.sceneLoaded -= SetupAfterLevelLoad;
-	   Player player;
-	   CameraTracker cameraTracker;
 	   if (gameLoadedFromFile)
 	   {
 		   GameObject go = Instantiate(playerPrefab, saveData.playerPosition, Quaternion.identity);
-		   player = go.GetComponent<Player>();
-		   player.GetComponent<PlayerHealth>().HealthLevel = saveData.playerHealth;
-		   player.doubleJumpEnabled = saveData.canDoubleJump;
-		   player.grappleEnabled = saveData.canGrapple;
-		   player.medkitCount = saveData.totalMedkits;
+		   _player = go.GetComponent<Player>();
+		   _player.GetComponent<PlayerHealth>().HealthLevel = saveData.playerHealth;
+		   _player.doubleJumpEnabled = saveData.canDoubleJump;
+		   _player.grappleEnabled = saveData.canGrapple;
+		   _player.medkitCount = saveData.totalMedkits;
 		   objectives = saveData.objectives;
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
@@ -81,20 +83,38 @@ public class GameManager : MonoBehaviour
 	   else
 	   {
 		   GameObject go = Instantiate(playerPrefab, defaultSpawnPoint, Quaternion.identity);
-		   player = go.GetComponent<Player>();
+		   _player = go.GetComponent<Player>();
 		   go = Instantiate(cameraPrefab, defaultSpawnPoint+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
 	   }
 	   
-	   cameraTracker.playerTransform = player.transform;
-	   uiManager.aboveHeadUI = player.aboveHeadUI;
+	   cameraTracker.playerTransform = _player.transform;
+	   uiManager.aboveHeadUI = _player.aboveHeadUI;
 	   
 	   foreach (ObjectiveStringPair objective in objectives)
 	   {
 		   uiManager.UpdateObjective(objective);
 	   }
 	   
+	   cameraTracker.cameraFader.FadeIn();
 	   Resume();
+   }
+
+   public void BeginQuitGame()
+   {
+	   uiManager.gameObject.SetActive(false);
+	   cameraTracker.cameraFader.OnFadeOutComplete += CompleteQuitGame;
+	   cameraTracker.cameraFader.FadeOut();
+   }
+
+   private void CompleteQuitGame()
+   {
+	   cameraTracker.cameraFader.OnFadeOutComplete -= CompleteQuitGame;
+	   Destroy(_player.gameObject);
+	   cameraTracker.transform.parent = LevelManager.Instance.destroyOnLoad.transform;
+	   _player = null;
+	   cameraTracker = null;
+	   SceneManager.LoadScene("MainMenu");
    }
 
    public void GameReset()

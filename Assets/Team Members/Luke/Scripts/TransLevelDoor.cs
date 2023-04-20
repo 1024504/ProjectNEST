@@ -24,6 +24,8 @@ public class TransLevelDoor : InteractableObject
 		connectingDoor = LevelManager.Instance.GetLinkedDoor(this);
 		if (connectingDoor != null) connectingDoor.connectingDoor = this;
 	}
+	
+	
 
 	private void Start()
 	{
@@ -45,14 +47,14 @@ public class TransLevelDoor : InteractableObject
 		}
 
 		GameManager.Instance.DisableInput();
-		_cameraTracker = Camera.main.GetComponent<CameraTracker>();
-		_cameraTracker.OnFadeOutComplete += LoadStage1;
-		_cameraTracker.FadeOut();
+		_cameraTracker = GameManager.Instance.cameraTracker;
+		_cameraTracker.cameraFader.OnFadeOutComplete += LoadStage1;
+		_cameraTracker.cameraFader.FadeOut();
 	}
 
 	private void LoadStage1()
 	{
-		_cameraTracker.OnFadeOutComplete -= LoadStage1;
+		_cameraTracker.cameraFader.OnFadeOutComplete -= LoadStage1;
 		LevelManager.Instance.OnSceneLoaded += LoadStage2;
 		LevelManager.Instance.LoadScene(sceneToLoad);
 		
@@ -73,13 +75,13 @@ public class TransLevelDoor : InteractableObject
 	private void LoadStage3()
 	{
 		LevelManager.Instance.OnSceneUnloaded -= LoadStage3;
-		_cameraTracker.OnFadeInComplete += LoadStage4;
-		_cameraTracker.FadeIn();
+		_cameraTracker.cameraFader.OnFadeInComplete += LoadStage4;
+		_cameraTracker.cameraFader.FadeIn();
 	}
 	
 	private void LoadStage4()
 	{
-		_cameraTracker.OnFadeInComplete -= LoadStage4;
+		_cameraTracker.cameraFader.OnFadeInComplete -= LoadStage4;
 		GameManager.Instance.EnableInput();
 	}
 
