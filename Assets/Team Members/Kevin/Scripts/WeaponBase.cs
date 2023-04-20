@@ -21,6 +21,7 @@ public class WeaponBase : MonoBehaviour, IShootable
     {
 	    BulletBase bulletBase = bulletPrefab.GetComponent<BulletBase>();
 	    bulletRange = bulletBase.speed * bulletBase.bulletLife;
+	    laserPointer.maxDistance = bulletRange;
 	    if (currentMagazine <= 0) Reload();
     }
 

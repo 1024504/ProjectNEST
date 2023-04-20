@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LaserPointer : MonoBehaviour
 {
+	[HideInInspector]
     public float maxDistance;
     private Transform _transform;
     private Transform _laserTransform;

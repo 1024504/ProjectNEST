@@ -66,7 +66,6 @@ public class Crosshair : MonoBehaviour
 	    
         if (_enemy != null)
         {
-	        
 	        viewTransform.rotation = Quaternion.RotateTowards(viewTransform.rotation, Quaternion.Euler(0, 0, -45f), 10f);
 	        viewTransform.localScale = _viewLocalScale * 2;
         }

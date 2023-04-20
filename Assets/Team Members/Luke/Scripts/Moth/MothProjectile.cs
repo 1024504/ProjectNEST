@@ -42,10 +42,7 @@ public class MothProjectile : MonoBehaviour
 		_rotationWhenHit = _transform.rotation;
 		_collisionRotationWhenHit = _collisionHitTransform.rotation;
 		Destroy(gameObject, lifetimePostCollision);
-		Player player = col.gameObject.GetComponent<Player>();
-		if (player != null)
-		{
-			player.GetComponent<HealthBase>().HealthLevel -= damage;
-		}
+		HealthBase health = col.GetComponentInParent<HealthBase>();
+		if (health != null) health.GetComponent<HealthBase>().HealthLevel -= damage;
 	}
 }
