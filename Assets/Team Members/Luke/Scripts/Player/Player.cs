@@ -156,10 +156,6 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if(_isGrappled) GrappleMovement();
 		Move(_lateralMoveInput);
-	}
-
-	private void Update()
-	{
 		AimArms();
 		if (_isUsingGamepad) SlerpReticle();
 	}

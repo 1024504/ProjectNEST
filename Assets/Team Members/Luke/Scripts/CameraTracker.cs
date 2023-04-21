@@ -82,12 +82,12 @@ public class CameraTracker : MonoBehaviour
 		return _nextPosition;
 	}
 
-	public void Update()
+	public void FixedUpdate()
 	{
-		if (Time.deltaTime == 0) return;
+		if (Time.fixedDeltaTime == 0) return;
 		Vector3 position = playerTransform.position+_playerReticleTransform.localPosition/3f+Vector3.up*3;
-		_cameraTransform.position = NextStep(Time.deltaTime, position+Vector3.back, _playerVelocity);
-		_playerVelocity = (position+Vector3.back - _playerPrevPosition) / Time.deltaTime;
+		_cameraTransform.position = NextStep(Time.fixedDeltaTime, position+Vector3.back, _playerVelocity);
+		_playerVelocity = (position+Vector3.back - _playerPrevPosition) / Time.fixedDeltaTime;
 		_playerPrevPosition = position+Vector3.back;
 	}
 
