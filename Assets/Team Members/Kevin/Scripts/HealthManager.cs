@@ -35,7 +35,7 @@ public class HealthManager : HealthBase
 
     public void DrawHealth()
     {
-        healthLevel = (int) _playerHealth.HealthLevel/10f;
+        healthLevel = (int) _playerHealth.HealthLevel/_playerHealth.maxHealth*10;
         foreach (Image img in healthBoxes)
         {
             img.sprite = emptyHealth;

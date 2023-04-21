@@ -9,7 +9,7 @@ public class HealthBase : MonoBehaviour
 {
     [SerializeField] [Min(0)] protected float healthLevel;
 
-    [SerializeField] [Min(1f)] protected float maxHealth = 1;
+    [SerializeField] [Min(1f)] public float maxHealth = 1;
     
     public delegate void UpdateHealth();
     public event UpdateHealth OnChangeHealth;
