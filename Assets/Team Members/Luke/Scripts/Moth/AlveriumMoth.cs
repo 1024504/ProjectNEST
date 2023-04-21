@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Anthill.AI;
 using UnityEngine;
 
-public class AlveriumMoth : EnemyBody, IControllable, ISense
+public class AlveriumMoth : EnemyBody, IGameplayControllable, ISense
 {
 	public float moveSpeed = 15f;
 	public float shootCooldownDuration = 0.5f;

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+	public MainMenuNavigator navigator;
 	public GameObject gameManagerPrefab;
 	private GameManager _gm;
 	[SerializeField]
@@ -23,8 +24,9 @@ public class MainMenu : MonoBehaviour
     public Animator mmAnimator;
 
     private string _destination;
+    public GameObject newGameButton;
     public GameObject loadButton;
-    
+
     [HideInInspector]
     public SaveData saveData;
     
@@ -86,10 +88,11 @@ public class MainMenu : MonoBehaviour
 	    SceneManager.LoadScene(_sceneToLoad);
     }
 
-    public void FeedbackFormButton()
-    {
-        Application.OpenURL(testFormLink);
-    }
+    // public void FeedbackFormButton()
+    // {
+    //     Application.OpenURL(testFormLink);
+    // }
+    
     public void ExitGameButton()
     {
         Debug.Log("Game Exited");
