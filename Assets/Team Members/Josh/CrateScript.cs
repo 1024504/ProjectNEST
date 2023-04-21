@@ -9,6 +9,8 @@ public class CrateScript : MonoBehaviour, IDestructable
     public GameObject halfCrate;
     public GameObject alveriumPrefab;
 
+    public FMODUnity.EventReference explodeRef;
+
     private void Start()
     {
         isLoaded = Random.Range(0, 2);
@@ -17,6 +19,8 @@ public class CrateScript : MonoBehaviour, IDestructable
     public void Destroyed()
     {
         Instantiate(explosiveParticle, transform.position, Quaternion.identity);
+        FMODUnity.RuntimeManager.PlayOneShot(explodeRef);
+
         Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
         if( isLoaded==1 )
         {
