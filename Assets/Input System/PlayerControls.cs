@@ -561,6 +561,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""33be59d5-3fc8-4493-9e21-4620dd0aa7ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -948,6 +957,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Resume"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af011a95-1563-47f4-b88e-158b892db316"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1036,6 +1056,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
+        m_UI_Return = m_UI.FindAction("Return", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1228,6 +1249,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Point;
     private readonly InputAction m_UI_Click;
     private readonly InputAction m_UI_Resume;
+    private readonly InputAction m_UI_Return;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
@@ -1236,6 +1258,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Point => m_Wrapper.m_UI_Point;
         public InputAction @Click => m_Wrapper.m_UI_Click;
         public InputAction @Resume => m_Wrapper.m_UI_Resume;
+        public InputAction @Return => m_Wrapper.m_UI_Return;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1257,6 +1280,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Resume.started -= m_Wrapper.m_UIActionsCallbackInterface.OnResume;
                 @Resume.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnResume;
                 @Resume.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnResume;
+                @Return.started -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
+                @Return.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
+                @Return.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1273,6 +1299,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Resume.started += instance.OnResume;
                 @Resume.performed += instance.OnResume;
                 @Resume.canceled += instance.OnResume;
+                @Return.started += instance.OnReturn;
+                @Return.performed += instance.OnReturn;
+                @Return.canceled += instance.OnReturn;
             }
         }
     }
@@ -1344,5 +1373,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnResume(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
 }

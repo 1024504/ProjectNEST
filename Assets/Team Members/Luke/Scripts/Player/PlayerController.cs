@@ -5,8 +5,36 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class PlayerController : ControllerBase
+public class PlayerController : MonoBehaviour
 {
+	[SerializeField] private MonoBehaviour gameplayAgent;
+	
+	public MonoBehaviour GameplayAgent
+	{
+		get => gameplayAgent;
+		set
+		{
+			if ((IGameplayControllable)value == null) return;
+			DisableGameplayInputs();
+			gameplayAgent = value;
+			EnableGameplayInputs();
+		}
+	}
+	
+	[SerializeField] private MonoBehaviour uiAgent;
+	
+	public MonoBehaviour UiAgent
+	{
+		get => uiAgent;
+		set
+		{
+			if ((IUiControllable)value == null) return;
+			DisableUiInputs();
+			uiAgent = value;
+			EnableUiInputs();
+		}
+	}
+	
 	public PlayerControls Controls;
 	
 	// Game Controls
@@ -22,6 +50,7 @@ public class PlayerController : ControllerBase
 	private InputAction _navigateInput;
 	private InputAction _pointInput;
 	private InputAction _clickInput;
+	private InputAction _returnInput;
 	private InputAction _resumeInput;
 
 	//pause game
@@ -42,35 +71,47 @@ public class PlayerController : ControllerBase
 	{
 		GameManager.Instance.playerController = this;
 		Controls = new();
-		Controls.UI.Disable();
-		_moveInput = Controls.Player.Move;
-		_aimInput = Controls.Player.Aim;
-		_jumpInput = Controls.Player.Jump;
-		_shootInput = Controls.Player.Fire;
-		_action1Input = Controls.Player.Action1;
-		_action2Input = Controls.Player.Action2;
-		_action3Input = Controls.Player.Action3;
-		_weapon1Input = Controls.Player.Weapon1;
-		_weapon2Input = Controls.Player.Weapon2;
-		_weapon3Input = Controls.Player.Weapon3;
-		_pauseInput = Controls.Player.Pause;
-		_useMedKit = Controls.Player.MedKit;
-		_dashInput = Controls.Player.Dash;
-		
-		_navigateInput = Controls.UI.Navigate;
-		_pointInput = Controls.UI.Point;
-		_clickInput = Controls.UI.Click;
-		_resumeInput = Controls.UI.Resume;
 
-		if ((IControllable)Agent != null) EnableInputs((IControllable)Agent);
+		if ((IGameplayControllable) GameplayAgent != null)
+		{
+			//Gameplay inputs
+			_moveInput = Controls.Player.Move;
+			_aimInput = Controls.Player.Aim;
+			_jumpInput = Controls.Player.Jump;
+			_shootInput = Controls.Player.Fire;
+			_action1Input = Controls.Player.Action1;
+			_action2Input = Controls.Player.Action2;
+			_action3Input = Controls.Player.Action3;
+			_weapon1Input = Controls.Player.Weapon1;
+			_weapon2Input = Controls.Player.Weapon2;
+			_weapon3Input = Controls.Player.Weapon3;
+			_pauseInput = Controls.Player.Pause;
+			_useMedKit = Controls.Player.MedKit;
+			_dashInput = Controls.Player.Dash;
+			
+			EnableGameplayInputs();
+		}
+		
+		if ((IUiControllable) UiAgent != null)
+		{
+			//UI inputs
+			_navigateInput = Controls.UI.Navigate;
+			_pointInput = Controls.UI.Point;
+			_clickInput = Controls.UI.Click;
+			_returnInput = Controls.UI.Return;
+			_resumeInput = Controls.UI.Resume;
+			
+			EnableUiInputs();
+		}
 	}
 
 	private void OnDisable()
 	{
-		if ((IControllable)Agent != null) DisableInputs((IControllable)Agent);
+		if ((IGameplayControllable)GameplayAgent != null) DisableGameplayInputs();
+		if ((IUiControllable)UiAgent != null) DisableUiInputs();
 	}
 
-	protected override void EnableInputs(IControllable iControllable)
+	private void EnableGameplayInputs()
 	{
 		_moveInput.Enable();
 		_moveInput.performed += MovePerformed;
@@ -129,7 +170,10 @@ public class PlayerController : ControllerBase
 		_dashInput.Enable();
 		_dashInput.performed += DashPerformed;
 		_dashInput.canceled += DashCancelled;
-		
+	}
+
+	private void EnableUiInputs()
+	{
 		//UI
 		_navigateInput.Enable();
 		_navigateInput.performed += NavigatePerformed;
@@ -143,12 +187,16 @@ public class PlayerController : ControllerBase
 		_clickInput.performed += ClickPerformed;
 		_clickInput.canceled += ClickCancelled;
 		
+		_returnInput.Enable();
+		_returnInput.performed += ReturnPerformed;
+		_returnInput.canceled += ReturnCancelled;
+		
 		_resumeInput.Enable();
 		_resumeInput.performed += ResumePerformed;
 		_resumeInput.canceled += ResumeCancelled;
 	}
 
-	protected override void DisableInputs(IControllable iControllable)
+	private void DisableGameplayInputs()
 	{
 		_moveInput.Disable();
 		_moveInput.performed -= MovePerformed;
@@ -203,7 +251,10 @@ public class PlayerController : ControllerBase
 		_dashInput.Disable();
 		_dashInput.performed -= DashPerformed;
 		_dashInput.canceled -= DashCancelled;
-
+	}
+	
+	private void DisableUiInputs()
+	{
 		//UI
 		_navigateInput.Disable();
 		_navigateInput.performed -= NavigatePerformed;
@@ -217,6 +268,10 @@ public class PlayerController : ControllerBase
 		_clickInput.performed -= ClickPerformed;
 		_clickInput.canceled -= ClickCancelled;
 		
+		_returnInput.Disable();
+		_returnInput.performed -= ReturnPerformed;
+		_returnInput.canceled -= ReturnCancelled;
+		
 		_resumeInput.Disable();
 		_resumeInput.performed -= ResumePerformed;
 		_resumeInput.canceled -= ResumeCancelled;
@@ -224,112 +279,112 @@ public class PlayerController : ControllerBase
 
 	private void MovePerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).MovePerformed(Mathf.Ceil(context.ReadValue<float>()));
+		((IGameplayControllable)GameplayAgent).MovePerformed(Mathf.Ceil(context.ReadValue<float>()));
 	}
 
 	private void MoveCancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).MoveCancelled();
+		((IGameplayControllable)GameplayAgent).MoveCancelled();
 	}
 
 	private void AimPerformed(InputAction.CallbackContext context)
 	{
-		if (context.control.device == Mouse.current) ((IControllable)Agent).AimPerformedMouse(context.ReadValue<Vector2>());
-		else if (context.control.device == Gamepad.current) ((IControllable)Agent).AimPerformedGamepad(context.ReadValue<Vector2>());
+		if (context.control.device == Mouse.current) ((IGameplayControllable)GameplayAgent).AimPerformedMouse(context.ReadValue<Vector2>());
+		else if (context.control.device == Gamepad.current) ((IGameplayControllable)GameplayAgent).AimPerformedGamepad(context.ReadValue<Vector2>());
 	}
 
 	private void AimCancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).AimCancelled();
+		((IGameplayControllable)GameplayAgent).AimCancelled();
 	}
 
 	private void JumpPerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).JumpPerformed();
+		((IGameplayControllable)GameplayAgent).JumpPerformed();
 	}
 
 	private void JumpCancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).JumpCancelled();
+		((IGameplayControllable)GameplayAgent).JumpCancelled();
 	}
 
 	private void ShootPerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).ShootPerformed();
+		((IGameplayControllable)GameplayAgent).ShootPerformed();
 	}
 
 	private void ShootCancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).ShootCancelled();
+		((IGameplayControllable)GameplayAgent).ShootCancelled();
 	}
 
 	private void Action1Performed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Action1Performed();
+		((IGameplayControllable)GameplayAgent).Action1Performed();
 	}
 
 	private void Action1Cancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Action1Cancelled();
+		((IGameplayControllable)GameplayAgent).Action1Cancelled();
 	}
 
 	private void Action2Performed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Action2Performed();
+		((IGameplayControllable)GameplayAgent).Action2Performed();
 	}
 
 	private void Action2Cancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Action2Cancelled();
+		((IGameplayControllable)GameplayAgent).Action2Cancelled();
 	}
 	
 	private void Action3Performed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Action3Performed();
+		((IGameplayControllable)GameplayAgent).Action3Performed();
 	}
 
 	private void Action3Cancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Action3Cancelled();
+		((IGameplayControllable)GameplayAgent).Action3Cancelled();
 	}
 
 	private void PausePerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).PausePerformed();
+		((IGameplayControllable)GameplayAgent).PausePerformed();
 	}
 	private void PauseCancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).PauseCancelled();
+		((IGameplayControllable)GameplayAgent).PauseCancelled();
 	}
 	#region Weapons Testing
 
 	private void Weapon1Performed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Weapon1Performed();
+		((IGameplayControllable)GameplayAgent).Weapon1Performed();
 	}
 	
 	private void Weapon1Cancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Weapon1Cancelled();
+		((IGameplayControllable)GameplayAgent).Weapon1Cancelled();
 	}
 	private void Weapon2Performed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Weapon2Performed();
+		((IGameplayControllable)GameplayAgent).Weapon2Performed();
 	}
 	
 	private void Weapon2Cancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Weapon2Cancelled();
+		((IGameplayControllable)GameplayAgent).Weapon2Cancelled();
 	}
 	
 	private void Weapon3Performed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Weapon3Performed();
+		((IGameplayControllable)GameplayAgent).Weapon3Performed();
 	}
 	
 	private void Weapon3Cancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).Weapon3Cancelled();
+		((IGameplayControllable)GameplayAgent).Weapon3Cancelled();
 	}
 
 	#endregion
@@ -338,11 +393,11 @@ public class PlayerController : ControllerBase
 
 	private void MedKitPerformed(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).MedKitPerformed();
+		((IGameplayControllable)GameplayAgent).MedKitPerformed();
 	}
 	private void MedKitCancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).MedKitCancelled();
+		((IGameplayControllable)GameplayAgent).MedKitCancelled();
 	}
 	#endregion
 
@@ -350,56 +405,66 @@ public class PlayerController : ControllerBase
 
 	private void DashPerformed(InputAction.CallbackContext context)
 	{
-		if (context.interaction is TapInteraction) ((IControllable)Agent).DashPerformed();
-		else if (context.interaction is HoldInteraction) ((IControllable)Agent).DashHeld();
+		if (context.interaction is TapInteraction) ((IGameplayControllable)GameplayAgent).DashPerformed();
+		else if (context.interaction is HoldInteraction) ((IGameplayControllable)GameplayAgent).DashHeld();
 	}
 	private void DashCancelled(InputAction.CallbackContext context)
 	{
-		((IControllable)Agent).DashCancelled();
+		((IGameplayControllable)GameplayAgent).DashCancelled();
 	}
 	
 	#endregion
 	
 	#region UI Inputs
 	
-	private void NavigatePerformed(InputAction.CallbackContext obj)
+	private void NavigatePerformed(InputAction.CallbackContext context)
 	{
-		
+		((IUiControllable)UiAgent).NavigatePerformed(context.ReadValue<Vector2>());
 	}
 	
-	private void NavigateCancelled(InputAction.CallbackContext obj)
+	private void NavigateCancelled(InputAction.CallbackContext context)
 	{
-		
+		((IUiControllable)UiAgent).NavigateCancelled();
+	}
+
+	private void PointPerformed(InputAction.CallbackContext context)
+	{
+		((IUiControllable) UiAgent).PointPerformed(context.ReadValue<Vector2>());
 	}
 	
-	private void PointPerformed(InputAction.CallbackContext obj)
+	private void PointCancelled(InputAction.CallbackContext context)
 	{
-		
+		((IUiControllable) UiAgent).PointCancelled();
 	}
 	
-	private void PointCancelled(InputAction.CallbackContext obj)
+	private void ClickPerformed(InputAction.CallbackContext context)
 	{
-		
+		((IUiControllable) UiAgent).ClickPerformed();
 	}
 	
-	private void ClickPerformed(InputAction.CallbackContext obj)
+	private void ClickCancelled(InputAction.CallbackContext context)
 	{
-		
+		((IUiControllable) UiAgent).ClickCancelled();
 	}
 	
-	private void ClickCancelled(InputAction.CallbackContext obj)
+	private void ReturnPerformed(InputAction.CallbackContext context)
 	{
-		
+		((IUiControllable) UiAgent).ReturnPerformed();
 	}
 	
-	private void ResumePerformed(InputAction.CallbackContext obj)
+	private void ReturnCancelled(InputAction.CallbackContext context)
 	{
-		GameManager.Instance.Resume();
+		((IUiControllable) UiAgent).ReturnCancelled();
 	}
 	
-	private void ResumeCancelled(InputAction.CallbackContext obj)
+	private void ResumePerformed(InputAction.CallbackContext context)
 	{
-		
+		((IUiControllable) UiAgent).ResumePerformed();
+	}
+	
+	private void ResumeCancelled(InputAction.CallbackContext context)
+	{
+		((IUiControllable) UiAgent).ResumeCancelled();
 	}
 	
 	#endregion

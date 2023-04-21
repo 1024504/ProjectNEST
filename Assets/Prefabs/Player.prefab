@@ -399,7 +399,7 @@ Transform:
   - {fileID: 1382185319286108311}
   - {fileID: 1158072893}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7425688498930848919
 MonoBehaviour:
@@ -472,7 +472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a10015bd92fb542912b540248f84ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 7425688498930848919}
+  gameplayAgent: {fileID: 7425688498930848919}
+  uiAgent: {fileID: 7425688498930848919}
 --- !u!50 &3170411854491914382
 Rigidbody2D:
   serializedVersion: 4

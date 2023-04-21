@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AlveriumSoldier : EnemyBody, IControllable, ISense
+public class AlveriumSoldier : EnemyBody, IGameplayControllable, ISense
 {
 	private Transform _transform;
 	private Rigidbody2D _rb;

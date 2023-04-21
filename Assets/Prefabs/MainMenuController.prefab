@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8848734753391276410}
+  - component: {fileID: 5034425182584310745}
+  - component: {fileID: 5575456677402842458}
   m_Layer: 0
   m_Name: MainMenuController
   m_TagString: Untagged
@@ -29,5 +31,33 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5034425182584310745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770034739502786055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e0fa30fa3484e429163ec592747f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu: {fileID: 0}
+  CurrentButton: {fileID: 0}
+--- !u!114 &5575456677402842458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770034739502786055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a10015bd92fb542912b540248f84ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameplayAgent: {fileID: 0}
+  uiAgent: {fileID: 5034425182584310745}

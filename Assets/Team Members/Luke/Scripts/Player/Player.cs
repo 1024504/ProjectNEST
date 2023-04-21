@@ -10,7 +10,7 @@ using FMODUnity;
 using Unity.Mathematics;
 
 
-public class Player : MonoBehaviour, IControllable
+public class Player : MonoBehaviour, IGameplayControllable, IUiControllable
 {
 	public GameObject aboveHeadUI;
 	
@@ -145,6 +145,7 @@ public class Player : MonoBehaviour, IControllable
 		ui.player = this;
 		ui.SubscribeToPlayerEvents();
 		UpdateReticleDistance();
+		GameManager.Instance.Resume();
 	}
 
 	private void OnDisable()
@@ -585,4 +586,54 @@ public class Player : MonoBehaviour, IControllable
 	}
 
 	#endregion
+
+	public void NavigatePerformed(Vector2 input)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void NavigateCancelled()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void PointPerformed(Vector2 input)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void PointCancelled()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void ClickPerformed()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void ClickCancelled()
+	{
+		throw new NotImplementedException();
+	}
+	
+	public void ReturnPerformed()
+	{
+		
+	}
+	
+	public void ReturnCancelled()
+	{
+		
+	}
+
+	public void ResumePerformed()
+	{
+		GameManager.Instance.Resume();
+	}
+
+	public void ResumeCancelled()
+	{
+		
+	}
 }
