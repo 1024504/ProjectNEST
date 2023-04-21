@@ -7,7 +7,7 @@ public class DestructableObjectBase : MonoBehaviour
 {
     [SerializeField] private int hitCounter;
 
-    private void OnTriggerEnter2D( Collider2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
         Bullet otherBullet = col.gameObject.GetComponent<Bullet>();
         if (otherBullet != null)

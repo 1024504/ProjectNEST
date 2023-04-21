@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrateProximityDetector : MonoBehaviour
 {
-    private void OnCollisionEnter2D( Collision2D col )
+    private void OnTriggerEnter2D(Collider2D col)
     {
         Player otherPlayer = col.gameObject.GetComponent<Player>();
         if ( otherPlayer!=null && this.GetComponentInParent<CrateScript>().isLoaded == 1 )
