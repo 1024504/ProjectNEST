@@ -9,7 +9,7 @@ public class CrateProximityDetector : MonoBehaviour
         Player otherPlayer = col.gameObject.GetComponent<Player>();
         if ( otherPlayer!=null && this.GetComponentInParent<CrateScript>().isLoaded == 1 )
         {
-            this.GetComponentInParent<CrateScript>().Destroyed();
+            this.GetComponentInParent<CrateScript>().TrapTriggered();
         }
     }
 }

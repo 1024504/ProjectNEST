@@ -16,14 +16,23 @@ public class CrateScript : MonoBehaviour, IDestructable
 
     public void Destroyed()
     {
-        //Instantiate(explosiveParticle, transform.position, Quaternion.identity);
+        Instantiate(explosiveParticle, transform.position, Quaternion.identity);
         Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
         if( isLoaded==1 )
         {
-            Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
+            HealthBase newbornHp = Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity).GetComponent<HealthBase>();
+            newbornHp.HealthLevel = newbornHp.maxHealth / 2;
+            //damage alverium
         }
+        //aggro nearby alverium
+
         Destroy(gameObject);
-        //animations and spawn logic
-        //destroy function
+    }
+
+    public void TrapTriggered()
+    {
+        Instantiate(explosiveParticle, transform.position, Quaternion.identity);
+        Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
+        Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
     }
 }
