@@ -31,10 +31,12 @@ public class HookView : MonoBehaviour
     void Shoot()
     {
 	    currentSprite.sprite = hookOpen;
+	    FMODUnity.RuntimeManager.PlayOneShot(grappleShoot);
     }
 
     void Hit(Transform target)
     {
 	    currentSprite.sprite = hookClosed;
+	    FMODUnity.RuntimeManager.PlayOneShot(grappleHit);
     }
 }
