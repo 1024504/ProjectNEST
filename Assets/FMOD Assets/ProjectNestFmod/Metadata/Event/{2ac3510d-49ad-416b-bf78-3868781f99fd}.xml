@@ -5,7 +5,7 @@
 			<value>GruntSnarl</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{bdf6db36-60c2-4427-97de-9fc44b980e38}</destination>
@@ -95,7 +95,9 @@
 	<object class="MixerBusPanner" id="{ba580279-9c22-4469-b495-f3837023641e}" />
 	<object class="MixerBusEffectChain" id="{b1686904-daa9-401f-9c81-445181f054fa}">
 		<relationship name="effects">
+			<destination>{c81ea9be-5720-4839-8028-e3ab9bd90a3d}</destination>
 			<destination>{720047f2-8485-4c85-8e37-be45513ac7d5}</destination>
+			<destination>{6673d6c6-ffc8-4d87-9d95-6c04615d2da1}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{a9a084b2-f1f4-4485-8240-33223ff20a61}" />
@@ -105,5 +107,18 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{27ac3163-e20f-4482-8d34-b26f74e0b593}" />
+	<object class="SpatialiserEffect" id="{c81ea9be-5720-4839-8028-e3ab9bd90a3d}">
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>2</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{720047f2-8485-4c85-8e37-be45513ac7d5}" />
+	<object class="MultibandEqEffect" id="{6673d6c6-ffc8-4d87-9d95-6c04615d2da1}">
+		<property name="frequencyA">
+			<value>22000</value>
+		</property>
+	</object>
 </objects>

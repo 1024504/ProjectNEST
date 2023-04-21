@@ -14,10 +14,9 @@ public class SoldierAnimationManager : AnimationManagerBase
 
 	private AlveriumSoldier _soldier;
 
-	public GameObject distanceSFX;
-
-	public FMODUnity.EventReference attackSFX;
-	public FMODUnity.EventReference spottedSFX;
+	public GameObject MovementdistanceSFX;
+	public GameObject SnarlDistanceSFX;
+	public GameObject ScreechDistanceSFX;
 
 	protected override void OnEnable()
 	{
@@ -57,7 +56,6 @@ public class SoldierAnimationManager : AnimationManagerBase
 	{
 		if (attack == null) return;
 		SetAnimator(attack);
-		FMODUnity.RuntimeManager.PlayOneShot(attackSFX);
 	}
 	
 	private void LostTargetAnimation()
@@ -70,7 +68,6 @@ public class SoldierAnimationManager : AnimationManagerBase
 	{
 		if (spottedTarget == null) return;
 		SetAnimator(spottedTarget);
-		FMODUnity.RuntimeManager.PlayOneShot(spottedSFX);
 	}
 	
 	private void RunAnimation()
@@ -79,8 +76,18 @@ public class SoldierAnimationManager : AnimationManagerBase
 		SetAnimator(run);
 	}
 
-	public void MovementSFX()
+	private void MovementSFX()
     {
-		distanceSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+		MovementdistanceSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+	}
+
+	private void SnarlSFX()
+	{
+		SnarlDistanceSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+	}
+
+	private void ScreechSFX()
+	{
+		ScreechDistanceSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
 	}
 }

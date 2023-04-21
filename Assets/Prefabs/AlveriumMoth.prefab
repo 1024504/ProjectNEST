@@ -208,7 +208,7 @@ Transform:
   - {fileID: 6692893744365641194}
   - {fileID: 1239439952629844480}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6427123627629606797
 Animator:
@@ -337,6 +337,7 @@ MonoBehaviour:
   moveConstant: {fileID: 7400000, guid: a2072db6f7d856e449e9d9982e441cf4, type: 2}
   attackBuildup: {fileID: 7400000, guid: 4d9b55541588bd5438c8f5a07c0dbc67, type: 2}
   attackShoot: {fileID: 7400000, guid: afcba4069adf5c341a282f9cc7dec24c, type: 2}
+  MovementdistanceSFX: {fileID: 9119513054929626230}
 --- !u!1 &442832656021665594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,12 +3138,12 @@ GameObject:
   - component: {fileID: 1239439952629844480}
   - component: {fileID: 8518881459992819014}
   m_Layer: 0
-  m_Name: DistanceSFX
+  m_Name: MovementdistanceSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1239439952629844480
 Transform:
   m_ObjectHideFlags: 0
@@ -3179,7 +3180,7 @@ MonoBehaviour:
       Data4: -1049927462
     Path: event:/Enemies/Moth/MothFlying
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -3187,7 +3188,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 50
+  OverrideMaxDistance: 40
 --- !u!1 &9185622595803970607
 GameObject:
   m_ObjectHideFlags: 0

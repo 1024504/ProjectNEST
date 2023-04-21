@@ -5,7 +5,7 @@
 			<value>Damage</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{bdf6db36-60c2-4427-97de-9fc44b980e38}</destination>
@@ -98,7 +98,9 @@
 	<object class="MixerBusPanner" id="{da28c9c6-ccee-43de-acfa-7619d6c5fb18}" />
 	<object class="MixerBusEffectChain" id="{21625e00-9928-49bd-889a-ee65db94352c}">
 		<relationship name="effects">
+			<destination>{46a1ca77-10d3-42d8-9b58-0c7f31b170ae}</destination>
 			<destination>{0de3db13-c431-4f09-afbd-eb70b0817b6c}</destination>
+			<destination>{df2678db-4a61-4d46-ba26-f15da748528f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{636d2537-f1c4-4c6f-bec4-f8c2e449c6c6}" />
@@ -110,7 +112,20 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{b37c0f9f-80fa-44f9-b43e-f73c82b823dd}" />
+	<object class="SpatialiserEffect" id="{46a1ca77-10d3-42d8-9b58-0c7f31b170ae}">
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>2</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{0de3db13-c431-4f09-afbd-eb70b0817b6c}" />
+	<object class="MultibandEqEffect" id="{df2678db-4a61-4d46-ba26-f15da748528f}">
+		<property name="frequencyA">
+			<value>22000</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{bca8b215-882d-4e23-9f88-e8263105642e}">
 		<relationship name="audioFile">
 			<destination>{e416a818-48e1-480b-82fa-3aab03f8c342}</destination>
