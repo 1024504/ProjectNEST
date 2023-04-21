@@ -97,6 +97,12 @@ public class GameManager : MonoBehaviour
 	   }
 	   
 	   cameraTracker.cameraFader.FadeIn();
+	   cameraTracker.cameraFader.OnFadeInComplete += ResumeOnLoad;
+   }
+
+   private void ResumeOnLoad()
+   {
+	   cameraTracker.cameraFader.OnFadeInComplete -= ResumeOnLoad;
 	   Resume();
    }
 
