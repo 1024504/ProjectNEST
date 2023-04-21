@@ -8,6 +8,7 @@ public class Hook : MonoBehaviour
 	private Transform _transform;
 	private Rigidbody2D _rb;
 	private GrapplePlatform _grapplePlatform;
+	[SerializeField] private ParticleSystem particleSystemSparks;
 
 	public Action<Transform> OnHit;
 
@@ -43,5 +44,6 @@ public class Hook : MonoBehaviour
 			_grapplePlatform.isGrappled = true;
 			_grapplePlatform.isMoving = true;
 		}
+		Instantiate(particleSystemSparks, transform.position, Quaternion.identity);
 	}
 }
