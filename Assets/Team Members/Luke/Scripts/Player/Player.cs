@@ -71,11 +71,16 @@ public class Player : MonoBehaviour, IControllable
 	public Transform lookTransform;
 	public Transform sprintLookTransform;
 	public float mouseAimSensitivity = 1;
+	public float gamepadAimSensitivity = 10;
+	private bool _isUsingGamepad;
+	private Vector3 _localReticlePositionGamepad;
 	
 	[Header("Weapons")] 
 	public WeaponBase currentWeapon;
 	public Transform cameraTransform;
-	public float gamePadReticleDistance = 5f;
+	[Range(0.25f,1)]
+	public float gamePadReticleDistanceFraction = 0.8f;
+	private float _reticleDistance;
 	[Tooltip("The height and width of the camera's view, respectively. Updated by camera script.")]
 	public Vector2 cameraSize;
 	public float mouseReticleMargin = 1f;
@@ -139,6 +144,7 @@ public class Player : MonoBehaviour, IControllable
 		UIManager ui = UIManager.Instance;
 		ui.player = this;
 		ui.SubscribeToPlayerEvents();
+		UpdateReticleDistance();
 	}
 
 	private void OnDisable()
@@ -155,6 +161,7 @@ public class Player : MonoBehaviour, IControllable
 	private void Update()
 	{
 		AimArms();
+		if (_isUsingGamepad) SlerpReticle();
 	}
 
 	private void Move(float input)
@@ -302,16 +309,26 @@ public class Player : MonoBehaviour, IControllable
 
 	public void AimPerformedMouse(Vector2 aimInput)
 	{
+		_isUsingGamepad = false;
 		Vector2 aimRes = aimInput * (0.05f * mouseAimSensitivity);
 		lookTransform.position += new Vector3(aimRes.x, aimRes.y, 0);
 	}
-
-	// Someone with XBox controller please test this :)
+	
 	public void AimPerformedGamepad(Vector2 input)
 	{
-		Vector3 position = _transform.position;
+		_isUsingGamepad = true;
+		Vector2 normalizedInput = input.normalized;
+		_localReticlePositionGamepad = playerArms.position-_transform.position+new Vector3(normalizedInput.x * _reticleDistance, normalizedInput.y * _reticleDistance, 0);
+	}
 
-		lookTransform.position = position + new Vector3(input.x * gamePadReticleDistance, input.y * gamePadReticleDistance, 0);
+	private void SlerpReticle()
+	{
+		Vector3 playerArmsPosition = playerArms.position;
+		Vector3 lookPositionLocalToArms = lookTransform.position - playerArmsPosition;
+		float angle = Vector3.SignedAngle(_localReticlePositionGamepad, lookPositionLocalToArms, Vector3.back);
+		lookPositionLocalToArms = Vector3.Lerp(lookPositionLocalToArms, lookPositionLocalToArms.normalized * _reticleDistance, 0.1f);
+		lookTransform.position = playerArmsPosition+lookPositionLocalToArms;
+		lookTransform.RotateAround(playerArmsPosition, Vector3.forward, Mathf.Min(angle*0.5f));
 	}
 
 	public void AimCancelled()
@@ -555,7 +572,10 @@ public class Player : MonoBehaviour, IControllable
 		
 		weaponBase = GetComponentInChildren<WeaponBase>();
 		cameraTransform.GetComponent<CameraTracker>().CameraSize = weaponBase.cameraSize;
+		UpdateReticleDistance();
 	}
+	
+	private void UpdateReticleDistance() => _reticleDistance = gamePadReticleDistanceFraction*currentWeapon.bulletRange;
 
 	#endregion
 

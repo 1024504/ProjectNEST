@@ -38,7 +38,7 @@ public class PlayerController : ControllerBase
 	//dash
 	private InputAction _dashInput;
 
-	private void OnEnable()
+	private void Start()
 	{
 		GameManager.Instance.playerController = this;
 		Controls = new();
