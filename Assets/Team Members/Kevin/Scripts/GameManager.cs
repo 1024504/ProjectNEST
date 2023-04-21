@@ -125,9 +125,11 @@ public class GameManager : MonoBehaviour
 
    public void GameReset()
    {
-      playerPrefab.GetComponent<PlayerHealth>().HealthLevel = 100f;
-      playerPrefab.GetComponent<Transform>().position = uiManager.respawnPoint.position;
-      Time.timeScale = 1f;
+	   PlayerHealth playerHealth = _player.GetComponent<PlayerHealth>();
+	   playerHealth.HealthLevel += playerHealth.maxHealth; 
+	   if (saveData != null) _player.transform.position = saveData.playerPosition;
+	   else _player.transform.position = defaultSpawnPoint;
+	   Resume();
    }
 
    public void DisableInput() => playerController.Controls.Player.Disable();

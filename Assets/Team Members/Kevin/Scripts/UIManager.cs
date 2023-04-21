@@ -271,18 +271,17 @@ public class UIManager : MonoBehaviour
 	    GameManager.Instance.Resume();
     }
     
-    public void HomeButton()
+    public void QuitButton()
     {
         Time.timeScale = 1f;
         deathMenu.SetActive(false);
         gm.BeginQuitGame();
     }
 
-    public void RetryButton()
+    public void RespawnButton()
     {
         deathMenu.SetActive(false);
-        gm.Resume();
-        gm.GameReset();      
+        gm.GameReset();
         Cursor.visible = false;
         //load last checkpoint
     }
