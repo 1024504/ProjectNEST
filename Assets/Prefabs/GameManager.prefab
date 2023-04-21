@@ -2228,10 +2228,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1206274811}
-        m_TargetAssemblyTypeName: CollectiblesPanelManager, Assembly-CSharp
-        m_MethodName: OnCollectedUpdate
-        m_Mode: 1
+      - m_Target: {fileID: 41926939}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2240,10 +2240,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 41926939}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1206274811}
+        m_TargetAssemblyTypeName: CollectiblesPanelManager, Assembly-CSharp
+        m_MethodName: OnCollectedUpdate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2833,6 +2833,7 @@ MonoBehaviour:
   bio1: {fileID: 1351680500}
   bio2: {fileID: 750912732}
   bio3: {fileID: 539364460}
+  player: {fileID: 0}
   instance: {fileID: 0}
 --- !u!1 &1238565041
 GameObject:

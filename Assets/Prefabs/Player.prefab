@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 3170411854491914382}
   - component: {fileID: 3066408316029130911}
   - component: {fileID: 1418177732}
+  - component: {fileID: 1744217982}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -398,7 +399,7 @@ Transform:
   - {fileID: 1382185319286108311}
   - {fileID: 1158072893}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7425688498930848919
 MonoBehaviour:
@@ -441,7 +442,7 @@ MonoBehaviour:
   gamepadAimSensitivity: 2
   currentWeapon: {fileID: 0}
   cameraTransform: {fileID: 0}
-  gamePadReticleDistance: 5
+  gamePadReticleDistanceFraction: 0.8
   cameraSize: {x: 0, y: 0}
   mouseReticleMargin: 1
   weaponsList:
@@ -541,6 +542,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.603836, y: 6.2357645}
   m_EdgeRadius: 0
+--- !u!114 &1744217982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932542970485735862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb91eb7d8115d54eb1af6aa3c83044d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasPlaza1: 0
+  hasPlaza2: 0
+  hasPlaza3: 0
+  hasRes1: 0
+  hasRes2: 0
+  hasRes3: 0
+  hasBio1: 0
+  hasBio2: 0
+  hasBio3: 0
 --- !u!1 &1698800783194258383
 GameObject:
   m_ObjectHideFlags: 0
