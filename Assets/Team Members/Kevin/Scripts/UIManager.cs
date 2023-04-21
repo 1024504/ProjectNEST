@@ -62,6 +62,10 @@ public class UIManager : MonoBehaviour
     public AnimationClip saveIn;
     public AnimationClip saveSpin;
     public AnimationClip saveOut;
+
+    [Header("Collectible Audio")] 
+    public List<FMODUnity.EventReference> audioIndex;
+    //public FMODUnity.EventReference playPlaza1;
     
     //Colours
     public Color noAlpha;
@@ -284,7 +288,11 @@ public class UIManager : MonoBehaviour
 	    saveIconUIAnimator.CrossFade(saveOut.name, 0, 0);
 	    currentStateName = saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
     }
-    
+
+    public void PlayCollectibleButton(int index)
+    {
+	    FMODUnity.RuntimeManager.PlayOneShot(audioIndex[index]);
+    }
     public void Pause()
     {
 	    pauseMenu.SetActive(true);
