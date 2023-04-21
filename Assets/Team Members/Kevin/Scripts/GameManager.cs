@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
    //Player Controller
    public PlayerController playerController;
    private Player _player;
-   [HideInInspector]
    public CameraTracker cameraTracker;
 
    //Global Reference to player prefab
@@ -176,7 +175,7 @@ public class GameManager : MonoBehaviour
 	   
 	   string destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
 
-	   Player player = (Player) playerController.Agent;
+	   Player player = (Player) playerController.GameplayAgent;
 	   
 	   saveData = new
 	   (
