@@ -13,7 +13,7 @@ public class DestructableObjectBase : MonoBehaviour
         if (otherBullet != null)
         {
             hitCounter--;
-            if (hitCounter < 1) this.GetComponentInParent<CrateScript>().Destroyed();
+            if (hitCounter == 1) this.GetComponentInParent<CrateScript>().Destroyed();
         }
     }
 }

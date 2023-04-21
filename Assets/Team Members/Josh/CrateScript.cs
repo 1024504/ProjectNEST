@@ -19,12 +19,12 @@ public class CrateScript : MonoBehaviour, IDestructable
     public void Destroyed()
     {
         Instantiate(explosiveParticle, transform.position, Quaternion.identity);
-        FMODUnity.RuntimeManager.PlayOneShot(explodeRef);
+        //FMODUnity.RuntimeManager.PlayOneShot(explodeRef);
 
-        Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
+        Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         if( isLoaded==1 )
         {
-            HealthBase newbornHp = Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity).GetComponent<HealthBase>();
+            HealthBase newbornHp = Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity).GetComponent<HealthBase>();
             newbornHp.HealthLevel = newbornHp.maxHealth / 2;
             //damage alverium
         }
@@ -36,7 +36,10 @@ public class CrateScript : MonoBehaviour, IDestructable
     public void TrapTriggered()
     {
         Instantiate(explosiveParticle, transform.position, Quaternion.identity);
-        Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
-        Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y / 2, transform.position.z), Quaternion.identity);
+        //FMODUnity.RuntimeManager.PlayOneShot(explodeRef);
+
+        Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        Destroy(gameObject);
     }
 }
