@@ -425,12 +425,13 @@ MonoBehaviour:
   - {fileID: -901731869384753101}
   - {fileID: 5643246957284673046}
   - {fileID: 6918262480171610590}
+  - {fileID: 8093464328945145199}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5247386296128520972}
   StringsBanks:
   - {fileID: 2957950418204311301}
-  cacheTime: 638177151951378512
+  cacheTime: 638177178340365173
   cacheVersion: 131601
 --- !u!114 &54852898063568855
 MonoBehaviour:
@@ -582,10 +583,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638177151951378512
+  lastModified: 638177178340365173
   FileSizes:
   - Name: Desktop
-    Value: 2522
+    Value: 2606
   Exists: 1
 --- !u!114 &3667680364172277373
 MonoBehaviour:
@@ -629,10 +630,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638177151951333475
+  lastModified: 638177178340325140
   FileSizes:
   - Name: Desktop
-    Value: 8294752
+    Value: 8689984
   Exists: 1
 --- !u!114 &5405191866033369190
 MonoBehaviour:
@@ -850,6 +851,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5040
+--- !u!114 &8093464328945145199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Dialogue/Tutorial (Hangar)/OpeningSequence
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Dialogue/Tutorial (Hangar)/OpeningSequence
+  Guid:
+    Data1: 1734106412
+    Data2: 1153318231
+    Data3: -8452430
+    Data4: 786575922
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 50312
 --- !u!114 &8234309996797500888
 MonoBehaviour:
   m_ObjectHideFlags: 0
