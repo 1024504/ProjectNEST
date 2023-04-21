@@ -207,6 +207,7 @@ Transform:
   - {fileID: 7168441490959600585}
   - {fileID: 6692893744365641194}
   - {fileID: 1239439952629844480}
+  - {fileID: 5273967966823469985}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -337,7 +338,69 @@ MonoBehaviour:
   moveConstant: {fileID: 7400000, guid: a2072db6f7d856e449e9d9982e441cf4, type: 2}
   attackBuildup: {fileID: 7400000, guid: 4d9b55541588bd5438c8f5a07c0dbc67, type: 2}
   attackShoot: {fileID: 7400000, guid: afcba4069adf5c341a282f9cc7dec24c, type: 2}
-  MovementdistanceSFX: {fileID: 9119513054929626230}
+  shootDistanceSFX: {fileID: 416085336001703401}
+--- !u!1 &416085336001703401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5273967966823469985}
+  - component: {fileID: 7450149897505462523}
+  m_Layer: 0
+  m_Name: AttackDistanceSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5273967966823469985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416085336001703401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5592498701801901199}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7450149897505462523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416085336001703401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1409259455
+      Data2: 1153781200
+      Data3: -1260042359
+      Data4: 584514678
+    Path: event:/Enemies/Moth/Projectile_Shoot
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &442832656021665594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,7 +3244,7 @@ MonoBehaviour:
     Path: event:/Enemies/Moth/MothFlying
   Event: 
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

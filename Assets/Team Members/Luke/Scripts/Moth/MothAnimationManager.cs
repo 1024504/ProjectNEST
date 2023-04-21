@@ -14,6 +14,8 @@ public class MothAnimationManager : AnimationManagerBase
 
 	private AlveriumMoth _moth;
 
+	public GameObject shootDistanceSFX;
+
 	protected override void OnEnable()
 	{
 		base.OnEnable();
@@ -62,5 +64,10 @@ public class MothAnimationManager : AnimationManagerBase
 	{
 		if (attackShoot == null) return;
 		SetAnimator(attackShoot);
+	}
+
+	private void ShootSFX()
+	{
+		shootDistanceSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
 	}
 }

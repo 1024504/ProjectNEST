@@ -18,6 +18,8 @@ public class MothProjectile : MonoBehaviour
 	private Quaternion _rotationWhenHit;
 	private Quaternion _collisionRotationWhenHit;
 
+	public GameObject projectileImpactSFX;
+
 	private void OnEnable()
 	{
 		_transform = transform;
@@ -44,6 +46,9 @@ public class MothProjectile : MonoBehaviour
 		_collisionPositionOffset = _transform.position - _collisionHitTransform.position;
 		_rotationWhenHit = _transform.rotation;
 		_collisionRotationWhenHit = _collisionHitTransform.rotation;
+		
+		projectileImpactSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+
 		Destroy(gameObject, lifetimePostCollision);
 		HealthBase health = col.GetComponentInParent<HealthBase>();
 		if (health != null) health.GetComponent<HealthBase>().HealthLevel -= damage;

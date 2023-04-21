@@ -210,7 +210,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 5247386296128520972}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -297,6 +297,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1789228303416065164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Grapple/GrappleImpact
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Grapple/GrappleImpact
+  Guid:
+    Data1: 545401679
+    Data2: 1099275812
+    Data3: 1224261810
+    Data4: 805367128
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1594901690757952092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +351,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 181992
+--- !u!114 &-901731869384753101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Grapple/GrappleShoot
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Grapple/GrappleShoot
+  Guid:
+    Data1: 410109294
+    Data2: 1260360047
+    Data3: -1803501656
+    Data4: -840362995
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 594
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,12 +421,16 @@ MonoBehaviour:
   - {fileID: -8771440367551060209}
   - {fileID: -3254921357165144989}
   - {fileID: 6011042767974047558}
+  - {fileID: -1789228303416065164}
+  - {fileID: -901731869384753101}
+  - {fileID: 5643246957284673046}
+  - {fileID: 6918262480171610590}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5247386296128520972}
   StringsBanks:
   - {fileID: 2957950418204311301}
-  cacheTime: 638164833319842866
+  cacheTime: 638177151951378512
   cacheVersion: 131601
 --- !u!114 &54852898063568855
 MonoBehaviour:
@@ -524,10 +582,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638164833319842866
+  lastModified: 638177151951378512
   FileSizes:
   - Name: Desktop
-    Value: 2304
+    Value: 2522
   Exists: 1
 --- !u!114 &3667680364172277373
 MonoBehaviour:
@@ -571,10 +629,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638164833319832888
+  lastModified: 638177151951333475
   FileSizes:
   - Name: Desktop
-    Value: 8253632
+    Value: 8294752
   Exists: 1
 --- !u!114 &5405191866033369190
 MonoBehaviour:
@@ -597,7 +655,34 @@ MonoBehaviour:
   Banks:
   - {fileID: 5247386296128520972}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5643246957284673046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Moth/Projectile_Impact
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Moth/Projectile_Impact
+  Guid:
+    Data1: 1578232203
+    Data2: 1169612844
+    Data3: 1791589766
+    Data4: -1278514431
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -651,7 +736,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 5247386296128520972}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -684,6 +769,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1134
+--- !u!114 &6918262480171610590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemies/Moth/Projectile_Shoot
+  m_EditorClassIdentifier: 
+  Path: event:/Enemies/Moth/Projectile_Shoot
+  Guid:
+    Data1: 1409259455
+    Data2: 1153781200
+    Data3: -1260042359
+    Data4: 584514678
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7315785758105995557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,7 +899,7 @@ MonoBehaviour:
   - {fileID: 5247386296128520972}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
