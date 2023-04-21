@@ -10,7 +10,7 @@ using FMODUnity;
 using Unity.Mathematics;
 
 
-public class Player : MonoBehaviour, IGameplayControllable, IUiControllable
+public class Player : MonoBehaviour, IGameplayControllable
 {
 	public GameObject aboveHeadUI;
 	
@@ -122,7 +122,6 @@ public class Player : MonoBehaviour, IGameplayControllable, IUiControllable
 	public Action OnPlayerLanding; // not sure about fading with walking/sprinting animation
 	public Action OnPlayerDash;
 	public Action OnPlayerSprint;
-	private IControllable _controllableImplementation;
 	public Action OnInteract;
 
 
@@ -586,54 +585,4 @@ public class Player : MonoBehaviour, IGameplayControllable, IUiControllable
 	}
 
 	#endregion
-
-	public void NavigatePerformed(Vector2 input)
-	{
-		throw new NotImplementedException();
-	}
-
-	public void NavigateCancelled()
-	{
-		throw new NotImplementedException();
-	}
-
-	public void PointPerformed(Vector2 input)
-	{
-		throw new NotImplementedException();
-	}
-
-	public void PointCancelled()
-	{
-		throw new NotImplementedException();
-	}
-
-	public void ClickPerformed()
-	{
-		throw new NotImplementedException();
-	}
-
-	public void ClickCancelled()
-	{
-		throw new NotImplementedException();
-	}
-	
-	public void ReturnPerformed()
-	{
-		
-	}
-	
-	public void ReturnCancelled()
-	{
-		
-	}
-
-	public void ResumePerformed()
-	{
-		GameManager.Instance.Resume();
-	}
-
-	public void ResumeCancelled()
-	{
-		
-	}
 }

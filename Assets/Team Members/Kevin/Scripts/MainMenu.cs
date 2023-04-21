@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-	public MainMenuNavigator navigator;
 	public GameObject gameManagerPrefab;
 	private GameManager _gm;
 	[SerializeField]
@@ -25,7 +27,12 @@ public class MainMenu : MonoBehaviour
 
     private string _destination;
     public GameObject newGameButton;
+    public GameObject newGamePopup;
+    public GameObject newGamePopupNoButton;
     public GameObject loadButton;
+    public GameObject generalOptionsButton;
+    public GameObject audioOptionsButton;
+    public GameObject monitorOptionsButton;
 
     [HideInInspector]
     public SaveData saveData;
@@ -50,7 +57,35 @@ public class MainMenu : MonoBehaviour
         // SaveData data = (SaveData) bf.Deserialize(_file);
         // _file.Close();
     }
+
+    public void ReturnToMainMenuButton()
+    {
+	    menuButtons.SetActive(true);
+	    if (loadButton.activeSelf)
+	    {
+		    EventSystem.current.firstSelectedGameObject = loadButton;
+		    loadButton.GetComponent<Selectable>().Select();
+	    }
+	    else
+	    {
+		    EventSystem.current.firstSelectedGameObject = newGameButton;
+		    newGameButton.GetComponent<Selectable>().Select();
+	    }
+    }
+
     public void StartNewGameButton()
+    {
+	    if (loadButton.activeSelf)
+	    {
+		    newGamePopup.SetActive(true);
+		    EventSystem.current.firstSelectedGameObject = newGamePopupNoButton;
+		    newGamePopupNoButton.GetComponent<Selectable>().Select();
+		    menuButtons.SetActive(false);
+	    }
+	    else StartNewGame();
+    }
+
+    public void StartNewGame()
     {
 	    if (GameManager.Instance == null)
 	    {
@@ -97,6 +132,25 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Game Exited");
         Application.Quit();
+    }
+
+    public void DimButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    
+    public void DimButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    
+    public void DimButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    
+    public void ResetButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+    
+	public void ResetButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+
+	public void ResetButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+    
+    private void ChangeButtonAlpha(UnityEngine.UI.Button button, float newAlpha)
+    {
+	    ColorBlock colours = button.colors;
+	    colours.normalColor = new Color(colours.normalColor.r, colours.normalColor.g, colours.normalColor.b, newAlpha);
+	    button.colors = colours;
     }
 
     public void OptionsAnimIN()

@@ -20,21 +20,7 @@ public class PlayerController : MonoBehaviour
 			EnableGameplayInputs();
 		}
 	}
-	
-	[SerializeField] private MonoBehaviour uiAgent;
-	
-	public MonoBehaviour UiAgent
-	{
-		get => uiAgent;
-		set
-		{
-			if ((IUiControllable)value == null) return;
-			DisableUiInputs();
-			uiAgent = value;
-			EnableUiInputs();
-		}
-	}
-	
+
 	public PlayerControls Controls;
 	
 	// Game Controls
@@ -45,13 +31,6 @@ public class PlayerController : MonoBehaviour
 	private InputAction _action1Input;
 	private InputAction _action2Input;
 	private InputAction _action3Input;
-	
-	// UI Controls
-	private InputAction _navigateInput;
-	private InputAction _pointInput;
-	private InputAction _clickInput;
-	private InputAction _returnInput;
-	private InputAction _resumeInput;
 
 	//pause game
 	private InputAction _pauseInput;
@@ -69,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
-		GameManager.Instance.playerController = this;
+		if (GameManager.Instance != null) GameManager.Instance.playerController = this;
 		Controls = new();
 
 		if ((IGameplayControllable) GameplayAgent != null)
@@ -91,24 +70,11 @@ public class PlayerController : MonoBehaviour
 			
 			EnableGameplayInputs();
 		}
-		
-		if ((IUiControllable) UiAgent != null)
-		{
-			//UI inputs
-			_navigateInput = Controls.UI.Navigate;
-			_pointInput = Controls.UI.Point;
-			_clickInput = Controls.UI.Click;
-			_returnInput = Controls.UI.Return;
-			_resumeInput = Controls.UI.Resume;
-			
-			EnableUiInputs();
-		}
 	}
 
 	private void OnDisable()
 	{
 		if ((IGameplayControllable)GameplayAgent != null) DisableGameplayInputs();
-		if ((IUiControllable)UiAgent != null) DisableUiInputs();
 	}
 
 	private void EnableGameplayInputs()
@@ -172,30 +138,6 @@ public class PlayerController : MonoBehaviour
 		_dashInput.canceled += DashCancelled;
 	}
 
-	private void EnableUiInputs()
-	{
-		//UI
-		_navigateInput.Enable();
-		_navigateInput.performed += NavigatePerformed;
-		_navigateInput.canceled += NavigateCancelled;
-		
-		_pointInput.Enable();
-		_pointInput.performed += PointPerformed;
-		_pointInput.canceled += PointCancelled;
-		
-		_clickInput.Enable();
-		_clickInput.performed += ClickPerformed;
-		_clickInput.canceled += ClickCancelled;
-		
-		_returnInput.Enable();
-		_returnInput.performed += ReturnPerformed;
-		_returnInput.canceled += ReturnCancelled;
-		
-		_resumeInput.Enable();
-		_resumeInput.performed += ResumePerformed;
-		_resumeInput.canceled += ResumeCancelled;
-	}
-
 	private void DisableGameplayInputs()
 	{
 		_moveInput.Disable();
@@ -251,30 +193,6 @@ public class PlayerController : MonoBehaviour
 		_dashInput.Disable();
 		_dashInput.performed -= DashPerformed;
 		_dashInput.canceled -= DashCancelled;
-	}
-	
-	private void DisableUiInputs()
-	{
-		//UI
-		_navigateInput.Disable();
-		_navigateInput.performed -= NavigatePerformed;
-		_navigateInput.canceled -= NavigateCancelled;
-		
-		_pointInput.Disable();
-		_pointInput.performed -= PointPerformed;
-		_pointInput.canceled -= PointCancelled;
-		
-		_clickInput.Disable();
-		_clickInput.performed -= ClickPerformed;
-		_clickInput.canceled -= ClickCancelled;
-		
-		_returnInput.Disable();
-		_returnInput.performed -= ReturnPerformed;
-		_returnInput.canceled -= ReturnCancelled;
-		
-		_resumeInput.Disable();
-		_resumeInput.performed -= ResumePerformed;
-		_resumeInput.canceled -= ResumeCancelled;
 	}
 
 	private void MovePerformed(InputAction.CallbackContext context)
@@ -411,60 +329,6 @@ public class PlayerController : MonoBehaviour
 	private void DashCancelled(InputAction.CallbackContext context)
 	{
 		((IGameplayControllable)GameplayAgent).DashCancelled();
-	}
-	
-	#endregion
-	
-	#region UI Inputs
-	
-	private void NavigatePerformed(InputAction.CallbackContext context)
-	{
-		((IUiControllable)UiAgent).NavigatePerformed(context.ReadValue<Vector2>());
-	}
-	
-	private void NavigateCancelled(InputAction.CallbackContext context)
-	{
-		((IUiControllable)UiAgent).NavigateCancelled();
-	}
-
-	private void PointPerformed(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).PointPerformed(context.ReadValue<Vector2>());
-	}
-	
-	private void PointCancelled(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).PointCancelled();
-	}
-	
-	private void ClickPerformed(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).ClickPerformed();
-	}
-	
-	private void ClickCancelled(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).ClickCancelled();
-	}
-	
-	private void ReturnPerformed(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).ReturnPerformed();
-	}
-	
-	private void ReturnCancelled(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).ReturnCancelled();
-	}
-	
-	private void ResumePerformed(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).ResumePerformed();
-	}
-	
-	private void ResumeCancelled(InputAction.CallbackContext context)
-	{
-		((IUiControllable) UiAgent).ResumeCancelled();
 	}
 	
 	#endregion

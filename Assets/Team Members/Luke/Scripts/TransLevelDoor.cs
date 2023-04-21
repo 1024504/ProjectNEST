@@ -24,8 +24,6 @@ public class TransLevelDoor : InteractableObject
 		connectingDoor = LevelManager.Instance.GetLinkedDoor(this);
 		if (connectingDoor != null) connectingDoor.connectingDoor = this;
 	}
-	
-	
 
 	private void Start()
 	{
