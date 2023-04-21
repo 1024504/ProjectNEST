@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
     [Header("Direct References")]
     public GameObject aboveHeadUI;
     public GameObject visualiserHUD;
-    public GameObject saveIconUI;
 
     [Header("Space")]
     [SerializeField] private GameObject pauseMenu;
@@ -58,8 +57,13 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI objectiveText;
     public Transform textProceduralPanel;
     
+    //Save UI
+    public Animator saveIconUIAnimator;
+    public AnimationClip saveIn;
+    public AnimationClip saveSpin;
+    public AnimationClip saveOut;
     
-    
+    //Colours
     public Color noAlpha;
     public Color halfAlpha;
     public Color fullAlpha;
@@ -129,11 +133,6 @@ public class UIManager : MonoBehaviour
     #endregion
     
     #region UI Update
-
-    public void OnEnable()
-    {
-        
-    }
 
     public void OnDisable()
     {
@@ -254,6 +253,38 @@ public class UIManager : MonoBehaviour
     
 
     #endregion
+
+    public IEnumerator StartSaveAnimation()
+    {
+	    saveIconUIAnimator.speed = 1;
+	    
+	    // grow
+	    saveIconUIAnimator.CrossFade(saveIn.name, 0, 0);
+	    string currentStateName = saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+	    yield return new WaitWhile(() => saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
+	    yield return new WaitForSeconds(saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).length);
+	    
+	    //spin
+	    saveIconUIAnimator.CrossFade(saveSpin.name, 0, 0);
+	    currentStateName = saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+	    float spinDelay = Time.time;
+	    yield return new WaitWhile(() => saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
+	    yield return new WaitForSeconds(saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).length);
+	    spinDelay = Time.time - spinDelay;
+	    
+	    //keep spinning while saving
+	    while (gm.isSaving)
+	    {
+		    saveIconUIAnimator.CrossFade(saveSpin.name, 0, 0);
+		    currentStateName = saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+		    yield return new WaitForSeconds(spinDelay);
+	    }
+
+	    //shrink
+	    saveIconUIAnimator.CrossFade(saveOut.name, 0, 0);
+	    currentStateName = saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
+    }
+    
     public void Pause()
     {
 	    pauseMenu.SetActive(true);

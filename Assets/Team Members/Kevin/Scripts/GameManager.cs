@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
    [HideInInspector]
    public SaveData saveData;
+   public FMODUnity.EventReference savedTriggered;
+   public bool isSaving;
 
    //Global Reference to Managers
    public UIManager uiManager;
@@ -168,6 +170,10 @@ public class GameManager : MonoBehaviour
 
    public void SaveCheckpoint(Checkpoint checkpoint)
    {
+	   isSaving = true;
+	   StartCoroutine(uiManager.StartSaveAnimation());
+	   FMODUnity.RuntimeManager.PlayOneShot(savedTriggered);
+	   
 	   string destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
 
 	   Player player = (Player) playerController.Agent;
@@ -187,5 +193,7 @@ public class GameManager : MonoBehaviour
 	   
 	   string json = JsonUtility.ToJson(saveData);
 	   File.WriteAllText(destination, json);
+	   
+	   isSaving = false;
    }
 }

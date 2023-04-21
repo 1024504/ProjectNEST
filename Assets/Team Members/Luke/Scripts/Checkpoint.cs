@@ -6,12 +6,9 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-	public FMODUnity.EventReference savedTriggered;
 	private void OnTriggerEnter2D(Collider2D col)
 	{
+		if (GameManager.Instance.saveData.playerPosition == transform.position) return;
 		GameManager.Instance.SaveCheckpoint(this);
-		FMODUnity.RuntimeManager.PlayOneShot(savedTriggered);
-		GameManager.Instance.uiManager.saveIconUI.GetComponent<Animator>().SetTrigger("TriggerSaveANIM");
-		Debug.Log("Saved");
 	}
 }
