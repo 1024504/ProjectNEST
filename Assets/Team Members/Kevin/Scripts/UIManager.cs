@@ -72,6 +72,10 @@ public class UIManager : MonoBehaviour
     public Color halfAlpha;
     public Color fullAlpha;
     
+    public GameObject generalOptionsButton;
+    public GameObject audioOptionsButton;
+    public GameObject monitorOptionsButton;
+    
     public void Awake()
     {
         if (Instance == null)
@@ -323,5 +327,24 @@ public class UIManager : MonoBehaviour
         gm.GameReset();
         Cursor.visible = false;
         //load last checkpoint
+    }
+    
+    public void DimButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    
+    public void DimButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    
+    public void DimButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    
+    public void ResetButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+    
+    public void ResetButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+
+    public void ResetButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+    
+    private void ChangeButtonAlpha(UnityEngine.UI.Button button, float newAlpha)
+    {
+	    ColorBlock colours = button.colors;
+	    colours.normalColor = new Color(colours.normalColor.r, colours.normalColor.g, colours.normalColor.b, newAlpha);
+	    button.colors = colours;
     }
 }
