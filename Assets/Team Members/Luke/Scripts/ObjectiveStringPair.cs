@@ -9,4 +9,5 @@ public class ObjectiveStringPair
 	public GameManager.Objectives objective = GameManager.Objectives.None;
 	public string uiText = "";
 	public bool isCompleted = false;
+	public bool isHidden = false;
 }

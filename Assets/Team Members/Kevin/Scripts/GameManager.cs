@@ -38,7 +38,12 @@ public class GameManager : MonoBehaviour
 	   None,
 	   EscapeHangar,
 	   TurnOnGenerator,
-	   ExploreLab
+	   ExploreLab,
+	   EnterPlaza,
+	   FindHawk,
+	   FindRaven,
+	   FindEagle,
+	   DefeatBoss
    }
 
    private Settings _settings;
@@ -168,6 +173,7 @@ public class GameManager : MonoBehaviour
    public void UpdateObjective(Objectives objective)
    {
 	   ObjectiveStringPair objectiveToUpdate = new ();
+	   
 	   foreach (ObjectiveStringPair objectiveStringPair in objectives)
 	   {
 		   if (objectiveStringPair.objective != objective) continue;
