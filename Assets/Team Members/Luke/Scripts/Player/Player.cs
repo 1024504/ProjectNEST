@@ -156,8 +156,8 @@ public class Player : MonoBehaviour, IGameplayControllable
 	{
 		if(_isGrappled) GrappleMovement();
 		Move(_lateralMoveInput);
-		AimArms();
 		if (_isUsingGamepad) SlerpReticle();
+		AimArms();
 	}
 
 	private void Move(float input)
@@ -308,13 +308,16 @@ public class Player : MonoBehaviour, IGameplayControllable
 		_isUsingGamepad = false;
 		Vector2 aimRes = aimInput * (0.05f * mouseAimSensitivity);
 		lookTransform.position += new Vector3(aimRes.x, aimRes.y, 0);
+		AimArms();
 	}
 	
 	public void AimPerformedGamepad(Vector2 input)
 	{
+		if (input.magnitude < 0.01f) return;
 		_isUsingGamepad = true;
 		Vector2 normalizedInput = input.normalized;
 		_localReticlePositionGamepad = playerArms.position-_transform.position+new Vector3(normalizedInput.x * _reticleDistance, normalizedInput.y * _reticleDistance, 0);
+		AimArms();
 	}
 
 	private void SlerpReticle()
@@ -324,12 +327,12 @@ public class Player : MonoBehaviour, IGameplayControllable
 		float angle = Vector3.SignedAngle(_localReticlePositionGamepad, lookPositionLocalToArms, Vector3.back);
 		lookPositionLocalToArms = Vector3.Lerp(lookPositionLocalToArms, lookPositionLocalToArms.normalized * _reticleDistance, 0.1f);
 		lookTransform.position = playerArmsPosition+lookPositionLocalToArms;
-		lookTransform.RotateAround(playerArmsPosition, Vector3.forward, Mathf.Min(angle*0.5f));
+		lookTransform.RotateAround(playerArmsPosition, Vector3.forward, Mathf.Min(angle*0.1f));
 	}
 
 	public void AimCancelled()
 	{
-		
+		_localReticlePositionGamepad = lookTransform.position - playerArms.position;
 	}
 
 	public void JumpPerformed()
