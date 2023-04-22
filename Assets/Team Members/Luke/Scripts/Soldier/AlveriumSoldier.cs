@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AlveriumSoldier : EnemyBody, IGameplayControllable, ISense
+public class AlveriumSoldier : EnemyBody, IControllable, ISense
 {
 	private Transform _transform;
 	private Rigidbody2D _rb;
@@ -307,6 +307,16 @@ public class AlveriumSoldier : EnemyBody, IGameplayControllable, ISense
 	}
 
 	public void Weapon3Cancelled()
+	{
+		
+	}
+
+	public void WeaponScrollPerformed()
+	{
+		
+	}
+
+	public void WeaponScrollCancelled()
 	{
 		
 	}

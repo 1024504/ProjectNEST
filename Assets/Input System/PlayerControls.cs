@@ -118,6 +118,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""WeaponScroll"",
+                    ""type"": ""Button"",
+                    ""id"": ""d585dd2b-9138-49d8-9ea2-61f11f53c5c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""342f5751-dd97-4f8d-9780-9b41c04d741a"",
@@ -517,6 +526,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Action3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52488397-a0ca-4ad5-a675-58766004b224"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""WeaponScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1005,6 +1025,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Weapon1 = m_Player.FindAction("Weapon1", throwIfNotFound: true);
         m_Player_Weapon2 = m_Player.FindAction("Weapon2", throwIfNotFound: true);
         m_Player_Weapon3 = m_Player.FindAction("Weapon3", throwIfNotFound: true);
+        m_Player_WeaponScroll = m_Player.FindAction("WeaponScroll", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_MedKit = m_Player.FindAction("MedKit", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
@@ -1083,6 +1104,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Weapon1;
     private readonly InputAction m_Player_Weapon2;
     private readonly InputAction m_Player_Weapon3;
+    private readonly InputAction m_Player_WeaponScroll;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_MedKit;
     private readonly InputAction m_Player_Sprint;
@@ -1100,6 +1122,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Weapon1 => m_Wrapper.m_Player_Weapon1;
         public InputAction @Weapon2 => m_Wrapper.m_Player_Weapon2;
         public InputAction @Weapon3 => m_Wrapper.m_Player_Weapon3;
+        public InputAction @WeaponScroll => m_Wrapper.m_Player_WeaponScroll;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @MedKit => m_Wrapper.m_Player_MedKit;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
@@ -1142,6 +1165,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Weapon3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon3;
                 @Weapon3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon3;
                 @Weapon3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeapon3;
+                @WeaponScroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponScroll;
+                @WeaponScroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponScroll;
+                @WeaponScroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponScroll;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
@@ -1185,6 +1211,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Weapon3.started += instance.OnWeapon3;
                 @Weapon3.performed += instance.OnWeapon3;
                 @Weapon3.canceled += instance.OnWeapon3;
+                @WeaponScroll.started += instance.OnWeaponScroll;
+                @WeaponScroll.performed += instance.OnWeaponScroll;
+                @WeaponScroll.canceled += instance.OnWeaponScroll;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -1312,6 +1341,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnWeapon1(InputAction.CallbackContext context);
         void OnWeapon2(InputAction.CallbackContext context);
         void OnWeapon3(InputAction.CallbackContext context);
+        void OnWeaponScroll(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMedKit(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);

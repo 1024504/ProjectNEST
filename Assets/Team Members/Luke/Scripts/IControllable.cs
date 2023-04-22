@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public interface IGameplayControllable
+public interface IControllable
 {
 	public void MovePerformed(float lateralInput);
 
@@ -50,6 +50,10 @@ public interface IGameplayControllable
 	public void Weapon3Performed();
 
 	public void Weapon3Cancelled();
+
+	public void WeaponScrollPerformed();
+	
+	public void WeaponScrollCancelled();
 
 	public void MedKitPerformed();
 

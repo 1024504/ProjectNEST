@@ -10,7 +10,7 @@ using FMODUnity;
 using Unity.Mathematics;
 
 
-public class Player : MonoBehaviour, IGameplayControllable
+public class Player : MonoBehaviour, IControllable
 {
 	public GameObject aboveHeadUI;
 	
@@ -445,6 +445,26 @@ public class Player : MonoBehaviour, IGameplayControllable
 	}
 	
 	public void Weapon3Cancelled()
+	{
+		
+	}
+
+	public void WeaponScrollPerformed()
+	{
+		int newWeaponIndex = 0;
+		for (int i = 1; i < weaponsList.Count; i++)
+		{
+			if (!weaponsList[i].gameObject.activeSelf) continue;
+			newWeaponIndex = i;
+			break;
+		}
+
+		newWeaponIndex++;
+		if (newWeaponIndex >= weaponsList.Count) newWeaponIndex = 0;
+		ChangeWeapon(newWeaponIndex);
+	}
+
+	public void WeaponScrollCancelled()
 	{
 		
 	}
