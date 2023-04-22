@@ -68,6 +68,7 @@ public class CameraTracker : MonoBehaviour
 	{
 		Player player = playerTransform.GetComponent<Player>();
 		player.cameraTransform = _cameraTransform;
+		CameraSize = player.currentWeapon.cameraSize;
 		_playerReticleTransform = player.lookTransform;
 		UpdateCollider();
 		_playerPrevPosition = playerTransform.position+Vector3.back;

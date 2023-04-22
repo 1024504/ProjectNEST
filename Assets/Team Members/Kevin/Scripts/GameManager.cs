@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 
    public void SetupAfterLevelLoad(Scene scene, LoadSceneMode mode)
    {
-	   uiManager.gameObject.SetActive(true);
+	   uiManager.hUDGameObject.SetActive(true);
 	   LevelManager.Instance.InstantiateDestroyOnLoad();
 
 	   SceneManager.sceneLoaded -= SetupAfterLevelLoad;

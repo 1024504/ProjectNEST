@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,6 +16,9 @@ public class UIManager : MonoBehaviour
     [Header("Direct References")]
     public GameObject aboveHeadUI;
     public GameObject visualiserHUD;
+    public GameObject hUDGameObject;
+    public GameObject resumeButton;
+    public GameObject respawnButton;
 
     [Header("Space")]
     [SerializeField] private GameObject pauseMenu;
@@ -76,7 +80,7 @@ public class UIManager : MonoBehaviour
     public GameObject audioOptionsButton;
     public GameObject monitorOptionsButton;
     
-    public void Awake()
+    public void OnEnable()
     {
         if (Instance == null)
         {
@@ -177,6 +181,8 @@ public class UIManager : MonoBehaviour
     private void ActiveDeathMenu()
     {
         deathMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(respawnButton);
+        respawnButton.GetComponent<UnityEngine.UI.Button>().Select();
         gm.Pause();
         Cursor.visible = true;
         Time.timeScale = 0f;
@@ -300,6 +306,8 @@ public class UIManager : MonoBehaviour
     public void Pause()
     {
 	    pauseMenu.SetActive(true);
+	    EventSystem.current.SetSelectedGameObject(resumeButton);
+	    resumeButton.GetComponent<Button>().Select();
         Cursor.visible = true;
     }
     
@@ -346,5 +354,12 @@ public class UIManager : MonoBehaviour
 	    ColorBlock colours = button.colors;
 	    colours.normalColor = new Color(colours.normalColor.r, colours.normalColor.g, colours.normalColor.b, newAlpha);
 	    button.colors = colours;
+    }
+
+    public void ReturnToMenu()
+    {
+	    pauseMenu.SetActive(true);
+	    EventSystem.current.firstSelectedGameObject = resumeButton;
+	    resumeButton.GetComponent<Selectable>().Select();
     }
 }

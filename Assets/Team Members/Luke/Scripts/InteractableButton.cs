@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : InteractableObject
+public class InteractableButton : InteractableObject
 {
 	[SerializeField] GameObject buttonUI;
 	
@@ -17,7 +17,7 @@ public class Button : InteractableObject
 		if( singleUse )
         {
 			buttonUI.gameObject.SetActive(false);
-			this.GetComponent<Button>().enabled = false;
+			this.GetComponent<InteractableButton>().enabled = false;
 		}
 	}
 
