@@ -159,7 +159,7 @@ public class Player : MonoBehaviour, IControllable
 			MoveDownSlope();
 			return;
 		}
-		
+
 		if (!_terrainDetection.isGrounded || _justJumped)
 		{
 			MoveInAir(input);
@@ -285,6 +285,8 @@ public class Player : MonoBehaviour, IControllable
 	public void MoveCancelled()
 	{
 		_lateralMoveInput = 0;
+		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
+		_currentSpeed = walkSpeed;
 	}
 
 	public void AimPerformedMouse(Vector2 aimInput)
@@ -488,8 +490,16 @@ public class Player : MonoBehaviour, IControllable
 
 	public void SprintPerformed()
 	{
-		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
-		_sprintCoroutine = StartCoroutine(SprintJumpCheck());
+		if (_currentSpeed < sprintSpeed)
+		{
+			if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
+			_sprintCoroutine = StartCoroutine(SprintJumpCheck());
+		}
+		else
+		{
+			if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
+			_currentSpeed = walkSpeed;
+		}
 	}
 
 	private IEnumerator SprintJumpCheck()
@@ -504,6 +514,7 @@ public class Player : MonoBehaviour, IControllable
 
 	public void SprintCancelled()
 	{
+		if (GameManager.Instance.saveData.SettingsData.ToggleSprint) return;
 		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
 		_currentSpeed = walkSpeed;
 	}

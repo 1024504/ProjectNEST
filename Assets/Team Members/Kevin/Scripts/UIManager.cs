@@ -115,7 +115,7 @@ public class UIManager : MonoBehaviour
 	    UpdateWeaponHUD();
 	    if (playerHealth == null) return;
 	    player.GetComponent<PlayerHealth>().OnDeath += ActiveDeathMenu;
-	    GetComponentInChildren<GrappleCooldown>().SetPlayer();
+	    GetComponentInChildren<GrappleCooldown>(true).SetPlayer();
 	    GetComponent<HealthManager>().SetPlayer();
     }
 

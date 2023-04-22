@@ -13,7 +13,6 @@ public class Settings : MonoBehaviour
     [SerializeField] private TMP_Dropdown screenModeDropDown;
     [SerializeField] private TMP_Dropdown graphicsDropDown;
     private Resolution[] _resolutions;
-    private List<Resolution> resolutions;
     private int currentResolutionIndex = 0;
     private int currentScreenModeIndex;
     private int currentQualityIndex;
@@ -21,27 +20,35 @@ public class Settings : MonoBehaviour
     void Start()
     {
         _resolutions = Screen.resolutions;
-        resolutions = new List<Resolution>();
         resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
         for (int i = 0; i < _resolutions.Length; i++)
         {
-            resolutions.Add(_resolutions[i]);
-        }
-        List<string> options = new List<string>();
-        for (int i = 0; i < resolutions.Count; i++)
-        {
-            string resolutionOption = resolutions[i].width + "x" + resolutions[i].height;
+            string resolutionOption = _resolutions[i].width + "x" + _resolutions[i].height;
             options.Add(resolutionOption);
+            if (_resolutions[i].height == Screen.currentResolution.height && _resolutions[i].width == Screen.currentResolution.width) currentResolutionIndex = i;
         }
+        if (Screen.fullScreen) currentScreenModeIndex = 0;
+		else currentScreenModeIndex = 1;
+        
+        // Resolution
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+        
+        // Screen Mode
+        screenModeDropDown.value = currentScreenModeIndex;
+        screenModeDropDown.RefreshShownValue();
+        
+        // Graphics Quality
+        currentQualityIndex = QualitySettings.GetQualityLevel();
+        graphicsDropDown.value = currentQualityIndex;
+        graphicsDropDown.RefreshShownValue();
     }
 
-    public void DropdownValue()
+    public void ResolutionDropdown()
     {
         currentResolutionIndex =  resolutionDropdown.value;
-        Debug.Log(currentResolutionIndex);
     }
 
     public void ScreenModeDropdown()
@@ -51,15 +58,26 @@ public class Settings : MonoBehaviour
     
     public void ApplyChanges()
     {
-        Resolution resolution = resolutions[currentResolutionIndex];
+        Resolution resolution = _resolutions[currentResolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, true);
         QualitySettings.SetQualityLevel(currentQualityIndex);
-        Debug.Log(resolution.width + "x" + resolution.height + QualitySettings.names[currentQualityIndex]);
+        
+        GameManager.Instance.saveData.SettingsData.Resolution = resolution;
+        GameManager.Instance.saveData.SettingsData.Fullscreen = Screen.fullScreen;
+        GameManager.Instance.saveData.SettingsData.Quality = currentQualityIndex;
+        
+        GameManager.Instance.SaveSettings();
     }
+    
+    public void ApplyChanges(SettingsData settingsData)
+    {
+		Resolution resolution = settingsData.Resolution;
+		Screen.SetResolution(resolution.width, resolution.height, settingsData.Fullscreen);
+		QualitySettings.SetQualityLevel(settingsData.Quality);
+	}
 
-    public void SetQualityIndex()
+    public void GraphicsDropdown()
     {
         currentQualityIndex = graphicsDropDown.value;
-        Debug.Log(currentQualityIndex);
     }
 }

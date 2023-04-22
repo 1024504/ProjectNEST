@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
 		{
 			if ((IControllable)value == null) return;
 			DisableGameplayInputs();
+			//pause menu
+			_pauseInput.Disable();
+			_pauseInput.performed -= PausePerformed;
+			_pauseInput.canceled -= PauseCancelled;
 			gameplayAgent = value;
 			EnableGameplayInputs();
 		}
@@ -77,6 +81,10 @@ public class PlayerController : MonoBehaviour
 	private void OnDisable()
 	{
 		if ((IControllable)GameplayAgent != null) DisableGameplayInputs();
+		//pause menu
+		_pauseInput.Disable();
+		_pauseInput.performed -= PausePerformed;
+		_pauseInput.canceled -= PauseCancelled;
 	}
 
 	private void EnableGameplayInputs()
@@ -171,12 +179,7 @@ public class PlayerController : MonoBehaviour
 		_action2Input.Disable();
 		_action2Input.performed -= Action2Performed;
 		_action2Input.canceled -= Action2Cancelled;
-		
-		//pause menu
-		_pauseInput.Disable();
-		_pauseInput.performed -= PausePerformed;
-		_pauseInput.canceled -= PauseCancelled;
-		
+
 		//weapons test
 		_weapon1Input.Disable();
 		_weapon1Input.performed -= Weapon1Performed;

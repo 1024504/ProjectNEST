@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using Newtonsoft.Json.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -42,14 +36,18 @@ public class MainMenu : MonoBehaviour
     public void Awake()
     {
 	    if (GameManager.Instance == null) Instantiate(gameManagerPrefab);
+	    _gm = GameManager.Instance;
 	    mmAnimator.CrossFade("Opening", 0, 0);
 	    _destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
 	    if (File.Exists(_destination))
 	    {
 		    saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(_destination));
+		    _gm.saveData = saveData;
 		    loadButton.SetActive(true);
 		    EventSystem.current.firstSelectedGameObject = loadButton;
 		    loadButton.GetComponent<Selectable>().Select();
+		    
+		    _gm.ApplySettings();
 	    }
 	    else
 	    {
@@ -57,12 +55,18 @@ public class MainMenu : MonoBehaviour
 		    loadButton.SetActive(false);
 		    EventSystem.current.firstSelectedGameObject = newGameButton;
 		    newGameButton.GetComponent<Selectable>().Select();
+		    
+		    Resolution currentResolution = Screen.currentResolution;
+		    bool fullscreen = Screen.fullScreen;
+		    int quality = QualitySettings.GetQualityLevel();
+		    
+		    // Default Settings
+		    // Update this when new settings are added
+		    _gm.saveData = new SaveData
+		    {
+			    SettingsData = new SettingsData(true, 0.05f, currentResolution, fullscreen, quality)
+		    };
 	    }
-    }
-
-    public void Start()
-    {
-	    _gm = GameManager.Instance;
     }
 
     public void ReturnToMainMenuButton()
@@ -129,19 +133,19 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void DimButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    public void DimButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<Button>(), 0.2f);
     
-    public void DimButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    public void DimButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<Button>(), 0.2f);
     
-    public void DimButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
+    public void DimButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<Button>(), 0.2f);
     
-    public void ResetButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+    public void ResetButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<Button>(), 1f);
     
-	public void ResetButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+	public void ResetButtonAudioAlpha() => ChangeButtonAlpha(audioOptionsButton.GetComponent<Button>(), 1f);
 
-	public void ResetButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
+	public void ResetButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<Button>(), 1f);
     
-    private void ChangeButtonAlpha(UnityEngine.UI.Button button, float newAlpha)
+    private void ChangeButtonAlpha(Button button, float newAlpha)
     {
 	    ColorBlock colours = button.colors;
 	    colours.normalColor = new Color(colours.normalColor.r, colours.normalColor.g, colours.normalColor.b, newAlpha);

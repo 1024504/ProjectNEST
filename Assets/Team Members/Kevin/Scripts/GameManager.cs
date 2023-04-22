@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 	   TurnOnGenerator,
 	   ExploreLab
    }
+
+   private Settings _settings;
    
    // List of objective strings for UI, fill out in inspector
    public List<ObjectiveStringPair> objectives = new();
@@ -53,14 +55,14 @@ public class GameManager : MonoBehaviour
       if (Instance == null)
       {
          Instance = this;
-         //Debug.Log("GameManager == Null!");
          DontDestroyOnLoad(gameObject);
       }
       else
       {
          Destroy(gameObject);
       }
-      uiManager = GetComponentInChildren<UIManager>(true);
+      uiManager = GetComponentInChildren<UIManager>();
+      _settings = GetComponentInChildren<Settings>();
    }
 
    public void SetupAfterLevelLoad(Scene scene, LoadSceneMode mode)
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
 		   _player.grappleEnabled = saveData.canGrapple;
 		   _player.medkitCount = saveData.totalMedkits;
 		   objectives = saveData.objectives;
+		   ApplySettings();
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
 	   }
@@ -166,12 +169,29 @@ public class GameManager : MonoBehaviour
 	   if (objectiveToUpdate.objective == Objectives.None) return;
 	   uiManager.UpdateObjective(objectiveToUpdate);
    }
+   
+   public void ApplySettings() => _settings.ApplyChanges(saveData.SettingsData);
+
+   public void SaveSettings()
+   {
+	   isSaving = true;
+	   StartCoroutine(uiManager.StartSaveAnimation());
+	   FMODUnity.RuntimeManager.PlayOneShot(savedTriggered);
+
+	   string destination = Path.Combine(Application.persistentDataPath, "saveFile.json");
+	   string json = JsonUtility.ToJson(saveData);
+	   File.WriteAllText(destination, json);
+	   
+	   isSaving = false;
+   }
 
    public void SaveCheckpoint(Checkpoint checkpoint)
    {
 	   isSaving = true;
 	   StartCoroutine(uiManager.StartSaveAnimation());
 	   FMODUnity.RuntimeManager.PlayOneShot(savedTriggered);
+	   
+	   SettingsData settingsData = saveData.SettingsData;
 	   
 	   string destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
 
@@ -187,7 +207,8 @@ public class GameManager : MonoBehaviour
 		   player.doubleJumpEnabled,
 		   player.grappleEnabled,
 		   player.medkitCount,
-		   objectives
+		   objectives,
+		   settingsData
 	   );
 	   
 	   string json = JsonUtility.ToJson(saveData);
