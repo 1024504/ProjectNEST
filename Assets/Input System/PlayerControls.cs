@@ -136,12 +136,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""8dd1d434-9cc5-43ba-bcf9-bffb79dcaad5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold,Tap"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -461,7 +461,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -472,7 +472,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Dash"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1007,7 +1007,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Weapon3 = m_Player.FindAction("Weapon3", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_MedKit = m_Player.FindAction("MedKit", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1085,7 +1085,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Weapon3;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_MedKit;
-    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1102,7 +1102,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Weapon3 => m_Wrapper.m_Player_Weapon3;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @MedKit => m_Wrapper.m_Player_MedKit;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1148,9 +1148,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MedKit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMedKit;
                 @MedKit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMedKit;
                 @MedKit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMedKit;
-                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1191,9 +1191,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MedKit.started += instance.OnMedKit;
                 @MedKit.performed += instance.OnMedKit;
                 @MedKit.canceled += instance.OnMedKit;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -1314,7 +1314,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnWeapon3(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMedKit(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -273,12 +273,12 @@ public class AlveriumMoth : EnemyBody, IGameplayControllable, ISense
 	    
     }
 
-    public void DashHeld()
+    public void SprintPerformed()
     {
 	    _verticalMoveInput = -1;
     }
 
-    public void DashCancelled()
+    public void SprintCancelled()
     {
 	    _verticalMoveInput = 0;
     }

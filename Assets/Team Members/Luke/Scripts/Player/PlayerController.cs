@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 	private InputAction _useMedKit;
 	
 	//dash
-	private InputAction _dashInput;
+	private InputAction _sprintInput;
 
 	private void Start()
 	{
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 			_weapon3Input = Controls.Player.Weapon3;
 			_pauseInput = Controls.Player.Pause;
 			_useMedKit = Controls.Player.MedKit;
-			_dashInput = Controls.Player.Dash;
+			_sprintInput = Controls.Player.Sprint;
 			
 			EnableGameplayInputs();
 		}
@@ -133,9 +133,9 @@ public class PlayerController : MonoBehaviour
 		_useMedKit.canceled += MedKitCancelled;
 		
 		//dash
-		_dashInput.Enable();
-		_dashInput.performed += DashPerformed;
-		_dashInput.canceled += DashCancelled;
+		_sprintInput.Enable();
+		_sprintInput.performed += SprintPerformed;
+		_sprintInput.canceled += SprintCancelled;
 	}
 
 	private void DisableGameplayInputs()
@@ -190,9 +190,9 @@ public class PlayerController : MonoBehaviour
 		_useMedKit.canceled -= MedKitCancelled;
 		
 		//dash
-		_dashInput.Disable();
-		_dashInput.performed -= DashPerformed;
-		_dashInput.canceled -= DashCancelled;
+		_sprintInput.Disable();
+		_sprintInput.performed -= SprintPerformed;
+		_sprintInput.canceled -= SprintCancelled;
 	}
 
 	private void MovePerformed(InputAction.CallbackContext context)
@@ -321,14 +321,13 @@ public class PlayerController : MonoBehaviour
 
 	#region Dash Inputs
 
-	private void DashPerformed(InputAction.CallbackContext context)
+	private void SprintPerformed(InputAction.CallbackContext context)
 	{
-		if (context.interaction is TapInteraction) ((IGameplayControllable)GameplayAgent).DashPerformed();
-		else if (context.interaction is HoldInteraction) ((IGameplayControllable)GameplayAgent).DashHeld();
+		((IGameplayControllable)GameplayAgent).SprintPerformed();
 	}
-	private void DashCancelled(InputAction.CallbackContext context)
+	private void SprintCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).DashCancelled();
+		((IGameplayControllable)GameplayAgent).SprintCancelled();
 	}
 	
 	#endregion

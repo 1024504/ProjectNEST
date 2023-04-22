@@ -19,7 +19,7 @@ public class MothShootState : AntAIState
 		base.Enter();
 		_agent.MoveCancelled();
 		_agent.JumpCancelled();
-		_agent.DashCancelled();
+		_agent.SprintCancelled();
 		StartCoroutine(AttackAnimation());
 	}
 

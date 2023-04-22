@@ -481,51 +481,9 @@ public class Player : MonoBehaviour, IGameplayControllable
 	{
 		
 	}
-	
 
-	public void DashPerformed()
+	public void SprintPerformed()
 	{
-		// last a fixed number of frames
-
-		if (!_terrainDetection.isGrounded) return;
-		if (_dashCoolingDown) return;
-		
-		_isDashing = true;
-		_dashCoolingDown = true;
-		ShootCancelled();
-
-		StartCoroutine(Dash());
-	}
-	
-	private IEnumerator Dash()
-	{
-		OnPlayerDash?.Invoke();
-		
-		float counter = 0;
-		
-		float dashInput = _lateralMoveInput;
-		if (dashInput == 0) dashInput = _view.right.x;
-		
-		while (counter < dashDuration)
-		{
-			counter += Time.fixedDeltaTime;
-			_rb.velocity = new Vector2(dashInput * dashVelocity, _rb.velocity.y);
-			yield return new WaitForFixedUpdate();
-		}
-		
-		_isDashing = false;
-		StartCoroutine(DashCooldown());
-	}
-
-	private IEnumerator DashCooldown()
-	{
-		yield return new WaitForSeconds(dashCooldownDuration);
-		_dashCoolingDown = false;
-	}
-
-	public void DashHeld()
-	{
-		//Sprint
 		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
 		_sprintCoroutine = StartCoroutine(SprintJumpCheck());
 	}
@@ -540,9 +498,8 @@ public class Player : MonoBehaviour, IGameplayControllable
 		_currentSpeed = sprintSpeed;
 	}
 
-	public void DashCancelled()
+	public void SprintCancelled()
 	{
-		//after dash. Collisions etc. 
 		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
 		_currentSpeed = walkSpeed;
 	}

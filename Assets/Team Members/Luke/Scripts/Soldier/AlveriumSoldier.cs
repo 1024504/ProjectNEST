@@ -326,12 +326,12 @@ public class AlveriumSoldier : EnemyBody, IGameplayControllable, ISense
 		
 	}
 
-	public void DashHeld()
+	public void SprintPerformed()
 	{
 		
 	}
 
-	public void DashCancelled()
+	public void SprintCancelled()
 	{
 		
 	}

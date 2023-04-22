@@ -55,10 +55,8 @@ public interface IGameplayControllable
 
 	public void MedKitCancelled();
 
-	public void DashPerformed();
+	public void SprintPerformed();
 
-	public void DashHeld();
-
-	public void DashCancelled();
+	public void SprintCancelled();
 
 }

@@ -28,18 +28,18 @@ public class MothGetInRangeOfTargetState : AntAIState
 
 		if (Mathf.Abs(_verticalMovementInput) < 1f)
 		{
-			_agent.DashCancelled();
+			_agent.SprintCancelled();
 			_agent.JumpCancelled();
 		}
 		else if (_verticalMovementInput > 0)
 		{
-			_agent.DashCancelled();
+			_agent.SprintCancelled();
 			_agent.JumpPerformed();
 		}
 		else
 		{
 			_agent.JumpCancelled();
-			_agent.DashHeld();
+			_agent.SprintPerformed();
 		}
 
 		if (Mathf.Abs(_lateralMovementInput) < 1f)
@@ -66,6 +66,6 @@ public class MothGetInRangeOfTargetState : AntAIState
 		base.Exit();
 		
 		_agent.JumpCancelled();
-		_agent.DashCancelled();
+		_agent.SprintCancelled();
 	}
 }
