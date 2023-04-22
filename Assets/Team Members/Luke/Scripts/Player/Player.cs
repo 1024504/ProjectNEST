@@ -420,6 +420,16 @@ public class Player : MonoBehaviour, IControllable
 		
 	}
 
+	public void ResumePerformed()
+	{
+		GameManager.Instance.Resume();
+	}
+
+	public void ResumeCancelled()
+	{
+		
+	}
+
 	#region Weapons Testing
 
 	public void Weapon1Performed()

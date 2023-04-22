@@ -38,6 +38,10 @@ public interface IControllable
 	public void PausePerformed();
 
 	public void PauseCancelled();
+	
+	public void ResumePerformed();
+	
+	public void ResumeCancelled();
 
 	public void Weapon1Performed();
 

@@ -16,10 +16,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if ((IControllable)value == null) return;
 			DisableGameplayInputs();
-			//pause menu
-			_pauseInput.Disable();
-			_pauseInput.performed -= PausePerformed;
-			_pauseInput.canceled -= PauseCancelled;
+			
 			gameplayAgent = value;
 			EnableGameplayInputs();
 		}
@@ -38,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
 	//pause game
 	private InputAction _pauseInput;
+	private InputAction _resumeInput;
 	
 	//testing for weapons
 	private InputAction _weapon1Input;
@@ -71,6 +69,7 @@ public class PlayerController : MonoBehaviour
 			_weapon3Input = Controls.Player.Weapon3;
 			_weaponScrollInput = Controls.Player.WeaponScroll;
 			_pauseInput = Controls.Player.Pause;
+			_resumeInput = Controls.UI.Resume;
 			_useMedKit = Controls.Player.MedKit;
 			_sprintInput = Controls.Player.Sprint;
 			
@@ -81,10 +80,6 @@ public class PlayerController : MonoBehaviour
 	private void OnDisable()
 	{
 		if ((IControllable)GameplayAgent != null) DisableGameplayInputs();
-		//pause menu
-		_pauseInput.Disable();
-		_pauseInput.performed -= PausePerformed;
-		_pauseInput.canceled -= PauseCancelled;
 	}
 
 	private void EnableGameplayInputs()
@@ -123,6 +118,10 @@ public class PlayerController : MonoBehaviour
 		_pauseInput.Enable();
 		_pauseInput.performed += PausePerformed;
 		_pauseInput.canceled += PauseCancelled;
+		
+		_resumeInput.Enable();
+		_resumeInput.performed += ResumePerformed;
+		_resumeInput.canceled += ResumeCancelled;
 		
 		//weapons test
 		_weapon1Input.Enable();
@@ -179,6 +178,15 @@ public class PlayerController : MonoBehaviour
 		_action2Input.Disable();
 		_action2Input.performed -= Action2Performed;
 		_action2Input.canceled -= Action2Cancelled;
+		
+		//pause menu
+		_pauseInput.Disable();
+		_pauseInput.performed -= PausePerformed;
+		_pauseInput.canceled -= PauseCancelled;
+		
+		_resumeInput.Disable();
+		_resumeInput.performed -= ResumePerformed;
+		_resumeInput.canceled -= ResumeCancelled;
 
 		//weapons test
 		_weapon1Input.Disable();
@@ -287,6 +295,17 @@ public class PlayerController : MonoBehaviour
 	{
 		((IControllable)GameplayAgent).PauseCancelled();
 	}
+	
+	private void ResumePerformed(InputAction.CallbackContext context)
+	{
+		((IControllable)GameplayAgent).ResumePerformed();
+	}
+	
+	private void ResumeCancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)GameplayAgent).ResumeCancelled();
+	}
+
 	#region Weapons Testing
 
 	private void Weapon1Performed(InputAction.CallbackContext context)

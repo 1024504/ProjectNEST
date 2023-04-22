@@ -8,7 +8,6 @@ public class SaveData
 {
 	public string sceneName;
 	public Vector3 playerPosition;
-	public float playerHealth;
 	public bool hasShotgun;
 	public bool hasSniper;
 	public bool canDoubleJump;
@@ -17,13 +16,12 @@ public class SaveData
 	public List<ObjectiveStringPair> objectives;
 	public SettingsData SettingsData;
 	
-	public SaveData(string sceneNameString = "", Vector3 playerPositionVector3 = new (), float playerHealthFloat = 0f,
-		bool hasShotgunBool = false, bool hasSniperBool = false, bool canDoubleJumpBool = false, bool canGrappleBool = false,
-		int totalMedkitsInt = 0, List<ObjectiveStringPair> objectivesList = null, SettingsData settingsDataData = new ())
+	public SaveData(string sceneNameString = "", Vector3 playerPositionVector3 = new (), bool hasShotgunBool = false,
+		bool hasSniperBool = false, bool canDoubleJumpBool = false, bool canGrappleBool = false, int totalMedkitsInt = 0,
+		List<ObjectiveStringPair> objectivesList = null, SettingsData settingsDataData = new ())
 	{
 		sceneName = sceneNameString;
 		playerPosition = playerPositionVector3;
-		playerHealth = playerHealthFloat;
 		hasShotgun = hasShotgunBool;
 		hasSniper = hasSniperBool;
 		canDoubleJump = canDoubleJumpBool;

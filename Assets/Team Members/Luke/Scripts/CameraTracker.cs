@@ -11,7 +11,7 @@ public class CameraTracker : MonoBehaviour
 	public CameraFader cameraFader;
 	private Transform _cameraTransform;
 	public Transform playerTransform;
-	private Transform _playerReticleTransform;
+	public Transform playerReticleTransform;
 	private BoxCollider2D _collider;
 
 	[Header("Follow Variables")]
@@ -69,7 +69,7 @@ public class CameraTracker : MonoBehaviour
 		Player player = playerTransform.GetComponent<Player>();
 		player.cameraTransform = _cameraTransform;
 		CameraSize = player.currentWeapon.cameraSize;
-		_playerReticleTransform = player.lookTransform;
+		playerReticleTransform = player.lookTransform;
 		UpdateCollider();
 		_playerPrevPosition = playerTransform.position+Vector3.back;
 	}
@@ -87,7 +87,7 @@ public class CameraTracker : MonoBehaviour
 	{
 		if (Time.fixedDeltaTime == 0) return;
 		if (playerTransform == null) return;
-		Vector3 position = playerTransform.position+_playerReticleTransform.localPosition/3f+Vector3.up*3;
+		Vector3 position = playerTransform.position+playerReticleTransform.localPosition/3f+Vector3.up*3;
 		_cameraTransform.position = NextStep(Time.fixedDeltaTime, position+Vector3.back, _playerVelocity);
 		_playerVelocity = (position+Vector3.back - _playerPrevPosition) / Time.fixedDeltaTime;
 		_playerPrevPosition = position+Vector3.back;

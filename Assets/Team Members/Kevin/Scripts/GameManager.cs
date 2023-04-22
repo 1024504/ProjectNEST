@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
 	   {
 		   GameObject go = Instantiate(playerPrefab, saveData.playerPosition, Quaternion.identity);
 		   _player = go.GetComponent<Player>();
-		   _player.GetComponent<PlayerHealth>().HealthLevel = saveData.playerHealth;
 		   _player.doubleJumpEnabled = saveData.canDoubleJump;
 		   _player.grappleEnabled = saveData.canGrapple;
 		   _player.medkitCount = saveData.totalMedkits;
@@ -126,14 +125,24 @@ public class GameManager : MonoBehaviour
 	   cameraTracker = null;
 	   SceneManager.LoadScene("MainMenu");
    }
-
-   public void GameReset()
+   
+   public void BeginResetGame()
    {
-	   PlayerHealth playerHealth = _player.GetComponent<PlayerHealth>();
-	   playerHealth.HealthLevel += playerHealth.maxHealth; 
-	   if (saveData != null) _player.transform.position = saveData.playerPosition;
-	   else _player.transform.position = defaultSpawnPoint;
-	   Resume();
+	   Time.timeScale = 1f;
+	   uiManager.hUDGameObject.SetActive(false);
+	   cameraTracker.cameraFader.OnFadeOutComplete += CompleteResetGame;
+	   cameraTracker.cameraFader.FadeOut();
+   }
+   
+   private void CompleteResetGame()
+   {
+	   cameraTracker.cameraFader.OnFadeOutComplete -= CompleteResetGame;
+	   cameraTracker.transform.parent = LevelManager.Instance.destroyOnLoad.transform;
+	   _player = null;
+	   cameraTracker = null;
+	   if (saveData != null) SceneManager.LoadScene(saveData.sceneName);
+	   else SceneManager.LoadScene("Level1_Hangar&Lab");
+	   SceneManager.sceneLoaded += SetupAfterLevelLoad;
    }
 
    public void DisableInput() => playerController.Controls.Player.Disable();
@@ -147,7 +156,7 @@ public class GameManager : MonoBehaviour
 	   Time.timeScale = 0f;
 	   uiManager.Pause();
    }
-   
+
    public void Resume()
    {
 	   EnableInput();
@@ -201,7 +210,6 @@ public class GameManager : MonoBehaviour
 	   (
 		   SceneManager.GetActiveScene().name,
 		   checkpoint.transform.position,
-		   player.GetComponent<PlayerHealth>().HealthLevel,
 		   true,
 		   true,
 		   player.doubleJumpEnabled,

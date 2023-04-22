@@ -13,5 +13,6 @@ public class PlayerHealth : HealthBase
 	{
 		OnDeath?.Invoke();
 		healthLevel = 0;
+		Destroy(gameObject);
 	}
 }

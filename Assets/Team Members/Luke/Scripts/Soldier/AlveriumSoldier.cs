@@ -279,6 +279,16 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		
 	}
 
+	public void ResumePerformed()
+	{
+		
+	}
+
+	public void ResumeCancelled()
+	{
+		
+	}
+
 	#region Weapons Testing
 
 	public void Weapon1Performed()

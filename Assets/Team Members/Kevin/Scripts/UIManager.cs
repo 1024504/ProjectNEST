@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     public GameObject hUDGameObject;
     public GameObject resumeButton;
     public GameObject respawnButton;
+    public GameObject collectibleUI;
+    public GameObject controlsUI;
+    public GameObject settingsUI;
 
     [Header("Space")]
     [SerializeField] private GameObject pauseMenu;
@@ -182,8 +185,7 @@ public class UIManager : MonoBehaviour
     {
         deathMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(respawnButton);
-        respawnButton.GetComponent<UnityEngine.UI.Button>().Select();
-        gm.Pause();
+        respawnButton.GetComponent<Button>().Select();
         Cursor.visible = true;
         Time.timeScale = 0f;
     }
@@ -313,6 +315,7 @@ public class UIManager : MonoBehaviour
     
     public void Resume()
     {
+	    ReturnToMenu();
         pauseMenu.SetActive(false);
         Cursor.visible = false;
     }
@@ -333,9 +336,8 @@ public class UIManager : MonoBehaviour
     public void RespawnButton()
     {
         deathMenu.SetActive(false);
-        gm.GameReset();
+        gm.BeginResetGame();
         Cursor.visible = false;
-        //load last checkpoint
     }
     
     public void DimButtonGeneralAlpha() => ChangeButtonAlpha(generalOptionsButton.GetComponent<UnityEngine.UI.Button>(), 0.2f);
@@ -359,6 +361,9 @@ public class UIManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
+	    collectibleUI.SetActive(false);
+	    controlsUI.SetActive(false);
+	    settingsUI.SetActive(false);
 	    pauseMenu.SetActive(true);
 	    EventSystem.current.firstSelectedGameObject = resumeButton;
 	    resumeButton.GetComponent<Selectable>().Select();

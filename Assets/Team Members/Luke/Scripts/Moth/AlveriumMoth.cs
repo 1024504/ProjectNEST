@@ -228,6 +228,16 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	    
     }
 
+    public void ResumePerformed()
+    {
+	    
+    }
+
+    public void ResumeCancelled()
+    {
+	    
+    }
+
     public void Weapon1Performed()
     {
 	    
