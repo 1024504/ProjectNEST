@@ -12,7 +12,6 @@ public class PlayerAnimationManager : AnimationManagerBase
 	public AnimationClip jump;
 	public AnimationClip midAirFalling;
 	public AnimationClip landing;
-	public AnimationClip dash;
 	public AnimationClip sprint;
 
 	private Player _player;
@@ -33,7 +32,6 @@ public class PlayerAnimationManager : AnimationManagerBase
 		_player.OnPlayerJump += JumpAnimation;
 		_player.OnPlayerMidAirFalling += MidAirFallingAnimation;
 		_player.OnPlayerLanding += LandingAnimation;
-		_player.OnPlayerDash += DashAnimation;
 		_player.OnPlayerSprint += SprintAnimation;
 		_player.OnGunSwitch += WeaponSwapSFX;
 	}
@@ -46,7 +44,6 @@ public class PlayerAnimationManager : AnimationManagerBase
 		_player.OnPlayerJump -= JumpAnimation;
 		_player.OnPlayerMidAirFalling -= MidAirFallingAnimation;
 		_player.OnPlayerLanding -= LandingAnimation;
-		_player.OnPlayerDash -= DashAnimation;
 		_player.OnPlayerSprint -= SprintAnimation;
 		_player.OnGunSwitch -= WeaponSwapSFX;
 	}
@@ -86,13 +83,7 @@ public class PlayerAnimationManager : AnimationManagerBase
 		if (landing == null) return;
 		SetAnimator(landing);
 	}
-	
-	private void DashAnimation()
-	{
-		if (dash == null) return;
-		SetAnimator(dash);
-	}
-	
+
 	private void SprintAnimation()
 	{
 		if (sprint == null) return;

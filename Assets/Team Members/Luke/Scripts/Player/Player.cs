@@ -31,8 +31,6 @@ public class Player : MonoBehaviour, IGameplayControllable
 	public float jumpTime;
 	[Tooltip("How fast the player falls downwards, does not affect jump time, slightly affects maximum jump height.")]
 	public float gravityScale;
-	[Tooltip("The force that is applied to the dash direction.")]
-	public float dashForce;
 	[SerializeField] private Transform _view;
 	
 	[Header("Grapple")]
@@ -55,16 +53,6 @@ public class Player : MonoBehaviour, IGameplayControllable
 	
 	public bool doubleJumpEnabled = false;
 	private bool _doubleJumped = false;
-
-	[Header("Dash")]
-	[Tooltip("How fast the player moves while dashing.")]
-	public float dashVelocity;
-	[Tooltip("How long the player dashes for in seconds.")]
-	public float dashDuration;
-	[Tooltip("How long the player has to wait before dashing again in seconds.")]
-	public float dashCooldownDuration;
-	private bool _isDashing = false;
-	private bool _dashCoolingDown = false;
 
 	[Header("Player AIM")]
 	public Transform playerArms;
@@ -119,8 +107,7 @@ public class Player : MonoBehaviour, IGameplayControllable
 	public Action OnPlayerWalkBackwards;
 	public Action OnPlayerJump;
 	public Action OnPlayerMidAirFalling;
-	public Action OnPlayerLanding; // not sure about fading with walking/sprinting animation
-	public Action OnPlayerDash;
+	public Action OnPlayerLanding;
 	public Action OnPlayerSprint;
 	public Action OnInteract;
 
@@ -161,8 +148,6 @@ public class Player : MonoBehaviour, IGameplayControllable
 
 	private void Move(float input)
 	{
-		if (_isDashing) return;
-		
 		if (_isGrappled)
 		{
 			_rb.velocity += new Vector2(input * _currentSpeed * Time.fixedDeltaTime, 0);
@@ -370,7 +355,6 @@ public class Player : MonoBehaviour, IGameplayControllable
 
 	public void ShootPerformed()
 	{
-		if (_isDashing) return;
 		if (_currentSpeed >= sprintSpeed) return;
 		WeaponBase weaponBase = GetComponentInChildren<WeaponBase>();
 		weaponBase.isShooting = true;
