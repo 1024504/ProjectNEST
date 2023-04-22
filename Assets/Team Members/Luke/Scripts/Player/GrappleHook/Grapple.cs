@@ -18,8 +18,8 @@ public class Grapple : MonoBehaviour
 	[SerializeField]
 	private Transform ropeTransform;
 	private Renderer _ropeRenderer;
-	public float defaultRopeMaterialSpeed = 12;
-	public float defaultRopeWidth = 3f;
+	public float ropeWiggliness = 12;
+	public float ropeWidth = 3f;
 
 	private void OnEnable()
 	{
@@ -34,7 +34,7 @@ public class Grapple : MonoBehaviour
 		Vector3 position = _t.position;
 		Vector3 hookDirection = _hookGO.transform.position - position;
 		ropeTransform.position = position+hookDirection*0.5f;
-		ropeTransform.localScale = new Vector3(defaultRopeWidth, hookDirection.magnitude, 1);
+		ropeTransform.localScale = new Vector3(ropeWidth, hookDirection.magnitude, 1);
 		ropeTransform.rotation = Quaternion.LookRotation(Vector3.forward, hookDirection);
 		if (Vector2.Distance(_t.position, _hookGO.transform.position) > _grappleRange) ResetGrapple();
 	}
@@ -74,9 +74,9 @@ public class Grapple : MonoBehaviour
 			hook.OnHit -= GrappleHit;
 			Destroy(_hookGO);
 		}
-		_ropeRenderer.material.SetFloat("_Speed",defaultRopeMaterialSpeed);
+		_ropeRenderer.material.SetFloat("_Speed",ropeWiggliness);
 		_ropeRenderer.enabled = false;
-		ropeTransform.localScale = new Vector3(defaultRopeWidth, 0, 1);
+		ropeTransform.localScale = new Vector3(ropeWidth, 0, 1);
 		_canGrapple = true;
 	}
 }
