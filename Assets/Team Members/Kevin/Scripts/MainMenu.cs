@@ -12,7 +12,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-	public GameObject gameManagerPrefab;
 	private GameManager _gm;
 	[SerializeField]
 	private CameraFader cameraFader;
@@ -47,15 +46,22 @@ public class MainMenu : MonoBehaviour
 		{
 			saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(_destination));
 			loadButton.SetActive(true);
+			EventSystem.current.firstSelectedGameObject = loadButton;
 		}
 		else
 		{
 			Debug.Log("Save File Does Not Exist");
 			loadButton.SetActive(false);
+			EventSystem.current.firstSelectedGameObject = newGameButton;
 		}
         // BinaryFormatter bf = new BinaryFormatter();
         // SaveData data = (SaveData) bf.Deserialize(_file);
         // _file.Close();
+    }
+
+    public void Start()
+    {
+	    _gm = GameManager.Instance;
     }
 
     public void ReturnToMainMenuButton()
@@ -87,12 +93,6 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
-	    if (GameManager.Instance == null)
-	    {
-		    GameObject go = Instantiate(gameManagerPrefab);
-		    _gm = go.GetComponent<GameManager>();
-	    }
-	    else _gm = GameManager.Instance;
 	    _gm.gameLoadedFromFile = false;
 	    _sceneToLoad = newGameSceneName;
 	    menuButtons.SetActive(false);
@@ -102,12 +102,6 @@ public class MainMenu : MonoBehaviour
     
     public void LoadSavedGame()
     {
-	    if (GameManager.Instance == null)
-	    {
-		    GameObject go = Instantiate(gameManagerPrefab);
-		    _gm = go.GetComponent<GameManager>();
-	    }
-	    else _gm = GameManager.Instance;
 	    _gm.saveData = saveData;
 	    _gm.gameLoadedFromFile = true;
 	    _sceneToLoad = saveData.sceneName;

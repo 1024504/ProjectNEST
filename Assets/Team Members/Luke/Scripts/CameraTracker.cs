@@ -85,6 +85,7 @@ public class CameraTracker : MonoBehaviour
 	public void FixedUpdate()
 	{
 		if (Time.fixedDeltaTime == 0) return;
+		if (playerTransform == null) return;
 		Vector3 position = playerTransform.position+_playerReticleTransform.localPosition/3f+Vector3.up*3;
 		_cameraTransform.position = NextStep(Time.fixedDeltaTime, position+Vector3.back, _playerVelocity);
 		_playerVelocity = (position+Vector3.back - _playerPrevPosition) / Time.fixedDeltaTime;

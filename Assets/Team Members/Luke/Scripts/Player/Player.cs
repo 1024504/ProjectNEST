@@ -144,7 +144,6 @@ public class Player : MonoBehaviour, IGameplayControllable
 		ui.player = this;
 		ui.SubscribeToPlayerEvents();
 		UpdateReticleDistance();
-		GameManager.Instance.Resume();
 	}
 
 	private void OnDisable()
