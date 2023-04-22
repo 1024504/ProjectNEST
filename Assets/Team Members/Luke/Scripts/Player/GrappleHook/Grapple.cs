@@ -19,7 +19,7 @@ public class Grapple : MonoBehaviour
 	private Transform ropeTransform;
 	private Renderer _ropeRenderer;
 	public float ropeWiggliness = 12;
-	public float ropeWidth = 3f;
+	public float ropeWidth = 5f;
 
 	private void OnEnable()
 	{
