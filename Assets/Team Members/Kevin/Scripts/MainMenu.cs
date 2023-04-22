@@ -12,6 +12,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+	public GameObject gameManagerPrefab;
 	private GameManager _gm;
 	[SerializeField]
 	private CameraFader cameraFader;
@@ -40,23 +41,23 @@ public class MainMenu : MonoBehaviour
     
     public void Awake()
     {
-        mmAnimator.CrossFade("Opening", 0, 0);
-        _destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
-        if (File.Exists(_destination))
-		{
-			saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(_destination));
-			loadButton.SetActive(true);
-			EventSystem.current.firstSelectedGameObject = loadButton;
-		}
-		else
-		{
-			Debug.Log("Save File Does Not Exist");
-			loadButton.SetActive(false);
-			EventSystem.current.firstSelectedGameObject = newGameButton;
-		}
-        // BinaryFormatter bf = new BinaryFormatter();
-        // SaveData data = (SaveData) bf.Deserialize(_file);
-        // _file.Close();
+	    if (GameManager.Instance == null) Instantiate(gameManagerPrefab);
+	    mmAnimator.CrossFade("Opening", 0, 0);
+	    _destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
+	    if (File.Exists(_destination))
+	    {
+		    saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(_destination));
+		    loadButton.SetActive(true);
+		    EventSystem.current.firstSelectedGameObject = loadButton;
+		    loadButton.GetComponent<Selectable>().Select();
+	    }
+	    else
+	    {
+		    Debug.Log("Save File Does Not Exist");
+		    loadButton.SetActive(false);
+		    EventSystem.current.firstSelectedGameObject = newGameButton;
+		    newGameButton.GetComponent<Selectable>().Select();
+	    }
     }
 
     public void Start()

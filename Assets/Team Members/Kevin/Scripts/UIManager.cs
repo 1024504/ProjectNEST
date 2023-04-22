@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
             Instance = this;
         }
 
-        gm = GameManager.Instance;
+        gm = GetComponentInParent<GameManager>();
         
         //player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
         //playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
@@ -326,6 +326,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         deathMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         gm.BeginQuitGame();
     }
 

@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
    public void BeginQuitGame()
    {
-	   uiManager.gameObject.SetActive(false);
+	   uiManager.hUDGameObject.SetActive(false);
 	   cameraTracker.cameraFader.OnFadeOutComplete += CompleteQuitGame;
 	   cameraTracker.cameraFader.FadeOut();
    }
