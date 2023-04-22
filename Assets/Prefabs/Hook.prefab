@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194617052679267827}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.32, y: -0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 5}
+  m_LocalPosition: {x: 0.594, y: -0, z: 0}
+  m_LocalScale: {x: 0.675, y: 0.675, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3895376453721968972}
@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 3673391558602588352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8893352545831550639}
@@ -162,9 +162,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000038146973, y: -0.0000009536743}
+  m_Offset: {x: 0.78, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.43
 --- !u!50 &8277171060489888835
 Rigidbody2D:
   serializedVersion: 4
@@ -198,4 +198,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aade3e0fd92e1b4e9fe03d550b38a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grapplePlatform: {fileID: 0}
   particleSystemSparks: {fileID: 9167456215751813247, guid: 90fe28735507c3444af4b5653558c734, type: 3}

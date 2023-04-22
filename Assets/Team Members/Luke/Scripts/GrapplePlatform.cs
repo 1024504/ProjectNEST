@@ -59,4 +59,11 @@ public class GrapplePlatform : MonoBehaviour
         if ( _progress > Mathf.PI || isGrappled || constantlyMoving) _progress += Time.fixedDeltaTime;
         else _progress -= Time.fixedDeltaTime;
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+	    Hook hook = col.GetComponent<Hook>();
+	    if (hook == null) return;
+	    hook.ConnectGrapplePlatform(this);
+    }
 }
