@@ -96,6 +96,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "WeaponScroll",
+                    "type": "Button",
+                    "id": "d585dd2b-9138-49d8-9ea2-61f11f53c5c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "342f5751-dd97-4f8d-9780-9b41c04d741a",
@@ -495,6 +504,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52488397-a0ca-4ad5-a675-58766004b224",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "WeaponScroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

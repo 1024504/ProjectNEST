@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 		get => gameplayAgent;
 		set
 		{
-			if ((IGameplayControllable)value == null) return;
+			if ((IControllable)value == null) return;
 			DisableGameplayInputs();
 			gameplayAgent = value;
 			EnableGameplayInputs();
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 	private InputAction _weapon1Input;
 	private InputAction _weapon2Input;
 	private InputAction _weapon3Input;
+	private InputAction _weaponScrollInput;
 	
 	//use medkit
 	private InputAction _useMedKit;
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
 		if (GameManager.Instance != null) GameManager.Instance.playerController = this;
 		Controls = new();
 
-		if ((IGameplayControllable) GameplayAgent != null)
+		if ((IControllable) GameplayAgent != null)
 		{
 			//Gameplay inputs
 			_moveInput = Controls.Player.Move;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
 			_weapon1Input = Controls.Player.Weapon1;
 			_weapon2Input = Controls.Player.Weapon2;
 			_weapon3Input = Controls.Player.Weapon3;
+			_weaponScrollInput = Controls.Player.WeaponScroll;
 			_pauseInput = Controls.Player.Pause;
 			_useMedKit = Controls.Player.MedKit;
 			_sprintInput = Controls.Player.Sprint;
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
 	private void OnDisable()
 	{
-		if ((IGameplayControllable)GameplayAgent != null) DisableGameplayInputs();
+		if ((IControllable)GameplayAgent != null) DisableGameplayInputs();
 	}
 
 	private void EnableGameplayInputs()
@@ -127,6 +129,10 @@ public class PlayerController : MonoBehaviour
 		_weapon3Input.performed += Weapon3Performed;
 		_weapon3Input.canceled += Weapon3Cancelled;
 		
+		_weaponScrollInput.Enable();
+		_weaponScrollInput.performed += WeaponScrollPerformed;
+		_weaponScrollInput.canceled += WeaponScrollCancelled;
+		
 		//medkit
 		_useMedKit.Enable();
 		_useMedKit.performed += MedKitPerformed;
@@ -167,7 +173,7 @@ public class PlayerController : MonoBehaviour
 		_action2Input.canceled -= Action2Cancelled;
 		
 		//pause menu
-		_pauseInput.Enable();
+		_pauseInput.Disable();
 		_pauseInput.performed -= PausePerformed;
 		_pauseInput.canceled -= PauseCancelled;
 		
@@ -184,6 +190,10 @@ public class PlayerController : MonoBehaviour
 		_weapon3Input.performed -= Weapon3Performed;
 		_weapon3Input.canceled -= Weapon3Cancelled;
 		
+		_weaponScrollInput.Disable();
+		_weaponScrollInput.performed -= WeaponScrollPerformed;
+		_weaponScrollInput.canceled -= WeaponScrollCancelled;
+
 		//medkit
 		_useMedKit.Disable();
 		_useMedKit.performed -= MedKitPerformed;
@@ -197,112 +207,122 @@ public class PlayerController : MonoBehaviour
 
 	private void MovePerformed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).MovePerformed(Mathf.Ceil(context.ReadValue<float>()));
+		((IControllable)GameplayAgent).MovePerformed(Mathf.Ceil(context.ReadValue<float>()));
 	}
 
 	private void MoveCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).MoveCancelled();
+		((IControllable)GameplayAgent).MoveCancelled();
 	}
 
 	private void AimPerformed(InputAction.CallbackContext context)
 	{
-		if (context.control.device == Mouse.current) ((IGameplayControllable)GameplayAgent).AimPerformedMouse(context.ReadValue<Vector2>());
-		else if (context.control.device == Gamepad.current) ((IGameplayControllable)GameplayAgent).AimPerformedGamepad(context.ReadValue<Vector2>());
+		if (context.control.device == Mouse.current) ((IControllable)GameplayAgent).AimPerformedMouse(context.ReadValue<Vector2>());
+		else if (context.control.device == Gamepad.current) ((IControllable)GameplayAgent).AimPerformedGamepad(context.ReadValue<Vector2>());
 	}
 
 	private void AimCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).AimCancelled();
+		((IControllable)GameplayAgent).AimCancelled();
 	}
 
 	private void JumpPerformed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).JumpPerformed();
+		((IControllable)GameplayAgent).JumpPerformed();
 	}
 
 	private void JumpCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).JumpCancelled();
+		((IControllable)GameplayAgent).JumpCancelled();
 	}
 
 	private void ShootPerformed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).ShootPerformed();
+		((IControllable)GameplayAgent).ShootPerformed();
 	}
 
 	private void ShootCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).ShootCancelled();
+		((IControllable)GameplayAgent).ShootCancelled();
 	}
 
 	private void Action1Performed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Action1Performed();
+		((IControllable)GameplayAgent).Action1Performed();
 	}
 
 	private void Action1Cancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Action1Cancelled();
+		((IControllable)GameplayAgent).Action1Cancelled();
 	}
 
 	private void Action2Performed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Action2Performed();
+		((IControllable)GameplayAgent).Action2Performed();
 	}
 
 	private void Action2Cancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Action2Cancelled();
+		((IControllable)GameplayAgent).Action2Cancelled();
 	}
 	
 	private void Action3Performed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Action3Performed();
+		((IControllable)GameplayAgent).Action3Performed();
 	}
 
 	private void Action3Cancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Action3Cancelled();
+		((IControllable)GameplayAgent).Action3Cancelled();
 	}
 
 	private void PausePerformed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).PausePerformed();
+		((IControllable)GameplayAgent).PausePerformed();
 	}
 	private void PauseCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).PauseCancelled();
+		((IControllable)GameplayAgent).PauseCancelled();
 	}
 	#region Weapons Testing
 
 	private void Weapon1Performed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Weapon1Performed();
+		((IControllable)GameplayAgent).Weapon1Performed();
 	}
 	
 	private void Weapon1Cancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Weapon1Cancelled();
+		((IControllable)GameplayAgent).Weapon1Cancelled();
 	}
 	private void Weapon2Performed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Weapon2Performed();
+		((IControllable)GameplayAgent).Weapon2Performed();
 	}
 	
 	private void Weapon2Cancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Weapon2Cancelled();
+		((IControllable)GameplayAgent).Weapon2Cancelled();
 	}
 	
 	private void Weapon3Performed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Weapon3Performed();
+		((IControllable)GameplayAgent).Weapon3Performed();
 	}
 	
 	private void Weapon3Cancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).Weapon3Cancelled();
+		((IControllable)GameplayAgent).Weapon3Cancelled();
+	}
+	
+	private void WeaponScrollPerformed(InputAction.CallbackContext context)
+	{
+		((IControllable)GameplayAgent).WeaponScrollPerformed();
+	}
+	
+	private void WeaponScrollCancelled(InputAction.CallbackContext context)
+	{
+		((IControllable)GameplayAgent).WeaponScrollCancelled();
 	}
 
 	#endregion
@@ -311,11 +331,11 @@ public class PlayerController : MonoBehaviour
 
 	private void MedKitPerformed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).MedKitPerformed();
+		((IControllable)GameplayAgent).MedKitPerformed();
 	}
 	private void MedKitCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).MedKitCancelled();
+		((IControllable)GameplayAgent).MedKitCancelled();
 	}
 	#endregion
 
@@ -323,11 +343,11 @@ public class PlayerController : MonoBehaviour
 
 	private void SprintPerformed(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).SprintPerformed();
+		((IControllable)GameplayAgent).SprintPerformed();
 	}
 	private void SprintCancelled(InputAction.CallbackContext context)
 	{
-		((IGameplayControllable)GameplayAgent).SprintCancelled();
+		((IControllable)GameplayAgent).SprintCancelled();
 	}
 	
 	#endregion
