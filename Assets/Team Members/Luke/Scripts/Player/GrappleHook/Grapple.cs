@@ -15,14 +15,27 @@ public class Grapple : MonoBehaviour
 
 	private Transform _t;
 
+	[SerializeField]
+	private Transform ropeTransform;
+	private Renderer _ropeRenderer;
+	public float defaultRopeMaterialSpeed = 12;
+	public float defaultRopeWidth = 3f;
+
 	private void OnEnable()
 	{
 		_t = transform;
+		_ropeRenderer = ropeTransform.GetComponent<Renderer>();
+		_ropeRenderer.enabled = false;
 	}
 
 	public void FixedUpdate()
 	{
 		if (_hookGO == null) return;
+		Vector3 position = _t.position;
+		Vector3 hookDirection = _hookGO.transform.position - position;
+		ropeTransform.position = position+hookDirection*0.5f;
+		ropeTransform.localScale = new Vector3(defaultRopeWidth, hookDirection.magnitude, 1);
+		ropeTransform.rotation = Quaternion.LookRotation(Vector3.forward, hookDirection);
 		if (Vector2.Distance(_t.position, _hookGO.transform.position) > _grappleRange) ResetGrapple();
 	}
 
@@ -35,12 +48,13 @@ public class Grapple : MonoBehaviour
 		Hook hook = _hookGO.GetComponent<Hook>();
 		hook.OnHit += GrappleHit;
 		hook.SetVelocity(grappleVelocity);
-		
+		_ropeRenderer.enabled = true;
 		_grappleTimer = StartCoroutine(ResetTimer(cooldown));
 	}
 
 	private void GrappleHit(Transform grappleHitTransform)
 	{
+		_ropeRenderer.material.SetFloat("_Speed",0);
 		StopCoroutine(_grappleTimer);
 		OnHit?.Invoke(grappleHitTransform);
 	}
@@ -60,6 +74,9 @@ public class Grapple : MonoBehaviour
 			hook.OnHit -= GrappleHit;
 			Destroy(_hookGO);
 		}
+		_ropeRenderer.material.SetFloat("_Speed",defaultRopeMaterialSpeed);
+		_ropeRenderer.enabled = false;
+		ropeTransform.localScale = new Vector3(defaultRopeWidth, 0, 1);
 		_canGrapple = true;
 	}
 }
