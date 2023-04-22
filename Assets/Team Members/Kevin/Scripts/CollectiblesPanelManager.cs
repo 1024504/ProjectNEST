@@ -13,24 +13,37 @@ public class CollectiblesPanelManager : MonoBehaviour
     public GameObject bio1;
     public GameObject bio2;
     public GameObject bio3;
-
-    public CollectiblesBag playerBag;
-    public GameManager instance;
-    public void Start()
+    
+    public CollectiblesBag colBag;
+    
+    public void OnEnable()
     {
-        instance = GameManager.Instance;
+        colBag = GameManager.Instance.playerPrefab.GetComponentInChildren<CollectiblesBag>();
     }
+    
+    /*public void OnCollectedUpdate()
+    {
+        if (colBag.hasPlaza1) plaza1.SetActive(true);
+        if (colBag.hasPlaza2) plaza2.SetActive(true);
+        if (colBag.hasPlaza3) plaza3.SetActive(true);
+        if (colBag.hasRes1) res1.SetActive(true);
+        if (colBag.hasRes2) res2.SetActive(true);
+        if (colBag.hasRes3) res3.SetActive(true);
+        if (colBag.hasBio1) bio1.SetActive(true);
+        if (colBag.hasBio2) bio2.SetActive(true);
+        if (colBag.hasBio3) bio3.SetActive(true);
+    }*/
     public void OnCollectedUpdate()
     {
-        if (playerBag.GetComponent<CollectiblesBag>().hasPlaza1) plaza1.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasPlaza2) plaza2.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasPlaza3) plaza3.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasRes1) res1.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasRes2) res2.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasRes3) res3.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasBio1) bio1.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasBio2) bio2.SetActive(true);
-        if (playerBag.GetComponent<CollectiblesBag>().hasBio3) bio3.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasPlaza1) plaza1.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasPlaza2) plaza2.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasPlaza3) plaza3.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasRes1) res1.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasRes2) res2.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasRes3) res3.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasBio1) bio1.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasBio2) bio2.SetActive(true);
+        if (GameManager.Instance.playerController.GetComponent<CollectiblesBag>().hasBio3) bio3.SetActive(true);
     }
 
 }
