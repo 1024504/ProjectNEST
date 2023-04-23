@@ -6,16 +6,19 @@ using UnityEngine;
 public class MuzzleFlashTrigger : MonoBehaviour
 {
 	private ParticleSystem _muzzleFlashParticles;
-
+	private WeaponBase _weaponBase;
+	
 	private void OnEnable()
 	{
 		_muzzleFlashParticles = GetComponent<ParticleSystem>();
-		GetComponentInParent<WeaponBase>().OnShoot += TriggerParticles;
+		_weaponBase = GetComponentInParent<WeaponBase>();
+		if (_weaponBase != null) GetComponentInParent<WeaponBase>().OnShoot += TriggerParticles;
 	}
 	
 	private void OnDisable()
 	{
-		GetComponentInParent<WeaponBase>().OnShoot -= TriggerParticles;
+		
+		if (_weaponBase != null) _weaponBase.OnShoot -= TriggerParticles;
 	}
 
 	private void TriggerParticles()

@@ -7,7 +7,7 @@ public class EnemyBody : MonoBehaviour
 {
 	public HealthBase health;
 
-	private void OnEnable()
+	protected virtual void OnEnable()
 	{
 		health = GetComponentInParent<HealthBase>();
 	}

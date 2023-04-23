@@ -43,8 +43,9 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	public Action OnAttackShoot;
 	public LayerMask visionLayerMask;
 
-	private void OnEnable()
+	protected override void OnEnable()
 	{
+		base.OnEnable();
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
 	}

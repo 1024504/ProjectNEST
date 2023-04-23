@@ -50,6 +50,7 @@ public class Player : MonoBehaviour, IControllable
 	private Vector2 _aimInput;
 	private Coroutine _coroutine;
 	private bool _justJumped = false;
+	private bool _isSprinting;
 	
 	public bool doubleJumpEnabled = false;
 	private bool _doubleJumped = false;
@@ -279,7 +280,14 @@ public class Player : MonoBehaviour, IControllable
 
 	public void MovePerformed(float lateralInput)
 	{
+		if (_isSprinting)
+		{
+			if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
+			_sprintCoroutine = StartCoroutine(SprintJumpCheck());
+		}
+
 		_lateralMoveInput = lateralInput;
+		
 	}
 
 	public void MoveCancelled()
@@ -287,6 +295,7 @@ public class Player : MonoBehaviour, IControllable
 		_lateralMoveInput = 0;
 		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
 		_currentSpeed = walkSpeed;
+		if (GameManager.Instance.saveData.SettingsData.ToggleSprint) _isSprinting = false;
 	}
 
 	public void AimPerformedMouse(Vector2 aimInput)
@@ -509,6 +518,7 @@ public class Player : MonoBehaviour, IControllable
 		{
 			if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
 			_currentSpeed = walkSpeed;
+			_isSprinting = false;
 		}
 	}
 
@@ -520,6 +530,7 @@ public class Player : MonoBehaviour, IControllable
 		}
 		ShootCancelled();
 		_currentSpeed = sprintSpeed;
+		_isSprinting = true;
 	}
 
 	public void SprintCancelled()
@@ -527,6 +538,7 @@ public class Player : MonoBehaviour, IControllable
 		if (GameManager.Instance.saveData.SettingsData.ToggleSprint) return;
 		if (_sprintCoroutine != null) StopCoroutine(_sprintCoroutine);
 		_currentSpeed = walkSpeed;
+		_isSprinting = false;
 	}
 
 	private void ChangeWeapon(int weaponNo)

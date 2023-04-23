@@ -52,25 +52,9 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 
 	public float rotateSpeed = 1;
 
-	private enum Joints
+	protected override void OnEnable()
 	{
-		Body1,
-		Body2,
-		Body3,
-		Arm1,
-		Arm2,
-		Arm3,
-		Head1,
-		Head2,
-		Head3,
-		FrontLeg1,
-		FrontLeg2,
-		BackLeg1,
-		BackLeg2
-	}
-	
-	private void OnEnable()
-	{
+		base.OnEnable();
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
         _terrainDetection = (SoldierTerrainDetection)GetComponentInChildren<TerrainDetection>();
@@ -167,14 +151,8 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 
 	public void MovePerformed(float lateralInput)
 	{
-		if (_lateralMoveInput >= 0 && lateralInput < 0)
-		{
-			view.localRotation = Quaternion.identity;
-		}
-		else if (_lateralMoveInput <= 0 && lateralInput > 0)
-		{
-			view.localRotation = Quaternion.Euler(0, 180, 0);
-		}
+		if (_lateralMoveInput >= 0 && lateralInput < 0) view.localRotation = Quaternion.identity;
+		else if (_lateralMoveInput <= 0 && lateralInput > 0) view.localRotation = Quaternion.Euler(0, 180, 0);
 
 		_lateralMoveInput = lateralInput;
         _terrainDetection.lateralMoveInput = -Mathf.Abs(lateralInput);

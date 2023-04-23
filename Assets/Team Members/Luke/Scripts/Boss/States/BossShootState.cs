@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class BossShootState : AntAIState
 {
-	private AlveriumMoth _agent;
+	private AlveriumBoss _agent;
 	
 	public override void Create(GameObject aGameObject)
 	{
 		base.Create(aGameObject);
-		_agent = aGameObject.GetComponent<AlveriumMoth>();
+		_agent = aGameObject.GetComponent<AlveriumBoss>();
 	}
 
 	public override void Enter()
 	{
 		base.Enter();
-		
+		_agent.ShootPerformed();
 	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)
