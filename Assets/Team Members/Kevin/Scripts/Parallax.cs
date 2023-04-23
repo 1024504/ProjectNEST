@@ -18,6 +18,6 @@ public class Parallax : MonoBehaviour
     {
         if (cam == null) return;
         float distance = (cam.transform.position.x * parallaxEffect);
-        transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.y);
+        transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
     }
 }
