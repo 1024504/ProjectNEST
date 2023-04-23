@@ -10,9 +10,6 @@ public class Shotgun : WeaponBase
     public float reloadTime;
     public bool shotCooldown = true;
     public float shotCooldownTime;
-    
-    public delegate void OnBulletUpdate();
-    public event OnBulletUpdate OnShoot;
 
     protected override void OnEnable()
     {

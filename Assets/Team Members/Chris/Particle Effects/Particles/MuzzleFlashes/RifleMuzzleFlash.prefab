@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4873,7 +4873,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9715,6 +9715,7 @@ GameObject:
   - component: {fileID: 7261938107666509356}
   - component: {fileID: 8099019180466868450}
   - component: {fileID: 1793471204810705264}
+  - component: {fileID: 1711826299777475383}
   m_Layer: 0
   m_Name: RifleMuzzleFlash
   m_TagString: Untagged
@@ -9757,7 +9758,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14530,6 +14531,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1711826299777475383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992736096233718047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa84bba3d97431478841806a4c2b09d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzleFlashParticles: {fileID: 8099019180466868450}
 --- !u!1 &7714568766025313055
 GameObject:
   m_ObjectHideFlags: 0
@@ -14580,7 +14594,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

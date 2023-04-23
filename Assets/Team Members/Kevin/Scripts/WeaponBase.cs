@@ -16,6 +16,8 @@ public class WeaponBase : MonoBehaviour, IShootable
     public float cameraSize;
     [HideInInspector]
     public float bulletRange;
+    
+    public Action OnShoot;
 
     protected virtual void OnEnable()
     {
