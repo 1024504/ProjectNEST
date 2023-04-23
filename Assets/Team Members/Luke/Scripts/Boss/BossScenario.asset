@@ -13,7 +13,111 @@ MonoBehaviour:
   m_Name: BossScenario
   m_EditorClassIdentifier: 
   conditions:
-    list: []
-  actions: []
-  goals: []
-  worldStates: []
+    list:
+    - id: 0
+      name: TargetIsDead
+    - id: 1
+      name: TargetIsBelowHead
+    - id: 2
+      name: TargetInMeleeRange
+    - id: 3
+      name: CanRun
+    - id: 4
+      name: CanShoot
+    - id: 5
+      name: CanAttack
+  actions:
+  - name: RunToTarget
+    isDefault: 0
+    state: {fileID: 3774131066428391294, guid: 22053be0cee204e4490d42395b1465e9, type: 3}
+    cost: 0
+    position: {x: 420, y: 240}
+    pre:
+    - id: 1
+      value: 1
+    - id: 2
+      value: 0
+    - id: 3
+      value: 1
+    post:
+    - id: 2
+      value: 1
+    - id: 5
+      value: 1
+  - name: Shoot
+    isDefault: 0
+    state: {fileID: 5325402999082943657, guid: 3d9ab631eb9035c46acb922f008dcf5b, type: 3}
+    cost: 0
+    position: {x: 420, y: 520}
+    pre:
+    - id: 1
+      value: 0
+    - id: 4
+      value: 1
+    post:
+    - id: 0
+      value: 1
+  - name: MeleeAttack
+    isDefault: 0
+    state: {fileID: 4084666102300086292, guid: 431a58fd8ec57764994d0c8b0c401292, type: 3}
+    cost: 0
+    position: {x: 620, y: 240}
+    pre:
+    - id: 1
+      value: 1
+    - id: 2
+      value: 1
+    - id: 5
+      value: 1
+    post:
+    - id: 0
+      value: 1
+  - name: PrepareToRun
+    isDefault: 0
+    state: {fileID: 7898356127783485964, guid: bf82ba95e73dfdf478d5738c547f145f, type: 3}
+    cost: 0
+    position: {x: 220, y: 240}
+    pre:
+    - id: 3
+      value: 0
+    - id: 1
+      value: 1
+    post:
+    - id: 3
+      value: 1
+  - name: WalkUnderTarget
+    isDefault: 0
+    state: {fileID: 8999819924512679849, guid: d5709291bfe9fe84792a557227043c1a, type: 3}
+    cost: 0
+    position: {x: 220, y: 520}
+    pre:
+    - id: 1
+      value: 0
+    - id: 4
+      value: 0
+    post:
+    - id: 4
+      value: 1
+  goals:
+  - name: KillTarget
+    isDefault: 1
+    position: {x: 220, y: 40}
+    conditions:
+    - id: 0
+      value: 1
+  worldStates:
+  - position: {x: 216, y: 782}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 1
+      value: 1
+    - id: 2
+      value: 0
+    - id: 3
+      value: 0
+    - id: 4
+      value: 0
+    - id: 5
+      value: 0

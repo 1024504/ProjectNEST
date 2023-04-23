@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class MuzzleFlashTrigger : MonoBehaviour
 {
-	[SerializeField] private ParticleSystem muzzleFlashParticles;
+	private ParticleSystem _muzzleFlashParticles;
 
 	private void OnEnable()
 	{
+		_muzzleFlashParticles = GetComponent<ParticleSystem>();
 		GetComponentInParent<WeaponBase>().OnShoot += TriggerParticles;
 	}
 	
@@ -19,6 +20,6 @@ public class MuzzleFlashTrigger : MonoBehaviour
 
 	private void TriggerParticles()
 	{
-		muzzleFlashParticles.Play();
+		_muzzleFlashParticles.Play();
 	}
 }
