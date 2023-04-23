@@ -10,8 +10,6 @@ public class Rifle : WeaponBase
     public float shotCounter;
     public float rateOfFire = 0.1f;
     public bool canShoot;
-    public delegate void OnBulletUpdate();
-    public event OnBulletUpdate OnShoot;
     
     protected override void OnEnable()
     {

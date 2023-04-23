@@ -6,9 +6,6 @@ public class Sniper : WeaponBase
 {
    public float reloadTime;
    
-   public delegate void OnBulletUpdate();
-   public event OnBulletUpdate OnShoot;
-   
    #region Shooting
 
    public override void Shoot()
