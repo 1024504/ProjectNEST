@@ -270,6 +270,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 800
+--- !u!114 &-3143331383983065091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/GrappleReel
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/GrappleReel
+  Guid:
+    Data1: -1510830736
+    Data2: 1197725729
+    Data3: 105687966
+    Data4: 105080267
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1700
 --- !u!114 &-2319733349722675507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,12 +453,13 @@ MonoBehaviour:
   - {fileID: 5643246957284673046}
   - {fileID: 6918262480171610590}
   - {fileID: 8093464328945145199}
+  - {fileID: -3143331383983065091}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5247386296128520972}
   StringsBanks:
   - {fileID: 2957950418204311301}
-  cacheTime: 638177178340365173
+  cacheTime: 638178750758321121
   cacheVersion: 131601
 --- !u!114 &54852898063568855
 MonoBehaviour:
@@ -583,10 +611,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638177178340365173
+  lastModified: 638178750758321121
   FileSizes:
   - Name: Desktop
-    Value: 2606
+    Value: 2652
   Exists: 1
 --- !u!114 &3667680364172277373
 MonoBehaviour:
@@ -630,10 +658,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638177178340325140
+  lastModified: 638178750758271083
   FileSizes:
   - Name: Desktop
-    Value: 8689984
+    Value: 8712096
   Exists: 1
 --- !u!114 &5405191866033369190
 MonoBehaviour:

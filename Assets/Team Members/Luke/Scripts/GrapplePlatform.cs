@@ -22,6 +22,9 @@ public class GrapplePlatform : MonoBehaviour
     public float ropeWidth = 5f;
     [SerializeField] private Transform ropeTransform;
 
+    //SFX
+    public GameObject grappleReelSFX;
+    
     private float Progress
     {
         get => _progress;
@@ -76,7 +79,11 @@ public class GrapplePlatform : MonoBehaviour
         ropeTransform.localScale = new Vector3(ropeWidth, (1-pathProgress) * secondPositionLocal.magnitude, 1);
         
         if ( _progress > Mathf.PI || isGrappled || constantlyMoving) _progress += Time.fixedDeltaTime;
-        else _progress -= Time.fixedDeltaTime;
+        else
+        {
+	        _progress -= Time.fixedDeltaTime;
+	        grappleReelSFX.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -84,5 +91,6 @@ public class GrapplePlatform : MonoBehaviour
 	    Hook hook = col.GetComponent<Hook>();
 	    if (hook == null) return;
 	    hook.ConnectGrapplePlatform(this);
+	    grappleReelSFX.SetActive(true);
     }
 }
