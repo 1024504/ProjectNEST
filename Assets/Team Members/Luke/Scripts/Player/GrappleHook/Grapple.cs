@@ -11,6 +11,7 @@ public class Grapple : MonoBehaviour
 	private GameObject _hookGO;
 	private Coroutine _grappleTimer;
 	private bool _canGrapple = true;
+	private bool _isConnected;
 	public Action<Transform> OnHit;
 
 	private Transform _t;
@@ -36,6 +37,7 @@ public class Grapple : MonoBehaviour
 		ropeTransform.position = position+hookDirection*0.5f;
 		ropeTransform.localScale = new Vector3(ropeWidth, hookDirection.magnitude, 1);
 		ropeTransform.rotation = Quaternion.LookRotation(Vector3.forward, hookDirection);
+		if (_isConnected) return;
 		if (Vector2.Distance(_t.position, _hookGO.transform.position) > _grappleRange) ResetGrapple();
 	}
 
@@ -54,6 +56,7 @@ public class Grapple : MonoBehaviour
 
 	private void GrappleHit(Transform grappleHitTransform)
 	{
+		_isConnected = true;
 		_ropeRenderer.material.SetFloat("_Speed",0);
 		StopCoroutine(_grappleTimer);
 		OnHit?.Invoke(grappleHitTransform);
@@ -74,6 +77,7 @@ public class Grapple : MonoBehaviour
 			hook.OnHit -= GrappleHit;
 			Destroy(_hookGO);
 		}
+		_isConnected = false;
 		_ropeRenderer.material.SetFloat("_Speed",ropeWiggliness);
 		_ropeRenderer.enabled = false;
 		ropeTransform.localScale = new Vector3(ropeWidth, 0, 1);
