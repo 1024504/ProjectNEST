@@ -618,10 +618,10 @@ GameObject:
   - component: {fileID: 3569488082446310913}
   - component: {fileID: 9000500780212009494}
   - component: {fileID: 659618697220847538}
-  - component: {fileID: 2640590135735736451}
   - component: {fileID: 2640590135735736455}
   - component: {fileID: 4283770195499010220}
   - component: {fileID: 956168900}
+  - component: {fileID: 1017819888}
   m_Layer: 0
   m_Name: AlveriumSoldier
   m_TagString: Untagged
@@ -646,7 +646,7 @@ Transform:
   - {fileID: 3000046420043677111}
   - {fileID: 6375329483046086689}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9000500780212009494
 MonoBehaviour:
@@ -679,6 +679,8 @@ MonoBehaviour:
   memoryDuration: 5
   attackDamage: 20
   attackCooldown: 0.5
+  jumpCooldownDuration: 2
+  canJump: 1
   targetWithinRange: 0
   canAttack: 1
   canDealDamage: 1
@@ -707,26 +709,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &2640590135735736451
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2336883827527267525}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 31f5e32735d028347b0da28353419b05, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &2640590135735736455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,9 +764,30 @@ MonoBehaviour:
   lostTarget: {fileID: 7400000, guid: e71ea98cfe109914d913aca9cfcef410, type: 2}
   spottedTarget: {fileID: 7400000, guid: 00b781650955aa04e9d6d7c3c6e90144, type: 2}
   run: {fileID: 7400000, guid: ca640bdd21b14e74cb803fffe320bfde, type: 2}
+  jump: {fileID: 7400000, guid: 4cbd430ed6fea7f4ca8733fe43b6918b, type: 2}
   MovementdistanceSFX: {fileID: 7426078252225829003}
   SnarlDistanceSFX: {fileID: 8790678043400804333}
   ScreechDistanceSFX: {fileID: 3137887815595962760}
+--- !u!95 &1017819888
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2336883827527267525}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 31f5e32735d028347b0da28353419b05, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3137887815595962760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3780883733940963244, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.51772743
+      value: -0.49919033
       objectReference: {fileID: 0}
     - target: {fileID: 3780883733940963244, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1461,19 +1464,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3780883733940963244, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3780883733940963244, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.85554564
+      value: -0.8664924
       objectReference: {fileID: 0}
     - target: {fileID: 3780883733940963244, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -242.36
+      value: -239.893
       objectReference: {fileID: 0}
     - target: {fileID: 4940908174104743382, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.3125624
+      value: -0.54006433
       objectReference: {fileID: 0}
     - target: {fileID: 4940908174104743382, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1485,11 +1488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4940908174104743382, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.9498972
+      value: 0.8416238
       objectReference: {fileID: 0}
     - target: {fileID: 4940908174104743382, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 216.427
+      value: 245.376
       objectReference: {fileID: 0}
     - target: {fileID: 5939287375746475578, guid: d1f5c799fbf24b74ba26f655edbdeec7, type: 3}
       propertyPath: m_LocalRotation.w
