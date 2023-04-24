@@ -151,6 +151,7 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (_isGrappled)
 		{
+			OnPlayerMidAirFalling?.Invoke();
 			_rb.velocity += new Vector2(input * _currentSpeed * Time.fixedDeltaTime, 0);
 			return;
 		}
@@ -345,6 +346,7 @@ public class Player : MonoBehaviour, IControllable
 		{
 			_doubleJumped = true;
 			_justJumped = true;
+			StartCoroutine(JustJumped());
 			if (_coroutine != null) StopCoroutine(_coroutine);
 			_rb.gravityScale = 0f;
 			_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);

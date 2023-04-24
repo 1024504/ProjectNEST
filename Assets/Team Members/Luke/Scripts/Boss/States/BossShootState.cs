@@ -31,6 +31,6 @@ public class BossShootState : AntAIState
 	public override void Exit()
 	{
 		base.Exit();
-		_agent.canSwapMode = true;
+		
 	}
 }

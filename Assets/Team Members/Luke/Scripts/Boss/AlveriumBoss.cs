@@ -143,6 +143,7 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 		if (health.HealthLevel > health.maxHealth*0.5f) yield return new WaitForSeconds(projectileCooldownDuration);
 		else yield return new WaitForSeconds(lowHealthProjectileCooldownDuration);
 		shootCoolingDown = false;
+		canSwapMode = true;
 		localProjectileRenderer.enabled = true;
 	}
 	
