@@ -14,7 +14,7 @@ public class GrapplePlatform : MonoBehaviour
     public Vector3 secondPositionLocal;
 
     private Transform _transform;
-    private float _progress = 0;
+    [SerializeField] private float _progress = 0;
     public bool isMoving = false;
     public bool isGrappled = false;
     
@@ -62,7 +62,7 @@ public class GrapplePlatform : MonoBehaviour
     private void MovePlatform()
     {
 	    if (constantlyMoving) isMoving = true;
-        if (_progress > 2 * Mathf.PI || _progress < 0)
+        if (_progress*moveSpeed > 2 * Mathf.PI || _progress < 0)
         {
             _progress = 0;
             if (!(constantlyMoving || isGrappled))
@@ -78,7 +78,7 @@ public class GrapplePlatform : MonoBehaviour
         ropeTransform.localPosition = secondPositionLocal * ((1-pathProgress) / 2f);
         ropeTransform.localScale = new Vector3(ropeWidth, (1-pathProgress) * secondPositionLocal.magnitude, 1);
         
-        if ( _progress > Mathf.PI || isGrappled || constantlyMoving) _progress += Time.fixedDeltaTime;
+        if ( _progress*moveSpeed > Mathf.PI || isGrappled || constantlyMoving) _progress += Time.fixedDeltaTime;
         else
         {
 	        _progress -= Time.fixedDeltaTime;
