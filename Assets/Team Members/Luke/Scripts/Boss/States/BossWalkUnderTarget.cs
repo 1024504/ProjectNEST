@@ -29,6 +29,6 @@ public class BossWalkUnderTarget : AntAIState
 	public override void Exit()
 	{
 		base.Exit();
-		
+		_agent.MoveCancelled();
 	}
 }

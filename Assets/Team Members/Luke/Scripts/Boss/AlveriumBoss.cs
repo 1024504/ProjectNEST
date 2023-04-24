@@ -40,7 +40,7 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 	public bool canMelee = true;
 	public bool canDealDamage;
 
-	private bool playerBelowHead;
+	private bool _playerBelowHead = true;
 	public bool canSwapMode = true;
 	
 	// Events
@@ -110,11 +110,13 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 
 	public IEnumerator PrepareToRun()
 	{
+		canSwapMode = false;
 		OnPrepareToRun?.Invoke();
 		string currentStateName = anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
 		yield return new WaitWhile(() => anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
 		yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
 		canRun = true;
+		canSwapMode = true;
 	}
 	
 	private IEnumerator ShootAnimation()
@@ -127,6 +129,7 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 		currentStateName = anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
 		yield return new WaitWhile(() => anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
 		yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+		shootCoolingDown = true;
 		Shoot();
 	}
 
@@ -170,11 +173,18 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 
 	private bool CheckTargetBelowHead()
 	{
-		if (target == null) return false;
-		if (!canSwapMode) return playerBelowHead;
-		playerBelowHead = target.position.y < _transform.position.y + headTransform.localPosition.y;
-		if (!playerBelowHead) canRun = false;
-		return playerBelowHead;
+		bool test = Test();
+		Debug.Log(test);
+		return test;
+	}
+
+	private bool Test()
+	{
+		if (target == null) return true;
+		if (!canSwapMode) return _playerBelowHead;
+		_playerBelowHead = target.position.y < _transform.position.y + headTransform.localPosition.y;
+		if (!_playerBelowHead) canRun = false;
+		return _playerBelowHead;
 	}
 
 	public void MovePerformed(float lateralInput)
@@ -222,8 +232,6 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
     public void ShootPerformed()
     {
 	    if (shootCoolingDown) return;
-	    shootCoolingDown = true;
-
 	    StartCoroutine(ShootAnimation());
     }
 

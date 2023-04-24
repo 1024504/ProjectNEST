@@ -1113,7 +1113,7 @@ Transform:
   - {fileID: 2219593358449858236}
   - {fileID: 3798438950187539721}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &105813692926737108
 MonoBehaviour:
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   targetInMeleeRange: 0
   canRun: 0
   canMelee: 1
-  canDealDamage: 0
+  canDealDamage: 1
   canSwapMode: 1
 --- !u!114 &105813692926737107
 MonoBehaviour:
@@ -3496,7 +3496,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 40
+  OverrideMaxDistance: 100
 --- !u!1 &8907448456008007525
 GameObject:
   m_ObjectHideFlags: 0
