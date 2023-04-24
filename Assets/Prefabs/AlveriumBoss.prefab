@@ -1009,6 +1009,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8953929112273095473, guid: c71cad21a0bb26e4ca27c8a72ce0f697, type: 3}
   localProjectileRenderer: {fileID: 900550029712673608}
   projectileCooldownDuration: 3
+  lowHealthProjectileCooldownDuration: 1.5
   meleeAttackDamage: 30
   meleeCooldownDuration: 2
   tailAngle: 0
@@ -1115,6 +1116,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75080f94b7dba2c49b3a16b985f36bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootBuildUp: {fileID: 0}
+  shoot: {fileID: 0}
+  melee: {fileID: 0}
+  walk: {fileID: 0}
+  run: {fileID: 0}
+  prepareToRun: {fileID: 0}
+  shootDistanceSFX: {fileID: 0}
 --- !u!1 &2998913595418971823
 GameObject:
   m_ObjectHideFlags: 0

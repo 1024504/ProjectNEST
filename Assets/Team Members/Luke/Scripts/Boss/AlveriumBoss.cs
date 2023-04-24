@@ -9,6 +9,7 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 	private Transform _transform;
 	private Rigidbody2D _rb;
 	[HideInInspector] public Animator anim;
+	private AntAIAgent _aiAgent;
 	public Transform aimTarget;
 	public Transform headTransform;
 	public Transform tailAimTransform;
@@ -16,6 +17,7 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 	public GameObject projectilePrefab;
 	public Renderer localProjectileRenderer;
 	public float projectileCooldownDuration;
+	public float lowHealthProjectileCooldownDuration;
 	public float meleeAttackDamage;
 	public float meleeCooldownDuration;
 	[HideInInspector] public float tailAngle;
@@ -55,6 +57,7 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator>();
+		_aiAgent = GetComponent<AntAIAgent>();
 		_defaultAimTarget = aimTarget.position;
 	}
 
@@ -90,7 +93,7 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 
 	private void Aim()
 	{
-		if (target == null) aimTarget.position = _defaultAimTarget;
+		if (target == null || !_aiAgent.isActiveAndEnabled) aimTarget.position = _defaultAimTarget;
 		else aimTarget.position = target.position;
 
 		tailAngle = Vector3.SignedAngle(Vector3.up, aimTarget.position - tailAimTransform.position, tailAimTransform.TransformDirection(Vector3.right));
@@ -137,7 +140,8 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 	
 	private IEnumerator ShootCooldown()
 	{
-		yield return new WaitForSeconds(projectileCooldownDuration);
+		if (health.HealthLevel > health.maxHealth*0.5f) yield return new WaitForSeconds(projectileCooldownDuration);
+		else yield return new WaitForSeconds(lowHealthProjectileCooldownDuration);
 		shootCoolingDown = false;
 		localProjectileRenderer.enabled = true;
 	}
