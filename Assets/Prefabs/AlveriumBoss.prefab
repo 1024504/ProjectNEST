@@ -366,7 +366,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 14
+  m_SortingOrder: 30
   m_Sprite: {fileID: 8109666406853851218, guid: 0b9ae7a6aa76bc9448e04d9eced12de1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -505,6 +505,130 @@ MonoBehaviour:
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!1 &1374292136423330690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3798438950187539721}
+  - component: {fileID: 6621978781980269955}
+  m_Layer: 0
+  m_Name: ShootSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3798438950187539721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374292136423330690}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.4, y: 0.88, z: -0.8397951}
+  m_LocalScale: {x: 0.3043323, y: 0.3043323, z: 0.3043323}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4009843864627013566}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6621978781980269955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374292136423330690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -189455438
+      Data2: 1341363096
+      Data3: 2035625143
+      Data4: -523920657
+    Path: event:/Enemies/Boss/Shoot
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 50
+--- !u!1 &1468742870381567854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4109028048248160310}
+  - component: {fileID: 571359859127451357}
+  m_Layer: 0
+  m_Name: FootstepDistanceSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4109028048248160310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468742870381567854}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.64, y: 0.65, z: -0.94211847}
+  m_LocalScale: {x: 0.3043323, y: 0.3043323, z: 0.3043323}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4009843864627013566}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &571359859127451357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468742870381567854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1901118640
+      Data2: 1295491480
+      Data3: 1120555180
+      Data4: -1661768503
+    Path: event:/Enemies/Boss/Movement
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 60
 --- !u!1 &1711381218698904574
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1109,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7536143558536531425}
+  - {fileID: 4109028048248160310}
+  - {fileID: 2219593358449858236}
+  - {fileID: 3798438950187539721}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1017,8 +1144,8 @@ MonoBehaviour:
   maxTailAngle: 80
   view: {fileID: 7536143558536531425}
   target: {fileID: 0}
-  walkSpeed: 3
-  runSpeed: 15
+  walkSpeed: 6
+  runSpeed: 30
   currentMoveSpeed: 0
   shootCoolingDown: 0
   targetInMeleeRange: 0
@@ -1099,11 +1226,11 @@ MonoBehaviour:
   bloodParticle: {fileID: 8178010944413830597, guid: 1118d3ffbef40fc469283dfdb1b554ef, type: 3}
   impactSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -227330030
+      Data2: 1183702727
+      Data3: 1126182846
+      Data4: -1317641008
+    Path: event:/Enemies/Grunt/Damage
 --- !u!114 &138692932044134669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,13 +1243,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75080f94b7dba2c49b3a16b985f36bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootBuildUp: {fileID: 0}
-  shoot: {fileID: 0}
-  melee: {fileID: 0}
+  shootBuildUp: {fileID: 7400000, guid: 3bd56de8ea7553a42b46b98d66b3cff1, type: 2}
+  shoot: {fileID: 7400000, guid: 165e4f2f8554f6849b10de36fd91bdc2, type: 2}
+  melee: {fileID: 7400000, guid: 6580adf988725fb42a071c394517d294, type: 2}
   walk: {fileID: 7400000, guid: 5e724feccc4165b448914507e99dda38, type: 2}
   run: {fileID: 7400000, guid: 341729ef129a3f0439d32627825d5f26, type: 2}
-  prepareToRun: {fileID: 0}
-  shootDistanceSFX: {fileID: 0}
+  prepareToRun: {fileID: 7400000, guid: d13795e55b5c7bb4387bef86f47b7e88, type: 2}
+  movementSFX: {fileID: 1468742870381567854}
+  screechSFX: {fileID: 8893182554722938833}
+  meleeSwishSFX:
+    Guid:
+      Data1: -1142844020
+      Data2: 1229814674
+      Data3: -300058713
+      Data4: -327189788
+    Path: event:/Enemies/Boss/Attack
+  shootSFX: {fileID: 1374292136423330690}
 --- !u!1 &2998913595418971823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,7 +2137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 29
   m_Sprite: {fileID: -5424860615444556849, guid: 0b9ae7a6aa76bc9448e04d9eced12de1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2561,7 +2697,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 27
   m_Sprite: {fileID: -2987683881645944803, guid: 0b9ae7a6aa76bc9448e04d9eced12de1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2817,7 +2953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6475406604333464788}
   m_LocalRotation: {x: 0, y: -0, z: -0.7639145, w: 0.64531744}
-  m_LocalPosition: {x: 1.0276108, y: 0.030189361, z: 0}
+  m_LocalPosition: {x: 1.0319908, y: 0.013898853, z: 0}
   m_LocalScale: {x: 1.0000004, y: 1.0000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2867,7 +3003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7284718503403181466}
-  - component: {fileID: 764572335}
+  - component: {fileID: 7830848105083176676}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -2890,8 +3026,8 @@ Transform:
   m_Father: {fileID: 7536143558536531425}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &764572335
-BoxCollider2D:
+--- !u!70 &7830848105083176676
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2903,19 +3039,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023242712, y: 0.09}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.5964856, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.02324271, y: 0.09}
+  m_Size: {x: 3.596486, y: 1}
+  m_Direction: 1
 --- !u!1 &6955118308558466399
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3435,68 @@ PolygonCollider2D:
       - {x: 2.3020024, y: -1.2579144}
       - {x: 2.9359918, y: -1.1366537}
   m_UseDelaunayMesh: 0
+--- !u!1 &8893182554722938833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2219593358449858236}
+  - component: {fileID: 2299352883041906208}
+  m_Layer: 0
+  m_Name: ScreechSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2219593358449858236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893182554722938833}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.79, y: 0.99, z: -0.88987625}
+  m_LocalScale: {x: 0.3043323, y: 0.3043323, z: 0.3043323}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4009843864627013566}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2299352883041906208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893182554722938833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1685825082
+      Data2: 1208367083
+      Data3: 379381633
+      Data4: -580962455
+    Path: event:/Enemies/Boss/Screech
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 40
 --- !u!1 &8907448456008007525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,7 +3543,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.78195566, y: 2.5}
+  m_Offset: {x: -0.6658728, y: 2.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3366,7 +3554,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7339114, y: 6}
+  m_Size: {x: 0.5017449, y: 6}
   m_EdgeRadius: 0
 --- !u!114 &2167831911356391276
 MonoBehaviour:

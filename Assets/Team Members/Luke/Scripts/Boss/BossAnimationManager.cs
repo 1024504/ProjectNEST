@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class BossAnimationManager : AnimationManagerBase
@@ -13,7 +14,10 @@ public class BossAnimationManager : AnimationManagerBase
 
 	private AlveriumBoss _boss;
 
-	public GameObject shootDistanceSFX;
+	public GameObject movementSFX;
+	public GameObject screechSFX;
+	public EventReference meleeSwishSFX;
+	public GameObject shootSFX;
 
 	protected override void OnEnable()
 	{
@@ -73,8 +77,23 @@ public class BossAnimationManager : AnimationManagerBase
 		SetAnimator(prepareToRun);
 	}
 
-	private void ShootSFX()
+	private void MovementSFX()
 	{
-		shootDistanceSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+		movementSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+	}
+
+	private void ScreechSFX()
+	{
+		screechSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+	}
+
+	private void meleeSFX()
+	{
+		FMODUnity.RuntimeManager.PlayOneShot(meleeSwishSFX);
+	}
+	
+	private void shootingSFX()
+	{
+		shootSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
 	}
 }
