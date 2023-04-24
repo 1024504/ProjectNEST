@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 96563760}
   - component: {fileID: 96563759}
   - component: {fileID: 96563758}
+  - component: {fileID: 96563761}
   m_Layer: 3
   m_Name: Square (8)
   m_TagString: Untagged
@@ -234,6 +235,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &96563761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96563757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e2b577fb0f56684fa25e52e7d958376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &189114473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,7 +1518,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 951756987}
-  - component: {fileID: 951756986}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1513,31 +1525,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &951756986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951756985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8bed55d4edc7443a099ceeb9d7483c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objective: 0
-  interactSFX:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  singleUse: 0
-  sceneToLoad: 
-  connectingDoor: {fileID: 0}
-  player: {fileID: 0}
-  globalDoorId: 0
 --- !u!4 &951756987
 Transform:
   m_ObjectHideFlags: 0
@@ -1546,7 +1533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951756985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 91.248535, y: 4.1011343, z: 0.9832549}
+  m_LocalPosition: {x: 74.91, y: 3.91, z: 0.9832549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1895,6 +1882,7 @@ GameObject:
   - component: {fileID: 1349134513}
   - component: {fileID: 1349134512}
   - component: {fileID: 1349134511}
+  - component: {fileID: 1349134514}
   m_Layer: 3
   m_Name: Square (1)
   m_TagString: Untagged
@@ -1995,6 +1983,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -58.652}
+--- !u!114 &1349134514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349134510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e2b577fb0f56684fa25e52e7d958376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1386205912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,6 +2122,7 @@ GameObject:
   - component: {fileID: 1547503931}
   - component: {fileID: 1547503930}
   - component: {fileID: 1547503929}
+  - component: {fileID: 1547503932}
   m_Layer: 3
   m_Name: Square (2)
   m_TagString: Untagged
@@ -2222,6 +2223,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1547503932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547503928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e2b577fb0f56684fa25e52e7d958376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1611707635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,13 +2875,13 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105813692926737108, guid: 1a67b34fbeeb77e40880bce8ce8955e9, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 951756987}
     - target: {fileID: 2842360412607290776, guid: 1a67b34fbeeb77e40880bce8ce8955e9, type: 3}
       propertyPath: m_Name
       value: AlveriumBoss
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842360412607290776, guid: 1a67b34fbeeb77e40880bce8ce8955e9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4009843864627013566, guid: 1a67b34fbeeb77e40880bce8ce8955e9, type: 3}
       propertyPath: m_RootOrder
@@ -2876,7 +2889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4009843864627013566, guid: 1a67b34fbeeb77e40880bce8ce8955e9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 72.34
+      value: 32.23
       objectReference: {fileID: 0}
     - target: {fileID: 4009843864627013566, guid: 1a67b34fbeeb77e40880bce8ce8955e9, type: 3}
       propertyPath: m_LocalPosition.y

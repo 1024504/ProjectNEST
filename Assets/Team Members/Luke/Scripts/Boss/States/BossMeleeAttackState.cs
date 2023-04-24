@@ -16,7 +16,9 @@ public class BossMeleeAttackState : AntAIState
 	public override void Enter()
 	{
 		base.Enter();
-		
+		_agent.canSwapMode = false;
+		_agent.MoveCancelled();
+		_agent.Action1Performed();
 	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)
@@ -28,6 +30,7 @@ public class BossMeleeAttackState : AntAIState
 	public override void Exit()
 	{
 		base.Exit();
-		
+		_agent.canSwapMode = true;
+		if (_agent.health.HealthLevel > _agent.health.maxHealth * 0.5f) _agent.canRun = false;
 	}
 }

@@ -1,17 +1,19 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MothProjectile : MonoBehaviour
+public class BossProjectile : MonoBehaviour
 {
+	public float turnStrength;
+	private Transform _target;
+	
 	public float velocity = 25f;
 	public float lifetimePostCollision = 3f;
 	public float damage = 10f;
 	private bool _isSpent;
 	
 	private Transform _transform;
-	private  Rigidbody2D _rb;
+	private Rigidbody2D _rb;
 	private PolygonCollider2D _collider;
 	private Transform _collisionHitTransform;
 	private Vector3 _collisionPositionOffset;
@@ -30,7 +32,12 @@ public class MothProjectile : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (_collisionHitTransform == null) return;
+		if (_collisionHitTransform == null)
+		{
+			_rb.AddTorque(TurnToPlayer() * turnStrength);
+			_rb.velocity = transform.right * velocity;
+			return;
+		}
 		Quaternion rotation = _collisionHitTransform.rotation * Quaternion.Inverse(_collisionRotationWhenHit);
 		_transform.position = _collisionHitTransform.position + rotation*_collisionPositionOffset;
 		_transform.rotation = rotation * _rotationWhenHit;
@@ -38,6 +45,9 @@ public class MothProjectile : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
+		BossTerrainIgnore terrainIgnore = col.GetComponent<BossTerrainIgnore>();
+		if (terrainIgnore != null) return;
+		
 		if (_isSpent) return;
 		_isSpent = true;
 		_rb.velocity = Vector2.zero;
@@ -53,4 +63,8 @@ public class MothProjectile : MonoBehaviour
 		HealthBase health = col.GetComponentInParent<HealthBase>();
 		if (health != null) health.GetComponent<HealthBase>().HealthLevel -= damage;
 	}
+
+	private float TurnToPlayer() => Mathf.Sign(Vector3.SignedAngle(_transform.right, _target.position - _transform.position, Vector3.forward));
+
+	public void SetTarget(Transform target) => _target = target;
 }

@@ -16,13 +16,14 @@ public class BossWalkUnderTarget : AntAIState
 	public override void Enter()
 	{
 		base.Enter();
-		
+		_agent.currentMoveSpeed = _agent.walkSpeed;
+		_agent.OnWalk?.Invoke();
 	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)
 	{
 		base.Execute(aDeltaTime, aTimeScale);
-		
+		_agent.MovePerformed((_agent.target.position-_agent.transform.position).x);
 	}
 
 	public override void Exit()

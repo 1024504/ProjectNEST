@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyBody : MonoBehaviour
 {
-	public HealthBase health;
+	[HideInInspector] public HealthBase health;
 
 	protected virtual void OnEnable()
 	{

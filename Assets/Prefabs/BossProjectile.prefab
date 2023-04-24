@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3299637477931473980}
-  m_LocalRotation: {x: -0, y: -0, z: -0.60876167, w: 0.79335326}
+  m_LocalRotation: {x: 0, y: 0, z: -0.45764118, w: 0.88913697}
   m_LocalPosition: {x: 0, y: 0.072, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 791835943767176984}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -75}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -54.47}
 --- !u!212 &8723539480195999765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 5740414209007905875}
   - component: {fileID: 5762910983144363627}
   m_Layer: 0
-  m_Name: ProjectileImpactSFX (1)
+  m_Name: ProjectileImpactSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791835943767176984}
-  m_Layer: 0
+  - component: {fileID: 8103177360149206274}
+  - component: {fileID: 3753619690741749927}
+  - component: {fileID: 8368432835786376574}
+  m_Layer: 10
   m_Name: BossProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,5 +202,73 @@ Transform:
   - {fileID: 5204705805208619027}
   - {fileID: 5740414209007905875}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8103177360149206274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953929112273095473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ead63d1dd0ba0094c87748d559ccf2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnStrength: 1
+  velocity: 30
+  lifetimePostCollision: 3
+  damage: 10
+  projectileImpactSfx: {fileID: 3746003236933347975}
+--- !u!60 &3753619690741749927
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953929112273095473}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.42479867, y: 0.053996317}
+      - {x: -0.18931818, y: 0.12557875}
+      - {x: -0.2299552, y: -0.08907606}
+      - {x: 0.1545189, y: -0.08395514}
+  m_UseDelaunayMesh: 0
+--- !u!50 &8368432835786376574
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953929112273095473}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

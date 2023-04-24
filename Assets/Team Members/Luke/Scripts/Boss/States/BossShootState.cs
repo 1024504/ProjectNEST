@@ -16,18 +16,21 @@ public class BossShootState : AntAIState
 	public override void Enter()
 	{
 		base.Enter();
-		_agent.ShootPerformed();
+		_agent.MoveCancelled();
+		_agent.canSwapMode = false;
 	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)
 	{
 		base.Execute(aDeltaTime, aTimeScale);
 		
+		if (_agent.tailAngle <= _agent.minTailAngle) return;
+		_agent.ShootPerformed();
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
-		
+		_agent.canSwapMode = true;
 	}
 }

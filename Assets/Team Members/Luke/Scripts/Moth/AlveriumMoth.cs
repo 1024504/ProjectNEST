@@ -125,8 +125,7 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 		Vector3 aimPosition = aimTransform.position;
 		Vector3 aimLocalPosition = aimTransform.localPosition;
 
-		aimPosition = new Vector3(aimPosition.x, Mathf.Min(aimPosition.y, tailTransform.position.y),
-			aimPosition.z);
+		aimPosition = new Vector3(aimPosition.x, Mathf.Min(aimPosition.y, tailTransform.position.y), aimPosition.z);
 		
 		if (aimLocalPosition.x < 0)
 		{
