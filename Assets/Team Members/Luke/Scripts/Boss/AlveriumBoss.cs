@@ -173,13 +173,6 @@ public class AlveriumBoss : EnemyBody, IControllable, ISense
 
 	private bool CheckTargetBelowHead()
 	{
-		bool test = Test();
-		Debug.Log(test);
-		return test;
-	}
-
-	private bool Test()
-	{
 		if (target == null) return true;
 		if (!canSwapMode) return _playerBelowHead;
 		_playerBelowHead = target.position.y < _transform.position.y + headTransform.localPosition.y;
