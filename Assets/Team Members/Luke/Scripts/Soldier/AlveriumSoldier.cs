@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Anthill.AI;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,12 +42,14 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 	public float memoryDuration = 5f;
 	public float attackDamage = 10f;
 	public float attackCooldown = 2f;
+	public float jumpCooldownDuration = 2f;
 	
-	// private bool _isJumping = false;
+	public bool canJump = true;
 	private bool _canPatrol = true;
 	public bool targetWithinRange = false;
 	public bool canAttack = true;
 	public bool canDealDamage = true;
+	private bool _justJumped;
 
 	private float _lateralMoveInput;
 
@@ -73,7 +76,7 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		aWorldState.Set(SoldierScenario.CanPatrol, _canPatrol);
 		aWorldState.Set(SoldierScenario.SeesTarget, ChooseTarget());
 		aWorldState.Set(SoldierScenario.TargetWithinRange, targetWithinRange);
-		aWorldState.Set(SoldierScenario.CanReachTarget, true);
+		aWorldState.Set(SoldierScenario.CanReachTarget, CanReachTarget());
 		aWorldState.Set(SoldierScenario.CanAttack, canAttack);
 		aWorldState.Set(SoldierScenario.AllTargetsDead, false);
 	}
@@ -97,27 +100,77 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		KeyValuePair<float, int> closestTarget = new KeyValuePair<float, int>(Mathf.Infinity, -1);
 		foreach (Transform target in targetLocations)
 		{
-			RaycastHit2D hit = Physics2D.Linecast(_transform.position, target.position, visionLayerMask);
-			if (hit.collider.gameObject.GetComponentInParent<Player>() == null) continue;
 			float distance = Vector2.Distance(_transform.position, target.position);
 			if (distance < closestTarget.Key) closestTarget = new KeyValuePair<float, int>(distance, targetLocations.IndexOf(target));
 		}
-
 		if (closestTarget.Value == -1)
 		{
 			currentTarget = null;
 			return false;
 		}
-		
 		currentTarget = targetLocations[closestTarget.Value];
+		
+		
+		RaycastHit2D hit = Physics2D.Linecast(_transform.position, currentTarget.position, visionLayerMask);
+		if (hit.collider.gameObject.GetComponentInParent<Player>() != null)
+		{
+			float lateralDistance = _transform.InverseTransformDirection(currentTarget.position - _transform.position).x;
+			if (Mathf.Abs(lateralDistance) > attackRange) lastKnownTargetDirection = Mathf.Sign(_transform.InverseTransformDirection(currentTarget.position - _transform.position).x);
+			else lastKnownTargetDirection = 0;
+		}
+		else
+		{
+			lastKnownTargetDirection = Mathf.Sign(view.eulerAngles.y - 90);
+		}
 
-		float lateralDistance = _transform.InverseTransformDirection(currentTarget.position - _transform.position).x;
-		if (Mathf.Abs(lateralDistance) > attackRange) lastKnownTargetDirection = Mathf.Sign(_transform.InverseTransformDirection(currentTarget.position - _transform.position).x);
-		else lastKnownTargetDirection = 0;
 		return true;
 	}
+	
+	private bool CanReachTarget()
+	{
+		if (currentTarget == null) return false;
+		if (!canJump) return true;
+		Vector3 targetDirection = _transform.InverseTransformDirection(currentTarget.position - _transform.position);
+		return targetDirection.y <= 0.5f * Mathf.Abs(targetDirection.x);
+	}
 
-	public void CooldownAttack()
+	public RaycastHit2D GetJumpTarget()
+	{
+		if (currentTarget == null) return new RaycastHit2D();
+		return Physics2D.Linecast(_transform.position, currentTarget.position, visionLayerMask);
+	}
+	
+	public float JumpToTarget(Vector3 targetPosition)
+	{
+		Vector3 displacement = targetPosition - _transform.position;
+		Vector3 jumpVelocity = displacement.normalized * jumpSpeed;
+		float jumpDuration = displacement.magnitude/jumpSpeed;
+		StartCoroutine(JumpTimer(jumpVelocity, jumpDuration));
+		return jumpDuration;
+	}
+	
+	private IEnumerator JumpTimer(Vector3 jumpVelocity, float jumpDuration)
+	{
+		canJump = false;
+		_justJumped = true;
+		_rb.gravityScale = 1;
+		_rb.velocity = jumpVelocity;
+		if (jumpVelocity.x < 0) view.localRotation = Quaternion.identity;
+		else view.localRotation = Quaternion.Euler(0, 180, 0);
+		yield return new WaitForSeconds(0.3f);
+		_justJumped = false;
+		yield return new WaitForSeconds(Mathf.Max(jumpDuration - 0.3f, 0.1f));
+		_rb.gravityScale = gravityScale;
+		StartCoroutine(JumpCooldownTimer());
+	}
+	
+	private IEnumerator JumpCooldownTimer()
+	{
+		yield return new WaitForSeconds(jumpCooldownDuration);
+		canJump = true;
+	}
+
+	private void CooldownAttack()
 	{
 		StartCoroutine(CooldownAttackTimer());
 	}
@@ -130,19 +183,13 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 	}
 
 	private void Move(float lateralInput)
-    {
-        if (!_terrainDetection.isGrounded)
-        {
-	        _rb.gravityScale = gravityScale;
-	        _rb.velocity = new Vector2(lateralInput * currentMoveSpeed, _rb.velocity.y);
-        }
-        else
-        {
-	        _rb.gravityScale = 0;
-	        _rb.velocity = new Vector2(lateralInput * currentMoveSpeed * _terrainDetection.mainNormal.y-_terrainDetection.mainNormal.x*wallSuctionStrength,
-                lateralInput * currentMoveSpeed * -_terrainDetection.mainNormal.x-_terrainDetection.mainNormal.y*wallSuctionStrength);
-        }
-    }
+	{
+		if (!_terrainDetection.isGrounded) return;
+		if (_justJumped) return;
+		_rb.gravityScale = 0;
+		_rb.velocity = new Vector2(lateralInput * currentMoveSpeed * _terrainDetection.mainNormal.y-_terrainDetection.mainNormal.x*wallSuctionStrength,
+			lateralInput * currentMoveSpeed * -_terrainDetection.mainNormal.x-_terrainDetection.mainNormal.y*wallSuctionStrength);
+	}
     
     private void RotateToWall()
 	{
@@ -181,16 +228,7 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 
 	public void JumpPerformed()
     {
-        StartCoroutine(JumpTimer());
-    }
-
-    private IEnumerator JumpTimer()
-    {
-        _rb.gravityScale = 0;
-        _rb.velocity += _terrainDetection.mainNormal * jumpSpeed;
-        yield return new WaitForSeconds(1f);
-        
-        _rb.gravityScale = gravityScale;
+	    
     }
 
 	public void JumpCancelled()

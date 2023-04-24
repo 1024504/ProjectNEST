@@ -40,15 +40,14 @@ public class SoldierChaseState : AntAIState
 	{
 		base.Execute(aDeltaTime, aTimeScale);
 		if (!_animationFinished) return;
-		
-		if (_agent.lastKnownTargetDirection != 0)  _agent.MovePerformed(_agent.lastKnownTargetDirection);
+
+		if (_agent.lastKnownTargetDirection != 0)
+		{
+			_agent.MovePerformed(_agent.lastKnownTargetDirection);
+		}
 		else
 		{
 			_agent.MoveCancelled();
-			// check absolute distance for canAttack
-			// if canAttack, transition to attack
-			// if !canAttack, start timer for can't reach target
-			// at end of timer, if can still sense player, jump
 		}
 	}
 
