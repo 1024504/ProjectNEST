@@ -11,6 +11,7 @@ public class SoldierAnimationManager : AnimationManagerBase
 	public AnimationClip lostTarget;
 	public AnimationClip spottedTarget;
 	public AnimationClip run;
+	public AnimationClip jump;
 
 	private AlveriumSoldier _soldier;
 
@@ -74,6 +75,12 @@ public class SoldierAnimationManager : AnimationManagerBase
 	{
 		if (run == null) return;
 		SetAnimator(run);
+	}
+	
+	private void JumpAnimation()
+	{
+		if (jump == null) return;
+		SetAnimator(jump);
 	}
 
 	private void MovementSFX()
