@@ -9320,6 +9320,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1640893388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2048277447, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
+  m_PrefabInstance: {fileID: 2112744821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1654500697
 GameObject:
   m_ObjectHideFlags: 0
@@ -9744,6 +9749,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2773395333484989641, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4464802667426972617, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeButton
@@ -9897,8 +9906,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8148186491433386691, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
+      propertyPath: savedTriggered.Path
+      value: event:/Characters/Interactables/PickUpGenericSFX/PickUpGeneric
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148186491433386691, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
       propertyPath: InteractionEventManager
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148186491433386691, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
+      propertyPath: savedTriggered.Guid.Data1
+      value: -34629463
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148186491433386691, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
+      propertyPath: savedTriggered.Guid.Data2
+      value: 1296264056
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148186491433386691, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
+      propertyPath: savedTriggered.Guid.Data3
+      value: -1319922044
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148186491433386691, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
+      propertyPath: savedTriggered.Guid.Data4
+      value: -177828073
       objectReference: {fileID: 0}
     - target: {fileID: 8148186491433386716, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
       propertyPath: m_RootOrder
@@ -12261,10 +12290,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 958837299}
     m_Modifications:
+    - target: {fileID: 2048277447, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 729769766074606725, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
       propertyPath: buttonUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1640893388}
     - target: {fileID: 729769766074606725, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
       propertyPath: director
       value: 
