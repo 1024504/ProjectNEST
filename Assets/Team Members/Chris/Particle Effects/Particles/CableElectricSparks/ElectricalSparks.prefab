@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 447360438365210399}
   - component: {fileID: 1482155619572812694}
   - component: {fileID: 5393863663669810839}
+  - component: {fileID: 2412289989628048900}
   m_Layer: 0
   m_Name: ElectricalSparks
   m_TagString: Untagged
@@ -29,9 +30,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7962431574713752993}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
 --- !u!198 &1482155619572812694
 ParticleSystem:
@@ -116,7 +118,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 0.5
       minScalar: 0.05
       maxCurve:
         serializedVersion: 2
@@ -1088,7 +1090,7 @@ ParticleSystem:
           m_RotationOrder: 4
       cycleCount: 2
       repeatInterval: 0.75
-      probability: 1
+      probability: 0.4
     - serializedVersion: 2
       time: 0
       countCurve:
@@ -1204,7 +1206,7 @@ ParticleSystem:
           m_RotationOrder: 4
       cycleCount: 4
       repeatInterval: 1.5
-      probability: 1
+      probability: 0.7
   SizeModule:
     enabled: 1
     curve:
@@ -3845,7 +3847,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 20, y: 40}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 1
@@ -5046,3 +5048,79 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2412289989628048900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3462532203815877264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9aa57c68636704e85e31d07e8ef367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparkSFX: {fileID: 4506824227900615008}
+  sparks: {fileID: 1482155619572812694}
+--- !u!1 &4506824227900615008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7962431574713752993}
+  - component: {fileID: 2152032347836806719}
+  m_Layer: 0
+  m_Name: SparkSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7962431574713752993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506824227900615008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 447360438365210399}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2152032347836806719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506824227900615008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 563160443
+      Data2: 1322810408
+      Data3: 277130116
+      Data4: -1914599870
+    Path: event:/SFX/WireSparks
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 35
