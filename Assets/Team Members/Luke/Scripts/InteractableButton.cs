@@ -44,9 +44,9 @@ public class InteractableButton : InteractableObject
 		if(isTimeStop) GameManager.Instance.playerController.Controls.Enable();
 	}
 	
-	public void OnDisable()
+	/*public void OnDisable()
 	{
 		timeLineDirector.played -= DisableControls;
 		timeLineDirector.stopped -= EnableControls;
-	}
+	}*/
 }
