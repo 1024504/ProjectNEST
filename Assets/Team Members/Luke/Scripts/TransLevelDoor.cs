@@ -18,6 +18,8 @@ public class TransLevelDoor : InteractableObject
 
 	private CameraTracker _cameraTracker;
 
+	public FMODUnity.EventReference doorSFX;
+
 	private void OnEnable()
 	{
 		if (LevelManager.Instance == null) return;
@@ -44,6 +46,8 @@ public class TransLevelDoor : InteractableObject
 			return;
 		}
 
+		FMODUnity.RuntimeManager.PlayOneShot(doorSFX);
+		
 		GameManager.Instance.DisableInput();
 		_cameraTracker = GameManager.Instance.cameraTracker;
 		_cameraTracker.cameraFader.OnFadeOutComplete += LoadStage1;

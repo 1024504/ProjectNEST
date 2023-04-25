@@ -10,6 +10,8 @@ public class LevelDoor : InteractableObject
 
     [HideInInspector]
     public Player player;
+    
+    public FMODUnity.EventReference doorSFX;
 
     protected override void Interact()
     {
@@ -24,6 +26,8 @@ public class LevelDoor : InteractableObject
 		    Debug.Log("Connecting door is null");
 		    return;
 	    }
+	    
+	    FMODUnity.RuntimeManager.PlayOneShot(doorSFX);
 	    
 	    player.transform.position = connectingDoor.transform.position;
 	    connectingDoor.player = player;
