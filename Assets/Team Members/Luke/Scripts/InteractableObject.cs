@@ -9,7 +9,6 @@ public class InteractableObject : MonoBehaviour
 	public Action OnInteract;
 	public GameManager.Objectives objective = GameManager.Objectives.None;
 	public Action<GameManager.Objectives> OnUpdateObjective;
-	public FMODUnity.EventReference interactSFX;
 	public bool singleUse;
 
 	protected virtual void Interact() { }
