@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class ResidentialElevator : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 0.1f;
+	public GameObject elevatorSFX;
+
+	[SerializeField] float moveSpeed = 0.1f;
     bool movingUp = false;
 
     [SerializeField] Transform elevatorTransform;
@@ -30,7 +33,7 @@ public class ResidentialElevator : MonoBehaviour
 
     private void Update()
     {
-        //will run when player ENTERS hitbox and elevator is lower than target position
+	    //will run when player ENTERS hitbox and elevator is lower than target position
         if( movingUp && elevatorTransform.localPosition.y < targetPosition.y)
         {
             elevatorTransform.localPosition += new Vector3(0, moveSpeed, 0);
