@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+using Random = UnityEngine.Random;
 
 public class Sparks_SFX_Script : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Sparks_SFX_Script : MonoBehaviour
 	public IEnumerator SparkSoundDelay()
 	{
 		sparkSFX.GetComponent<FMODUnity.StudioEventEmitter>().Play();
-		yield return new WaitForSeconds();
+		yield return new WaitForSeconds(Random.Range(1f,2f));
 		SparkSound();
 	}
 }
