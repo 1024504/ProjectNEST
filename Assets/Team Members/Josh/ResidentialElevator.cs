@@ -8,6 +8,7 @@ public class ResidentialElevator : MonoBehaviour
 	public GameObject elevatorSFX;
 
 	[SerializeField] float moveSpeed = 0.1f;
+    bool moving = false;
     bool movingUp = false;
 
     [SerializeField] Transform elevatorTransform;
@@ -20,6 +21,7 @@ public class ResidentialElevator : MonoBehaviour
         if (collision.gameObject.layer == 9 )
         {
             movingUp = true;
+            moving = true;
         }
     }
 
@@ -28,23 +30,45 @@ public class ResidentialElevator : MonoBehaviour
         if( collision.gameObject.layer == 9 )
         {
             movingUp = false;
+            moving = true;
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-	    //will run when player ENTERS hitbox and elevator is lower than target position
-        if( movingUp && elevatorTransform.localPosition.y < targetPosition.y)
+        if( moving )
         {
-            elevatorTransform.localPosition += new Vector3(0, moveSpeed, 0);
-            //as long as this is happening, play elevator moving sound
+            MoveElevator();
         }
+    }
 
-        //will run when player EXITS hitbox and elevator is higher than starting position
-        if( !movingUp && elevatorTransform.localPosition.y > startingPosition.y )
+    private void MoveElevator()
+    {
+        //will run when player ENTERS hitbox and elevator is lower than target position
+        if( movingUp )
         {
-            elevatorTransform.localPosition -= new Vector3(0, moveSpeed, 0);
             //as long as this is happening, play elevator moving sound
+            if( elevatorTransform.localPosition.y < targetPosition.y )
+            {
+                elevatorTransform.localPosition += new Vector3(0, moveSpeed, 0);
+                elevatorSFX.SetActive(true);
+            } else
+            {
+                elevatorSFX.SetActive(false);
+                moving = false;
+            }
+        } else
+        {
+            //will run when player EXITS hitbox and elevator is higher than starting position
+            if( elevatorTransform.localPosition.y > startingPosition.y )
+            {
+                elevatorTransform.localPosition -= new Vector3(0, moveSpeed, 0);
+                elevatorSFX.SetActive(true);
+            } else
+            {
+                elevatorSFX.SetActive(false);
+                moving = false;
+            }
         }
     }
 }
