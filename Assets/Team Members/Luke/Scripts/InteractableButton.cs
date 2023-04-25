@@ -10,20 +10,18 @@ public class InteractableButton : InteractableObject
 {
 	[SerializeField] GameObject buttonUI;
 	public PlayableDirector timeLineDirector;
-	public EventReference interactSFX;
-	public EventReference dialogueAudio;
+	public bool isTimeStop;
+	
 
 	public void OnEnable()
 	{
-		timeLineDirector.played += PlayCutScene;
-		timeLineDirector.stopped += StopCutScene;
+		timeLineDirector.played += DisableControls;
+		timeLineDirector.stopped += EnableControls;
 	}
 	
 	protected override void Interact()
 	{
 		OnInteract?.Invoke();
-		RuntimeManager.PlayOneShot(interactSFX);
-		RuntimeManager.PlayOneShot(dialogueAudio);
 		timeLineDirector.Play();
 		if (objective != GameManager.Objectives.None)
 		{
@@ -36,15 +34,19 @@ public class InteractableButton : InteractableObject
 		}
 	}
 
-	public void PlayCutScene(PlayableDirector obj)
+	public void DisableControls(PlayableDirector obj)
 	{
-		GameManager.Instance.playerController.Controls.Disable();
-		Debug.Log("Start");
+		if(isTimeStop) GameManager.Instance.playerController.Controls.Disable();
 	}
 	
-	public void StopCutScene(PlayableDirector obj)
+	public void EnableControls(PlayableDirector obj)
 	{
-		GameManager.Instance.playerController.Controls.Enable();
-		Debug.Log("Stop");
+		if(isTimeStop) GameManager.Instance.playerController.Controls.Enable();
+	}
+	
+	public void OnDisable()
+	{
+		timeLineDirector.played -= DisableControls;
+		timeLineDirector.stopped -= EnableControls;
 	}
 }
