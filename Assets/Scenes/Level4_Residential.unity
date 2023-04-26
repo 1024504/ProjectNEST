@@ -18606,6 +18606,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
   m_PrefabInstance: {fileID: 1661785166}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1081449421 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7425688498930848919, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+  m_PrefabInstance: {fileID: 1661785166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964480558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e836642270ff6c341840c3cffae7c576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1081449422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964480558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 75c6a081ddc71ac49bb71a375391bd18, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1081449421}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: ActivateDoubleJump
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1081783022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21877,6 +21918,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8181562640723366904, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
@@ -23123,6 +23168,8 @@ PlayableDirector:
     value: {fileID: 1982860055}
   - key: {fileID: 7594256350855406704, guid: 6769793a8bade284ba0d46989a7d0def, type: 2}
     value: {fileID: 411287623}
+  - key: {fileID: 2536957972946706733, guid: 6769793a8bade284ba0d46989a7d0def, type: 2}
+    value: {fileID: 1081449422}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1405172558
@@ -26524,6 +26571,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7425688498930848919, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+      propertyPath: doubleJumpEnabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

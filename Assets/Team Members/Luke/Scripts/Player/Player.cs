@@ -278,6 +278,14 @@ public class Player : MonoBehaviour, IControllable
 			playerArms.rotation = Quaternion.LookRotation(sprintLookTransform.position - armPosition)*Quaternion.LookRotation(Vector3.left);
 		}
 	}
+	
+	//Timeline Signal Functions
+	//Functions that are required to run after specific timelines
+	//This code is called within the Hawk Dialogue Timeline that enables double jump after finding Hawk.
+	public void ActivateDoubleJump()
+	{
+		doubleJumpEnabled = true;
+	}
 
 	public void MovePerformed(float lateralInput)
 	{
