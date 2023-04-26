@@ -1349,11 +1349,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 689.1
+      value: 694.34
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.1
+      value: -14.13
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7086,6 +7086,31 @@ Transform:
   m_Father: {fileID: 1150732241}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1220844931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 932542970485735862, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
+  m_PrefabInstance: {fileID: 218029109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1220844939
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220844931}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1230010148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8686,7 +8711,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 55cf727805480b940a6663d689f81617, type: 2}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
@@ -8703,7 +8728,11 @@ PrefabInstance:
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[3].key
       value: 
-      objectReference: {fileID: 889738225981135253, guid: 55cf727805480b940a6663d689f81617, type: 2}
+      objectReference: {fileID: 3911024653990412167, guid: 55cf727805480b940a6663d689f81617, type: 2}
+    - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].key
+      value: 
+      objectReference: {fileID: 779900149922919239, guid: 55cf727805480b940a6663d689f81617, type: 2}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
@@ -8716,6 +8745,14 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[2].value
       value: 
       objectReference: {fileID: 1297137750}
+    - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: m_SceneBindings.Array.data[3].value
+      value: 
+      objectReference: {fileID: 1220844939}
+    - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].value
+      value: 
+      objectReference: {fileID: 1220844939}
     - target: {fileID: 3961291222850796537, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_Name
       value: FalconFindsQueenCutScene
