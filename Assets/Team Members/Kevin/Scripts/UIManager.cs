@@ -131,10 +131,9 @@ public class UIManager : MonoBehaviour
     public void UpdateObjective(ObjectiveStringPair objective)
     {
 	    // illuminate objective marker based on bool
-	    
-	    
-	    
-        // GameObject go = Instantiate(objectivesMarker, branchProceduralPanel.position, Quaternion.identity);
+
+
+	    // GameObject go = Instantiate(objectivesMarker, branchProceduralPanel.position, Quaternion.identity);
         // go.transform.SetParent(branchProceduralPanel.transform, false);
         //
         // TextMeshProUGUI textGO = Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity);
