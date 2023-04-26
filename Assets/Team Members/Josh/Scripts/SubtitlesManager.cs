@@ -85,7 +85,7 @@ public class SubtitlesManager : MonoBehaviour
         dialogueBGImage.enabled = false;
     }
 
-    //falcon=1, eagle=2, raven=3, hawk=4, alveriumsoldier=5
+    //falcon=1, eagle=2, raven=3, hawk=4, blank=5
     void UpdateSprite()
     {
         switch( mySubtitlesData.cutsceneSubtitlesArray[currentDialogueLine].charInt )
@@ -111,8 +111,8 @@ public class SubtitlesManager : MonoBehaviour
                 break;
 
             case 5:
-                tmproCharNameText.text = "Soldier??";
-                charSpriteImage.sprite = alveriumsoldierSpriteRef;
+                tmproCharNameText.text = null;
+                charSpriteImage.sprite = null;
                 break;
 
             default:

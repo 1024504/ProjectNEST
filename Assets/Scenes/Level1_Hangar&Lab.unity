@@ -551,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 30634b27c483d73489beb3c680e7b678, type: 2}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].key
@@ -564,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[2].key
       value: 
-      objectReference: {fileID: 889738225981135253, guid: 30634b27c483d73489beb3c680e7b678, type: 2}
+      objectReference: {fileID: 3082250182920892311, guid: 30634b27c483d73489beb3c680e7b678, type: 2}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[3].key
       value: 
@@ -577,6 +577,10 @@ PrefabInstance:
       propertyPath: m_SceneBindings.Array.data[1].value
       value: 
       objectReference: {fileID: 218473067}
+    - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 1604417022}
     - target: {fileID: 3961291222850796534, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_Events.m_Events.Array.size
       value: 3
@@ -1430,11 +1434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 371
+      value: 164.3
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.3
+      value: 5.3
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2548,8 +2552,8 @@ Transform:
   - {fileID: 1604816270}
   - {fileID: 1415081606}
   - {fileID: 791036730}
-  - {fileID: 1428403821}
   - {fileID: 1529858949}
+  - {fileID: 1428403821}
   - {fileID: 218473068}
   - {fileID: 1385166825}
   m_Father: {fileID: 0}
@@ -2623,6 +2627,181 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6414753182344648329, guid: cd94f95d5d1d4c145a41501bf47e94dd, type: 3}
   m_PrefabInstance: {fileID: 8293595183825925334}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &473905726
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6738320691443924433, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_Name
+      value: SubtitlesManager SecondSoldierCutscene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[1].charInt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[2].charInt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[3].charInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[4].charInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[5].charInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[6].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[7].charInt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[8].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[9].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[10].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[11].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[12].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[13].charInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[14].charInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[1].dialogueLine
+      value: Sir. Contact with a potential threat. Not human.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[2].dialogueLine
+      value: Permission to open fire?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[3].dialogueLine
+      value: Granted.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[4].dialogueLine
+      value: Talon Squad. You have green light to open fire.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[5].dialogueLine
+      value: I repeat. GREEN LIGHT to open fire.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[6].dialogueLine
+      value: As for us, that's in the same general area. Just down a floor.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[7].dialogueLine
+      value: Wow. I'm so glad I have you as my very own professional navigator. Thanks.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[8].dialogueLine
+      value: Oh I'm sorry. Did you expect a tour?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[9].dialogueLine
+      value: You look to your left, you'll see a beautiful metal wall.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[10].dialogueLine
+      value: You look to the right, you got that same metal wall exterior.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[11].dialogueLine
+      value: But you'll find a pipe. This beautiful,
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[12].dialogueLine
+      value: handcrafted pipe-
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[13].dialogueLine
+      value: ENOUGH!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[14].dialogueLine
+      value: Save your comedy act for after the mission.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
 --- !u!1 &474180964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,7 +3314,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: bf38c0e12c9dc2b47935dcbeaf025219, type: 2}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[2].key
@@ -3146,9 +3325,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 889738225981135253, guid: bf38c0e12c9dc2b47935dcbeaf025219, type: 2}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].key
+      value: 
+      objectReference: {fileID: 4322553733011595134, guid: bf38c0e12c9dc2b47935dcbeaf025219, type: 2}
+    - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_SceneBindings.Array.data[1].value
       value: 
       objectReference: {fileID: 1529858948}
+    - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].value
+      value: 
+      objectReference: {fileID: 1115823882}
     - target: {fileID: 3961291222850796537, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_Name
       value: AlveriumMothCutscene
@@ -4687,6 +4874,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 688013758}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791036729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &809374524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3001647021163319306, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+  m_PrefabInstance: {fileID: 1549216633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
@@ -6817,6 +7015,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 40.364002, y: 1.8172092}
   m_EdgeRadius: 0
+--- !u!114 &1115823882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3001647021163319306, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+  m_PrefabInstance: {fileID: 1619379431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1141387878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7671,7 +7880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8516,6 +8725,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -2701188269075927975, guid: e727f0a06223ea44bb7258cc06238478, type: 2}
     value: {fileID: 1297137750}
+  - key: {fileID: -4108744147224297089, guid: e727f0a06223ea44bb7258cc06238478, type: 2}
+    value: {fileID: 809374524}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1428403823
@@ -9504,7 +9715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9548,7 +9759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.size
-      value: 6
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[1].charInt
@@ -9560,7 +9771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[3].charInt
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[4].charInt
@@ -9572,7 +9783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[6].charInt
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[7].charInt
@@ -9588,79 +9799,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[10].charInt
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[11].charInt
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[12].charInt
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[13].charInt
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[14].charInt
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[1].dialogueLine
-      value: Sir. Contact with a potential threat. Not human.
+      value: Okay. Power's restored.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[2].dialogueLine
-      value: Permission to open fire?
+      value: How are we looking with those doors Hawk?
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[3].dialogueLine
-      value: Granted.
+      value: Groovy. Doors are unlocked.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[4].dialogueLine
-      value: Talon Squad. You have green light to open fire.
+      value: Nice work Falcon.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[5].dialogueLine
-      value: I repeat. GREEN LIGHT to open fire.
+      value: Raven. Hawk. What's your status?
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[6].dialogueLine
-      value: As for us, that's in the same general area. Just down a floor.
+      value: Lab has been destroyed sir.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[7].dialogueLine
-      value: Wow. I'm so glad I have you as my very own professional navigator. Thanks.
+      value: No survivors.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[8].dialogueLine
-      value: Oh I'm sorry. Did you expect a tour?
+      value: Found a name badge.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[9].dialogueLine
-      value: You look to your left, you'll see a beautiful metal wall.
+      value: Doctor Riley Briscoe... isn't that an elite scientist?
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[10].dialogueLine
-      value: You look to the right, you got that same metal wall exterior.
+      value: Yeah, sure was.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[11].dialogueLine
-      value: But you'll find a pipe. This beautiful,
+      value: They were tasked were tasked to go into this voyage to find a potentially
+        habitable planet but...
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[12].dialogueLine
-      value: handcrafted pipe-
+      value: It looks like they found a lot more than that.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[13].dialogueLine
-      value: ENOUGH!
+      value: He also has a codename for the aliens.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[14].dialogueLine
-      value: Save your comedy act for after the mission.
+      value: Alverium. Now that's a cool name.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -10090,6 +10302,216 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: a43fd94339723ec489df711b3a0fa968, type: 3}
+--- !u!1001 &1604417021
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6738320691443924433, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_Name
+      value: SubtitlesManager QueenCutscene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812675011324907962, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[1].charInt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[2].charInt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[3].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[4].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[5].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[6].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[7].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[8].charInt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[9].charInt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[10].charInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[11].charInt
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[12].charInt
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[13].charInt
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[14].charInt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[15].charInt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[16].charInt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[17].charInt
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[1].dialogueLine
+      value: We found the chamber that contained the Alverium.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[2].dialogueLine
+      value: Looks like they smashed their way out.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[3].dialogueLine
+      value: Ugh. A lot more of those fleshy vines in here.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[4].dialogueLine
+      value: Actually...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[5].dialogueLine
+      value: they almost look like they're breathing?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[6].dialogueLine
+      value: Almost as if they were-
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[7].dialogueLine
+      value: OH SHIT!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[8].dialogueLine
+      value: 'Those aren''t vines. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[9].dialogueLine
+      value: Eagle we have made contact with a giant Alverium.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[10].dialogueLine
+      value: Hawk. Raven. You have permission to fire at will.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[11].dialogueLine
+      value: I repeat. FIRE AT WILL.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[12].dialogueLine
+      value: Don't have to tell me twice!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[13].dialogueLine
+      value: ...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[14].dialogueLine
+      value: Hawk! Raven! Come in!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[15].dialogueLine
+      value: Eagle! Do you read me?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[16].dialogueLine
+      value: Damn! That screech must have disrupted the comms.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+      propertyPath: cutsceneSubtitlesArray.Array.data[17].dialogueLine
+      value: I need to find them.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+--- !u!114 &1604417022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3001647021163319306, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
+  m_PrefabInstance: {fileID: 1604417021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1604816266
 GameObject:
   m_ObjectHideFlags: 0
@@ -10316,23 +10738,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[1].charInt
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[2].charInt
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[3].charInt
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[4].charInt
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[5].charInt
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[6].charInt
@@ -10372,23 +10794,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[1].dialogueLine
-      value: Sir. Contact with a potential threat. Not human.
+      value: Heads up team. There seems to be a flying variant.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[2].dialogueLine
-      value: Permission to open fire?
+      value: Watch out for the projectiles coming from its tail.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[3].dialogueLine
-      value: Granted.
+      value: Flying variant? Really?
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[4].dialogueLine
-      value: Talon Squad. You have green light to open fire.
+      value: At least give it a cool name or something.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[5].dialogueLine
-      value: I repeat. GREEN LIGHT to open fire.
+      value: Might need to brainstorm it later.
       objectReference: {fileID: 0}
     - target: {fileID: 8439862074064410760, guid: 10e5ae99463192b4facc98eef3408ba9, type: 3}
       propertyPath: cutsceneSubtitlesArray.Array.data[6].dialogueLine
