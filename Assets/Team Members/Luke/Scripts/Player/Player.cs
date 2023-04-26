@@ -352,6 +352,7 @@ public class Player : MonoBehaviour, IControllable
 			if (_coroutine != null) StopCoroutine(_coroutine);
 			_rb.gravityScale = 0f;
 			_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
+			OnPlayerJump?.Invoke();
 			StartCoroutine(JustJumped());
 			_coroutine = StartCoroutine(JumpTimer());
 		}
@@ -363,9 +364,9 @@ public class Player : MonoBehaviour, IControllable
 			if (_coroutine != null) StopCoroutine(_coroutine);
 			_rb.gravityScale = 0f;
 			_rb.velocity = new Vector2(_rb.velocity.x, jumpSpeed);
+			OnPlayerJump?.Invoke();
 			_coroutine = StartCoroutine(JumpTimer());
 		}
-		OnPlayerJump?.Invoke();
 	}
 
 	public void JumpCancelled()
