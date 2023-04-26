@@ -40,7 +40,7 @@ public class SoldierChaseState : AntAIState
 	{
 		base.Execute(aDeltaTime, aTimeScale);
 		if (!_animationFinished) return;
-
+		if (!_agent.terrainDetection.isGrounded) return;
 		if (_agent.lastKnownTargetDirection != 0)
 		{
 			_agent.MovePerformed(_agent.lastKnownTargetDirection);

@@ -646,7 +646,7 @@ Transform:
   - {fileID: 3000046420043677111}
   - {fileID: 6375329483046086689}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9000500780212009494
 MonoBehaviour:
@@ -666,20 +666,21 @@ MonoBehaviour:
   targetLocations: []
   currentTarget: {fileID: 0}
   lastKnownTargetDirection: 0
+  terrainDetection: {fileID: 0}
   beginsPatrolLeft: 1
   patrolSpeed: 10
   chaseSpeed: 20
   attackRange: 2
   currentMoveSpeed: 0
   gravityScale: 6
-  jumpSpeed: 5
+  jumpSpeed: 20
   wallSuctionStrength: 2
   idleDuration: 2
   patrolDuration: 3
   memoryDuration: 5
   attackDamage: 20
   attackCooldown: 0.5
-  jumpCooldownDuration: 2
+  jumpCooldownDuration: 2.5
   canJump: 1
   targetWithinRange: 0
   canAttack: 1

@@ -29,6 +29,7 @@ public class SoldierAnimationManager : AnimationManagerBase
 		_soldier.OnLostTarget += LostTargetAnimation;
 		_soldier.OnSpotTarget += SpottedTargetAnimation;
 		_soldier.OnRun += RunAnimation;
+		_soldier.OnJump += JumpAnimation;
 	}
 	
 	private void OnDisable()
@@ -39,6 +40,7 @@ public class SoldierAnimationManager : AnimationManagerBase
 		_soldier.OnLostTarget -= LostTargetAnimation;
 		_soldier.OnSpotTarget -= SpottedTargetAnimation;
 		_soldier.OnRun -= RunAnimation;
+		_soldier.OnJump -= JumpAnimation;
 	}
 
 	private void IdleAnimation()

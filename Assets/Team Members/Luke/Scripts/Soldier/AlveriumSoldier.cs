@@ -20,13 +20,13 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 	public Action OnRun;
 	public Action OnJump;
 
-	[SerializeField] private Transform view;
+	public Transform view;
 
 	public List<Transform> targetLocations;
 	public Transform currentTarget;
 	public float lastKnownTargetDirection;
 
-    private SoldierTerrainDetection _terrainDetection;
+    [HideInInspector] public SoldierTerrainDetection terrainDetection;
 
     public bool beginsPatrolLeft = true;
     public float patrolSpeed = 8f;
@@ -61,7 +61,7 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		base.OnEnable();
 		_transform = transform;
 		_rb = GetComponent<Rigidbody2D>();
-        _terrainDetection = (SoldierTerrainDetection)GetComponentInChildren<TerrainDetection>();
+        terrainDetection = (SoldierTerrainDetection)GetComponentInChildren<TerrainDetection>();
         anim = GetComponent<Animator>();
 	}
 
@@ -70,7 +70,6 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		Move(_lateralMoveInput);
 		RotateToWall();
 	}
-	
 	
 	public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
 	{
@@ -88,7 +87,7 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		_canPatrol = !_canPatrol;
 	}
 
-	[SerializeField] private LayerMask visionLayerMask = 520;
+	public LayerMask visionLayerMask = 520;
 
 	private bool ChooseTarget()
 	{
@@ -111,7 +110,6 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		}
 		currentTarget = targetLocations[closestTarget.Value];
 		
-		
 		RaycastHit2D hit = Physics2D.Linecast(_transform.position, currentTarget.position, visionLayerMask);
 		if (hit.collider.gameObject.GetComponentInParent<Player>() != null)
 		{
@@ -130,24 +128,20 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 	private bool CanReachTarget()
 	{
 		if (currentTarget == null) return false;
+		if (_justJumped) return false;
 		if (!canJump) return true;
 		Vector3 targetDirection = _transform.InverseTransformDirection(currentTarget.position - _transform.position);
+		if (targetDirection.y < 0) return true;
 		return targetDirection.y <= 0.5f * Mathf.Abs(targetDirection.x);
 	}
-
-	public RaycastHit2D GetJumpTarget()
-	{
-		if (currentTarget == null) return new RaycastHit2D();
-		return Physics2D.Linecast(_transform.position, currentTarget.position, visionLayerMask);
-	}
 	
-	public float JumpToTarget(Vector3 targetPosition)
+	public void JumpToTarget(Vector3 targetPosition)
 	{
 		Vector3 displacement = targetPosition - _transform.position;
 		Vector3 jumpVelocity = displacement.normalized * jumpSpeed;
-		float jumpDuration = displacement.magnitude/jumpSpeed;
-		StartCoroutine(JumpTimer(jumpVelocity, jumpDuration));
-		return jumpDuration;
+		float jumpDuration = displacement.magnitude / jumpSpeed;
+		_justJumped = true;
+		StartCoroutine(JumpTimer(jumpVelocity, jumpDuration*0.5f));
 	}
 	
 	private IEnumerator JumpTimer(Vector3 jumpVelocity, float jumpDuration)
@@ -156,16 +150,17 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		string currentStateName = anim.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
 		yield return new WaitWhile(() => anim.GetCurrentAnimatorStateInfo(0).IsName(currentStateName));
 		yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-		OnIdle?.Invoke();
-		canJump = false;
-		_justJumped = true;
-		_rb.gravityScale = 1;
+		OnRun?.Invoke();
+		terrainDetection.gameObject.SetActive(false);
+		_rb.gravityScale = 3;
 		_rb.velocity = jumpVelocity;
 		if (jumpVelocity.x < 0) view.localRotation = Quaternion.identity;
 		else view.localRotation = Quaternion.Euler(0, 180, 0);
-		yield return new WaitForSeconds(0.3f);
+		yield return new WaitForSeconds(jumpDuration);
+		canJump = false;
 		_justJumped = false;
-		yield return new WaitForSeconds(Mathf.Max(jumpDuration - 0.3f, 0.1f));
+		terrainDetection.gameObject.SetActive(true);
+		// yield return new WaitForSeconds(Mathf.Max(jumpDuration - 0.3f, 0.1f));
 		_rb.gravityScale = gravityScale;
 		StartCoroutine(JumpCooldownTimer());
 	}
@@ -190,16 +185,21 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 
 	private void Move(float lateralInput)
 	{
-		if (!_terrainDetection.isGrounded) return;
+		if (!terrainDetection.isActiveAndEnabled) return;
+		if (!terrainDetection.isGrounded)
+		{
+			_rb.gravityScale = gravityScale;
+			return;
+		}
 		if (_justJumped) return;
 		_rb.gravityScale = 0;
-		_rb.velocity = new Vector2(lateralInput * currentMoveSpeed * _terrainDetection.mainNormal.y-_terrainDetection.mainNormal.x*wallSuctionStrength,
-			lateralInput * currentMoveSpeed * -_terrainDetection.mainNormal.x-_terrainDetection.mainNormal.y*wallSuctionStrength);
+		_rb.velocity = new Vector2(lateralInput * currentMoveSpeed * terrainDetection.mainNormal.y-terrainDetection.mainNormal.x*wallSuctionStrength,
+			lateralInput * currentMoveSpeed * -terrainDetection.mainNormal.x-terrainDetection.mainNormal.y*wallSuctionStrength);
 	}
     
     private void RotateToWall()
 	{
-		_rb.angularVelocity = Vector3.SignedAngle(_transform.TransformDirection(Vector3.up),_terrainDetection.mainNormal, Vector3.forward)*rotateSpeed;
+		_rb.angularVelocity = Vector3.SignedAngle(_transform.TransformDirection(Vector3.up),terrainDetection.mainNormal, Vector3.forward)*rotateSpeed;
 	}
 
 	public void MovePerformed(float lateralInput)
@@ -208,13 +208,15 @@ public class AlveriumSoldier : EnemyBody, IControllable, ISense
 		else if (_lateralMoveInput <= 0 && lateralInput > 0) view.localRotation = Quaternion.Euler(0, 180, 0);
 
 		_lateralMoveInput = lateralInput;
-        _terrainDetection.lateralMoveInput = -Mathf.Abs(lateralInput);
+		if (!terrainDetection.isActiveAndEnabled) return;
+        terrainDetection.lateralMoveInput = -Mathf.Abs(lateralInput);
     }
 
 	public void MoveCancelled()
     {
         _lateralMoveInput = 0;
-        _terrainDetection.lateralMoveInput = 0;
+        if (!terrainDetection.isActiveAndEnabled) return;
+        terrainDetection.lateralMoveInput = 0;
     }
 
 	public void AimPerformedMouse(Vector2 input)

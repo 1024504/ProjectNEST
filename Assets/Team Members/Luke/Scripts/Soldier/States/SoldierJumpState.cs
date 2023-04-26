@@ -10,8 +10,7 @@ public class SoldierJumpState : AntAIState
 	private Vector2 _jumpTargetNormal;
 	private Vector3 _jumpTargetPosition;
 	private RaycastHit2D _jumpTarget;
-	private float _jumpDuration;
-	
+
 	public override void Create(GameObject aGameObject)
 	{
 		base.Create(aGameObject);
@@ -22,9 +21,9 @@ public class SoldierJumpState : AntAIState
 	{
 		base.Enter();
 		_jumpTargetNormal = Vector2.up;
-		_jumpTargetPosition = _agent.transform.position;
-		_jumpDuration = 0;
-		_jumpTarget = _agent.GetJumpTarget();
+		Transform agentTransform = _agent.transform;
+		_jumpTargetPosition = Vector3.zero;
+		_jumpTarget = Physics2D.Linecast(agentTransform.position, _agent.currentTarget.position, _agent.visionLayerMask);
 		if (_jumpTarget.collider != null)
 		{
 			Player player = _jumpTarget.collider.GetComponent<Player>();
@@ -35,20 +34,42 @@ public class SoldierJumpState : AntAIState
 			
 			_jumpTargetPosition = _jumpTarget.point;
 		}
-		_jumpDuration = _agent.JumpToTarget(_jumpTargetPosition);
 	}
 
 	public override void Execute(float aDeltaTime, float aTimeScale)
 	{
 		base.Execute(aDeltaTime, aTimeScale);
-		_agent.GetJumpTarget();
-		float angle = Vector2.SignedAngle(_agent.transform.up, _jumpTargetNormal)*0.5f;
-		_agent.transform.rotation = Quaternion.Euler(0, 0, _agent.transform.eulerAngles.z+angle);
+		if (!_agent.terrainDetection.isActiveAndEnabled)
+		{
+			Transform agentTransform = _agent.transform;
+			_jumpTarget = _jumpTarget = Physics2D.Raycast(agentTransform.position, _agent.GetComponent<Rigidbody2D>().velocity, 5f, _agent.visionLayerMask);
+			if (_jumpTarget.collider != null)
+			{
+				Player player = _jumpTarget.collider.GetComponent<Player>();
+				if (player == null)
+				{
+					_jumpTargetNormal = _jumpTarget.normal;
+				}
+			}
+
+			_agent.transform.Rotate(0,0,Mathf.Clamp(Vector2.SignedAngle(agentTransform.up, _jumpTargetNormal), -10f, 10f));
+		}
+		else
+		{
+			if (!_agent.terrainDetection.isGrounded) return;
+			if (_jumpTargetPosition == Vector3.zero) return;
+			_agent.JumpToTarget(_jumpTargetPosition);
+		}
 	}
 
 	public override void Exit()
 	{
 		base.Exit();
+		if (_agent.transform.InverseTransformDirection(_agent.currentTarget.position-_agent.transform.position).x <= 0)
+		{
+			if (_agent.view.localRotation.y != 0) _agent.view.localRotation = Quaternion.Euler(0, 180, 0);
+			else _agent.view.localRotation = Quaternion.Euler(Vector3.zero);
+		}
 	}
 
 	public override void Destroy(GameObject aGameObject)
