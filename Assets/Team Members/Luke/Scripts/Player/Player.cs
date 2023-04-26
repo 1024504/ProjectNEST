@@ -154,6 +154,7 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (_isGrappled)
 		{
+			_rb.gravityScale = gravityScale;
 			OnPlayerMidAirFalling?.Invoke();
 			_rb.velocity += new Vector2(input * _currentSpeed * Time.fixedDeltaTime, 0);
 			return;
@@ -167,6 +168,7 @@ public class Player : MonoBehaviour, IControllable
 
 		if (!_terrainDetection.isGrounded || _justJumped)
 		{
+			_rb.gravityScale = gravityScale;
 			MoveInAir(input);
 			return;
 		}
@@ -178,6 +180,7 @@ public class Player : MonoBehaviour, IControllable
 
 	private void MoveOnGround(float input)
 	{
+		_rb.gravityScale = 0;
 		_doubleJumped = false;
 		_canGrapple = true;
 		if (input < 0 && _terrainDetection.leftAngle < maxSlopeAngle ||
