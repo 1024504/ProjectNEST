@@ -13,4 +13,10 @@ public class Checkpoint : MonoBehaviour
 		if (GameManager.Instance.saveData.playerPosition == transform.position) return;
 		GameManager.Instance.SaveCheckpoint(this);
 	}
+
+	public void DialogueSave()
+	{
+		if (GameManager.Instance.saveData.playerPosition == transform.position) return;
+		GameManager.Instance.SaveCheckpoint(this);
+	}
 }
