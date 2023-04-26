@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8583383560914874410
 Transform:
   m_ObjectHideFlags: 0
@@ -266,7 +266,7 @@ Transform:
   - {fileID: 2037073735435122344}
   - {fileID: 8583383560914874410}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6911334101713151025
 SpriteRenderer:
@@ -334,9 +334,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movablePlatform: 1
   constantlyMoving: 0
-  moveSpeed: 1
+  moveSpeed: 0.8
   firstPositionWorld: {x: 0, y: 0, z: 0}
-  secondPositionLocal: {x: 1.7220078, y: 4.3460073, z: 0}
+  secondPositionLocal: {x: 0, y: 20.442947, z: 0}
+  _progress: 0
   isMoving: 0
   isGrappled: 0
   ropeWidth: 10
