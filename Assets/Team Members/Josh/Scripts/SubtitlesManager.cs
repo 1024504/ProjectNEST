@@ -33,17 +33,6 @@ public class SubtitlesManager : MonoBehaviour
 
     private void Update()
     {
-        
-        if( Input.GetKeyDown("t") )
-        {
-            StartSubtitles();
-            currentDialogueLine = 0;
-        }
-
-        if( Input.GetKeyDown("y") )
-        {
-            TriggerNextDialogueLine();
-        }
 
     }
 
