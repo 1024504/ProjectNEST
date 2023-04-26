@@ -1861,6 +1861,75 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: a43fd94339723ec489df711b3a0fa968, type: 3}
+--- !u!1 &263981454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 263981455}
+  - component: {fileID: 263981457}
+  - component: {fileID: 263981456}
+  m_Layer: 0
+  m_Name: FirstKillCutScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &263981455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263981454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 389835786}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &263981456
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263981454}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: ce139a262c4af9d4090b15d5da186bff, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -4829793469166975064, guid: ce139a262c4af9d4090b15d5da186bff, type: 2}
+    value: {fileID: 541712421}
+  - key: {fileID: 8830980048991254358, guid: ce139a262c4af9d4090b15d5da186bff, type: 2}
+    value: {fileID: 263981454}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &263981457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263981454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals: []
+    m_Events: []
 --- !u!1 &269955537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2551,6 +2620,7 @@ Transform:
   m_Children:
   - {fileID: 1604816270}
   - {fileID: 1415081606}
+  - {fileID: 263981455}
   - {fileID: 791036730}
   - {fileID: 1529858949}
   - {fileID: 1428403821}
@@ -12049,13 +12119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1f08d3c2d349048acb3ed694d2523d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    Guid:
-      Data1: -1663399139
-      Data2: 1182968217
-      Data3: -107100523
-      Data4: -1373588047
-    Path: event:/Characters/Dialogue/Tutorial (Hangar)/FirstEnemy_2
+  timeLineDirector: {fileID: 263981456}
 --- !u!95 &1773276842
 Animator:
   serializedVersion: 4
