@@ -18,23 +18,28 @@ public class CutsceneBorder_Script : MonoBehaviour
 
 	public void CutsceneFinished()
 	{
-		if (cutsceneFinished == true)
+		if( cutsceneFinished == true )
 		{
 			borderANIMATOR.CrossFade("Border_OUT", 0, 0);
 		}
 	}
-	
+
 	public void borderEnable()
 	{
 		cutsceneBorderPrefab.SetActive(true);
 	}
-	
+
 	public void DisableBorder()
 	{
-		if (cutsceneFinished == true)
+		if( cutsceneFinished == true )
 		{
 			cutsceneBorderPrefab.SetActive(false);
 			cutsceneFinished = false;
 		}
+	}
+
+	public void CutsceneBoolFalse()
+	{
+		cutsceneFinished = true;
 	}
 }
