@@ -106,6 +106,8 @@ public class UIManager : MonoBehaviour
 	    _rifle = player.weaponsList[0].GetComponent<Rifle>();
 	    _shotgun = player.weaponsList[1].GetComponent<Shotgun>();
 	    _sniper = player.weaponsList[2].GetComponent<Sniper>();
+	    aboveHeadUI = player.GetComponentInChildren<AboveHeadUI>().gameObject;
+	    aboveHeadUI.SetActive(false);
         
 	    noAlpha = new Color(0, 0, 0, 0f);
 	    halfAlpha = new Color(0, 0, 0, 0.5f);
