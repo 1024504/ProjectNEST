@@ -13,7 +13,8 @@ public class Sniper : WeaponBase
       if (isReloading) return;
       if(currentMagazine > 0)
       {
-         Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
+	      GameObject go = Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
+	      go.GetComponent<BulletBase>().owner = transform.root;
          currentMagazine--;
          FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/SniperSFX/SniperShots");
          OnShoot?.Invoke();

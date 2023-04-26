@@ -24,7 +24,8 @@ public class Shotgun : WeaponBase
         {
             for (int i = 0; i < shotgunBarrelTransforms.Length; i++)
             {
-                GameObject go = Instantiate(bulletPrefab, shotgunBarrelTransforms[i].position, transform.rotation);
+                GameObject go = Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
+                go.GetComponent<BulletBase>().owner = transform.root;
                 Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
                 rb.velocity = shotgunBarrelTransforms[i].right * 75f;
             }

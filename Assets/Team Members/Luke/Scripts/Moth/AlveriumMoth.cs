@@ -21,7 +21,7 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 
 	[SerializeField] private Transform view;
 	[SerializeField] private Transform tailTransform;
-	private Transform _currentTarget;
+	public Transform currentTarget;
 	public Transform aimTransform;
 	[SerializeField] private Transform projectileTransform;
 	
@@ -79,7 +79,7 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 	{
 		if (targetLocations.Count == 0)
 		{
-			_currentTarget = null;
+			currentTarget = null;
 			return false;
 		}
 		
@@ -94,21 +94,21 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 
 		if (closestTarget.Value == -1)
 		{
-			_currentTarget = null;
+			currentTarget = null;
 			return false;
 		}
 		
-		_currentTarget = targetLocations[closestTarget.Value];
+		currentTarget = targetLocations[closestTarget.Value];
 		return true;
 	}
 
 	public float CheckVerticalDistanceToTarget()
 	{
-		if (_currentTarget == null) return Mathf.Infinity;
-		return _currentTarget.position.y - tailTransform.position.y;
+		if (currentTarget == null) return Mathf.Infinity;
+		return currentTarget.position.y - tailTransform.position.y;
 	}
 	
-	public float CheckLateralDistanceToTarget() => _currentTarget.position.x - tailTransform.position.x;
+	public float CheckLateralDistanceToTarget() => currentTarget.position.x - tailTransform.position.x;
 
 	private void Move(float lateralInput, float verticalInput = 0)
 	{
@@ -120,8 +120,8 @@ public class AlveriumMoth : EnemyBody, IControllable, ISense
 
 	private void Aim()
 	{
-		if (_currentTarget == null) aimTransform.localPosition = localDefaultAimPosition;
-		else aimTransform.position = _currentTarget.position;
+		if (currentTarget == null) aimTransform.localPosition = localDefaultAimPosition;
+		else aimTransform.position = currentTarget.position;
 		Vector3 aimPosition = aimTransform.position;
 		Vector3 aimLocalPosition = aimTransform.localPosition;
 

@@ -41,7 +41,8 @@ public class Rifle : WeaponBase
         if (isReloading) return;
         if(currentMagazine > 0 && isShooting && canShoot)
         {
-            Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
+            GameObject go = Instantiate(bulletPrefab, gunBarrelTransform.position, transform.rotation);
+            go.GetComponent<BulletBase>().owner = transform.root;
             currentMagazine--;
             FMODUnity.RuntimeManager.PlayOneShot("event:/Characters/Gun SFX/RifleSFX/RifleShots");
             OnShoot?.Invoke();

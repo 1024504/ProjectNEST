@@ -11,6 +11,7 @@ public class BulletBase : MonoBehaviour
     public float speed;
     public float bulletDmg;
     public float bulletLife;
+    public Transform owner;
 
     private void OnEnable()
     {

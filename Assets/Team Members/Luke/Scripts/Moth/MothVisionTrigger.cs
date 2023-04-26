@@ -20,17 +20,35 @@ public class MothVisionTrigger : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		Player player = other.GetComponent<Player>();
-		if (player == null) return;
-		Transform target = player.transform;
-		if (!_agent.targetLocations.Contains(target))
+		if (player != null)
 		{
-			_agent.targetLocations.Add(target);
-			StartTimer(target);
+			Transform target = player.transform;
+			if (!_agent.targetLocations.Contains(target))
+			{
+				_agent.targetLocations.Add(target);
+				StartTimer(target);
+			}
+			else
+			{
+				StopCoroutine(_coroutine);
+				StartTimer(target);
+			}
 		}
-		else
+		BulletBase bullet = other.GetComponent<BulletBase>();
+		if (bullet == null) return;
 		{
-			StopCoroutine(_coroutine);
-			StartTimer(target);
+			Transform target = bullet.owner;
+			if (!_agent.targetLocations.Contains(target))
+			{
+				_agent.targetLocations.Add(target);
+				StartTimer(target);
+			}
+			else
+			{
+				StopCoroutine(_coroutine);
+				StartTimer(target);
+			}
+			_agent.currentTarget = target;
 		}
 	}
 
