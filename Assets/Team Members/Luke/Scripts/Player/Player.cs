@@ -65,7 +65,10 @@ public class Player : MonoBehaviour, IControllable
 	private Vector3 _localReticlePositionGamepad;
 	
 	[Header("Weapons")] 
+	public List<WeaponBase> weaponsList;
 	public WeaponBase currentWeapon;
+	public bool hasShotgun;
+	public bool hasSniper;
 	public Transform cameraTransform;
 	[Range(0.25f,1)]
 	public float gamePadReticleDistanceFraction = 0.8f;
@@ -75,7 +78,7 @@ public class Player : MonoBehaviour, IControllable
 	public float mouseReticleMargin = 1f;
 	
 	[Header("Inventory")]
-	public List<WeaponBase> weaponsList;
+	
 	public int medkitCount;
 	public int maxMedkit = 3;
 	public int medKitHealLevel;
@@ -282,9 +285,11 @@ public class Player : MonoBehaviour, IControllable
 	//Timeline Signal Functions
 	//Functions that are required to run after specific timelines
 	//This code is called within the Hawk Dialogue Timeline that enables double jump after finding Hawk.
-	public void ActivateDoubleJump()
+	//Also enables shotgun usage and ui
+	public void EnableTimeLineBools()
 	{
 		doubleJumpEnabled = true;
+		hasShotgun = true;
 	}
 
 	public void MovePerformed(float lateralInput)
@@ -463,6 +468,7 @@ public class Player : MonoBehaviour, IControllable
 	
 	public void Weapon2Performed()
 	{
+		if (!hasShotgun) return;
 		ChangeWeapon(1);
 	}
 	
@@ -472,6 +478,7 @@ public class Player : MonoBehaviour, IControllable
 	}
 	public void Weapon3Performed()
 	{
+		if (!hasSniper) return;
 		ChangeWeapon(2);
 	}
 	
