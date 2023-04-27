@@ -306,6 +306,7 @@ public class UIManager : MonoBehaviour
     {
 	    FMODUnity.RuntimeManager.PlayOneShot(audioIndex[(int)index.MyCollectible]);
     }
+    
     public void Pause()
     {
 	    pauseMenu.SetActive(true);

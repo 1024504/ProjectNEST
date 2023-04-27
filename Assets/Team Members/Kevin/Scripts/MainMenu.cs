@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour
 		    // Update this when new settings are added
 		    _gm.saveData = new SaveData
 		    {
-			    SettingsData = new SettingsData(true, 0.05f, currentResolution, fullscreen, quality)
+			    SettingsData = new SettingsData(true, 0.05f, true, true, currentResolution, fullscreen, quality)
 		    };
 	    }
     }

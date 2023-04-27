@@ -66,7 +66,7 @@ public class Settings : MonoBehaviour
         GameManager.Instance.saveData.SettingsData.Fullscreen = Screen.fullScreen;
         GameManager.Instance.saveData.SettingsData.Quality = currentQualityIndex;
         
-        GameManager.Instance.SaveSettings();
+        GameManager.Instance.SaveGame();
     }
     
     public void ApplyChanges(SettingsData settingsData)

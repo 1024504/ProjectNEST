@@ -14,11 +14,12 @@ public class SaveData
 	public bool canGrapple;
 	public int totalMedkits;
 	public List<ObjectiveStringPair> objectives;
+	public List<MyCollectibleBoolPair> collectibles;
 	public SettingsData SettingsData;
 	
 	public SaveData(string sceneNameString = "", Vector3 playerPositionVector3 = new (), bool hasShotgunBool = false,
 		bool hasSniperBool = false, bool canDoubleJumpBool = false, bool canGrappleBool = false, int totalMedkitsInt = 0,
-		List<ObjectiveStringPair> objectivesList = null, SettingsData settingsDataData = new ())
+		List<ObjectiveStringPair> objectivesList = null, List<MyCollectibleBoolPair> collectiblesList = null, SettingsData settingsDataData = new ())
 	{
 		sceneName = sceneNameString;
 		playerPosition = playerPositionVector3;
@@ -28,6 +29,7 @@ public class SaveData
 		canGrapple = canGrappleBool;
 		totalMedkits = totalMedkitsInt;
 		objectives = objectivesList;
+		collectibles = collectiblesList;
 		SettingsData = settingsDataData;
 	}
 }
@@ -36,10 +38,12 @@ public class SaveData
 public struct SettingsData
 {
 	// Update this when more settings are added
-	public SettingsData(bool toggleSprint, float leftStickDeadzone, Resolution resolution, bool fullscreen, int quality)
+	public SettingsData(bool toggleSprint, float leftStickDeadzone, bool toggleSubtitles, bool toggleHUD, Resolution resolution, bool fullscreen, int quality)
 	{
 		ToggleSprint = toggleSprint;
 		LeftStickDeadzone = leftStickDeadzone;
+		ToggleSubtitles = toggleSubtitles;
+		ToggleHUD = toggleHUD;
 		Resolution = resolution;
 		Fullscreen = fullscreen;
 		Quality = quality;
@@ -49,9 +53,11 @@ public struct SettingsData
 	public bool ToggleSprint;
 	public float LeftStickDeadzone;
 	// public float RightStickDeadzone;
-	
+
 	// Gameplay
-	
+	public bool ToggleSubtitles;
+	public bool ToggleHUD;
+	// public bool toggleTutorial;
 	
 	// Audio
 	

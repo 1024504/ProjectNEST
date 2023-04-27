@@ -187,44 +187,13 @@ public class GameManager : MonoBehaviour
    
    public void ApplySettings() => _settings.ApplyChanges(saveData.SettingsData);
 
-   public void SaveSettings()
+   public void SaveGame()
    {
 	   isSaving = true;
 	   StartCoroutine(uiManager.StartSaveAnimation());
 	   FMODUnity.RuntimeManager.PlayOneShot(savedTriggered);
 
 	   string destination = Path.Combine(Application.persistentDataPath, "saveFile.json");
-	   string json = JsonUtility.ToJson(saveData);
-	   File.WriteAllText(destination, json);
-	   
-	   isSaving = false;
-   }
-
-   public void SaveCheckpoint(Checkpoint checkpoint)
-   {
-	   isSaving = true;
-	   StartCoroutine(uiManager.StartSaveAnimation());
-	   FMODUnity.RuntimeManager.PlayOneShot(savedTriggered);
-	   
-	   SettingsData settingsData = saveData.SettingsData;
-	   
-	   string destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
-
-	   Player player = (Player) playerController.GameplayAgent;
-	   
-	   saveData = new
-	   (
-		   SceneManager.GetActiveScene().name,
-		   checkpoint.transform.position,
-		   true,
-		   true,
-		   player.doubleJumpEnabled,
-		   player.grappleEnabled,
-		   player.medkitCount,
-		   objectives,
-		   settingsData
-	   );
-	   
 	   string json = JsonUtility.ToJson(saveData);
 	   File.WriteAllText(destination, json);
 	   
