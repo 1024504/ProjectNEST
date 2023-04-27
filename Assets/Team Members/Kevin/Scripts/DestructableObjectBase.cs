@@ -12,6 +12,7 @@ public class DestructableObjectBase : MonoBehaviour
         Bullet otherBullet = col.gameObject.GetComponent<Bullet>();
         if (otherBullet != null)
         {
+            Debug.Log("hitting");
             hitCounter--;
             if (hitCounter == 1) this.GetComponentInParent<CrateScript>().Destroyed();
         }

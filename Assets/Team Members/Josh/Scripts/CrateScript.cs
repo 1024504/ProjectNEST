@@ -8,6 +8,7 @@ public class CrateScript : MonoBehaviour, IDestructable
     public ParticleSystem explosiveParticle;
     public GameObject halfCrate;
     public GameObject alveriumPrefab;
+    public GameObject medkitPrefab;
 
     public FMODUnity.EventReference explodeRef;
 
@@ -22,12 +23,22 @@ public class CrateScript : MonoBehaviour, IDestructable
         //FMODUnity.RuntimeManager.PlayOneShot(explodeRef);
 
         Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        if( isLoaded==1 )
+        int coinFlip = Random.Range(0, 100);
+        if(coinFlip > 16)
         {
-            HealthBase newbornHp = Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity).GetComponent<HealthBase>();
+            GameObject go = Instantiate(alveriumPrefab,
+                new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            HealthBase newbornHp = go.GetComponent<HealthBase>();
+            go.transform.localScale = Vector3.one / 1.5f;
+            go.GetComponent<AlveriumSoldier>().attackDamage = 10;
             newbornHp.HealthLevel = newbornHp.maxHealth / 2;
             //damage alverium
         }
+        else if (coinFlip <= 15) 
+        {
+            Instantiate(medkitPrefab, transform.position, Quaternion.identity);
+        }
+            
         //aggro nearby alverium
 
         Destroy(gameObject);
@@ -39,7 +50,12 @@ public class CrateScript : MonoBehaviour, IDestructable
         //FMODUnity.RuntimeManager.PlayOneShot(explodeRef);
 
         Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        Instantiate(alveriumPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        GameObject go = Instantiate(alveriumPrefab,
+            new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        HealthBase newbornHp = go.GetComponent<HealthBase>();
+        go.transform.localScale = Vector3.one /  1.5f;
+        go.GetComponent<AlveriumSoldier>().attackDamage = 10;
+        newbornHp.HealthLevel = newbornHp.maxHealth / 2;
         Destroy(gameObject);
     }
 }
