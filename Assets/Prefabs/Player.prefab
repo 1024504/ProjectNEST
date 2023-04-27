@@ -412,7 +412,7 @@ Transform:
   - {fileID: 1382185319286108311}
   - {fileID: 1158072893}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7425688498930848919
 MonoBehaviour:
@@ -565,15 +565,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb91eb7d8115d54eb1af6aa3c83044d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasPlaza1: 0
-  hasPlaza2: 0
-  hasPlaza3: 0
-  hasRes1: 0
-  hasRes2: 0
-  hasRes3: 0
-  hasBio1: 0
-  hasBio2: 0
-  hasBio3: 0
+  hasCollectibles:
+  - collectible: 0
+    isCollected: 0
+  - collectible: 1
+    isCollected: 0
+  - collectible: 2
+    isCollected: 0
+  - collectible: 3
+    isCollected: 0
+  - collectible: 4
+    isCollected: 0
+  - collectible: 5
+    isCollected: 0
+  - collectible: 6
+    isCollected: 0
+  - collectible: 7
+    isCollected: 0
+  - collectible: 8
+    isCollected: 0
 --- !u!1 &1698800783194258383
 GameObject:
   m_ObjectHideFlags: 0
