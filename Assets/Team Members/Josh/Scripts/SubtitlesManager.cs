@@ -18,7 +18,7 @@ public class SubtitlesManager : MonoBehaviour
     [SerializeField] Sprite eagleSpriteRef;
     [SerializeField] Sprite ravenSpriteRef;
     [SerializeField] Sprite hawkSpriteRef;
-    [SerializeField] Sprite alveriumsoldierSpriteRef;
+    [SerializeField] Sprite blankSpriteRef;
 
     int currentDialogueLine = 0;
     bool isActive = false;
@@ -101,7 +101,7 @@ public class SubtitlesManager : MonoBehaviour
 
             case 5:
                 tmproCharNameText.text = null;
-                charSpriteImage.sprite = null;
+                charSpriteImage.sprite = blankSpriteRef;
                 break;
 
             default:
