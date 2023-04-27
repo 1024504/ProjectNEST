@@ -1832,7 +1832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 932542970485735862, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_RootOrder
@@ -1840,11 +1840,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 707.7
+      value: 199
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.2
+      value: 5.72
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2254,7 +2254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 396424142404341019, guid: a43fd94339723ec489df711b3a0fa968, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 189.95
+      value: 240.1
       objectReference: {fileID: 0}
     - target: {fileID: 396424142404341019, guid: a43fd94339723ec489df711b3a0fa968, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2344,7 +2344,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: -4829793469166975064, guid: ce139a262c4af9d4090b15d5da186bff, type: 2}
-    value: {fileID: 541712421}
+    value: {fileID: 263981457}
   - key: {fileID: 8830980048991254358, guid: ce139a262c4af9d4090b15d5da186bff, type: 2}
     value: {fileID: 263981454}
   - key: {fileID: 1218809435755494721, guid: ce139a262c4af9d4090b15d5da186bff, type: 2}
@@ -2364,8 +2364,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals: []
-    m_Events: []
+    m_Signals:
+    - {fileID: 11400000, guid: e7eb025ff686ca04080df81f05eedaa4, type: 2}
+    - {fileID: 11400000, guid: 71d0afc392ba9c44cb26728626495cff, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1966515807}
+          m_TargetAssemblyTypeName: InteractableButton, Assembly-CSharp
+          m_MethodName: DisableControls
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 263981456}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7331761}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1966515807}
+          m_TargetAssemblyTypeName: InteractableButton, Assembly-CSharp
+          m_MethodName: EnableControls
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 263981456}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &269955537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,6 +2537,10 @@ PrefabInstance:
     - target: {fileID: 406736547841803788, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
       propertyPath: m_Name
       value: AlveriumMoth (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 406736547841803788, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5592498701801901199, guid: e8635d6d983053743854bfcabb5dc606, type: 3}
       propertyPath: m_RootOrder
@@ -2923,6 +2971,10 @@ PrefabInstance:
     - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_Name
       value: AlveriumSoldier (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3569488082446310913, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_RootOrder
@@ -4489,6 +4541,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c9a40e0ce566c474c98d8e72ca3942b6, type: 2}
     - {fileID: 11400000, guid: 9a5ab9d880a3a6f40b20c5621d70e697, type: 2}
     - {fileID: 11400000, guid: f8cbc254dcd15c7438a90602391430fe, type: 2}
+    - {fileID: 11400000, guid: e7eb025ff686ca04080df81f05eedaa4, type: 2}
+    - {fileID: 11400000, guid: 71d0afc392ba9c44cb26728626495cff, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -4541,6 +4595,48 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 535238225}
+          m_TargetAssemblyTypeName: InteractableButton, Assembly-CSharp
+          m_MethodName: EnableControls
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 263981456}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7331761}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 535238225}
+          m_TargetAssemblyTypeName: InteractableButton, Assembly-CSharp
+          m_MethodName: EnableControls
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 263981456}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -9655,6 +9751,8 @@ PlayableDirector:
     value: {fileID: 1297137750}
   - key: {fileID: -4108744147224297089, guid: e727f0a06223ea44bb7258cc06238478, type: 2}
     value: {fileID: 809374524}
+  - key: {fileID: 2928268427746567379, guid: e727f0a06223ea44bb7258cc06238478, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1428403823
@@ -10588,7 +10686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7049448470381020268, guid: d971f2117febb7f4497a2e4405071083, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7049448470381020304, guid: d971f2117febb7f4497a2e4405071083, type: 3}
       propertyPath: m_RootOrder
@@ -12333,6 +12431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlveriumSoldier (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3569488082446310913, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12834,7 +12936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8148186491433386690, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8148186491433386691, guid: e8f6f9f727508a049a4e04d6e0401609, type: 3}
       propertyPath: _uiManager
@@ -14440,6 +14542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlveriumSoldier (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3569488082446310913, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -14951,6 +15057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlveriumSoldier (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3569488082446310913, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15124,6 +15234,10 @@ PrefabInstance:
     - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_Name
       value: AlveriumSoldier (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3569488082446310913, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_RootOrder
@@ -16076,6 +16190,10 @@ PrefabInstance:
     - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_Name
       value: AlveriumSoldier (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3569488082446310913, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
       propertyPath: m_RootOrder
