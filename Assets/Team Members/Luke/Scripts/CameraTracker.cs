@@ -14,6 +14,12 @@ public class CameraTracker : MonoBehaviour
 	public Transform playerReticleTransform;
 	private BoxCollider2D _collider;
 
+	//cutscene stuff - Josh
+	//[SerializeField] Transform cutsceneTargetTrans;
+	[SerializeField] Vector3 targetPos;
+	bool isCutscene = false;
+	public float cutsceneSpeed = 0.3f;
+
 	[Header("Follow Variables")]
 	public float f = 1f;
 	public float zeta = 1f;
@@ -87,15 +93,40 @@ public class CameraTracker : MonoBehaviour
 	{
 		if (Time.fixedDeltaTime == 0) return;
 		if (playerTransform == null) return;
-		Vector3 position = playerTransform.position+playerReticleTransform.localPosition/3f+Vector3.up*3;
-		_cameraTransform.position = NextStep(Time.fixedDeltaTime, position+Vector3.back, _playerVelocity);
-		_playerVelocity = (position+Vector3.back - _playerPrevPosition) / Time.fixedDeltaTime;
-		_playerPrevPosition = position+Vector3.back;
+        if( !isCutscene )
+        {
+			Vector3 position = playerTransform.position + playerReticleTransform.localPosition / 3f + Vector3.up * 3;
+			_cameraTransform.position = NextStep(Time.fixedDeltaTime, position + Vector3.back, _playerVelocity);
+			_playerVelocity = (position + Vector3.back - _playerPrevPosition) / Time.fixedDeltaTime;
+			_playerPrevPosition = position + Vector3.back;
+		} else
+        {
+			_cameraTransform.position = NextStepCutscene(Time.fixedDeltaTime, targetPos);
+		}
+
 	}
 
 	public void UpdateCollider()
 	{
 		_collider.size = new Vector2(2 * _cam.orthographicSize * _cam.aspect, 2 * _cam.orthographicSize);
 		if (playerTransform != null) playerTransform.GetComponent<Player>().cameraSize = _collider.size;
+	}
+
+	public void CutsceneModeEnable(Vector3 newTargetPos)
+    {
+		isCutscene = true;
+		targetPos = newTargetPos;
+    }
+	public void CutsceneModeDisable() { 
+		isCutscene = false; 
+	}
+
+	public void CutscenePositionUpdate( Vector3 newTargetPos ) { targetPos = newTargetPos; }
+	public void CutsceneSpeedUpdate(float newSpeed) { cutsceneSpeed = newSpeed; }
+	
+	private Vector3 NextStepCutscene( float timeStep, Vector3 newPos)
+	{
+		_nextPosition = Vector3.Lerp(_cameraTransform.position, newPos, timeStep * cutsceneSpeed);
+		return _nextPosition;
 	}
 }
