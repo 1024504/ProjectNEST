@@ -108,6 +108,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2347
+--- !u!114 &-6955374998815836005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicManager/TrackSelection
+  m_EditorClassIdentifier: 
+  Name: TrackSelection
+  StudioPath: 
+  Min: 0
+  Max: 6
+  Default: 0
+  ID:
+    data1: 4048285185
+    data2: 3829951573
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-6867946895117085440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,30 +213,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5578
---- !u!114 &-6126223729731152802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/GameMusic/Track_Selection
-  m_EditorClassIdentifier: 
-  Name: Track_Selection
-  StudioPath: 
-  Min: 0
-  Max: 6
-  Default: 0
-  ID:
-    data1: 4048285185
-    data2: 3829951573
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &-5814714580264208090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,30 +294,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 52206
---- !u!114 &-5034240134332744801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Track_Selection
-  m_EditorClassIdentifier: 
-  Name: Track_Selection
-  StudioPath: parameter:/Track_Selection
-  Min: 0
-  Max: 6
-  Default: 0
-  ID:
-    data1: 4048285185
-    data2: 3829951573
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &-4748234776383581992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,34 +534,6 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-2079627355268211979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/GameMusic
-  m_EditorClassIdentifier: 
-  Path: event:/Music/GameMusic
-  Guid:
-    Data1: 1261344461
-    Data2: 1191064012
-    Data3: 1345589180
-    Data4: -1548775812
-  Banks:
-  - {fileID: 5247386296128520972}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -6126223729731152802}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 307200
 --- !u!114 &-2069510905120790862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,21 +738,20 @@ MonoBehaviour:
   - {fileID: 3724540864730090373}
   - {fileID: -2069510905120790862}
   - {fileID: -5112517580329724812}
-  - {fileID: -2079627355268211979}
   - {fileID: 1835619868005856512}
   - {fileID: -1552549977493915525}
   - {fileID: -3874033643219516925}
   - {fileID: 2417875050922502673}
   - {fileID: 4802215196749497075}
   - {fileID: -4487033435957913773}
+  - {fileID: 7961430223017983477}
   EditorParameters:
   - {fileID: -2251652583458313333}
-  - {fileID: -5034240134332744801}
   MasterBanks:
   - {fileID: 5247386296128520972}
   StringsBanks:
   - {fileID: 2957950418204311301}
-  cacheTime: 638180694446022947
+  cacheTime: 638181924603180240
   cacheVersion: 131601
 --- !u!114 &54852898063568855
 MonoBehaviour:
@@ -1091,10 +1038,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638180694446022947
+  lastModified: 638181924603180240
   FileSizes:
   - Name: Desktop
-    Value: 4056
+    Value: 4058
   Exists: 1
 --- !u!114 &2965149569689478499
 MonoBehaviour:
@@ -1354,10 +1301,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638180694445962897
+  lastModified: 638181924603120184
   FileSizes:
   - Name: Desktop
-    Value: 24694048
+    Value: 24780640
   Exists: 1
 --- !u!114 &5405191866033369190
 MonoBehaviour:
@@ -1710,6 +1657,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 21115
+--- !u!114 &7961430223017983477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MusicManager
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MusicManager
+  Guid:
+    Data1: 676532313
+    Data2: 1222471036
+    Data3: 649284028
+    Data4: 615508759
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6955374998815836005}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1300000
 --- !u!114 &8093464328945145199
 MonoBehaviour:
   m_ObjectHideFlags: 0
