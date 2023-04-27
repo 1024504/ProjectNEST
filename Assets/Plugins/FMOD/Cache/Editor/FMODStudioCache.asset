@@ -429,33 +429,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 61845
---- !u!114 &-3254921357165144989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Characters/Damage/PlayerTakingDamage
-  m_EditorClassIdentifier: 
-  Path: event:/Characters/Damage/PlayerTakingDamage
-  Guid:
-    Data1: 644306565
-    Data2: 1260340521
-    Data3: -148489339
-    Data4: -344597583
-  Banks:
-  - {fileID: 5247386296128520972}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 800
 --- !u!114 &-3143331383983065091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,7 +680,6 @@ MonoBehaviour:
   - {fileID: 304375907334989558}
   - {fileID: -2319733349722675507}
   - {fileID: -8771440367551060209}
-  - {fileID: -3254921357165144989}
   - {fileID: 6011042767974047558}
   - {fileID: -1789228303416065164}
   - {fileID: -901731869384753101}
@@ -745,13 +717,14 @@ MonoBehaviour:
   - {fileID: 4802215196749497075}
   - {fileID: -4487033435957913773}
   - {fileID: 7961430223017983477}
+  - {fileID: 2663599730216494994}
   EditorParameters:
   - {fileID: -2251652583458313333}
   MasterBanks:
   - {fileID: 5247386296128520972}
   StringsBanks:
   - {fileID: 2957950418204311301}
-  cacheTime: 638181924603180240
+  cacheTime: 638181984204279132
   cacheVersion: 131601
 --- !u!114 &54852898063568855
 MonoBehaviour:
@@ -1023,6 +996,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2550
+--- !u!114 &2663599730216494994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Damage/PlayerTakingDamage
+  m_EditorClassIdentifier: 
+  Path: event:/Damage/PlayerTakingDamage
+  Guid:
+    Data1: 644306565
+    Data2: 1260340521
+    Data3: -148489339
+    Data4: -344597583
+  Banks:
+  - {fileID: 5247386296128520972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 800
 --- !u!114 &2957950418204311301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,10 +1038,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638181924603180240
+  lastModified: 638181984204279132
   FileSizes:
   - Name: Desktop
-    Value: 4058
+    Value: 4140
   Exists: 1
 --- !u!114 &2965149569689478499
 MonoBehaviour:
@@ -1301,10 +1301,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/ProjectNestFmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638181924603120184
+  lastModified: 638181984204214074
   FileSizes:
   - Name: Desktop
-    Value: 24780640
+    Value: 24780704
   Exists: 1
 --- !u!114 &5405191866033369190
 MonoBehaviour:
