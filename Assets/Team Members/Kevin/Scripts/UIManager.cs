@@ -302,9 +302,9 @@ public class UIManager : MonoBehaviour
 	    currentStateName = saveIconUIAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash.ToString();
     }
 
-    public void PlayCollectibleButton(int index)
+    public void PlayCollectibleButton(Collectible index)
     {
-	    FMODUnity.RuntimeManager.PlayOneShot(audioIndex[index]);
+	    FMODUnity.RuntimeManager.PlayOneShot(audioIndex[(int)index.MyCollectible]);
     }
     public void Pause()
     {

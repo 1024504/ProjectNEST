@@ -1,24 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Tanks;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Collectible : Collectibles
+[Serializable]
+public class Collectible : MonoBehaviour
 {
-    public FMODUnity.EventReference collectibleDialogue;
-    public MyCollectible myCollectible;
+	public MyCollectible MyCollectible;
+}
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        CollectiblesBag bag = col.GetComponent<CollectiblesBag>();
-        if (bag != null)
-        {
-            FMODUnity.RuntimeManager.PlayOneShot(collectibleDialogue);
-            bag.UpdateBag(myCollectible);
-            //GameManager.Instance.uiManager.GetComponentInChildren<CollectiblesPanelManager>().OnCollectedUpdate();
-            gameObject.SetActive(false);
-        }
-    }
+[Serializable]
+public enum MyCollectible
+{
+	Plaza1,
+	Plaza2,
+	Plaza3,
+	ResArea1,
+	ResArea2,
+	ResArea3,
+	Bio1,
+	Bio2,
+	Bio3
 }
