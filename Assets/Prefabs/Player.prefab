@@ -61,7 +61,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 99
   m_TargetDisplay: 0
 --- !u!114 &1158072895
 MonoBehaviour:
@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 3066408316029130911}
   - component: {fileID: 1418177732}
   - component: {fileID: 1744217982}
+  - component: {fileID: 218029111}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -412,7 +413,7 @@ Transform:
   - {fileID: 1382185319286108311}
   - {fileID: 1158072893}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7425688498930848919
 MonoBehaviour:
@@ -584,6 +585,26 @@ MonoBehaviour:
     isCollected: 0
   - collectible: 8
     isCollected: 0
+--- !u!95 &218029111
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932542970485735862}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1698800783194258383
 GameObject:
   m_ObjectHideFlags: 0
