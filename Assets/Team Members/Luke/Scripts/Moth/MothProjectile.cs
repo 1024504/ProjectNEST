@@ -19,7 +19,7 @@ public class MothProjectile : MonoBehaviour
 	private Quaternion _collisionRotationWhenHit;
 
 	public GameObject projectileImpactSfx;
-
+	public GameObject trailRenderers;
 	private void OnEnable()
 	{
 		_transform = transform;
@@ -46,12 +46,11 @@ public class MothProjectile : MonoBehaviour
 		_collisionPositionOffset = _transform.position - _collisionHitTransform.position;
 		_rotationWhenHit = _transform.rotation;
 		_collisionRotationWhenHit = _collisionHitTransform.rotation;
-		
-		ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
-		if (ps != null) ps.Stop();
+
+		if (trailRenderers != null) trailRenderers.SetActive(false);
 
 		Destroy(gameObject, lifetimePostCollision);
-		GetComponentInChildren<ParticleSystem>().Stop();
+		trailRenderers.SetActive(false);
 		HealthBase health = col.GetComponentInParent<HealthBase>();
 		if (health != null) health.GetComponent<HealthBase>().HealthLevel -= damage;
 	}
