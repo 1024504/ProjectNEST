@@ -20,5 +20,6 @@ public class RavenTimeLineEvent : MonoBehaviour
     public void ChangeSniperUI()
     {
         instance.GetComponentInChildren<SniperUI>().gameObject.transform.localScale = Vector3.one;
+        instance.GetComponentInChildren<GrappleUI>().gameObject.transform.localScale = new Vector3(0.381142586f, 0.609828174f, 0.609828174f);
     }
 }
