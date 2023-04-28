@@ -24,8 +24,8 @@ public class CollectiblesBag : MonoBehaviour
 		    if (hasCollectible.collectible != collectibles) continue;
 		    hasCollectible.isCollected = true;
 	    }
-
-        // if (collectibles == Collectibles.MyCollectible.Plaza1)hasPlaza1 = true;
+	    GameManager.Instance.saveData.collectibles = hasCollectibles;
+	    // if (collectibles == Collectibles.MyCollectible.Plaza1)hasPlaza1 = true;
         // else if (collectibles == Collectibles.MyCollectible.Plaza2)hasPlaza2 = true;
         // else if (collectibles == Collectibles.MyCollectible.Plaza3)hasPlaza3 = true;
         // else if (collectibles == Collectibles.MyCollectible.ResArea1)hasRes1 = true;

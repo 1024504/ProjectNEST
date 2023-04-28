@@ -65,6 +65,7 @@ public class SoldierJumpState : AntAIState
 	public override void Exit()
 	{
 		base.Exit();
+		if (_agent.currentTarget == null) return;
 		if (_agent.transform.InverseTransformDirection(_agent.currentTarget.position-_agent.transform.position).x <= 0)
 		{
 			if (_agent.view.localRotation.y != 0) _agent.view.localRotation = Quaternion.Euler(0, 180, 0);
