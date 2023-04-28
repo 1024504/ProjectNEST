@@ -32,8 +32,9 @@ public class InteractableButton : InteractableObject
 		if( singleUse )
         {
 			buttonUI.gameObject.SetActive(false);
-			this.GetComponent<InteractableButton>().enabled = false;
-		}
+			GetComponent<Collider2D>().enabled = false;
+			GetComponent<InteractableButton>().enabled = false;
+        }
 	}
 
 	public void DisableControls(PlayableDirector obj)
