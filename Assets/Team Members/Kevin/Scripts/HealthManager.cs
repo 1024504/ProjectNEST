@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthManager : HealthBase
+public class HealthManager : MonoBehaviour
 { 
     public Image[] healthBoxes;
 
@@ -11,14 +11,11 @@ public class HealthManager : HealthBase
     public Sprite emptyHealth;
     
     private PlayerHealth _playerHealth;
-
-    public void Start()
-    {
-        healthLevel = maxHealth;
-    }
+    
     private void OnEnable()
     {
 	    if (_playerHealth != null) SetPlayer();
+	    GameManager.Instance.OnFinishLoading += DrawHealth;
     }
 
     public void SetPlayer()
@@ -35,13 +32,13 @@ public class HealthManager : HealthBase
 
     public void DrawHealth()
     {
-        healthLevel = (int) _playerHealth.HealthLevel/_playerHealth.maxHealth*10;
+        int healthBlocks = (int) (_playerHealth.HealthLevel/_playerHealth.maxHealth*10f);
         foreach (Image img in healthBoxes)
         {
             img.sprite = emptyHealth;
         }
 
-        for (int i = 0; i < healthLevel; i++)
+        for (int i = 0; i < healthBlocks; i++)
         {
             healthBoxes[i].sprite = fullHealth;
         }
