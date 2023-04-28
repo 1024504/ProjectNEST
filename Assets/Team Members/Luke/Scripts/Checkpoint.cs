@@ -19,15 +19,16 @@ public class Checkpoint : MonoBehaviour
 
 	private void SaveGame()
 	{
-		if (GameManager.Instance.saveData.playerPosition == transform.position) return;
-		GameManager.Instance.saveData.playerPosition = transform.position;
-		GameManager.Instance.saveData.sceneName = SceneManager.GetActiveScene().name;
-		GameManager.Instance.saveData.hasShotgun = _player.hasShotgun;
-		GameManager.Instance.saveData.hasSniper = _player.hasSniper;
-		GameManager.Instance.saveData.canDoubleJump = _player.doubleJumpEnabled;
-		GameManager.Instance.saveData.canGrapple = _player.grappleEnabled;
-		GameManager.Instance.saveData.totalMedkits = _player.medkitCount;
-		GameManager.Instance.SaveGame();
+		GameManager gameManager = GameManager.Instance;
+		if (gameManager.saveData.playerPosition == transform.position) return;
+		gameManager.saveData.playerPosition = transform.position;
+		gameManager.saveData.sceneName = SceneManager.GetActiveScene().name;
+		gameManager.saveData.hasShotgun = _player.hasShotgun;
+		gameManager.saveData.hasSniper = _player.hasSniper;
+		gameManager.saveData.canDoubleJump = _player.doubleJumpEnabled;
+		gameManager.saveData.canGrapple = _player.grappleEnabled;
+		gameManager.saveData.totalMedkits = _player.medkitCount;
+		gameManager.SaveGame();
 	}
 
 	public void DialogueSave()

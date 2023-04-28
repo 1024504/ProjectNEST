@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
    public static GameManager Instance { get; private set; }
 
    public bool gameLoadedFromFile;
+   public PlayerControls playerControls;
 
    //Player Controller
    public PlayerController playerController;
@@ -189,8 +191,12 @@ public class GameManager : MonoBehaviour
 	   if (objectiveToUpdate.objective == Objectives.None) return;
 	   uiManager.UpdateObjective(objectiveToUpdate);
    }
-   
-   public void ApplySettings() => _settings.ApplyChanges(saveData.SettingsData);
+
+   public void ApplySettings()
+   {
+	   playerControls.LoadBindingOverridesFromJson(saveData.SettingsData.ControlsOverrides);
+	   _settings.ApplyChanges(saveData.SettingsData);
+   }
 
    public void SaveGame()
    {

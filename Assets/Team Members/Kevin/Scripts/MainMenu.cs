@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
     {
 	    if (GameManager.Instance == null) Instantiate(gameManagerPrefab);
 	    _gm = GameManager.Instance;
+	    _gm.playerControls = new();
 	    mmAnimator.CrossFade("Opening", 0, 0);
 	    _destination = Path.Combine(Application.persistentDataPath,"saveFile.json");
 	    if (File.Exists(_destination))
@@ -67,7 +68,7 @@ public class MainMenu : MonoBehaviour
 		    // Update this when new settings are added
 		    _gm.saveData = new SaveData
 		    {
-			    SettingsData = new SettingsData(true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
+			    SettingsData = new SettingsData("", true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
 		    };
 	    }
     }

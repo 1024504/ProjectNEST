@@ -38,9 +38,10 @@ public class SaveData
 public struct SettingsData
 {
 	// Update this when more settings are added
-	public SettingsData(bool toggleSprint, float leftStickDeadzone, bool toggleSubtitles, bool toggleHUD,
+	public SettingsData(string controlsOverrides, bool toggleSprint, float leftStickDeadzone, bool toggleSubtitles, bool toggleHUD,
 		float masterVolume, float musicVolume, float sfxVolume, Resolution resolution, bool fullscreen, int quality)
 	{
+		ControlsOverrides = controlsOverrides;
 		ToggleSprint = toggleSprint;
 		LeftStickDeadzone = leftStickDeadzone;
 		ToggleSubtitles = toggleSubtitles;
@@ -54,6 +55,7 @@ public struct SettingsData
 	}
 	
 	// Controls
+	public string ControlsOverrides;
 	public bool ToggleSprint;
 	public float LeftStickDeadzone;
 	// public float RightStickDeadzone;

@@ -51,30 +51,37 @@ public class PlayerController : MonoBehaviour
 
 	private void Start()
 	{
-		if (GameManager.Instance != null) GameManager.Instance.playerController = this;
-		Controls = new();
+		if (GameManager.Instance != null)
+		{
+			GameManager.Instance.playerController = this;
+			Controls = GameManager.Instance.playerControls;
+		}
 
 		if ((IControllable) GameplayAgent != null)
 		{
-			//Gameplay inputs
-			_moveInput = Controls.Player.Move;
-			_aimInput = Controls.Player.Aim;
-			_jumpInput = Controls.Player.Jump;
-			_shootInput = Controls.Player.Fire;
-			_action1Input = Controls.Player.Action1;
-			_action2Input = Controls.Player.Action2;
-			_action3Input = Controls.Player.Action3;
-			_weapon1Input = Controls.Player.Weapon1;
-			_weapon2Input = Controls.Player.Weapon2;
-			_weapon3Input = Controls.Player.Weapon3;
-			_weaponScrollInput = Controls.Player.WeaponScroll;
-			_pauseInput = Controls.Player.Pause;
-			_resumeInput = Controls.UI.Resume;
-			_useMedKit = Controls.Player.MedKit;
-			_sprintInput = Controls.Player.Sprint;
+			GetInputActions();
 			
 			EnableGameplayInputs();
 		}
+	}
+
+	public void GetInputActions()
+	{
+		_moveInput = Controls.Player.Move;
+		_aimInput = Controls.Player.Aim;
+		_jumpInput = Controls.Player.Jump;
+		_shootInput = Controls.Player.Fire;
+		_action1Input = Controls.Player.Action1;
+		_action2Input = Controls.Player.Action2;
+		_action3Input = Controls.Player.Action3;
+		_weapon1Input = Controls.Player.Weapon1;
+		_weapon2Input = Controls.Player.Weapon2;
+		_weapon3Input = Controls.Player.Weapon3;
+		_weaponScrollInput = Controls.Player.WeaponScroll;
+		_pauseInput = Controls.Player.Pause;
+		_resumeInput = Controls.UI.Resume;
+		_useMedKit = Controls.Player.MedKit;
+		_sprintInput = Controls.Player.Sprint;
 	}
 
 	private void OnDisable()
@@ -82,7 +89,7 @@ public class PlayerController : MonoBehaviour
 		if ((IControllable)GameplayAgent != null) DisableGameplayInputs();
 	}
 
-	private void EnableGameplayInputs()
+	public void EnableGameplayInputs()
 	{
 		_moveInput.Enable();
 		_moveInput.performed += MovePerformed;
@@ -151,7 +158,7 @@ public class PlayerController : MonoBehaviour
 		_sprintInput.canceled += SprintCancelled;
 	}
 
-	private void DisableGameplayInputs()
+	public void DisableGameplayInputs()
 	{
 		_moveInput.Disable();
 		_moveInput.performed -= MovePerformed;
