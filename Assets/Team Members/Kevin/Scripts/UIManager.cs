@@ -177,7 +177,7 @@ public class UIManager : MonoBehaviour
         sniperAmmoText.SetText(_sniper.currentMagazine.ToString());
     }
 
-    private void UpdateMedKitCount()
+    public void UpdateMedKitCount()
     {
         medKitText.SetText(player.medkitCount.ToString());
     }

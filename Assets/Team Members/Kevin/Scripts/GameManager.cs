@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 		   _player.doubleJumpEnabled = saveData.canDoubleJump;
 		   _player.grappleEnabled = saveData.canGrapple;
 		   _player.medkitCount = saveData.totalMedkits;
+		   uiManager.UpdateMedKitCount();
 		   _player.GetComponent<CollectiblesBag>().hasCollectibles = saveData.collectibles;
 		   ApplySettings();
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
