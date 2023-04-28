@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Tanks;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class CollectibleObject : MonoBehaviour
 {
     public FMODUnity.EventReference collectibleDialogue;
     public MyCollectible myCollectible;
+
+    [SerializeField] GameObject promptObject;
+    [SerializeField] TextMeshProUGUI promptText;
 
     private void Start()
     {
@@ -36,6 +40,9 @@ public class CollectibleObject : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot(collectibleDialogue);
             bag.UpdateBag(myCollectible);
+
+            promptObject.SetActive(true);
+            promptText.text = "Collectible obtained: " + gameObject.name;
             gameObject.SetActive(false);
         }
     }
