@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
 		if (GameManager.Instance != null)
 		{
 			GameManager.Instance.playerController = this;
-			Controls = GameManager.Instance.playerControls;
+			if (GameManager.Instance.playerControls != null)Controls = GameManager.Instance.playerControls;
+			else Controls = new ();
 		}
 		else
 		{
