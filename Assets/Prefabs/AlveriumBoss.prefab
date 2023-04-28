@@ -1097,7 +1097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4009843864627013566
 Transform:
   m_ObjectHideFlags: 0
@@ -1182,7 +1182,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10000
+  m_Mass: 500
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 6
@@ -1224,8 +1224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthLevel: 0
-  maxHealth: 1000
+  maxHealth: 500
   bloodParticle: {fileID: 5278346931046662091, guid: 9ab00254ba6536d4a8d13493a803fc4e, type: 3}
+  deathParticle: {fileID: 8302387228568076917, guid: 666253a860970cf4c99bd0dc48a181e1, type: 3}
   impactSFX:
     Guid:
       Data1: -227330030

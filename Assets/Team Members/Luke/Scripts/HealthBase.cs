@@ -16,6 +16,8 @@ public class HealthBase : MonoBehaviour
     public Action OnDeath;
 
     public GameObject bloodParticle;
+    public GameObject deathParticle;
+    
     public EventReference impactSFX;
     public float HealthLevel
     {
@@ -41,6 +43,7 @@ public class HealthBase : MonoBehaviour
     protected virtual void Die()
     {
 	    OnDeath?.Invoke();
+        if (deathParticle != null) Instantiate(deathParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
