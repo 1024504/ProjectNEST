@@ -10,7 +10,7 @@ public class CollectibleObject : MonoBehaviour
     public FMODUnity.EventReference collectibleDialogue;
     public MyCollectible myCollectible;
 
-    private void OnEnable()
+    private void Start()
     {
 	    GameManager.Instance.OnFinishLoading += CheckAlreadyCollected;
 	    LevelManager.Instance.OnSceneLoaded += CheckAlreadyCollected;
@@ -36,7 +36,6 @@ public class CollectibleObject : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot(collectibleDialogue);
             bag.UpdateBag(myCollectible);
-            //GameManager.Instance.uiManager.GetComponentInChildren<CollectiblesPanelManager>().OnCollectedUpdate();
             gameObject.SetActive(false);
         }
     }

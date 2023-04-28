@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
@@ -82,9 +83,11 @@ public class GameManager : MonoBehaviour
 		   _player.doubleJumpEnabled = saveData.canDoubleJump;
 		   _player.grappleEnabled = saveData.canGrapple;
 		   _player.medkitCount = saveData.totalMedkits;
+		   _player.GetComponent<CollectiblesBag>().hasCollectibles = saveData.collectibles;
 		   ApplySettings();
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
+		   OnFinishLoading?.Invoke();
 	   }
 	   else
 	   {
@@ -101,7 +104,6 @@ public class GameManager : MonoBehaviour
 	   {
 		   uiManager.UpdateObjective(objective);
 	   }
-	   OnFinishLoading?.Invoke();
 	   cameraTracker.cameraFader.FadeIn();
 	   cameraTracker.cameraFader.OnFadeInComplete += ResumeOnLoad;
    }

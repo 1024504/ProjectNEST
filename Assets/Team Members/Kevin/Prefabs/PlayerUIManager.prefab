@@ -1194,16 +1194,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde79a8370cfb4a478718635dbf54a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plaza1: {fileID: 457887718}
-  plaza2: {fileID: 7291909196081455970}
-  plaza3: {fileID: 8362090723214396187}
-  res1: {fileID: 3503136774195265817}
-  res2: {fileID: 5830425144805977983}
-  res3: {fileID: 7339784070267364263}
-  bio1: {fileID: 5078276338489785634}
-  bio2: {fileID: 498051320337781399}
-  bio3: {fileID: 2592786896059145804}
   colBag: {fileID: 0}
+  collectibleGameObjectPairs:
+  - collectible: 0
+    gameObject: {fileID: 457887718}
+  - collectible: 1
+    gameObject: {fileID: 7291909196081455970}
+  - collectible: 2
+    gameObject: {fileID: 8362090723214396187}
+  - collectible: 3
+    gameObject: {fileID: 3503136774195265817}
+  - collectible: 4
+    gameObject: {fileID: 5830425144805977983}
+  - collectible: 5
+    gameObject: {fileID: 7339784070267364263}
+  - collectible: 6
+    gameObject: {fileID: 5078276338489785634}
+  - collectible: 7
+    gameObject: {fileID: 498051320337781399}
+  - collectible: 8
+    gameObject: {fileID: 2592786896059145804}
 --- !u!1 &1262153560
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2505,7 @@ GameObject:
   - component: {fileID: 6363783331998840532}
   - component: {fileID: 7816084865105772654}
   m_Layer: 5
-  m_Name: Plaza1 (8)
+  m_Name: Bio3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2778,7 +2788,7 @@ GameObject:
   - component: {fileID: 3148687280156469074}
   - component: {fileID: 2173536644165389877}
   m_Layer: 5
-  m_Name: Plaza1 (5)
+  m_Name: Res3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2852,7 +2862,7 @@ GameObject:
   - component: {fileID: 3556742347824655756}
   - component: {fileID: 3402807524205183824}
   m_Layer: 5
-  m_Name: Plaza1 (6)
+  m_Name: Bio1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3612,7 +3622,7 @@ GameObject:
   - component: {fileID: 3172848316905377594}
   - component: {fileID: 622602527590448693}
   m_Layer: 5
-  m_Name: Plaza1 (4)
+  m_Name: Res2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7646,7 +7656,7 @@ GameObject:
   - component: {fileID: 661656404816091992}
   - component: {fileID: 7554799919699879408}
   m_Layer: 5
-  m_Name: Plaza1 (7)
+  m_Name: Bio2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

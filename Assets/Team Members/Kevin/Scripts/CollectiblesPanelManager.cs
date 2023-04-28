@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CollectiblesPanelManager : MonoBehaviour
 {
-	public List<MyCollectibleGameObjectPair> collectibles = new ();
     // public GameObject plaza1;
     // public GameObject plaza2;
     // public GameObject plaza3;
@@ -17,10 +16,11 @@ public class CollectiblesPanelManager : MonoBehaviour
     // public GameObject bio3;
     
     public CollectiblesBag colBag;
+    public List<MyCollectibleGameObjectPair> collectibleGameObjectPairs = new ();
     
     public void OnEnable()
     {
-        colBag = GameManager.Instance.playerPrefab.GetComponentInChildren<CollectiblesBag>();
+        colBag = GameManager.Instance.playerController.GameplayAgent.GetComponentInChildren<CollectiblesBag>();
     }
     
     /*public void OnCollectedUpdate()
@@ -35,15 +35,19 @@ public class CollectiblesPanelManager : MonoBehaviour
         if (colBag.hasBio2) bio2.SetActive(true);
         if (colBag.hasBio3) bio3.SetActive(true);
     }*/
+    
     public void OnCollectedUpdate()
     {
-	    for (int i = 0; i < colBag.hasCollectibles.Count; i++)
+	    foreach (MyCollectibleBoolPair collectible in colBag.hasCollectibles)
 	    {
-		    if (!colBag.hasCollectibles[i].isCollected) continue;
-		    foreach (MyCollectibleGameObjectPair collectibleGameObjectPair in collectibles)
+		    if (collectible.isCollected)
 		    {
-			    if (collectibleGameObjectPair.collectible != (MyCollectible) i) continue;
-			    collectibleGameObjectPair.gameObject.SetActive(true);
+			    foreach (MyCollectibleGameObjectPair pair in collectibleGameObjectPairs)
+			    {
+				    if (pair.collectible != collectible.collectible) continue;
+				    pair.gameObject.SetActive(true);
+				    break;
+			    }
 		    }
 	    }
 	    
