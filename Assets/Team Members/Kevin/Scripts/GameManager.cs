@@ -87,7 +87,10 @@ public class GameManager : MonoBehaviour
 		   ApplySettings();
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
-		   // OnFinishLoading?.Invoke();
+		   foreach (ObjectiveStringPair objective in saveData.objectives)
+		   {
+			   uiManager.UpdateObjective(objective);
+		   }
 	   }
 	   else
 	   {
@@ -101,10 +104,10 @@ public class GameManager : MonoBehaviour
 	   cameraTracker.playerTransform = _player.transform;
 	   uiManager.aboveHeadUI = _player.aboveHeadUI;
 	   
-	   foreach (ObjectiveStringPair objective in saveData.objectives)
-	   {
-		   uiManager.UpdateObjective(objective);
-	   }
+	   // foreach (ObjectiveStringPair objective in saveData.objectives)
+	   // {
+		  //  uiManager.UpdateObjective(objective);
+	   // }
 	   cameraTracker.cameraFader.FadeIn();
 	   cameraTracker.cameraFader.OnFadeInComplete += ResumeOnLoad;
    }
