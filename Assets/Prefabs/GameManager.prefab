@@ -3624,39 +3624,6 @@ MonoBehaviour:
     Path: event:/Characters/Interactables/PickUpGenericSFX/PickUpGeneric
   isSaving: 0
   uiManager: {fileID: 0}
-  objectives:
-  - objective: 1
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
-  - objective: 2
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
-  - objective: 3
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
-  - objective: 4
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
-  - objective: 5
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
-  - objective: 6
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
-  - objective: 7
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
-  - objective: 8
-    uiText: 
-    isCompleted: 0
-    isHidden: 0
   currentMission: 0
 --- !u!1 &8261788594904288537
 GameObject:
@@ -4884,7 +4851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457409163294733343, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3463298596585236182, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
       propertyPath: m_Name
@@ -5336,7 +5303,7 @@ PrefabInstance:
       objectReference: {fileID: 7428565235019696356, guid: 9e1ca8bd0f55ada42af6ab56c5450190, type: 2}
     - target: {fileID: 5867370975600167611, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5976702039416509658, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5740,6 +5707,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -75
       objectReference: {fileID: 0}
+    - target: {fileID: 8905053061722410338, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 3279542462753241623}
     - target: {fileID: 8905053061722410338, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
@@ -6398,6 +6369,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyCollectible: 8
+--- !u!114 &3279542462753241623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2921734868701087303, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
+  m_PrefabInstance: {fileID: 364598177891515472}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7602966021203845111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3860416427655576905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3503136774195265817, guid: ba03fd196a1f3b042a7ad43ac0b6effa, type: 3}
