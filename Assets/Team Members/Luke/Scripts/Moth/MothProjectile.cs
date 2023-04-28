@@ -47,9 +47,11 @@ public class MothProjectile : MonoBehaviour
 		_rotationWhenHit = _transform.rotation;
 		_collisionRotationWhenHit = _collisionHitTransform.rotation;
 		
-		projectileImpactSfx.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+		ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
+		if (ps != null) ps.Stop();
 
 		Destroy(gameObject, lifetimePostCollision);
+		GetComponentInChildren<ParticleSystem>().Stop();
 		HealthBase health = col.GetComponentInParent<HealthBase>();
 		if (health != null) health.GetComponent<HealthBase>().HealthLevel -= damage;
 	}

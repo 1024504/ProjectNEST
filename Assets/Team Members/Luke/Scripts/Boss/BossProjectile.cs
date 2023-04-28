@@ -60,6 +60,9 @@ public class BossProjectile : MonoBehaviour
 		projectileImpactSfx.GetComponent<FMODUnity.StudioEventEmitter>().Play();
 
 		Destroy(gameObject, lifetimePostCollision);
+		ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
+		if (ps != null) ps.Stop();
+
 		HealthBase health = col.GetComponentInParent<HealthBase>();
 		if (health != null) health.GetComponent<HealthBase>().HealthLevel -= damage;
 	}
