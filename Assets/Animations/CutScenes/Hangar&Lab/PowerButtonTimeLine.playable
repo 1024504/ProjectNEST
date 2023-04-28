@@ -24,6 +24,22 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -7039682115972403451}
+--- !u!114 &-9072918617001393658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 36.166666666666664
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 11cc9716455b58f4eae0eee906b50d01, type: 2}
 --- !u!114 &-9049843239479362762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,6 +326,22 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -3221733690077455849}
+--- !u!114 &-6031168943900303735
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: f11d92e94960c5f499b86f4376251507, type: 2}
 --- !u!114 &-5091764391666511923
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,12 +707,38 @@ MonoBehaviour:
   - {fileID: -4108744147224297089}
   - {fileID: -6076368365209284077}
   - {fileID: -7651934536009481226}
+  - {fileID: 161534736723485214}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 0}
+--- !u!114 &161534736723485214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track (7)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -6031168943900303735}
+    - {fileID: -9072918617001393658}
 --- !u!114 &542760231845886262
 MonoBehaviour:
   m_ObjectHideFlags: 1
