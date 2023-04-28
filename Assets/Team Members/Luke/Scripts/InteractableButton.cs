@@ -15,6 +15,7 @@ public class InteractableButton : InteractableObject
 
 	public void OnEnable()
 	{
+		if (timeLineDirector == null) return;
 		timeLineDirector.played += DisableControls;
 		timeLineDirector.stopped += EnableControls;
 	}
@@ -23,7 +24,7 @@ public class InteractableButton : InteractableObject
 	{
 		base.Interact();
 		OnInteract?.Invoke();
-		timeLineDirector.Play();
+		if (timeLineDirector != null) timeLineDirector.Play();
 		if (objective != GameManager.Objectives.None)
 		{
 			GameManager.Instance.UpdateObjective(objective);
