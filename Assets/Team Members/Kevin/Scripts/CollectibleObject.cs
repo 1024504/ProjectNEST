@@ -10,6 +10,25 @@ public class CollectibleObject : MonoBehaviour
     public FMODUnity.EventReference collectibleDialogue;
     public MyCollectible myCollectible;
 
+    private void OnEnable()
+    {
+	    GameManager.Instance.OnFinishLoading += CheckAlreadyCollected;
+	    LevelManager.Instance.OnSceneLoaded += CheckAlreadyCollected;
+    }
+    
+    private void CheckAlreadyCollected()
+    {
+	    foreach (MyCollectibleBoolPair collectible in GameManager.Instance.saveData.collectibles)
+	    {
+		    if (collectible.collectible != myCollectible) continue;
+		    if (collectible.isCollected)
+		    {
+			    gameObject.SetActive(false);
+		    }
+		    break;
+	    }
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         CollectiblesBag bag = col.GetComponent<CollectiblesBag>();

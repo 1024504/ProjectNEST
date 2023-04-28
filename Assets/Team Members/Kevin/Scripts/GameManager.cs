@@ -47,9 +47,8 @@ public class GameManager : MonoBehaviour
    }
 
    private Settings _settings;
-   
-   // List of objective strings for UI, fill out in inspector
-   public List<ObjectiveStringPair> objectives = new();
+
+   public Action OnFinishLoading;
    
    //Objectives
    // public List<String> objectives;
@@ -83,7 +82,6 @@ public class GameManager : MonoBehaviour
 		   _player.doubleJumpEnabled = saveData.canDoubleJump;
 		   _player.grappleEnabled = saveData.canGrapple;
 		   _player.medkitCount = saveData.totalMedkits;
-		   objectives = saveData.objectives;
 		   ApplySettings();
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
@@ -99,11 +97,11 @@ public class GameManager : MonoBehaviour
 	   cameraTracker.playerTransform = _player.transform;
 	   uiManager.aboveHeadUI = _player.aboveHeadUI;
 	   
-	   foreach (ObjectiveStringPair objective in objectives)
+	   foreach (ObjectiveStringPair objective in saveData.objectives)
 	   {
 		   uiManager.UpdateObjective(objective);
 	   }
-	   
+	   OnFinishLoading?.Invoke();
 	   cameraTracker.cameraFader.FadeIn();
 	   cameraTracker.cameraFader.OnFadeInComplete += ResumeOnLoad;
    }
@@ -174,7 +172,7 @@ public class GameManager : MonoBehaviour
    {
 	   ObjectiveStringPair objectiveToUpdate = new ();
 	   
-	   foreach (ObjectiveStringPair objectiveStringPair in objectives)
+	   foreach (ObjectiveStringPair objectiveStringPair in saveData.objectives)
 	   {
 		   if (objectiveStringPair.objective != objective) continue;
 		   objectiveToUpdate = objectiveStringPair;

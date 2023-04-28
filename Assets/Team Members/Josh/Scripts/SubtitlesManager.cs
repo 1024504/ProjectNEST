@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tanks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -40,10 +41,13 @@ public class SubtitlesManager : MonoBehaviour
     {
         //if subtitles enabled, isActive=True
         isActive = true;
-        tmproDialogueText.enabled = true;
         tmproCharNameText.enabled = true;
         charSpriteImage.enabled = true;
-        dialogueBGImage.enabled = true;
+        if (GameManager.Instance.saveData.SettingsData.ToggleSubtitles)
+        {
+	        tmproDialogueText.enabled = true;
+	        dialogueBGImage.enabled = true;
+        }
         TriggerNextDialogueLine();
     }
 
