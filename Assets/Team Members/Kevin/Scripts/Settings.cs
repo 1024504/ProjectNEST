@@ -16,34 +16,53 @@ public class Settings : MonoBehaviour
     private int currentResolutionIndex = 0;
     private int currentScreenModeIndex;
     private int currentQualityIndex;
+    private FMOD.Studio.Bus masterBus;
+    private FMOD.Studio.Bus musicBus;
+    private FMOD.Studio.Bus sfxBus;
+    public float masterVolume = 1;
+    public float sfxVolume = 1;
+    public float musicVolume = 1;
     
-    void Start()
+    private void Start()
     {
-        _resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
-        for (int i = 0; i < _resolutions.Length; i++)
-        {
-            string resolutionOption = _resolutions[i].width + "x" + _resolutions[i].height;
-            options.Add(resolutionOption);
-            if (_resolutions[i].height == Screen.currentResolution.height && _resolutions[i].width == Screen.currentResolution.width) currentResolutionIndex = i;
-        }
-        if (Screen.fullScreen) currentScreenModeIndex = 0;
-		else currentScreenModeIndex = 1;
+        GetSettings();
+    }
+
+    private void GetSettings()
+    {
+	    _resolutions = Screen.resolutions;
+	    if (resolutionDropdown != null)resolutionDropdown.ClearOptions();
+	    List<string> options = new List<string>();
+	    for (int i = 0; i < _resolutions.Length; i++)
+	    {
+		    string resolutionOption = _resolutions[i].width + "x" + _resolutions[i].height;
+		    options.Add(resolutionOption);
+		    if (_resolutions[i].height == Screen.currentResolution.height && _resolutions[i].width == Screen.currentResolution.width) currentResolutionIndex = i;
+	    }
+	    if (Screen.fullScreen) currentScreenModeIndex = 0;
+	    else currentScreenModeIndex = 1;
         
-        // Resolution
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+	    // Resolution
+	    resolutionDropdown.AddOptions(options);
+	    resolutionDropdown.value = currentResolutionIndex;
+	    resolutionDropdown.RefreshShownValue();
         
-        // Screen Mode
-        screenModeDropDown.value = currentScreenModeIndex;
-        screenModeDropDown.RefreshShownValue();
+	    // Screen Mode
+	    screenModeDropDown.value = currentScreenModeIndex;
+	    screenModeDropDown.RefreshShownValue();
         
-        // Graphics Quality
-        currentQualityIndex = QualitySettings.GetQualityLevel();
-        graphicsDropDown.value = currentQualityIndex;
-        graphicsDropDown.RefreshShownValue();
+	    // Graphics Quality
+	    currentQualityIndex = QualitySettings.GetQualityLevel();
+	    graphicsDropDown.value = currentQualityIndex;
+	    graphicsDropDown.RefreshShownValue();
+        
+	    masterVolume = GameManager.Instance.saveData.SettingsData.MasterVolume;
+	    musicVolume = GameManager.Instance.saveData.SettingsData.MusicVolume;
+	    sfxVolume = GameManager.Instance.saveData.SettingsData.SFXVolume;
+        
+	    masterBus = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+	    musicBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
+	    sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
     }
 
     public void ResolutionDropdown()
@@ -66,7 +85,20 @@ public class Settings : MonoBehaviour
         GameManager.Instance.saveData.SettingsData.Fullscreen = Screen.fullScreen;
         GameManager.Instance.saveData.SettingsData.Quality = currentQualityIndex;
         
+        masterBus.setVolume(masterVolume);
+        musicBus.setVolume(musicVolume);
+        sfxBus.setVolume(sfxVolume);
+        
+        GameManager.Instance.saveData.SettingsData.MasterVolume = masterVolume;
+        GameManager.Instance.saveData.SettingsData.MusicVolume = musicVolume;
+        GameManager.Instance.saveData.SettingsData.SFXVolume = sfxVolume;
+
         GameManager.Instance.SaveGame();
+    }
+
+    public void UpdateVolume(float masterVolume, float musicVolume, float sfxVolume)
+    {
+	    
     }
     
     public void ApplyChanges(SettingsData settingsData)

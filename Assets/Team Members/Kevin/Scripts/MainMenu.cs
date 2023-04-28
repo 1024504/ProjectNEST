@@ -59,12 +59,15 @@ public class MainMenu : MonoBehaviour
 		    Resolution currentResolution = Screen.currentResolution;
 		    bool fullscreen = Screen.fullScreen;
 		    int quality = QualitySettings.GetQualityLevel();
+		    float masterVolume = 1;
+		    float musicVolume = 1;
+		    float sfxVolume = 1;
 		    
 		    // Default Settings
 		    // Update this when new settings are added
 		    _gm.saveData = new SaveData
 		    {
-			    SettingsData = new SettingsData(true, 0.05f, true, true, currentResolution, fullscreen, quality)
+			    SettingsData = new SettingsData(true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
 		    };
 	    }
     }

@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 		   ApplySettings();
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
-		   OnFinishLoading?.Invoke();
+		   // OnFinishLoading?.Invoke();
 	   }
 	   else
 	   {
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
 		   go = Instantiate(cameraPrefab, defaultSpawnPoint+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
 	   }
+	   OnFinishLoading?.Invoke();
 	   
 	   cameraTracker.playerTransform = _player.transform;
 	   uiManager.aboveHeadUI = _player.aboveHeadUI;

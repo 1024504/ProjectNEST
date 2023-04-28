@@ -38,12 +38,16 @@ public class SaveData
 public struct SettingsData
 {
 	// Update this when more settings are added
-	public SettingsData(bool toggleSprint, float leftStickDeadzone, bool toggleSubtitles, bool toggleHUD, Resolution resolution, bool fullscreen, int quality)
+	public SettingsData(bool toggleSprint, float leftStickDeadzone, bool toggleSubtitles, bool toggleHUD,
+		float masterVolume, float musicVolume, float sfxVolume, Resolution resolution, bool fullscreen, int quality)
 	{
 		ToggleSprint = toggleSprint;
 		LeftStickDeadzone = leftStickDeadzone;
 		ToggleSubtitles = toggleSubtitles;
 		ToggleHUD = toggleHUD;
+		MasterVolume = masterVolume;
+		MusicVolume = musicVolume;
+		SFXVolume = sfxVolume;
 		Resolution = resolution;
 		Fullscreen = fullscreen;
 		Quality = quality;
@@ -60,7 +64,9 @@ public struct SettingsData
 	// public bool toggleTutorial;
 	
 	// Audio
-	
+	public float MasterVolume;
+	public float MusicVolume;
+	public float SFXVolume;
 	
 	// Screen
 	public Resolution Resolution;
