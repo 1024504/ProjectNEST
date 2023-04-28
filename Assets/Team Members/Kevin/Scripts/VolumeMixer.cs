@@ -15,9 +15,9 @@ public class VolumeMixer : MonoBehaviour
 	{
 		foreach (Slider slider in GetComponentsInChildren<Slider>())
 		{
-			if (gameObject.name == "MasterVolumeSlider") slider.value = settings.masterVolume;
-			else if (gameObject.name == "MusicVolumeSlider") slider.value = settings.musicVolume;
-			else if (gameObject.name == "SFXVolumeSlider") slider.value = settings.sfxVolume;
+			if (slider.gameObject.name == "MasterVolumeSlider") slider.value = settings.masterVolume;
+			else if (slider.gameObject.name == "MusicVolumeSlider") slider.value = settings.musicVolume;
+			else if (slider.gameObject.name == "SFXVolumeSlider") slider.value = settings.sfxVolume;
 		}
 		
 		// sfxVolumeTester = FMODUnity.RuntimeManager.CreateInstance("event:/Characters/Gun SFX/RifleSFX/RifleShots");
