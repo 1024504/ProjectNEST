@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5278346931046662093}
   - component: {fileID: 5278346931046662090}
   m_Layer: 0
-  m_Name: BossImpact
+  m_Name: GruntImpactVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,8 +286,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
-      minScalar: 0.5
+      scalar: 1
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5159,7 +5159,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       scalar: 0.75
-      minScalar: 0.5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
