@@ -10,6 +10,6 @@ public class HackDialogue : MonoBehaviour
     
     public void OnDisable()
     {
-        timeLineDirector.Play();
+        if (timeLineDirector != null) timeLineDirector.Play();
     }
 }
