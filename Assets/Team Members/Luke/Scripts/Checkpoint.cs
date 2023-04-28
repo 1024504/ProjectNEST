@@ -32,7 +32,6 @@ public class Checkpoint : MonoBehaviour
 
 	public void DialogueSave()
 	{
-		if (GameManager.Instance.saveData.playerPosition == transform.position) return;
 		SaveGame();
 	}
 }
