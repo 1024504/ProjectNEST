@@ -56,6 +56,10 @@ public class PlayerController : MonoBehaviour
 			GameManager.Instance.playerController = this;
 			Controls = GameManager.Instance.playerControls;
 		}
+		else
+		{
+			Controls = new ();
+		}
 
 		if ((IControllable) GameplayAgent != null)
 		{
