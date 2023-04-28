@@ -22,9 +22,9 @@ public class KeyRebinding : MonoBehaviour
 
     private void OnEnable()
     {
-	    pcKeyText.text = InputControlPath.ToHumanReadableString(inputActionReference.action.bindings[0].effectivePath,
+	    if (pcKeyText != null) pcKeyText.text = InputControlPath.ToHumanReadableString(inputActionReference.action.bindings[0].effectivePath,
 		    InputControlPath.HumanReadableStringOptions.OmitDevice);
-	    controllerKeyText.text = InputControlPath.ToHumanReadableString(inputActionReference.action.bindings[1].effectivePath,
+	    if (controllerKeyText != null) controllerKeyText.text = InputControlPath.ToHumanReadableString(inputActionReference.action.bindings[1].effectivePath,
 		    InputControlPath.HumanReadableStringOptions.OmitDevice);
 	    _playerControls = GameManager.Instance.playerControls;
 	    foreach (InputAction action in _playerControls.Player.Get().actions)
