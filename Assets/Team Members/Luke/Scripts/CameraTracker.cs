@@ -115,13 +115,13 @@ public class CameraTracker : MonoBehaviour
 	public void CutsceneModeEnable(Vector3 newTargetPos)
     {
 		isCutscene = true;
-		targetPos = newTargetPos;
+		targetPos = new Vector3(newTargetPos.x, newTargetPos.y, transform.position.z);
     }
 	public void CutsceneModeDisable() { 
 		isCutscene = false; 
 	}
 
-	public void CutscenePositionUpdate( Vector3 newTargetPos ) { targetPos = newTargetPos; }
+	public void CutscenePositionUpdate( Vector3 newTargetPos ) { targetPos = new Vector3(newTargetPos.x, newTargetPos.y, transform.position.z); }
 	public void CutsceneSpeedUpdate(float newSpeed) { cutsceneSpeed = newSpeed; }
 	
 	private Vector3 NextStepCutscene( float timeStep, Vector3 newPos)
