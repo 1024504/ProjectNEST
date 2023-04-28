@@ -127,14 +127,16 @@ public class Player : MonoBehaviour, IControllable
 		_grapple = GetComponentInChildren<Grapple>(true);
 		_grapple.OnHit += GrappleHit;
 		currentWeapon = weaponsList[0];
-	}
-
-	private void Start()
-	{
+		
 		UIManager ui = UIManager.Instance;
 		ui.player = this;
 		ui.SubscribeToPlayerEvents();
 		UpdateReticleDistance();
+	}
+
+	private void Start()
+	{
+		
 	}
 
 	private void OnDisable()
