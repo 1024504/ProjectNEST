@@ -152,7 +152,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553411639230391920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -164,7 +164,7 @@ Transform:
   - {fileID: 2124333348747872857}
   m_Father: {fileID: 4009843864627013566}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &825011176661367980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1089,8 @@ GameObject:
   - component: {fileID: 4373212189860057710}
   - component: {fileID: 7572694225562401801}
   - component: {fileID: 138692932044134669}
+  - component: {fileID: 1127359467}
+  - component: {fileID: 1127359475}
   m_Layer: 0
   m_Name: AlveriumBoss
   m_TagString: Untagged
@@ -1105,7 +1107,7 @@ Transform:
   m_GameObject: {fileID: 2842360412607290776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 77.23608, y: 24.469185, z: 2.3775795}
-  m_LocalScale: {x: 3.285882, y: 3.285882, z: 3.285882}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7536143558536531425}
@@ -1113,7 +1115,7 @@ Transform:
   - {fileID: 2219593358449858236}
   - {fileID: 3798438950187539721}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &105813692926737108
 MonoBehaviour:
@@ -1259,6 +1261,64 @@ MonoBehaviour:
       Data4: -327189788
     Path: event:/Enemies/Boss/Attack
   shootSFX: {fileID: 1374292136423330690}
+--- !u!114 &1127359467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842360412607290776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1f08d3c2d349048acb3ed694d2523d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineDirector: {fileID: 0}
+--- !u!114 &1127359475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842360412607290776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 6d7f3188ca1f91c4fabc2ad78f2d4ed7, type: 2}
+    - {fileID: 11400000, guid: 170a1e3400ecf99478a49961a69921fe, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 105813692926737107}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 105813692926737107}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!1 &2998913595418971823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1439,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3285514300277641773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1460447, y: 0.028994586, z: -2.1734529}
+  m_LocalPosition: {x: 1.1460447, y: 0.028994586, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
