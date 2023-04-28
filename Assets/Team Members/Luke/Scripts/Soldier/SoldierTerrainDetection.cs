@@ -15,11 +15,17 @@ public class SoldierTerrainDetection : TerrainDetection
         
         if (_groundColliders.Count > 0)
         {
-	        foreach (Collider2D collider in _groundColliders)
+	        int c = 0;
+	        for (int i = 0; i < _groundColliders.Count; i++)
 	        {
-		        if (collider != null) continue;
-		        _groundColliders.Remove(collider);
-		        if (_groundColliders.Count == 0) isGrounded = false;
+		        if (_groundColliders[i+c] != null) continue;
+		        _groundColliders.Remove(_groundColliders[i+c]);
+		        c--;
+		        if (_groundColliders.Count == 0)
+		        {
+			        isGrounded = false;
+			        return;
+		        }
 	        }
 	        
             float closestDistance = Vector2.Distance(position, _groundColliders[0].ClosestPoint(position));

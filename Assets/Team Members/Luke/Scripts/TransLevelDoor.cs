@@ -34,14 +34,16 @@ public class TransLevelDoor : InteractableObject
 		LevelManager.Instance.doors.Add(this);
 	}
 
-	private void OnDisable()
+	protected override void OnDisable()
 	{
 		LevelManager.Instance.doors.Remove(this);
 		if (connectingDoor != null) connectingDoor.connectingDoor = null;
+		base.OnDisable();
 	}
 
 	protected override void Interact()
 	{
+		base.Interact();
 		if (sceneToLoad == null)
 		{
 			Debug.Log("No scene to load");

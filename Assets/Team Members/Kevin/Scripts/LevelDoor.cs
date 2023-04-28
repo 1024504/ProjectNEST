@@ -15,6 +15,7 @@ public class LevelDoor : InteractableObject
 
     protected override void Interact()
     {
+	    base.Interact();
 	    if (player == null)
 	    {
 		    Debug.Log("Player is null");

@@ -12,20 +12,30 @@ public class InteractableObject : MonoBehaviour
 	public Action<GameManager.Objectives> OnUpdateObjective;
 	public bool singleUse;
 
-	protected virtual void Interact() { }
+	protected virtual void Interact()
+	{
+		Player.OnInteract -= Interact;
+	}
+
+	protected Player Player;
+
+	protected virtual void OnDisable()
+	{
+		if (Player != null) Player.OnInteract -= Interact;
+	}
 
 	protected virtual void OnTriggerEnter2D(Collider2D col)
 	{
-		Player player = col.GetComponent<Player>();
-		if (player == null) return;
-		if (player.OnInteract != null) player.OnInteract -= Interact; // Prevents multiple subscriptions (e.g. when player dies and respawns
-		player.OnInteract += Interact;
+		Player = col.GetComponent<Player>();
+		if (Player == null) return;
+		if (Player.OnInteract != null) Player.OnInteract -= Interact; // Prevents multiple subscriptions (e.g. when player dies and respawns
+		Player.OnInteract += Interact;
 	}
 	
 	protected virtual void OnTriggerExit2D(Collider2D col)
 	{
-		Player player = col.GetComponent<Player>();
-		if (player == null) return;
-		player.OnInteract -= Interact;
+		Player = col.GetComponent<Player>();
+		if (Player == null) return;
+		Player.OnInteract -= Interact;
 	}
 }

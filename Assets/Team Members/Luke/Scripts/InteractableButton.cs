@@ -21,6 +21,7 @@ public class InteractableButton : InteractableObject
 	
 	protected override void Interact()
 	{
+		base.Interact();
 		OnInteract?.Invoke();
 		timeLineDirector.Play();
 		if (objective != GameManager.Objectives.None)
