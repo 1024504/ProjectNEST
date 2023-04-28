@@ -29,7 +29,7 @@ public class TriggerCutScene : MonoBehaviour
     public void DisableControls(PlayableDirector obj)
     {
         if(isTimeStop) GameManager.Instance.playerController.Controls.Disable();
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        if(gameObject.GetComponent<BoxCollider2D>() != null) gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 	
     public void EnableControls(PlayableDirector obj)
