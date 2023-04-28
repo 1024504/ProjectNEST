@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [Serializable]
@@ -17,6 +18,7 @@ public class InteractableObject : MonoBehaviour
 	{
 		Player player = col.GetComponent<Player>();
 		if (player == null) return;
+		if (player.OnInteract != null) player.OnInteract -= Interact; // Prevents multiple subscriptions (e.g. when player dies and respawns
 		player.OnInteract += Interact;
 	}
 	

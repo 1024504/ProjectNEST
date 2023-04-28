@@ -20,6 +20,8 @@ public class TransLevelDoor : InteractableObject
 
 	public FMODUnity.EventReference doorSFX;
 
+	private Scene _myScene;
+
 	private void OnEnable()
 	{
 		if (LevelManager.Instance == null) return;
@@ -45,7 +47,9 @@ public class TransLevelDoor : InteractableObject
 			Debug.Log("No scene to load");
 			return;
 		}
-
+		
+		_myScene = SceneManager.GetActiveScene();
+		
 		FMODUnity.RuntimeManager.PlayOneShot(doorSFX);
 		
 		GameManager.Instance.DisableInput();
@@ -59,7 +63,6 @@ public class TransLevelDoor : InteractableObject
 		_cameraTracker.cameraFader.OnFadeOutComplete -= LoadStage1;
 		LevelManager.Instance.OnSceneLoaded += LoadStage2;
 		LevelManager.Instance.LoadScene(sceneToLoad);
-		
 	}
 
 	private void LoadStage2()
@@ -71,7 +74,7 @@ public class TransLevelDoor : InteractableObject
 		_cameraTracker.transform.position = targetPosition+Vector3.back;
 		connectingDoor.player = player;
 		LevelManager.Instance.OnSceneUnloaded += LoadStage3;
-		LevelManager.Instance.UnloadScene(connectingDoor.sceneToLoad);
+		LevelManager.Instance.UnloadScene(_myScene.name);
 	}
 	
 	private void LoadStage3()
