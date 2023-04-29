@@ -194,11 +194,40 @@ public class GameManager : MonoBehaviour
 	   uiManager.Resume();
    }
 
-   public void UpdateObjective(Objectives objective, bool newCompletedState, bool newHiddenState, bool updateHUD)
+   #region Test Objective Signal Stuff
+   
+   public Objectives setObjective;
+   public string setObjectiveString;
+   public bool setNewCompletedState;
+   public bool setNewHiddenState;
+   public bool setUpdateHUD;
+   
+   public void UpdateHUD(bool updateHUD)
+   {
+	   setUpdateHUD = updateHUD;
+	   UpdateObjective(setObjectiveString, setNewCompletedState, setNewHiddenState, setUpdateHUD);
+   }
+   
+   #endregion
+  
+   
+   /*public void UpdateObjective(Objectives objective, bool newCompletedState, bool newHiddenState, bool updateHUD)
    {
 	   foreach (ObjectiveStringPair objectiveStringPair in saveData.objectives)
 	   {
 		   if (objectiveStringPair.objective != objective) continue;
+		   objectiveStringPair.isCompleted = newCompletedState;
+		   objectiveStringPair.isHidden = newHiddenState;
+		   break;
+	   }
+	   if (updateHUD) uiManager.UpdateObjectives();
+   }*/
+   
+   public void UpdateObjective(string setObjectiveString, bool newCompletedState, bool newHiddenState, bool updateHUD)
+   {
+	   foreach (ObjectiveStringPair objectiveStringPair in saveData.objectives)
+	   {
+		   if (objectiveStringPair.objective.ToString() != setObjectiveString) continue;
 		   objectiveStringPair.isCompleted = newCompletedState;
 		   objectiveStringPair.isHidden = newHiddenState;
 		   break;

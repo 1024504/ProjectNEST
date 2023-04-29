@@ -9,6 +9,7 @@ using UnityEngine.Playables;
 public class InteractableButton : InteractableObject
 {
 	[SerializeField] GameObject buttonUI;
+	public GameObject doorObject;
 	public PlayableDirector timeLineDirector;
 	public bool isTimeStop;
 
@@ -16,12 +17,12 @@ public class InteractableButton : InteractableObject
 	
 	public void OnEnable()
 	{
+		GameManager.Instance.OnFinishLoading += CheckObjective;
+		LevelManager.Instance.OnSceneLoaded += CheckObjective;
+		
 		if (timeLineDirector == null) return;
 		timeLineDirector.played += DisableControls;
 		timeLineDirector.stopped += EnableControls;
-		
-		GameManager.Instance.OnFinishLoading += CheckObjective;
-		LevelManager.Instance.OnSceneLoaded += CheckObjective;
 	}
 	
 	private void CheckObjective()
@@ -31,7 +32,10 @@ public class InteractableButton : InteractableObject
 			if (objective.objective != linkedObjective) continue;
 			if (objective.isCompleted)
 			{
-				gameObject.SetActive(false);
+				Debug.Log("Gotteeem");
+				if(doorObject!=null) doorObject.SetActive(false);
+				if(buttonUI!= null) buttonUI.SetActive(false);
+				if(gameObject != null) gameObject.SetActive(false);
 			}
 			break;
 		}
