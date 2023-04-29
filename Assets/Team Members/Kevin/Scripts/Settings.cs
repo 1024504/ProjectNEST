@@ -119,7 +119,9 @@ public class Settings : MonoBehaviour
         GameManager.Instance.saveData.SettingsData.MasterVolume = masterVolume;
         GameManager.Instance.saveData.SettingsData.MusicVolume = musicVolume;
         GameManager.Instance.saveData.SettingsData.SFXVolume = sfxVolume;
-
+        
+        GameManager.Instance.uiManager.ToggleHUD();
+        
         ApplyChanges();
 
         GameManager.Instance.SaveGame();
@@ -128,8 +130,6 @@ public class Settings : MonoBehaviour
     public void ApplyChanges()
     {
 	    SettingsData settingsData = GameManager.Instance.saveData.SettingsData;
-
-	    GameManager.Instance.uiManager.ToggleHUD();
 
 	    Resolution resolution = settingsData.Resolution;
 		Screen.SetResolution(resolution.width, resolution.height, settingsData.Fullscreen);
