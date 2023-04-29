@@ -14,6 +14,9 @@ public class MainMenu : MonoBehaviour
 	[SerializeField]
 	private string newGameSceneName = "Level1_Hangar&Lab";
 
+	[SerializeField] 
+	private string creditSceneName = "Credits";
+		
 	[SerializeField]
 	private GameObject menuButtons;
 	
@@ -146,7 +149,14 @@ public class MainMenu : MonoBehaviour
     // {
     //     Application.OpenURL(testFormLink);
     // }
-    
+
+    public void CreditSceneButton()
+    {
+	    _sceneToLoad = creditSceneName;
+	    menuButtons.SetActive(false);
+	    cameraFader.OnFadeOutComplete += FinishLoadScene;
+	    cameraFader.FadeOut();
+    }
     public void ExitGameButton()
     {
         Debug.Log("Game Exited");
