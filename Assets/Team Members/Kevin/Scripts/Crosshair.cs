@@ -33,7 +33,7 @@ public class Crosshair : MonoBehaviour
     {
 	    RaycastHit2D closestValidHit = new RaycastHit2D();
 	    Vector3 barrelPosition = _player.currentWeapon.gunBarrelTransform.position;
-	    RaycastHit2D[] hits = Physics2D.RaycastAll(barrelPosition, _transform.position-barrelPosition, _player.currentWeapon.bulletRange, hitBoxLayer);
+	    RaycastHit2D[] hits = Physics2D.RaycastAll(barrelPosition, _player.currentWeapon.transform.right, _player.currentWeapon.bulletRange, hitBoxLayer);
 
 	    foreach (RaycastHit2D hit in hits)
 	    {
@@ -49,12 +49,10 @@ public class Crosshair : MonoBehaviour
 	    {
 		    laserPointer.NewSize(closestValidHit.point);
 		    EnemyBody enemy = closestValidHit.collider.GetComponentInParent<EnemyBody>();
-		    if (enemy != null && enemy != _enemy)
+		    if (enemy != null)
 		    {
 			    _viewRenderer.color = Color.red;
-			    if (_enemy != null) _enemy.GetComponent<HealthBase>().OnDeath -= UnselectTarget;
 			    _enemy = enemy;
-			    _enemy.GetComponent<HealthBase>().OnDeath += UnselectTarget;
 		    }
 		    else
 		    {
