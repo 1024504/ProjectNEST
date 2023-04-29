@@ -24,7 +24,7 @@ public class CrateScript : MonoBehaviour, IDestructable
 
         Instantiate(halfCrate, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         int coinFlip = Random.Range(0, 100);
-        if(coinFlip > 16)
+        if(coinFlip > 26)
         {
             GameObject go = Instantiate(alveriumPrefab,
                 new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
@@ -34,7 +34,7 @@ public class CrateScript : MonoBehaviour, IDestructable
             newbornHp.HealthLevel = newbornHp.maxHealth / 2;
             //damage alverium
         }
-        else if (coinFlip <= 15) 
+        else if (coinFlip <= 25) 
         {
             Instantiate(medkitPrefab, transform.position, Quaternion.identity);
         }
