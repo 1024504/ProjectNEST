@@ -13,14 +13,14 @@ public class Checkpoint : MonoBehaviour
 	{
 		_player = col.GetComponent<Player>();
 		if (_player == null) return;
-
+		if (GameManager.Instance.saveData.playerPosition == transform.position) return;
 		SaveGame();
 	}
 
 	private void SaveGame()
 	{
 		GameManager gameManager = GameManager.Instance;
-		if (gameManager.saveData.playerPosition == transform.position) return;
+		
 		gameManager.saveData.playerPosition = transform.position;
 		gameManager.saveData.sceneName = SceneManager.GetActiveScene().name;
 		gameManager.saveData.hasShotgun = _player.hasShotgun;
