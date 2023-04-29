@@ -23,7 +23,7 @@ public class MusicManagerScript : MonoBehaviour
 		}
 	}
 
-	public void Start()
+	public void Awake()
 	{
 		music = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
 		music.start();

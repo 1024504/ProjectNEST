@@ -70,7 +70,11 @@ public class GameManager : MonoBehaviour
       }
       uiManager = GetComponentInChildren<UIManager>();
       _settings = GetComponentInChildren<Settings>();
-      GetComponentInChildren<MusicManagerScript>().TrackSelector = 6;
+   }
+
+   private void Start()
+   {
+	   GetComponentInChildren<MusicManagerScript>().TrackSelector = 6;
    }
 
    public void SetupAfterLevelLoad(Scene scene, LoadSceneMode mode)
@@ -143,15 +147,15 @@ public class GameManager : MonoBehaviour
 	   
 	   LevelManager.Instance.OnSceneLoaded += QuitGame3;
 	   LevelManager.Instance.LoadScene("MainMenu");
-	   SceneManager.LoadScene("MainMenu");
-	   
    }
    
    private void QuitGame3()
    {
 	   LevelManager.Instance.OnSceneLoaded -= QuitGame3;
+	   string sceneToUnload = SceneManager.GetActiveScene().name;
 	   LevelManager.Instance.SetActiveScene("MainMenu");
-	   GetComponent<MusicManagerScript>().TrackSelector = 6;
+	   GetComponentInChildren<MusicManagerScript>().TrackSelector = 6;
+	   LevelManager.Instance.UnloadScene(sceneToUnload);
    }
    
    public void BeginResetGame()
