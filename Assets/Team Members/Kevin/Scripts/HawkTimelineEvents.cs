@@ -21,6 +21,6 @@ public class HawkTimelineEvents : MonoBehaviour
 
     public void ChangeShotgunUI()
     {
-        instance.GetComponentInChildren<ShotgunUI>().gameObject.transform.localScale = Vector3.one;
+        instance.uiManager.TurnOnShotgunHUD();
     }
 }
