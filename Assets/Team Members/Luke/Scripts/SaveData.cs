@@ -15,11 +15,12 @@ public class SaveData
 	public int totalMedkits;
 	public List<ObjectiveStringPair> objectives;
 	public List<MyCollectibleBoolPair> collectibles;
+	public int currentMusicTrack;
 	public SettingsData SettingsData;
 	
 	public SaveData(string sceneNameString = "", Vector3 playerPositionVector3 = new (), bool hasShotgunBool = false,
 		bool hasSniperBool = false, bool canDoubleJumpBool = false, bool canGrappleBool = false, int totalMedkitsInt = 0,
-		List<ObjectiveStringPair> objectivesList = null, List<MyCollectibleBoolPair> collectiblesList = null, SettingsData settingsDataData = new ())
+		List<ObjectiveStringPair> objectivesList = null, List<MyCollectibleBoolPair> collectiblesList = null, int currentTrack = 0, SettingsData settingsDataData = new ())
 	{
 		sceneName = sceneNameString;
 		playerPosition = playerPositionVector3;
@@ -30,6 +31,7 @@ public class SaveData
 		totalMedkits = totalMedkitsInt;
 		objectives = objectivesList;
 		collectibles = collectiblesList;
+		currentMusicTrack = currentTrack;
 		SettingsData = settingsDataData;
 	}
 }

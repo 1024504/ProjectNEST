@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
       }
       uiManager = GetComponentInChildren<UIManager>();
       _settings = GetComponentInChildren<Settings>();
+      GetComponentInChildren<MusicManagerScript>().TrackSelector = 6;
    }
 
    public void SetupAfterLevelLoad(Scene scene, LoadSceneMode mode)
@@ -82,6 +83,8 @@ public class GameManager : MonoBehaviour
 	   {
 		   GameObject go = Instantiate(playerPrefab, saveData.playerPosition, Quaternion.identity);
 		   _player = go.GetComponent<Player>();
+		   _player.hasShotgun = saveData.hasShotgun;
+		   _player.hasSniper = saveData.hasSniper;
 		   _player.doubleJumpEnabled = saveData.canDoubleJump;
 		   _player.grappleEnabled = saveData.canGrapple;
 		   _player.medkitCount = saveData.totalMedkits;
@@ -94,6 +97,7 @@ public class GameManager : MonoBehaviour
 		   {
 			   uiManager.UpdateObjective(objective);
 		   }
+		   GetComponentInChildren<MusicManagerScript>().TrackSelector = saveData.currentMusicTrack;
 	   }
 	   else
 	   {
@@ -101,6 +105,7 @@ public class GameManager : MonoBehaviour
 		   _player = go.GetComponent<Player>();
 		   go = Instantiate(cameraPrefab, defaultSpawnPoint+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
+		   GetComponentInChildren<MusicManagerScript>().TrackSelector = 0;
 	   }
 	   OnFinishLoading?.Invoke();
 	   

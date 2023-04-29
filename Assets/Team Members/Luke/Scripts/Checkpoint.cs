@@ -28,6 +28,7 @@ public class Checkpoint : MonoBehaviour
 		gameManager.saveData.canDoubleJump = _player.doubleJumpEnabled;
 		gameManager.saveData.canGrapple = _player.grappleEnabled;
 		gameManager.saveData.totalMedkits = _player.medkitCount;
+		gameManager.saveData.currentMusicTrack = gameManager.GetComponentInChildren<MusicManagerScript>().TrackSelector;
 		gameManager.SaveGame();
 	}
 
