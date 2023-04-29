@@ -30,10 +30,6 @@ public class InteractableButton : InteractableObject
 		base.OnDisable();
 		GameManager.Instance.OnFinishLoading -= CheckObjective;
 		LevelManager.Instance.OnSceneLoaded -= CheckObjective;
-		
-		if (timeLineDirector == null) return;
-		timeLineDirector.played -= DisableControls;
-		timeLineDirector.stopped -= EnableControls; 
 	}
 
 	private void CheckObjective()
