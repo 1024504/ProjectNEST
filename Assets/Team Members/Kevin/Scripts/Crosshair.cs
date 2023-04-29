@@ -59,7 +59,6 @@ public class Crosshair : MonoBehaviour
 		    }
 		    else
 		    {
-			    laserPointer.DefaultSize();
 			    UnselectTarget();
 		    }
 	    }
