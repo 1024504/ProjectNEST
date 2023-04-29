@@ -131,12 +131,11 @@ public class Player : MonoBehaviour, IControllable
 		UIManager ui = UIManager.Instance;
 		ui.player = this;
 		ui.SubscribeToPlayerEvents();
-		UpdateReticleDistance();
 	}
 
 	private void Start()
 	{
-		
+		UpdateReticleDistance();
 	}
 
 	private void OnDisable()
@@ -403,6 +402,7 @@ public class Player : MonoBehaviour, IControllable
 	{
 		if (!grappleEnabled) return;
 		if (!_canGrapple) return;
+		if (_currentSpeed >= sprintSpeed) return;
 		_canGrapple = false;
 		_grapple.Shoot(grappleVelocity, grappleRange, grappleCooldown);
 	}
