@@ -719,6 +719,10 @@ PlayableDirector:
     value: {fileID: 1820485966}
   - key: {fileID: -8873438445868495844, guid: 1b0d5733bf483a14f80667dda44e14f4, type: 2}
     value: {fileID: 1891242757}
+  - key: {fileID: -142708258540923706, guid: 1b0d5733bf483a14f80667dda44e14f4, type: 2}
+    value: {fileID: 2682618525455372446}
+  - key: {fileID: -1854785095230454971, guid: 1b0d5733bf483a14f80667dda44e14f4, type: 2}
+    value: {fileID: 1977424671}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1621171406
@@ -1218,6 +1222,126 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1977424668
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5964278614270300280, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_Name
+      value: MusicSignaller
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+--- !u!1 &1977424669 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964278614270300280, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+  m_PrefabInstance: {fileID: 1977424668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1977424670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4596332196197003825, guid: ecbe939e0cee1b144af6f5245c281d28, type: 3}
+  m_PrefabInstance: {fileID: 1977424668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977424669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e22c55121a651e4b9160e8e5f84a5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1977424671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977424669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 6f6213964630ee445a8e0bd2b31a5b65, type: 2}
+    - {fileID: 11400000, guid: 73ba3dc67bc14374a9d5b11b9e0fd3cf, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1977424670}
+          m_TargetAssemblyTypeName: MusicSignaller, Assembly-CSharp
+          m_MethodName: SetTrack
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1977424670}
+          m_TargetAssemblyTypeName: MusicSignaller, Assembly-CSharp
+          m_MethodName: SetTrack
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &2050254355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1479,3 +1603,49 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 741bf65057b7d9c4595b3497d51ffe6f, type: 3}
+--- !u!1 &2682618525455372444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4304423926886871644, guid: 741bf65057b7d9c4595b3497d51ffe6f, type: 3}
+  m_PrefabInstance: {fileID: 2682618525455372443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2682618525455372445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7323175070829518935, guid: 741bf65057b7d9c4595b3497d51ffe6f, type: 3}
+  m_PrefabInstance: {fileID: 2682618525455372443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2682618525455372444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6141eda6d5b70504ea34763af32f2400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2682618525455372446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2682618525455372444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 364ad4d99a8161d4e99ff947f3233340, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2682618525455372445}
+          m_TargetAssemblyTypeName: CutsceneSceneChanger, Assembly-CSharp
+          m_MethodName: LoadHangar
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
