@@ -11,9 +11,6 @@ public class TransLevelDoor : InteractableObject
 	
 	public TransLevelDoor connectingDoor;
 
-	[HideInInspector]
-	public Player player;
-	
 	public int globalDoorId;
 
 	private CameraTracker _cameraTracker;
@@ -72,9 +69,8 @@ public class TransLevelDoor : InteractableObject
 		LevelManager.Instance.OnSceneLoaded -= LoadStage2;
 		LevelManager.Instance.SetActiveScene(sceneToLoad);
 		Vector3 targetPosition = connectingDoor.transform.position;
-		player.gameObject.transform.position = targetPosition;
+		GameManager.Instance.playerController.GameplayAgent.gameObject.transform.position = targetPosition;
 		_cameraTracker.transform.position = targetPosition+Vector3.back;
-		connectingDoor.player = player;
 		LevelManager.Instance.OnSceneUnloaded += LoadStage3;
 		LevelManager.Instance.UnloadScene(_myScene.name);
 	}
@@ -90,18 +86,6 @@ public class TransLevelDoor : InteractableObject
 	{
 		_cameraTracker.cameraFader.OnFadeInComplete -= LoadStage4;
 		GameManager.Instance.EnableInput();
-	}
-
-	protected override void OnTriggerEnter2D(Collider2D col)
-	{
-		base.OnTriggerEnter2D(col);
-		player = col.GetComponent<Player>();
-	}
-    
-	protected override void OnTriggerExit2D(Collider2D col)
-	{
-		base.OnTriggerExit2D(col);
-		player = null;
 	}
 }
 
