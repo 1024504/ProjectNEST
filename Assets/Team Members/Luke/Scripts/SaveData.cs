@@ -41,7 +41,7 @@ public struct SettingsData
 {
 	// Update this when more settings are added
 	public SettingsData(string controlsOverrides, bool toggleSprint, float leftStickDeadzone, bool toggleSubtitles, bool toggleHUD,
-		float masterVolume, float musicVolume, float sfxVolume, Resolution resolution, bool fullscreen, int quality)
+		float masterVolume, float musicVolume, float sfxVolume, int resolution, bool fullscreen, int quality)
 	{
 		ControlsOverrides = controlsOverrides;
 		ToggleSprint = toggleSprint;
@@ -73,7 +73,7 @@ public struct SettingsData
 	public float SFXVolume;
 	
 	// Screen
-	public Resolution Resolution;
+	public int Resolution;
 	public bool Fullscreen;
 	public int Quality;
 }

@@ -112,7 +112,7 @@ public class Settings : MonoBehaviour
 	    GameManager.Instance.saveData.SettingsData.ToggleSprint = toggleSprint;
 	    GameManager.Instance.saveData.SettingsData.ToggleHUD = toggleHUD;
 	    
-	    GameManager.Instance.saveData.SettingsData.Resolution = _resolutions[currentResolutionIndex];;
+	    GameManager.Instance.saveData.SettingsData.Resolution = currentResolutionIndex;
         GameManager.Instance.saveData.SettingsData.Fullscreen = Screen.fullScreen;
         GameManager.Instance.saveData.SettingsData.Quality = currentQualityIndex;
         
@@ -130,8 +130,22 @@ public class Settings : MonoBehaviour
     public void ApplyChanges()
     {
 	    SettingsData settingsData = GameManager.Instance.saveData.SettingsData;
-
-	    Resolution resolution = settingsData.Resolution;
+	    int c = 0;
+	    for (int i = 0; i < Screen.resolutions.Length; i++)
+	    {
+		    if (i >= Screen.resolutions.Length) break;
+		    if (Screen.resolutions[i].width != Screen.resolutions[settingsData.Resolution].width ||
+		        Screen.resolutions[i].height != Screen.resolutions[settingsData.Resolution].height) continue;
+		    currentResolutionIndex = i;
+		    c++;
+		    break;
+	    }
+	    if (c == 0)
+	    {
+		    Debug.Log("Resolution not found");
+		    currentResolutionIndex = Screen.resolutions.Length - 1;
+	    }
+	    Resolution resolution = Screen.resolutions[settingsData.Resolution];
 		Screen.SetResolution(resolution.width, resolution.height, settingsData.Fullscreen);
 		QualitySettings.SetQualityLevel(settingsData.Quality);
 		

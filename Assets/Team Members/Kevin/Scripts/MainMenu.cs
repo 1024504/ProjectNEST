@@ -67,8 +67,14 @@ public class MainMenu : MonoBehaviour
 
     private void MakeNewSaveFile()
     {
-	    Resolution currentResolution = Screen.currentResolution;
-	    bool fullscreen = Screen.fullScreen;
+	    int currentResolution = Screen.resolutions.Length - 1;
+	    for (int i = 0; i < Screen.resolutions.Length; i++)
+	    {
+		    if (Screen.resolutions[i].height != Screen.currentResolution.height && Screen.resolutions[i].width != Screen.currentResolution.width) continue;
+		    currentResolution = i;
+		    break;
+	    }
+	    bool fullscreen = true;
 	    int quality = QualitySettings.GetQualityLevel();
 	    float masterVolume = 1;
 	    float musicVolume = 1;
