@@ -11,12 +11,30 @@ public class InteractableButton : InteractableObject
 	[SerializeField] GameObject buttonUI;
 	public PlayableDirector timeLineDirector;
 	public bool isTimeStop;
+
+	public GameManager.Objectives linkedObjective;
 	
 	public void OnEnable()
 	{
 		if (timeLineDirector == null) return;
 		timeLineDirector.played += DisableControls;
 		timeLineDirector.stopped += EnableControls;
+		
+		GameManager.Instance.OnFinishLoading += CheckObjective;
+		LevelManager.Instance.OnSceneLoaded += CheckObjective;
+	}
+	
+	private void CheckObjective()
+	{
+		foreach (ObjectiveStringPair objective in GameManager.Instance.saveData.objectives)
+		{
+			if (objective.objective != linkedObjective) continue;
+			if (objective.isCompleted)
+			{
+				gameObject.SetActive(false);
+			}
+			break;
+		}
 	}
 	
 	protected override void Interact()
