@@ -142,7 +142,7 @@ public class Settings : MonoBehaviour
 	    for (int i = 0; i < Screen.resolutions.Length; i++)
 	    {
 		    if (settingsData.Resolution >= Screen.resolutions.Length) break;
-		    if (Screen.resolutions[i].width != Screen.resolutions[settingsData.Resolution].width &&
+		    if (Screen.resolutions[i].width != Screen.resolutions[settingsData.Resolution].width ||
 		        Screen.resolutions[i].height != Screen.resolutions[settingsData.Resolution].height) continue;
 		    currentResolutionIndex = i;
 		    c++;
