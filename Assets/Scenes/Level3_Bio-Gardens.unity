@@ -3399,6 +3399,8 @@ PlayableDirector:
     value: {fileID: 222818680}
   - key: {fileID: -4817415258824486426, guid: 8adf293bd870e1249b9d41aa3754c4ea, type: 2}
     value: {fileID: 2124829705}
+  - key: {fileID: -5817797054274767099, guid: 8adf293bd870e1249b9d41aa3754c4ea, type: 2}
+    value: {fileID: 744230559}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &324963249
@@ -6719,6 +6721,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 729769766074606725, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
+      propertyPath: linkedObjective
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 729769766074606725, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
       propertyPath: timeLineDirector
       value: 
       objectReference: {fileID: 324963248}
@@ -7786,6 +7792,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 704598803708485999, guid: 7d6542704ed827442bbc0209dc2baad2, type: 3}
   m_PrefabInstance: {fileID: 739413557}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &744230556
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5964278614270300280, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_Name
+      value: ObjectiveSignaller
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+--- !u!1 &744230557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964278614270300280, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+  m_PrefabInstance: {fileID: 744230556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &744230558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8000640267544535883, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+  m_PrefabInstance: {fileID: 744230556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744230557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d1c4a54687ea241b5015a81d4b5254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &744230559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744230557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 23e830eb167321f48b09c16a4ebddf60, type: 2}
+    - {fileID: 11400000, guid: 2f2015aa872611f43930a7d43e0fae4a, type: 2}
+    - {fileID: 11400000, guid: cdf252ff7316dc240ad258737c431940, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 744230558}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: SetObjectiveComplete
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 744230558}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: ToggleObjectiveHidden
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 8
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 744230558}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: UpdateHUD
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &747569899
 PrefabInstance:
   m_ObjectHideFlags: 0

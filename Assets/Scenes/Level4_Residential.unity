@@ -24912,6 +24912,8 @@ PlayableDirector:
     value: {fileID: 1983152790}
   - key: {fileID: 734689942755608690, guid: 6769793a8bade284ba0d46989a7d0def, type: 2}
     value: {fileID: 756604420}
+  - key: {fileID: 4450086695216441584, guid: 6769793a8bade284ba0d46989a7d0def, type: 2}
+    value: {fileID: 1704434416}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1405172558
@@ -29392,6 +29394,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 447360438365210399, guid: ad3486456a2c5284299c0e9d9ec70c24, type: 3}
   m_PrefabInstance: {fileID: 1693894033}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1704434413
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5964278614270300280, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_Name
+      value: ObjectiveSignaller
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534519396738208407, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+--- !u!1 &1704434414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5964278614270300280, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+  m_PrefabInstance: {fileID: 1704434413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1704434415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8000640267544535883, guid: 128f3c82161ee2643b0b94817491465c, type: 3}
+  m_PrefabInstance: {fileID: 1704434413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704434414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d1c4a54687ea241b5015a81d4b5254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1704434416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704434414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: c6277846610d17243af72100344a5721, type: 2}
+    - {fileID: 11400000, guid: b6132331dad0aab49a3b6a21119d3283, type: 2}
+    - {fileID: 11400000, guid: b629b0acb32a10742a108d7bc01c1d6a, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1704434415}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: ToggleObjectiveHidden
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 7
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1704434415}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: SetObjectiveComplete
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 7
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1704434415}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: UpdateHUD
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1707937776
 PrefabInstance:
   m_ObjectHideFlags: 0

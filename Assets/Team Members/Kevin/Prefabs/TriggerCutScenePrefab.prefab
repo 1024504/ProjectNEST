@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3961291222850796538}
   - component: {fileID: 3961291222850796539}
   - component: {fileID: 3961291222850796532}
-  - component: {fileID: 3961291222850796534}
-  - component: {fileID: 3961291222850796533}
+  - component: {fileID: 1518679837}
+  - component: {fileID: 1518679838}
   m_Layer: 0
   m_Name: TriggerCutScenePrefab
   m_TagString: Untagged
@@ -73,9 +73,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eda9700dc6db3b41909d3440aabd414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLineDirector: {fileID: 3961291222850796533}
+  timeLineDirector: {fileID: 1518679837}
   isTimeStop: 1
---- !u!114 &3961291222850796534
+  linkedObjective: 0
+--- !u!320 &1518679837
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3961291222850796537}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: bf80d7d6bbf7a7345a70ed015654dbec, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 6866141382847415696, guid: bf80d7d6bbf7a7345a70ed015654dbec, type: 2}
+    value: {fileID: 1518679838}
+  - key: {fileID: -1466951703530101917, guid: bf80d7d6bbf7a7345a70ed015654dbec, type: 2}
+    value: {fileID: 3961291222850796537}
+  - key: {fileID: -3946286819510280092, guid: bf80d7d6bbf7a7345a70ed015654dbec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8976885638546815972, guid: bf80d7d6bbf7a7345a70ed015654dbec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2374406790575493114, guid: bf80d7d6bbf7a7345a70ed015654dbec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5835630305430294061, guid: bf80d7d6bbf7a7345a70ed015654dbec, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &1518679838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Events:
     m_Signals:
-    - {fileID: 11400000, guid: c6918bb88c89e9b449e478d4cb085d15, type: 2}
-    - {fileID: 11400000, guid: 2ca0fa900c08b8146aeb9183bfbd4f8a, type: 2}
+    - {fileID: 11400000, guid: e7eb025ff686ca04080df81f05eedaa4, type: 2}
+    - {fileID: 11400000, guid: 71d0afc392ba9c44cb26728626495cff, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -99,7 +129,7 @@ MonoBehaviour:
           m_MethodName: DisableControls
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 3961291222850796533}
+            m_ObjectArgument: {fileID: 1518679837}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
               UnityEngine
             m_IntArgument: 0
@@ -114,7 +144,7 @@ MonoBehaviour:
           m_MethodName: EnableControls
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 3961291222850796533}
+            m_ObjectArgument: {fileID: 1518679837}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
               UnityEngine
             m_IntArgument: 0
@@ -122,30 +152,3 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!320 &3961291222850796533
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3961291222850796537}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: f52cdd2bbea89f847ac4371468654c64, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -620174111117447522, guid: f52cdd2bbea89f847ac4371468654c64, type: 2}
-    value: {fileID: 3961291222850796534}
-  - key: {fileID: 889738225981135253, guid: f52cdd2bbea89f847ac4371468654c64, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 7980600258342574072, guid: f52cdd2bbea89f847ac4371468654c64, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 4195910646088610215, guid: f52cdd2bbea89f847ac4371468654c64, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -3226793662363832786, guid: f52cdd2bbea89f847ac4371468654c64, type: 2}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References: []
