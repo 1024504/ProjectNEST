@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,7 @@ public class CutsceneSceneChanger : MonoBehaviour
 	
 	public void LoadMainMenu()
 	{
+		GameManager.Instance.GetComponentInChildren<MusicManagerScript>().TrackSelector = 6;
 		SceneManager.LoadScene("MainMenu");
 	}
 }
