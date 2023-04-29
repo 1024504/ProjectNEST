@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class RavenTimeLineEvent : MonoBehaviour
 {
-    public GameManager instance;
+    private GameManager instance;
 
-    public IEnumerator Start()
+    public void OnEnable()
     {
-        yield return new WaitForSeconds(2f);
         instance = GameManager.Instance;
     }
     public void EnableBool()
