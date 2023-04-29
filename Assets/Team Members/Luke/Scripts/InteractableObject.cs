@@ -8,8 +8,6 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
 	public Action OnInteract;
-	public GameManager.Objectives objective = GameManager.Objectives.None;
-	public Action<GameManager.Objectives> OnUpdateObjective;
 	public bool singleUse;
 
 	protected virtual void Interact()

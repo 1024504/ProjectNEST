@@ -12,7 +12,6 @@ public class InteractableButton : InteractableObject
 	public PlayableDirector timeLineDirector;
 	public bool isTimeStop;
 	
-
 	public void OnEnable()
 	{
 		if (timeLineDirector == null) return;
@@ -25,10 +24,6 @@ public class InteractableButton : InteractableObject
 		base.Interact();
 		OnInteract?.Invoke();
 		if (timeLineDirector != null) timeLineDirector.Play();
-		if (objective != GameManager.Objectives.None)
-		{
-			GameManager.Instance.UpdateObjective(objective);
-		}
 		if( singleUse )
         {
 			buttonUI.gameObject.SetActive(false);

@@ -17,6 +17,18 @@ public class SaveData
 	public List<MyCollectibleBoolPair> collectibles;
 	public int currentMusicTrack;
 	public SettingsData SettingsData;
+
+	public List<ObjectiveStringPair> defaultObjectives = new List<ObjectiveStringPair>()
+	{
+		new (GameManager.Objectives.EscapeHangar, "Open the hangar door", false, false),
+		new (GameManager.Objectives.TurnOnGenerator, "Turn on power", false, true),
+		new (GameManager.Objectives.ExploreLab, "Investigate the lab", false, true),
+		new (GameManager.Objectives.EnterPlaza, "Enter the plaza", false, true),
+		new (GameManager.Objectives.FindHawk, "Find Hawk", false, true),
+		new (GameManager.Objectives.FindRaven, "Find Raven", false, true),
+		new (GameManager.Objectives.FindEagle, "Find Eagle", false, true),
+		new (GameManager.Objectives.DefeatBoss, "Defeat the Warrior", false, true)
+	};
 	
 	public SaveData(string sceneNameString = "", Vector3 playerPositionVector3 = new (), bool hasShotgunBool = false,
 		bool hasSniperBool = false, bool canDoubleJumpBool = false, bool canGrappleBool = false, int totalMedkitsInt = 0,

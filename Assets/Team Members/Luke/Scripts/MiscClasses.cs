@@ -6,6 +6,14 @@ using UnityEngine;
 [Serializable]
 public class ObjectiveStringPair
 {
+	public ObjectiveStringPair(GameManager.Objectives newObjective, string uiTextString = "", bool isCompletedBool = false, bool isHiddenBool = false)
+	{
+		objective = newObjective;
+		uiText = uiTextString;
+		isCompleted = isCompletedBool;
+		isHidden = isHiddenBool;
+	}
+	
 	public GameManager.Objectives objective = GameManager.Objectives.None;
 	public string uiText = "";
 	public bool isCompleted = false;

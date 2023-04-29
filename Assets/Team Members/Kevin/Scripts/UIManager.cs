@@ -128,22 +128,39 @@ public class UIManager : MonoBehaviour
     {
 	    aboveHeadUI.SetActive(true);
     }
+    
+    private List<GameObject> _objectiveMarkers;
+    private List<TextMeshProUGUI> _objectiveTexts;
 
     #region Objectives HUD
-    public void UpdateObjective(ObjectiveStringPair objective)
+    public void UpdateObjectives()
     {
-	    // illuminate objective marker based on bool
+	    foreach (TextMeshProUGUI go in _objectiveTexts)
+	    {
+		    Destroy(go);
+	    }
+	    _objectiveTexts.Clear();
+	    
+	    foreach (GameObject go in _objectiveMarkers)
+	    {
+		    Destroy(go);
+	    }
+	    _objectiveMarkers.Clear();
+	    
+	    int i=0;
+	    
+	    foreach (ObjectiveStringPair objective in gm.saveData.objectives)
+	    {
+		    if (objective.isHidden) continue;
+		    if (objective.isCompleted) continue;
 
-
-	    // GameObject go = Instantiate(objectivesMarker, branchProceduralPanel.position, Quaternion.identity);
-        // go.transform.SetParent(branchProceduralPanel.transform, false);
-        //
-        // TextMeshProUGUI textGO = Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity);
-        // textGO.transform.SetParent(textProceduralPanel.transform, false);
-        // if (gm.gameObject != null)
-        // {
-        //     textGO.text = gm.objectives[gm.currentMission];
-        // }
+		    _objectiveMarkers.Add(Instantiate(objectivesMarker, branchProceduralPanel.position, Quaternion.identity));
+		    _objectiveMarkers[i].transform.SetParent(branchProceduralPanel.transform, false);
+        
+		    _objectiveTexts.Add(Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity));
+		    _objectiveTexts[i].transform.SetParent(textProceduralPanel.transform, false);
+		    _objectiveTexts[i].text = objective.uiText;
+	    }
     }
 
     #endregion
@@ -354,7 +371,7 @@ public class UIManager : MonoBehaviour
 
     public void ResetButtonMonitorAlpha() => ChangeButtonAlpha(monitorOptionsButton.GetComponent<UnityEngine.UI.Button>(), 1f);
     
-    private void ChangeButtonAlpha(UnityEngine.UI.Button button, float newAlpha)
+    private void ChangeButtonAlpha(Button button, float newAlpha)
     {
 	    ColorBlock colours = button.colors;
 	    colours.normalColor = new Color(colours.normalColor.r, colours.normalColor.g, colours.normalColor.b, newAlpha);

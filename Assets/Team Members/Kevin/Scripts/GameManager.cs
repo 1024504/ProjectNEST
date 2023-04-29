@@ -98,10 +98,6 @@ public class GameManager : MonoBehaviour
 		   ApplySettings();
 		   go = Instantiate(cameraPrefab, saveData.playerPosition+Vector3.back, Quaternion.identity);
 		   cameraTracker = go.GetComponent<CameraTracker>();
-		   foreach (ObjectiveStringPair objective in saveData.objectives)
-		   {
-			   uiManager.UpdateObjective(objective);
-		   }
 		   GetComponentInChildren<MusicManagerScript>().TrackSelector = saveData.currentMusicTrack;
 	   }
 	   else
@@ -117,10 +113,8 @@ public class GameManager : MonoBehaviour
 	   cameraTracker.playerTransform = _player.transform;
 	   uiManager.aboveHeadUI = _player.aboveHeadUI;
 	   
-	   // foreach (ObjectiveStringPair objective in saveData.objectives)
-	   // {
-		  //  uiManager.UpdateObjective(objective);
-	   // }
+	   uiManager.UpdateObjectives();
+	   
 	   cameraTracker.cameraFader.FadeIn();
 	   cameraTracker.cameraFader.OnFadeInComplete += ResumeOnLoad;
    }
@@ -198,19 +192,16 @@ public class GameManager : MonoBehaviour
 	   uiManager.Resume();
    }
 
-   public void UpdateObjective(Objectives objective)
+   public void UpdateObjective(Objectives objective, bool newCompletedState, bool newHiddenState, bool updateHUD)
    {
-	   ObjectiveStringPair objectiveToUpdate = new ();
-	   
 	   foreach (ObjectiveStringPair objectiveStringPair in saveData.objectives)
 	   {
 		   if (objectiveStringPair.objective != objective) continue;
-		   objectiveToUpdate = objectiveStringPair;
-		   objectiveStringPair.isCompleted = true;
+		   objectiveStringPair.isCompleted = newCompletedState;
+		   objectiveStringPair.isHidden = newHiddenState;
 		   break;
 	   }
-	   if (objectiveToUpdate.objective == Objectives.None) return;
-	   uiManager.UpdateObjective(objectiveToUpdate);
+	   if (updateHUD) uiManager.UpdateObjectives();
    }
 
    public void ApplySettings()
