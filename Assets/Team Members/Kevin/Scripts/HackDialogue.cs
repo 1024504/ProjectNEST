@@ -10,7 +10,7 @@ public class HackDialogue : MonoBehaviour
     public GameObject targetDoor;
     public void OnDisable()
     {
-        targetDoor.SetActive(false);
+        if (targetDoor != null) targetDoor.SetActive(false);
         if (timeLineDirector != null) timeLineDirector.Play();
     }
 }
