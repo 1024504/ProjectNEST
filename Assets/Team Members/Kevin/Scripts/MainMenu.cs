@@ -70,6 +70,8 @@ public class MainMenu : MonoBehaviour
 			    new (GameManager.Objectives.TurnOnGenerator, "Turn on power", false, true), 
 			    new (GameManager.Objectives.ExploreLab, "Investigate the lab", false, true), 
 			    new (GameManager.Objectives.EnterPlaza, "Enter the plaza", false, true), 
+			    new (GameManager.Objectives.PlazaLeft, "", false, true), 
+			    new (GameManager.Objectives.PlazaRight, "", false, true), 
 			    new (GameManager.Objectives.FindHawk, "Find Hawk", false, true), 
 			    new (GameManager.Objectives.FindRaven, "Find Raven", false, true), 
 			    new (GameManager.Objectives.FindEagle, "Find Eagle", false, true), 

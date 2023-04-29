@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 	   TurnOnGenerator,
 	   ExploreLab,
 	   EnterPlaza,
+	   PlazaLeft,
+	   PlazaRight,
 	   FindHawk,
 	   FindRaven,
 	   FindEagle,
