@@ -57,6 +57,11 @@ public class Crosshair : MonoBehaviour
 			    _enemy = enemy;
 			    _enemy.GetComponent<HealthBase>().OnDeath += UnselectTarget;
 		    }
+		    else
+		    {
+			    laserPointer.DefaultSize();
+			    UnselectTarget();
+		    }
 	    }
 	    else
 	    {
