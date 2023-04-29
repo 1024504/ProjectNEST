@@ -35,6 +35,16 @@ public class LevelManager : MonoBehaviour
 	
 	private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
 	{
+		StartCoroutine(LoadFrameDelay());
+	}
+	
+	private IEnumerator LoadFrameDelay()
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			yield return new WaitForEndOfFrame();
+		}
+		InstantiateDestroyOnLoad();
 		OnSceneLoaded?.Invoke();
 	}
 
@@ -53,7 +63,7 @@ public class LevelManager : MonoBehaviour
 	
 	private IEnumerator UnloadFrameDelay()
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			yield return new WaitForEndOfFrame();
 		}
