@@ -21,7 +21,7 @@ public class BossProjectile : MonoBehaviour
 	private Quaternion _collisionRotationWhenHit;
 
 	public GameObject projectileImpactSfx;
-
+	public GameObject trailRenderers;
 	private void OnEnable()
 	{
 		_transform = transform;
@@ -58,10 +58,11 @@ public class BossProjectile : MonoBehaviour
 		_collisionRotationWhenHit = _collisionHitTransform.rotation;
 		
 		projectileImpactSfx.GetComponent<FMODUnity.StudioEventEmitter>().Play();
-
+		
+		if (trailRenderers != null) trailRenderers.SetActive(false);
+		
 		Destroy(gameObject, lifetimePostCollision);
-		ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
-		if (ps != null) ps.Stop();
+		trailRenderers.SetActive(false);
 
 		HealthBase health = col.GetComponentInParent<HealthBase>();
 		if (health != null) health.GetComponent<HealthBase>().HealthLevel -= damage;
