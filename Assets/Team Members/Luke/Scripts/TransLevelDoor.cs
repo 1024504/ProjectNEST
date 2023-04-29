@@ -68,23 +68,37 @@ public class TransLevelDoor : InteractableObject
 	{
 		LevelManager.Instance.OnSceneLoaded -= LoadStage2;
 		LevelManager.Instance.SetActiveScene(sceneToLoad);
+		StartCoroutine(FrameDelay());
+	}
+
+	private IEnumerator FrameDelay()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			yield return new WaitForEndOfFrame();
+		}
+		LoadStage3();
+	}
+
+	private void LoadStage3()
+	{
 		Vector3 targetPosition = connectingDoor.transform.position;
 		GameManager.Instance.playerController.GameplayAgent.gameObject.transform.position = targetPosition;
 		_cameraTracker.transform.position = targetPosition+Vector3.back;
-		LevelManager.Instance.OnSceneUnloaded += LoadStage3;
+		LevelManager.Instance.OnSceneUnloaded += LoadStage4;
 		LevelManager.Instance.UnloadScene(_myScene.name);
-	}
-	
-	private void LoadStage3()
-	{
-		LevelManager.Instance.OnSceneUnloaded -= LoadStage3;
-		_cameraTracker.cameraFader.OnFadeInComplete += LoadStage4;
-		_cameraTracker.cameraFader.FadeIn();
 	}
 	
 	private void LoadStage4()
 	{
-		_cameraTracker.cameraFader.OnFadeInComplete -= LoadStage4;
+		LevelManager.Instance.OnSceneUnloaded -= LoadStage4;
+		_cameraTracker.cameraFader.OnFadeInComplete += LoadStage5;
+		_cameraTracker.cameraFader.FadeIn();
+	}
+	
+	private void LoadStage5()
+	{
+		_cameraTracker.cameraFader.OnFadeInComplete -= LoadStage5;
 		GameManager.Instance.EnableInput();
 	}
 }

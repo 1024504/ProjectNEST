@@ -29,6 +29,7 @@ public class InteractableButton : InteractableObject
 	{
 		foreach (ObjectiveStringPair objective in GameManager.Instance.saveData.objectives)
 		{
+			if (gameObject == null) return;
 			if (objective.objective != linkedObjective) continue;
 			if (objective.isCompleted)
 			{

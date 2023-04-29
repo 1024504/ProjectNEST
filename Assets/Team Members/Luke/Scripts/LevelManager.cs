@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
 	
 	private void OnSceneLoadedCallback(Scene scene, LoadSceneMode mode)
 	{
+		SceneManager.sceneLoaded -= OnSceneLoadedCallback;
 		StartCoroutine(LoadFrameDelay());
 	}
 	
@@ -57,6 +58,7 @@ public class LevelManager : MonoBehaviour
 
 	private void OnSceneUnloadedCallback(Scene scene)
 	{
+		SceneManager.sceneUnloaded -= OnSceneUnloadedCallback;
 		StartCoroutine(UnloadFrameDelay());
 	}
 	
