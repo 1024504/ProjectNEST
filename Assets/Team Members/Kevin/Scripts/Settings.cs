@@ -105,26 +105,34 @@ public class Settings : MonoBehaviour
     {
         currentScreenModeIndex = screenModeDropDown.value;
     }
+
+    public void GraphicsDropdown()
+    {
+	    currentQualityIndex = graphicsDropDown.value;
+    }
     
     public void ApplyChangesAndSave()
     {
-	    GameManager.Instance.saveData.SettingsData.ToggleSubtitles = toggleSubtitles;
-	    GameManager.Instance.saveData.SettingsData.ToggleSprint = toggleSprint;
-	    GameManager.Instance.saveData.SettingsData.ToggleHUD = toggleHUD;
+	    GameManager gm = GameManager.Instance;
 	    
-	    GameManager.Instance.saveData.SettingsData.Resolution = currentResolutionIndex;
-        GameManager.Instance.saveData.SettingsData.Fullscreen = Screen.fullScreen;
-        GameManager.Instance.saveData.SettingsData.Quality = currentQualityIndex;
+	    gm.saveData.SettingsData.ToggleSubtitles = toggleSubtitles;
+	    gm.saveData.SettingsData.ToggleSprint = toggleSprint;
+	    gm.saveData.SettingsData.ToggleHUD = toggleHUD;
+	    
+	    gm.saveData.SettingsData.Resolution = currentResolutionIndex;
+	    if (currentScreenModeIndex == 0) gm.saveData.SettingsData.Fullscreen = true;
+	    else gm.saveData.SettingsData.Fullscreen = false;
+	    gm.saveData.SettingsData.Quality = currentQualityIndex;
         
-        GameManager.Instance.saveData.SettingsData.MasterVolume = masterVolume;
-        GameManager.Instance.saveData.SettingsData.MusicVolume = musicVolume;
-        GameManager.Instance.saveData.SettingsData.SFXVolume = sfxVolume;
+        gm.saveData.SettingsData.MasterVolume = masterVolume;
+        gm.saveData.SettingsData.MusicVolume = musicVolume;
+        gm.saveData.SettingsData.SFXVolume = sfxVolume;
         
-        GameManager.Instance.uiManager.ToggleHUD();
+        gm.uiManager.ToggleHUD();
         
         ApplyChanges();
 
-        GameManager.Instance.SaveGame();
+        gm.SaveGame();
     }
     
     public void ApplyChanges()
@@ -133,8 +141,8 @@ public class Settings : MonoBehaviour
 	    int c = 0;
 	    for (int i = 0; i < Screen.resolutions.Length; i++)
 	    {
-		    if (i >= Screen.resolutions.Length) break;
-		    if (Screen.resolutions[i].width != Screen.resolutions[settingsData.Resolution].width ||
+		    if (settingsData.Resolution >= Screen.resolutions.Length) break;
+		    if (Screen.resolutions[i].width != Screen.resolutions[settingsData.Resolution].width &&
 		        Screen.resolutions[i].height != Screen.resolutions[settingsData.Resolution].height) continue;
 		    currentResolutionIndex = i;
 		    c++;
@@ -145,17 +153,12 @@ public class Settings : MonoBehaviour
 		    Debug.Log("Resolution not found");
 		    currentResolutionIndex = Screen.resolutions.Length - 1;
 	    }
-	    Resolution resolution = Screen.resolutions[settingsData.Resolution];
+	    Resolution resolution = Screen.resolutions[currentResolutionIndex];
 		Screen.SetResolution(resolution.width, resolution.height, settingsData.Fullscreen);
 		QualitySettings.SetQualityLevel(settingsData.Quality);
 		
 		masterBus.setVolume(settingsData.MasterVolume);
 		musicBus.setVolume(settingsData.MusicVolume);
 		sfxBus.setVolume(settingsData.SFXVolume);
-    }
-
-    public void GraphicsDropdown()
-    {
-        currentQualityIndex = graphicsDropDown.value;
     }
 }

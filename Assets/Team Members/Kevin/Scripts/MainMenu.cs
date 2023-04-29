@@ -98,6 +98,7 @@ public class MainMenu : MonoBehaviour
 	    // Update this when new settings are added
 	    _gm.saveData = new SaveData
 	    {
+		    sceneName = "Level1_Hangar&Lab",
 		    objectives =defaultObjectives,
 		    SettingsData = new SettingsData("", true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
 	    };
@@ -173,7 +174,7 @@ public class MainMenu : MonoBehaviour
     {
 	    _sceneToLoad = creditSceneName;
 	    menuButtons.SetActive(false);
-	    cameraFader.OnFadeOutComplete += FinishLoadScene;
+	    cameraFader.OnFadeOutComplete += FinishStartNewGame;
 	    cameraFader.FadeOut();
     }
     public void ExitGameButton()
