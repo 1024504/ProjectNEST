@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CreditsManager : MonoBehaviour
 {
-    bool skipActive=false;
-    private GameObject skipPrompt;
-    GameManager gameManager;
+    bool skipActive = false;
+    [SerializeField] GameObject skipPrompt;
+    CutsceneSceneChanger sceneChanger;
 
     private void Start()
     {
-        gameManager = GameManager.Instance;
+        sceneChanger = this.GetComponent<CutsceneSceneChanger>(); ;
         skipActive = false;
     }
 
@@ -33,6 +33,6 @@ public class CreditsManager : MonoBehaviour
 
     void SkipCredits()
     {
-        gameManager.QuitGame1();
+        sceneChanger.LoadMainMenu();
     }
 }
