@@ -158,6 +158,33 @@ public class GameManager : MonoBehaviour
 	   LevelManager.Instance.UnloadScene(sceneToUnload);
    }
    
+   public void FinishGame1()
+   {
+	   uiManager.hUDGameObject.SetActive(false);
+	   cameraTracker.cameraFader.OnFadeOutComplete += QuitGame2;
+	   cameraTracker.cameraFader.FadeOut();
+   }
+
+   private void FinishGame2()
+   {
+	   cameraTracker.cameraFader.OnFadeOutComplete -= QuitGame2;
+	   Destroy(_player.gameObject);
+	   cameraTracker.transform.parent = LevelManager.Instance.destroyOnLoad.transform;
+	   _player = null;
+	   cameraTracker = null;
+	   
+	   LevelManager.Instance.OnSceneLoaded += QuitGame3;
+	   LevelManager.Instance.LoadScene("Closing_Cutscene");
+   }
+   
+   private void FinishGame3()
+   {
+	   LevelManager.Instance.OnSceneLoaded -= QuitGame3;
+	   string sceneToUnload = SceneManager.GetActiveScene().name;
+	   LevelManager.Instance.SetActiveScene("Closing_Cutscene");
+	   LevelManager.Instance.UnloadScene(sceneToUnload);
+   }
+   
    public void BeginResetGame()
    {
 	   Time.timeScale = 1f;

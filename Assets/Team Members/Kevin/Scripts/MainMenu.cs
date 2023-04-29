@@ -131,8 +131,14 @@ public class MainMenu : MonoBehaviour
 	    _gm.gameLoadedFromFile = false;
 	    _sceneToLoad = newGameSceneName;
 	    menuButtons.SetActive(false);
-	    cameraFader.OnFadeOutComplete += FinishLoadScene;
+	    cameraFader.OnFadeOutComplete += FinishStartNewGame;
         cameraFader.FadeOut();
+    }
+
+    private void FinishStartNewGame()
+    {
+	    cameraFader.OnFadeOutComplete -= FinishLoadScene;
+	    SceneManager.LoadScene(_sceneToLoad);
     }
     
     public void LoadSavedGame()

@@ -6,7 +6,7 @@ public class LoadEndGameScene : MonoBehaviour
 {
     public void LoadEndScene()
     {
-        Debug.Log("FINALLY FINISH!!!");
+        GameManager.Instance.FinishGame1();
     }
     
 }
