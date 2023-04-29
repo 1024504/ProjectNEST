@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
 		   _player.doubleJumpEnabled = saveData.canDoubleJump;
 		   _player.grappleEnabled = saveData.canGrapple;
 		   _player.medkitCount = saveData.totalMedkits;
+		   uiManager.hUDGameObject.SetActive(saveData.SettingsData.ToggleHUD);
 		   uiManager.UpdateMedKitCount();
 		   _player.GetComponent<CollectiblesBag>().hasCollectibles = saveData.collectibles;
 		   ApplySettings();
@@ -215,7 +216,7 @@ public class GameManager : MonoBehaviour
    public void ApplySettings()
    {
 	   playerControls.LoadBindingOverridesFromJson(saveData.SettingsData.ControlsOverrides);
-	   _settings.ApplyChanges(saveData.SettingsData);
+	   _settings.ApplyChanges();
    }
 
    public void SaveGame()

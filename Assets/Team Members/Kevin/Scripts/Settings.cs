@@ -8,7 +8,14 @@ using Debug = UnityEngine.Debug;
 
 public class Settings : MonoBehaviour
 {
-    [Header("Screen Resolution")]
+	[Header("General Settings")]
+	private bool toggleSubtitles;
+	private bool toggleSprint;
+	private bool toggleHUD;
+	[SerializeField] private Toggle subtitlesToggle;
+	[SerializeField] private Toggle sprintToggle;
+	[SerializeField] private Toggle hudToggle;
+    [Header("Screen Settings")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown screenModeDropDown;
     [SerializeField] private TMP_Dropdown graphicsDropDown;
@@ -16,6 +23,7 @@ public class Settings : MonoBehaviour
     private int currentResolutionIndex = 0;
     private int currentScreenModeIndex;
     private int currentQualityIndex;
+    [Header("Audio Settings")]
     private FMOD.Studio.Bus masterBus;
     private FMOD.Studio.Bus musicBus;
     private FMOD.Studio.Bus sfxBus;
@@ -30,6 +38,14 @@ public class Settings : MonoBehaviour
 
     private void GetSettings()
     {
+	    SettingsData settings = GameManager.Instance.saveData.SettingsData;
+	    toggleSubtitles = settings.ToggleSubtitles;
+	    toggleSprint = settings.ToggleSprint;
+	    toggleHUD = settings.ToggleHUD;
+	    subtitlesToggle.isOn = toggleSubtitles;
+	    sprintToggle.isOn = toggleSprint;
+	    hudToggle.isOn = toggleHUD;
+
 	    _resolutions = Screen.resolutions;
 	    if (resolutionDropdown != null)resolutionDropdown.ClearOptions();
 	    List<string> options = new List<string>();
@@ -56,14 +72,29 @@ public class Settings : MonoBehaviour
 	    graphicsDropDown.value = currentQualityIndex;
 	    graphicsDropDown.RefreshShownValue();
         
-	    masterVolume = GameManager.Instance.saveData.SettingsData.MasterVolume;
-	    musicVolume = GameManager.Instance.saveData.SettingsData.MusicVolume;
-	    sfxVolume = GameManager.Instance.saveData.SettingsData.SFXVolume;
+	    masterVolume = settings.MasterVolume;
+	    musicVolume = settings.MusicVolume;
+	    sfxVolume = settings.SFXVolume;
         
 	    masterBus = FMODUnity.RuntimeManager.GetBus("bus:/Master");
 	    musicBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
 	    sfxBus = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
     }
+    
+    public void ToggleSubtitles()
+	{
+	    toggleSubtitles = subtitlesToggle.isOn;
+	}
+    
+    public void ToggleSprint()
+	{
+	    toggleSprint = sprintToggle.isOn;
+	}
+    
+    public void ToggleHUD()
+    {
+	    toggleHUD = hudToggle.isOn;
+	}
 
     public void ResolutionDropdown()
     {
@@ -75,38 +106,39 @@ public class Settings : MonoBehaviour
         currentScreenModeIndex = screenModeDropDown.value;
     }
     
-    public void ApplyChanges()
+    public void ApplyChangesAndSave()
     {
-        Resolution resolution = _resolutions[currentResolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, true);
-        QualitySettings.SetQualityLevel(currentQualityIndex);
-        
-        GameManager.Instance.saveData.SettingsData.Resolution = resolution;
+	    GameManager.Instance.saveData.SettingsData.ToggleSubtitles = toggleSubtitles;
+	    GameManager.Instance.saveData.SettingsData.ToggleSprint = toggleSprint;
+	    GameManager.Instance.saveData.SettingsData.ToggleHUD = toggleHUD;
+	    
+	    GameManager.Instance.saveData.SettingsData.Resolution = _resolutions[currentResolutionIndex];;
         GameManager.Instance.saveData.SettingsData.Fullscreen = Screen.fullScreen;
         GameManager.Instance.saveData.SettingsData.Quality = currentQualityIndex;
-        
-        masterBus.setVolume(masterVolume);
-        musicBus.setVolume(musicVolume);
-        sfxBus.setVolume(sfxVolume);
         
         GameManager.Instance.saveData.SettingsData.MasterVolume = masterVolume;
         GameManager.Instance.saveData.SettingsData.MusicVolume = musicVolume;
         GameManager.Instance.saveData.SettingsData.SFXVolume = sfxVolume;
 
+        ApplyChanges();
+
         GameManager.Instance.SaveGame();
     }
-
-    public void UpdateVolume(float masterVolume, float musicVolume, float sfxVolume)
-    {
-	    
-    }
     
-    public void ApplyChanges(SettingsData settingsData)
+    public void ApplyChanges()
     {
-		Resolution resolution = settingsData.Resolution;
+	    SettingsData settingsData = GameManager.Instance.saveData.SettingsData;
+
+	    GameManager.Instance.uiManager.ToggleHUD();
+
+	    Resolution resolution = settingsData.Resolution;
 		Screen.SetResolution(resolution.width, resolution.height, settingsData.Fullscreen);
 		QualitySettings.SetQualityLevel(settingsData.Quality);
-	}
+		
+		masterBus.setVolume(settingsData.MasterVolume);
+		musicBus.setVolume(settingsData.MusicVolume);
+		sfxBus.setVolume(settingsData.SFXVolume);
+    }
 
     public void GraphicsDropdown()
     {

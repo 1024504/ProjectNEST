@@ -361,6 +361,11 @@ public class UIManager : MonoBehaviour
 	    button.colors = colours;
     }
 
+    public void ToggleHUD()
+    {
+	    hUDGameObject.SetActive(gm.saveData.SettingsData.ToggleHUD);
+    }
+
     public void ReturnToMenu()
     {
 	    collectibleUI.SetActive(false);
