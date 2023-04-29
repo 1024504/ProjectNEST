@@ -90,9 +90,12 @@ public class GameManager : MonoBehaviour
 		   GameObject go = Instantiate(playerPrefab, saveData.playerPosition, Quaternion.identity);
 		   _player = go.GetComponent<Player>();
 		   _player.hasShotgun = saveData.hasShotgun;
+		   if (_player.hasShotgun) uiManager.TurnOnShotgunHUD();
 		   _player.hasSniper = saveData.hasSniper;
+		   if (_player.hasSniper) uiManager.TurnOnSniperHUD();
 		   _player.doubleJumpEnabled = saveData.canDoubleJump;
 		   _player.grappleEnabled = saveData.canGrapple;
+		   if (_player.grappleEnabled) uiManager.TurnOnGrappleHUD();
 		   _player.medkitCount = saveData.totalMedkits;
 		   uiManager.hUDGameObject.SetActive(saveData.SettingsData.ToggleHUD);
 		   uiManager.UpdateMedKitCount();

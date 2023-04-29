@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     public Transform respawnPoint;
     public PlayerHealth playerHealth;
     
+    // Grapple HUD
+    public GameObject grappleHUD;
+    
     //Rifle HUD
     [Header("Rifle HUD")]
     [SerializeField] private Rifle _rifle;
@@ -47,7 +50,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI shotgunAmmoText;
     [SerializeField] private TextMeshProUGUI shotgunMaxAmmoText;
     [SerializeField] private RawImage shotgunIMG;
-    [SerializeField] private GameObject shotgunHUD;
+    public GameObject shotgunHUD;
 
     //Sniper HUD
     [Header("Sniper HUD")]
@@ -55,7 +58,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sniperAmmoText;
     [SerializeField] private TextMeshProUGUI sniperMaxAmmoText;
     [SerializeField] private RawImage sniperIMG;
-    [SerializeField] private GameObject sniperHUD;
+    public GameObject sniperHUD;
     
     //Objectives HUD
     [Header("Objectives HUD")] 
@@ -91,11 +94,28 @@ public class UIManager : MonoBehaviour
         }
 
         gm = GetComponentInParent<GameManager>();
-        
-        //player = GameManager.Instance.playerPrefabRef.GetComponent<Player>();
-        //playerController = GameManager.Instance.playerPrefabRef.GetComponent<PlayerController>();
-        
+    }
 
+    public void TurnOnGrappleHUD()
+    {
+	    grappleHUD.SetActive(true);
+    }
+    
+    public void TurnOnShotgunHUD()
+	{
+		shotgunHUD.SetActive(true);
+	}
+
+    public void TurnOnSniperHUD()
+    {
+	    sniperHUD.SetActive(true);
+    }
+
+    public void TurnOffOptionalHUDs()
+    {
+	    grappleHUD.SetActive(false);
+	    shotgunHUD.SetActive(false);
+	    sniperHUD.SetActive(false);
     }
 
     public void SubscribeToPlayerEvents()
@@ -349,6 +369,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         deathMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        TurnOffOptionalHUDs();
         gm.QuitGame1();
     }
 
