@@ -19,7 +19,13 @@ public class CollectibleObject : MonoBehaviour
 	    GameManager.Instance.OnFinishLoading += CheckAlreadyCollected;
 	    LevelManager.Instance.OnSceneLoaded += CheckAlreadyCollected;
     }
-    
+
+    private void OnDisable()
+    {
+	    GameManager.Instance.OnFinishLoading -= CheckAlreadyCollected;
+	    LevelManager.Instance.OnSceneLoaded -= CheckAlreadyCollected;
+    }
+
     private void CheckAlreadyCollected()
     {
 	    foreach (MyCollectibleBoolPair collectible in GameManager.Instance.saveData.collectibles)

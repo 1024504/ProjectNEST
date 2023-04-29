@@ -24,7 +24,18 @@ public class InteractableButton : InteractableObject
 		timeLineDirector.played += DisableControls;
 		timeLineDirector.stopped += EnableControls;
 	}
-	
+
+	protected override void OnDisable()
+	{
+		base.OnDisable();
+		GameManager.Instance.OnFinishLoading -= CheckObjective;
+		LevelManager.Instance.OnSceneLoaded -= CheckObjective;
+		
+		if (timeLineDirector == null) return;
+		timeLineDirector.played -= DisableControls;
+		timeLineDirector.stopped -= EnableControls; 
+	}
+
 	private void CheckObjective()
 	{
 		foreach (ObjectiveStringPair objective in GameManager.Instance.saveData.objectives)
