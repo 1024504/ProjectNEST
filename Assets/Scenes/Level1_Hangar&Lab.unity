@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 7331762}
   - component: {fileID: 7331764}
   - component: {fileID: 7331763}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirstKill Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7331761}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 191.12, y: -48.71, z: 0.90727276}
+  m_LocalPosition: {x: 191.12, y: -49.28, z: 1}
   m_LocalScale: {x: 1, y: 9.1874, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -344,7 +344,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 200
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -2453,11 +2453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 675.09
+      value: 292.6
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 163.72
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6359,18 +6359,6 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 1604816268}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
               UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 7331761}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -15002,6 +14990,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1374627407}
     m_Modifications:
+    - target: {fileID: 2659453571629753925, guid: 958ea1fec164e6c4082dc68608ca08d1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2659453571629753926, guid: 958ea1fec164e6c4082dc68608ca08d1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -18895,6 +18887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLineDirector: {fileID: 263981456}
+  targetDoor: {fileID: 7331761}
 --- !u!95 &1773276842
 Animator:
   serializedVersion: 4
@@ -21610,7 +21603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2066650306}
   - component: {fileID: 2066650307}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Door_Side
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21625,7 +21618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066650305}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02062, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.2030738, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21652,7 +21645,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1d5c1c87430d2f4d9935cf1a5775e0b, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21672,7 +21665,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 200
   m_Sprite: {fileID: 21300000, guid: 02acb7d70689fa443bc64d5b8a5ae0c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
