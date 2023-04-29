@@ -939,7 +939,7 @@ Transform:
   - {fileID: 7529436465484483103}
   - {fileID: 6926832407099156657}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4169437518895180917
 MonoBehaviour:
@@ -959,6 +959,7 @@ MonoBehaviour:
   targetLocations: []
   currentTarget: {fileID: 0}
   lastKnownTargetDirection: 0
+  terrainDetection: {fileID: 0}
   beginsPatrolLeft: 1
   patrolSpeed: 10
   chaseSpeed: 20
@@ -972,8 +973,11 @@ MonoBehaviour:
   memoryDuration: 5
   attackDamage: 20
   attackCooldown: 0.5
+  jumpCooldownDuration: 2
+  canJump: 1
   targetWithinRange: 0
   canAttack: 1
+  canDealDamage: 1
   rotateSpeed: 4
   visionLayerMask:
     serializedVersion: 2
@@ -1048,7 +1052,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthLevel: 0
   maxHealth: 100
-  bloodParticle: {fileID: 8178010944413830597, guid: 1118d3ffbef40fc469283dfdb1b554ef, type: 3}
+  bloodParticle: {fileID: 5278346931046662091, guid: b568128ce51204549876a871391e4dc1, type: 3}
+  deathParticle: {fileID: 0}
   impactSFX:
     Guid:
       Data1: -227330030
@@ -1100,21 +1105,10 @@ MonoBehaviour:
   lostTarget: {fileID: 7400000, guid: e71ea98cfe109914d913aca9cfcef410, type: 2}
   spottedTarget: {fileID: 7400000, guid: 00b781650955aa04e9d6d7c3c6e90144, type: 2}
   run: {fileID: 7400000, guid: ca640bdd21b14e74cb803fffe320bfde, type: 2}
-  distanceSFX: {fileID: 2466380793508515560}
-  attackSFX:
-    Guid:
-      Data1: -1089481917
-      Data2: 1321413413
-      Data3: 2063041979
-      Data4: -1327745168
-    Path: event:/Enemies/Grunt/GruntScreech
-  spottedSFX:
-    Guid:
-      Data1: 717443341
-      Data2: 1097550253
-      Data3: 1748531391
-      Data4: -40296584
-    Path: event:/Enemies/Grunt/GruntSnarl
+  jump: {fileID: 0}
+  MovementdistanceSFX: {fileID: 0}
+  SnarlDistanceSFX: {fileID: 0}
+  ScreechDistanceSFX: {fileID: 0}
 --- !u!1 &7965698622304881476
 GameObject:
   m_ObjectHideFlags: 0
