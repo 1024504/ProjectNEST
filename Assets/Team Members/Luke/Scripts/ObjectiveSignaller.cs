@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectiveSignaller : MonoBehaviour
 {
-	public GameManager _gm;
+	private GameManager _gm;
 	
 	private IEnumerator Start()
 	{
@@ -12,28 +12,28 @@ public class ObjectiveSignaller : MonoBehaviour
 		_gm = GameManager.Instance;
 	}
 
-	public void SetObjectiveString(string objectiveString)
+	public void SetObjectiveComplete(int objectiveIndex)
 	{
-		_gm.setObjectiveString = objectiveString;
+		foreach (ObjectiveStringPair objective in _gm.saveData.objectives)
+		{
+			if (objective.objective != (GameManager.Objectives) objectiveIndex) continue;
+			objective.isCompleted = true;
+			break;
+		}
 	}
-	public void SetCompleteState(bool newCompleteState)
+	
+	public void ToggleObjectiveHidden(int objectiveIndex)
 	{
-		_gm.setNewCompletedState = newCompleteState;
+		foreach (ObjectiveStringPair objective in _gm.saveData.objectives)
+		{
+			if (objective.objective != (GameManager.Objectives) objectiveIndex) continue;
+			objective.isHidden = !objective.isHidden;
+			break;
+		}
 	}
 
-	public void SetNewHiddenState(bool newHiddenState)
+	public void UpdateHUD()
 	{
-		_gm.setNewHiddenState = newHiddenState;
+		_gm.uiManager.UpdateObjectives();
 	}
-
-	public void SetUpdateHUD(bool updateHUD)
-	{
-		_gm.UpdateHUD(updateHUD);
-	}
-
-	/*public void SetTrack(GameManager.Objectives objective, bool newCompletedState, bool newHiddenState, bool updateHUD)
-	{
-		_gm.UpdateObjective(objective, newCompletedState, newHiddenState, updateHUD);
-	}
-	*/
 }

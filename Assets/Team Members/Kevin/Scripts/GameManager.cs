@@ -38,17 +38,17 @@ public class GameManager : MonoBehaviour
    [Serializable]
    public enum Objectives
    {
-	   None,
-	   EscapeHangar,
-	   TurnOnGenerator,
-	   ExploreLab,
-	   EnterPlaza,
-	   PlazaLeft,
-	   PlazaRight,
-	   FindHawk,
-	   FindRaven,
-	   FindEagle,
-	   DefeatBoss
+	   None=0,
+	   EscapeHangar=1,
+	   TurnOnGenerator=2,
+	   ExploreLab=3,
+	   EnterPlaza=4,
+	   PlazaLeft=5,
+	   PlazaRight=6,
+	   FindHawk=7,
+	   FindRaven=8,
+	   FindEagle=9,
+	   DefeatBoss=10
    }
 
    private Settings _settings;
@@ -193,48 +193,7 @@ public class GameManager : MonoBehaviour
 	   Time.timeScale = 1f;
 	   uiManager.Resume();
    }
-
-   #region Test Objective Signal Stuff
    
-   public Objectives setObjective;
-   public string setObjectiveString;
-   public bool setNewCompletedState;
-   public bool setNewHiddenState;
-   public bool setUpdateHUD;
-   
-   public void UpdateHUD(bool updateHUD)
-   {
-	   setUpdateHUD = updateHUD;
-	   UpdateObjective(setObjectiveString, setNewCompletedState, setNewHiddenState, setUpdateHUD);
-   }
-   
-   #endregion
-  
-   
-   /*public void UpdateObjective(Objectives objective, bool newCompletedState, bool newHiddenState, bool updateHUD)
-   {
-	   foreach (ObjectiveStringPair objectiveStringPair in saveData.objectives)
-	   {
-		   if (objectiveStringPair.objective != objective) continue;
-		   objectiveStringPair.isCompleted = newCompletedState;
-		   objectiveStringPair.isHidden = newHiddenState;
-		   break;
-	   }
-	   if (updateHUD) uiManager.UpdateObjectives();
-   }*/
-   
-   public void UpdateObjective(string setObjectiveString, bool newCompletedState, bool newHiddenState, bool updateHUD)
-   {
-	   foreach (ObjectiveStringPair objectiveStringPair in saveData.objectives)
-	   {
-		   if (objectiveStringPair.objective.ToString() != setObjectiveString) continue;
-		   objectiveStringPair.isCompleted = newCompletedState;
-		   objectiveStringPair.isHidden = newHiddenState;
-		   break;
-	   }
-	   if (updateHUD) uiManager.UpdateObjectives();
-   }
-
    public void ApplySettings()
    {
 	   playerControls.LoadBindingOverridesFromJson(saveData.SettingsData.ControlsOverrides);

@@ -60,36 +60,42 @@ public class MainMenu : MonoBehaviour
 		    loadButton.SetActive(false);
 		    EventSystem.current.firstSelectedGameObject = newGameButton;
 		    newGameButton.GetComponent<Selectable>().Select();
-		    
-		    Resolution currentResolution = Screen.currentResolution;
-		    bool fullscreen = Screen.fullScreen;
-		    int quality = QualitySettings.GetQualityLevel();
-		    float masterVolume = 1;
-		    float musicVolume = 1;
-		    float sfxVolume = 1;
-		    List<ObjectiveStringPair> defaultObjectives = new List<ObjectiveStringPair>() 
-		    {
-			    new (GameManager.Objectives.EscapeHangar, "Open the hangar door", false, false), 
-			    new (GameManager.Objectives.TurnOnGenerator, "Turn on power", false, true), 
-			    new (GameManager.Objectives.ExploreLab, "Investigate the lab", false, true), 
-			    new (GameManager.Objectives.EnterPlaza, "Enter the plaza", false, true), 
-			    new (GameManager.Objectives.PlazaLeft, "", false, true), 
-			    new (GameManager.Objectives.PlazaRight, "", false, true), 
-			    new (GameManager.Objectives.FindHawk, "Find Hawk", false, true), 
-			    new (GameManager.Objectives.FindRaven, "Find Raven", false, true), 
-			    new (GameManager.Objectives.FindEagle, "Find Eagle", false, true), 
-			    new (GameManager.Objectives.DefeatBoss, "Defeat the Warrior", false, true)
-			    
-		    };
-		    
-		    // Default Settings
-		    // Update this when new settings are added
-		    _gm.saveData = new SaveData
-		    {
-			    objectives =defaultObjectives,
-			    SettingsData = new SettingsData("", true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
-		    };
+
+		    MakeNewSaveFile();
 	    }
+    }
+
+    private void MakeNewSaveFile()
+    {
+	    Resolution currentResolution = Screen.currentResolution;
+	    bool fullscreen = Screen.fullScreen;
+	    int quality = QualitySettings.GetQualityLevel();
+	    float masterVolume = 1;
+	    float musicVolume = 1;
+	    float sfxVolume = 1;
+	    List<ObjectiveStringPair> defaultObjectives = new List<ObjectiveStringPair>() 
+	    {
+		    new (GameManager.Objectives.EscapeHangar, "Open the hangar door", false, false), 
+		    new (GameManager.Objectives.TurnOnGenerator, "Turn on power", false, true), 
+		    new (GameManager.Objectives.ExploreLab, "Investigate the lab", false, true), 
+		    new (GameManager.Objectives.EnterPlaza, "Enter the plaza", false, true), 
+		    new (GameManager.Objectives.PlazaLeft, "", false, true), 
+		    new (GameManager.Objectives.PlazaRight, "", false, true), 
+		    new (GameManager.Objectives.FindHawk, "Find Hawk", false, true), 
+		    new (GameManager.Objectives.FindRaven, "Find Raven", false, true), 
+		    new (GameManager.Objectives.FindEagle, "Find Eagle", false, true), 
+		    new (GameManager.Objectives.DefeatBoss, "Defeat the Warrior", false, true)
+			    
+	    };
+		    
+	    // Default Settings
+	    // Update this when new settings are added
+	    _gm.saveData = new SaveData
+	    {
+		    objectives =defaultObjectives,
+		    SettingsData = new SettingsData("", true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
+	    };
+	    _gm.SaveGame();
     }
 
     public void ReturnToMainMenuButton()
@@ -121,6 +127,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
+	    MakeNewSaveFile();
 	    _gm.gameLoadedFromFile = false;
 	    _sceneToLoad = newGameSceneName;
 	    menuButtons.SetActive(false);

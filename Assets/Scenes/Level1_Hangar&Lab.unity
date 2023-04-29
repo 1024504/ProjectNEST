@@ -9592,53 +9592,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Events:
     m_Signals:
-    - {fileID: 11400000, guid: 62ef4dfca2c17b040af2e084bedc847f, type: 2}
-    - {fileID: 11400000, guid: 5609f1a477d8ec6479da9387465a383c, type: 2}
-    - {fileID: 11400000, guid: 36cd3bf36be61a5449b003143dbea081, type: 2}
-    - {fileID: 11400000, guid: de0cd41389aab9a4cba4a77274a2b327, type: 2}
-    - {fileID: 11400000, guid: bb505bdaf8d5e554f8ec6844521439b8, type: 2}
     - {fileID: 11400000, guid: 2f1c16b785039fe44a9ce4bc910a9d0a, type: 2}
     - {fileID: 11400000, guid: 5a86f652485c941469055469622152c8, type: 2}
+    - {fileID: 11400000, guid: a486f8d7ed06bd64ea3c01b377f373ef, type: 2}
+    - {fileID: 11400000, guid: 499beb16b10977e4bad347c8e98e3da7, type: 2}
     - {fileID: 11400000, guid: 6ee6257e1a990bb40aa18bd59b8e8b6d, type: 2}
+    - {fileID: 11400000, guid: 21c0b3341f0b8b5429673459d8ba5a58, type: 2}
+    - {fileID: 11400000, guid: 74a964069e3267341be70803d0a92a41, type: 2}
+    - {fileID: 11400000, guid: 988b17a49e540624784a39efb3ed159e, type: 2}
+    - {fileID: 11400000, guid: ed87e3f36fa9b934eb2d8b9b0968a62a, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 984260875}
           m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetObjectiveString
-          m_Mode: 5
+          m_MethodName: SetObjectiveComplete
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: TurnOnGenerator
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 984260875}
-          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetUpdateHUD
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 984260875}
-          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetCompleteState
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -9647,8 +9620,38 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 984260875}
           m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetNewHiddenState
-          m_Mode: 6
+          m_MethodName: ToggleObjectiveHidden
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 984260875}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: ToggleObjectiveHidden
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 984260875}
+          m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
+          m_MethodName: UpdateHUD
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9661,57 +9664,57 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 984260875}
           m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetObjectiveString
-          m_Mode: 5
+          m_MethodName: ToggleObjectiveHidden
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 2
             m_FloatArgument: 0
-            m_StringArgument: EscapeHangar
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 984260875}
           m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetCompleteState
-          m_Mode: 6
+          m_MethodName: SetObjectiveComplete
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 984260875}
           m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetNewHiddenState
-          m_Mode: 6
+          m_MethodName: ToggleObjectiveHidden
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 3
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 984260875}
           m_TargetAssemblyTypeName: ObjectiveSignaller, Assembly-CSharp
-          m_MethodName: SetUpdateHUD
-          m_Mode: 6
+          m_MethodName: UpdateHUD
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
 --- !u!1001 &995216067
 PrefabInstance:
@@ -13922,6 +13925,8 @@ PlayableDirector:
     value: {fileID: 1773096478}
   - key: {fileID: 161534736723485214, guid: e727f0a06223ea44bb7258cc06238478, type: 2}
     value: {fileID: 951328490}
+  - key: {fileID: -5917357423089483622, guid: e727f0a06223ea44bb7258cc06238478, type: 2}
+    value: {fileID: 984260876}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1428403823
@@ -16573,9 +16578,7 @@ PlayableDirector:
     value: {fileID: 541712421}
   - key: {fileID: -5895716643589880838, guid: 017818241b835534a88674c8d1f453e4, type: 2}
     value: {fileID: 0}
-  - key: {fileID: 3996563767175707031, guid: 017818241b835534a88674c8d1f453e4, type: 2}
-    value: {fileID: 984260876}
-  - key: {fileID: 3123369902049591364, guid: 017818241b835534a88674c8d1f453e4, type: 2}
+  - key: {fileID: -1673828348640430998, guid: 017818241b835534a88674c8d1f453e4, type: 2}
     value: {fileID: 984260876}
   m_ExposedReferences:
     m_References: []

@@ -137,7 +137,7 @@ public class UIManager : MonoBehaviour
     {
 	    foreach (TextMeshProUGUI go in _objectiveTexts)
 	    {
-		    Destroy(go);
+		    Destroy(go.gameObject);
 	    }
 	    _objectiveTexts.Clear();
 	    
