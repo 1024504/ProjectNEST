@@ -10,9 +10,14 @@ public class TriggerCutScene : MonoBehaviour
 {
     public PlayableDirector timeLineDirector;
     public bool isTimeStop;
+    
+    public GameManager.Objectives linkedObjective;
 
     public void OnEnable()
     {
+	    GameManager.Instance.OnFinishLoading += CheckObjective;
+	    LevelManager.Instance.OnSceneLoaded += CheckObjective;
+	    
         timeLineDirector.played += DisableControls;
         timeLineDirector.stopped += EnableControls;
     }
@@ -24,6 +29,20 @@ public class TriggerCutScene : MonoBehaviour
         {
             timeLineDirector.Play();
         }
+    }
+
+    public void CheckObjective()
+    {
+	    foreach (ObjectiveStringPair objective in GameManager.Instance.saveData.objectives)
+	    {
+		    if (gameObject == null) return;
+		    if (objective.objective != linkedObjective) continue;
+		    if (objective.isCompleted)
+		    {
+			    if(gameObject != null) gameObject.SetActive(false);
+		    }
+		    break;
+	    }
     }
     
     public void DisableControls(PlayableDirector obj)
@@ -39,6 +58,9 @@ public class TriggerCutScene : MonoBehaviour
     
     public void OnDisable()
     {
+	    GameManager.Instance.OnFinishLoading -= CheckObjective;
+	    LevelManager.Instance.OnSceneLoaded -= CheckObjective;
+	    
         timeLineDirector.played -= DisableControls;
         timeLineDirector.stopped -= EnableControls;
     }

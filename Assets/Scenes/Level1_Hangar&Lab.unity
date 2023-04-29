@@ -4460,6 +4460,7 @@ GameObject:
   - component: {fileID: 357401969}
   - component: {fileID: 357401968}
   - component: {fileID: 357401970}
+  - component: {fileID: 357401971}
   m_Layer: 0
   m_Name: Hawk&Raven_Chillin
   m_TagString: Untagged
@@ -4536,6 +4537,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &357401971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357401967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbc4798c0a16243a1f76273c876ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ravenHawk: {fileID: 357401967}
+  door: {fileID: 6611961747567015822}
 --- !u!1 &359364663
 GameObject:
   m_ObjectHideFlags: 0
@@ -5148,6 +5163,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &466949720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd111b1143e74c4fb1b592c979d03c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fakeDoor: {fileID: 1773096476}
+  realDoor: {fileID: 466949718}
+  buttonCollider: {fileID: 1903796031}
 --- !u!1 &474180964
 GameObject:
   m_ObjectHideFlags: 0
@@ -14771,6 +14801,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 389835786}
     m_Modifications:
+    - target: {fileID: 3961291222850796532, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: linkedObjective
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3961291222850796533, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_PlayableAsset
       value: 
@@ -14894,6 +14928,10 @@ PrefabInstance:
     - target: {fileID: 3961291222850796537, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_Name
       value: FalconFindsQueenCutScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961291222850796537, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3961291222850796538, guid: 0f2b14b823e5bc84f9b45306aec11322, type: 3}
       propertyPath: m_RootOrder
@@ -20649,6 +20687,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 729769766074606725, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
+      propertyPath: linkedObjective
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 729769766074606725, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
       propertyPath: timeLineDirector
       value: 
       objectReference: {fileID: 1428403822}
@@ -22189,6 +22231,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1542141777785332764, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2529204812284289519, guid: 14015a1c30562b04aaedbcdbb3417a55, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -22910,6 +22956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLineDirector: {fileID: 3961291222770754989}
   isTimeStop: 1
+  linkedObjective: 0
 --- !u!320 &3961291222770754989
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -23187,6 +23234,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e78ce57c889ea43a6ec9d9e7116d9e, type: 3}
+--- !u!1 &6611961747567015822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6611961748206834415, guid: 47e78ce57c889ea43a6ec9d9e7116d9e, type: 3}
+  m_PrefabInstance: {fileID: 6611961747567015821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &8113189868798982385
 SpriteRenderer:
   m_ObjectHideFlags: 0

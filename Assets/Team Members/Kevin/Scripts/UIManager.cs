@@ -180,6 +180,7 @@ public class UIManager : MonoBehaviour
 		    _objectiveTexts.Add(Instantiate(objectiveText, textProceduralPanel.position, Quaternion.identity));
 		    _objectiveTexts[i].transform.SetParent(textProceduralPanel.transform, false);
 		    _objectiveTexts[i].text = objective.uiText;
+		    i++;
 	    }
     }
 

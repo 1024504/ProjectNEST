@@ -6,9 +6,8 @@ public class ObjectiveSignaller : MonoBehaviour
 {
 	private GameManager _gm;
 	
-	private IEnumerator Start()
+	private void Start()
 	{
-		yield return new WaitForSeconds(2f);
 		_gm = GameManager.Instance;
 	}
 
