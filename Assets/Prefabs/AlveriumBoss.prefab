@@ -1091,6 +1091,8 @@ GameObject:
   - component: {fileID: 138692932044134669}
   - component: {fileID: 1127359467}
   - component: {fileID: 1127359475}
+  - component: {fileID: 2927054041703526599}
+  - component: {fileID: 4721985890057794278}
   m_Layer: 0
   m_Name: AlveriumBoss
   m_TagString: Untagged
@@ -1224,7 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthLevel: 0
-  maxHealth: 10000
+  maxHealth: 2500
   bloodParticle: {fileID: 5278346931046662091, guid: 9ab00254ba6536d4a8d13493a803fc4e, type: 3}
   deathParticle: {fileID: 8302387228568076917, guid: 666253a860970cf4c99bd0dc48a181e1, type: 3}
   impactSFX:
@@ -1276,6 +1278,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLineDirector: {fileID: 0}
 --- !u!114 &1127359475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842360412607290776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 6d7f3188ca1f91c4fabc2ad78f2d4ed7, type: 2}
+    - {fileID: 11400000, guid: 170a1e3400ecf99478a49961a69921fe, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 105813692926737107}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 105813692926737107}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+--- !u!114 &2927054041703526599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842360412607290776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1f08d3c2d349048acb3ed694d2523d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineDirector: {fileID: 0}
+--- !u!114 &4721985890057794278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
