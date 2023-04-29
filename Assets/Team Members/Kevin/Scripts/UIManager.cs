@@ -129,8 +129,8 @@ public class UIManager : MonoBehaviour
 	    aboveHeadUI.SetActive(true);
     }
     
-    private List<GameObject> _objectiveMarkers;
-    private List<TextMeshProUGUI> _objectiveTexts;
+    private readonly List<GameObject> _objectiveMarkers = new ();
+    private readonly List<TextMeshProUGUI> _objectiveTexts = new ();
 
     #region Objectives HUD
     public void UpdateObjectives()
