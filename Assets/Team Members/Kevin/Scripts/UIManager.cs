@@ -332,7 +332,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         deathMenu.SetActive(false);
         pauseMenu.SetActive(false);
-        gm.BeginQuitGame();
+        gm.QuitGame1();
     }
 
     public void RespawnButton()

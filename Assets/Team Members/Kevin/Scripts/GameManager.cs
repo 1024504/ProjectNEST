@@ -126,21 +126,32 @@ public class GameManager : MonoBehaviour
 	   Resume();
    }
 
-   public void BeginQuitGame()
+   public void QuitGame1()
    {
 	   uiManager.hUDGameObject.SetActive(false);
-	   cameraTracker.cameraFader.OnFadeOutComplete += CompleteQuitGame;
+	   cameraTracker.cameraFader.OnFadeOutComplete += QuitGame2;
 	   cameraTracker.cameraFader.FadeOut();
    }
 
-   private void CompleteQuitGame()
+   private void QuitGame2()
    {
-	   cameraTracker.cameraFader.OnFadeOutComplete -= CompleteQuitGame;
+	   cameraTracker.cameraFader.OnFadeOutComplete -= QuitGame2;
 	   Destroy(_player.gameObject);
 	   cameraTracker.transform.parent = LevelManager.Instance.destroyOnLoad.transform;
 	   _player = null;
 	   cameraTracker = null;
+	   
+	   LevelManager.Instance.OnSceneLoaded += QuitGame3;
+	   LevelManager.Instance.LoadScene("MainMenu");
 	   SceneManager.LoadScene("MainMenu");
+	   
+   }
+   
+   private void QuitGame3()
+   {
+	   LevelManager.Instance.OnSceneLoaded -= QuitGame3;
+	   LevelManager.Instance.SetActiveScene("MainMenu");
+	   GetComponent<MusicManagerScript>().TrackSelector = 6;
    }
    
    public void BeginResetGame()
