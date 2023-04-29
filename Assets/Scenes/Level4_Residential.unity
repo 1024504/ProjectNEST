@@ -3094,6 +3094,14 @@ PrefabInstance:
       propertyPath: collectibleDialogue.Guid.Data4
       value: -1965054811
       objectReference: {fileID: 0}
+    - target: {fileID: 3636467072781760411, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
+      propertyPath: promptDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636467073696958697, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -159
+      objectReference: {fileID: 0}
     - target: {fileID: 5870091042113765380, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.03
@@ -3217,6 +3225,14 @@ PrefabInstance:
     - target: {fileID: 3230735794076737329, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
       propertyPath: collectibleDialogue.Guid.Data4
       value: 2029391857
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636467072781760411, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
+      propertyPath: promptDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636467073696958697, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -159
       objectReference: {fileID: 0}
     - target: {fileID: 6307408434687132895, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
       propertyPath: m_Name
@@ -6941,6 +6957,14 @@ PrefabInstance:
       value: Checkpoint NPC
       objectReference: {fileID: 0}
     - target: {fileID: 7657510048141906533, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
+      propertyPath: m_Size.x
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657510048141906533, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
+      propertyPath: m_Size.y
+      value: 1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7657510048141906533, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -6952,17 +6976,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7657510048141906530, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
   m_PrefabInstance: {fileID: 411287619}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &411287621 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7657510048141906531, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
-  m_PrefabInstance: {fileID: 411287619}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411287622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14547a781016b694aaedb67d1273799b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &411287622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7657510048141906532, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
@@ -6986,18 +6999,23 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 411287621}
-          m_TargetAssemblyTypeName: Checkpoint, Assembly-CSharp
-          m_MethodName: DialogueSave
-          m_Mode: 1
+        - m_Target: {fileID: 411287624}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
+--- !u!61 &411287624 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7657510048141906533, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
+  m_PrefabInstance: {fileID: 411287619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &419807806 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3569488082446310913, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
@@ -26465,6 +26483,18 @@ PrefabInstance:
       propertyPath: collectibleDialogue.Guid.Data4
       value: 1502811507
       objectReference: {fileID: 0}
+    - target: {fileID: 3636467072015084531, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636467072781760411, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
+      propertyPath: promptDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636467073696958697, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -159
+      objectReference: {fileID: 0}
     - target: {fileID: 6307408434687132895, guid: f03e7dc81a74a90428e50664f701de5d, type: 3}
       propertyPath: m_Name
       value: Passenger #1
@@ -29000,11 +29030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -102.93
+      value: 330.19
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 105.73
+      value: 161.91
       objectReference: {fileID: 0}
     - target: {fileID: 6202987039464332293, guid: 38388e513488cbe41af56fb354673e9f, type: 3}
       propertyPath: m_LocalPosition.z
