@@ -99,6 +99,7 @@ public class MainMenu : MonoBehaviour
 	    _gm.saveData = new SaveData
 	    {
 		    sceneName = "Level1_Hangar&Lab",
+		    playerPosition = new Vector3(10.7f, 4.6f, 0f),
 		    objectives =defaultObjectives,
 		    SettingsData = new SettingsData("", true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
 	    };
