@@ -14,7 +14,7 @@ public class CollectibleObject : MonoBehaviour
     [SerializeField] GameObject promptObject;
     [SerializeField] TextMeshProUGUI promptText;
 
-    private void Start()
+    private void OnEnable()
     {
 	    GameManager.Instance.OnFinishLoading += CheckAlreadyCollected;
 	    LevelManager.Instance.OnSceneLoaded += CheckAlreadyCollected;
