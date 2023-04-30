@@ -25,6 +25,7 @@ public class CollectiblesBag : MonoBehaviour
 		    hasCollectible.isCollected = true;
 	    }
 	    GameManager.Instance.saveData.collectibles = hasCollectibles;
+	    GameManager.Instance.SaveGame();
 	    // if (collectibles == Collectibles.MyCollectible.Plaza1)hasPlaza1 = true;
         // else if (collectibles == Collectibles.MyCollectible.Plaza2)hasPlaza2 = true;
         // else if (collectibles == Collectibles.MyCollectible.Plaza3)hasPlaza3 = true;

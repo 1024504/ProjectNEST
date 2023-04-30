@@ -23,6 +23,12 @@ public class ObjectiveStringPair
 [Serializable]
 public class MyCollectibleBoolPair
 {
+	public MyCollectibleBoolPair(MyCollectible newCollectible, bool isCollectedBool = false)
+	{
+		collectible = newCollectible;
+		isCollected = isCollectedBool;
+	}
+	
 	public MyCollectible collectible = 0;
 	public bool isCollected = false;
 }

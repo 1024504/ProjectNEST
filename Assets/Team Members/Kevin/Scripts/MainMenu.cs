@@ -91,7 +91,18 @@ public class MainMenu : MonoBehaviour
 		    new (GameManager.Objectives.FindRaven, "Find Raven", false, true), 
 		    new (GameManager.Objectives.FindEagle, "Find Eagle", false, true), 
 		    new (GameManager.Objectives.DefeatBoss, "Defeat the Warrior", false, true)
-			    
+	    };
+	    List<MyCollectibleBoolPair> defaultCollectibles = new List<MyCollectibleBoolPair>()
+	    {
+		    new (MyCollectible.Plaza1),
+		    new (MyCollectible.Plaza2),
+		    new (MyCollectible.Plaza3),
+		    new (MyCollectible.ResArea1),
+		    new (MyCollectible.ResArea2),
+		    new (MyCollectible.ResArea3),
+		    new (MyCollectible.Bio1),
+		    new (MyCollectible.Bio2),
+		    new (MyCollectible.Bio3)
 	    };
 		    
 	    // Default Settings
@@ -101,6 +112,7 @@ public class MainMenu : MonoBehaviour
 		    sceneName = "Level1_Hangar&Lab",
 		    playerPosition = new Vector3(10.7f, 4.6f, 0f),
 		    objectives =defaultObjectives,
+		    collectibles = defaultCollectibles,
 		    SettingsData = new SettingsData("", true, 0.05f, true, true, masterVolume, musicVolume, sfxVolume, currentResolution, fullscreen, quality)
 	    };
 	    _gm.SaveGame();
