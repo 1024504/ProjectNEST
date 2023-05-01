@@ -12,6 +12,8 @@ public class TriggerCutScene : MonoBehaviour
     public bool isTimeStop;
     
     public GameManager.Objectives linkedObjective;
+    
+    private bool _isTriggered;
 
     public void OnEnable()
     {
@@ -24,10 +26,12 @@ public class TriggerCutScene : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D col)
     {
-        Player player = col.GetComponent<Player>();
-        if (player != null)
+	    if (_isTriggered) return;
+	    Player player = col.GetComponent<Player>();
+	    if (player != null)
         {
             timeLineDirector.Play();
+            _isTriggered = true;
         }
     }
 

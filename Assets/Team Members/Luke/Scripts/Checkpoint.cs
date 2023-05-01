@@ -8,21 +8,22 @@ using UnityEngine.SceneManagement;
 public class Checkpoint : MonoBehaviour
 {
 	private Player _player;
+	private SaveData _saveData = null;
 	
 	private void OnTriggerEnter2D(Collider2D col)
 	{
 		_player = col.GetComponent<Player>();
-		if (_player == null) return;
-		if (GameManager.Instance.saveData.playerPosition == transform.position) return;
+		if (GameManager.Instance.saveData == _saveData) return;
+		
 		SaveGame();
 	}
 
-	private void SaveGame()
+	public void SaveGame()
 	{
 		GameManager gameManager = GameManager.Instance;
-		
+		_saveData = gameManager.saveData;
 		gameManager.saveData.playerPosition = transform.position;
-		gameManager.saveData.sceneName = SceneManager.GetActiveScene().name;
+		gameManager.saveData.sceneName = gameObject.scene.name;
 		gameManager.saveData.hasShotgun = _player.hasShotgun;
 		gameManager.saveData.hasSniper = _player.hasSniper;
 		gameManager.saveData.canDoubleJump = _player.doubleJumpEnabled;

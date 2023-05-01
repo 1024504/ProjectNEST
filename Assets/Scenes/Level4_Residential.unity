@@ -6976,6 +6976,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7657510048141906530, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
   m_PrefabInstance: {fileID: 411287619}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &411287621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7657510048141906531, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
+  m_PrefabInstance: {fileID: 411287619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411287622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14547a781016b694aaedb67d1273799b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &411287622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7657510048141906532, guid: 0baedcdea8da219478f2c2481394e109, type: 3}
@@ -6996,6 +7007,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 09fefd300dce96b4891f21861b117e9a, type: 2}
+    - {fileID: 11400000, guid: 263aeee36382abb4ba459138174e5d24, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -7010,6 +7022,20 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 411287621}
+          m_TargetAssemblyTypeName: Checkpoint, Assembly-CSharp
+          m_MethodName: SaveGame
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
           m_CallState: 2
 --- !u!61 &411287624 stripped
 BoxCollider2D:
