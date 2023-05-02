@@ -495,17 +495,21 @@ public class Player : MonoBehaviour, IControllable
 
 	public void WeaponScrollPerformed()
 	{
-		int newWeaponIndex = 0;
+		int currentWeaponIndex = 0;
 		for (int i = 1; i < weaponsList.Count; i++)
 		{
 			if (!weaponsList[i].gameObject.activeSelf) continue;
-			newWeaponIndex = i;
+			currentWeaponIndex = i;
 			break;
 		}
-
+		
+		int newWeaponIndex = currentWeaponIndex;
 		newWeaponIndex++;
+		if (newWeaponIndex == 1 && !hasShotgun) newWeaponIndex++;
+		if (newWeaponIndex == 2 && !hasSniper) newWeaponIndex++;
 		if (newWeaponIndex >= weaponsList.Count) newWeaponIndex = 0;
-		ChangeWeapon(newWeaponIndex);
+		if (newWeaponIndex >= weaponsList.Count) newWeaponIndex = 0;
+		if (newWeaponIndex != currentWeaponIndex) ChangeWeapon(newWeaponIndex);
 	}
 
 	public void WeaponScrollCancelled()
