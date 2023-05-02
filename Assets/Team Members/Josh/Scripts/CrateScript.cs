@@ -37,7 +37,22 @@ public class CrateScript : MonoBehaviour, IDestructable
                 break;
 
             case CrateState.normal:
-                isLoaded = Random.Range(0, 2);
+                int coinFlip = Random.Range(0, 100);
+                if( coinFlip > loadedChance )
+                {
+                    isLoaded = 1;
+                } else
+                {
+                    isLoaded = 0;
+                }
+
+                if( isLoaded == 1 )
+                {
+                    crateSpriteRenderer.sprite = damagedSprite;
+                } else
+                {
+                    crateSpriteRenderer.sprite = undamagedSprite;
+                }
                 break;
 
             default:
@@ -45,22 +60,7 @@ public class CrateScript : MonoBehaviour, IDestructable
                 break;
         }
 
-        int coinFlip = Random.Range(0, 100);
-        if( coinFlip > loadedChance )
-        {
-            isLoaded = 1;
-        } else
-        {
-            isLoaded = 0;
-        }
-
-        if( isLoaded == 1 )
-        {
-            crateSpriteRenderer.sprite = damagedSprite;
-        } else
-        {
-            crateSpriteRenderer.sprite = undamagedSprite;
-        }
+        
 
     }
 
