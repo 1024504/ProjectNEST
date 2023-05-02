@@ -128,7 +128,7 @@ public class Settings : MonoBehaviour
         gm.saveData.SettingsData.MusicVolume = musicVolume;
         gm.saveData.SettingsData.SFXVolume = sfxVolume;
         
-        if (gm.playerController.GameplayAgent != null) gm.uiManager.ToggleHUD();
+        if (GetComponent<MainMenu>() == null) gm.uiManager.ToggleHUD();
         
         ApplyChanges();
 
