@@ -7,12 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
-	private Player _player;
 	private SaveData _saveData = null;
 	
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		_player = col.GetComponent<Player>();
 		if (GameManager.Instance.saveData == _saveData) return;
 		
 		SaveGame();
@@ -20,6 +18,7 @@ public class Checkpoint : MonoBehaviour
 
 	public void SaveGame()
 	{
+		Player _player = GameManager.Instance.cameraTracker.playerTransform.GetComponent<Player>();
 		GameManager gameManager = GameManager.Instance;
 		_saveData = gameManager.saveData;
 		gameManager.saveData.playerPosition = transform.position;
