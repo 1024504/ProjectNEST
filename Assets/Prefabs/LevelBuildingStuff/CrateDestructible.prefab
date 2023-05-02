@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 7960185680497345605}
   - component: {fileID: 84166610820857015}
   m_Layer: 0
-  m_Name: CrateTest
+  m_Name: CrateDestructible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,6 +238,10 @@ MonoBehaviour:
   halfCrate: {fileID: 6925594614843307169, guid: 6a5b9ddbc336595429e96e3537addb88, type: 3}
   alveriumPrefab: {fileID: 2336883827527267525, guid: 38434798acb202045ab4cbb0030b8e16, type: 3}
   medkitPrefab: {fileID: 2659453571629753929, guid: 958ea1fec164e6c4082dc68608ca08d1, type: 3}
+  undamagedSprite: {fileID: 21300000, guid: 4f23a0af42b7de24597dda918b63284b, type: 3}
+  damagedSprite: {fileID: 21300000, guid: 1a51487974308a34d848269d0f15c687, type: 3}
+  crateSpriteRenderer: {fileID: 3723871884584434868}
+  myCrateState: 0
   explodeRef:
     Guid:
       Data1: 0
