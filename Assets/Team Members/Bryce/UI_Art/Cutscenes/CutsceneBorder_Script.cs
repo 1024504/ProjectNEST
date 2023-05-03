@@ -11,7 +11,14 @@ public class CutsceneBorder_Script : MonoBehaviour
 
 	public bool cutsceneFinished;
 
-	public void Update()
+	//HUD remove stuff
+	private GameManager gameManagerRef;
+    private void Start()
+    {
+		gameManagerRef = GameManager.Instance;
+	}
+
+    public void Update()
 	{
 		CutsceneFinished();
 	}
@@ -27,6 +34,12 @@ public class CutsceneBorder_Script : MonoBehaviour
 	public void borderEnable()
 	{
 		cutsceneBorderPrefab.SetActive(true);
+
+		//HUD remove stuff
+		if( gameManagerRef.saveData.SettingsData.ToggleHUD )
+        {
+			gameManagerRef.uiManager.hUDGameObject.SetActive(false);
+		}
 	}
 
 	public void DisableBorder()
@@ -35,6 +48,12 @@ public class CutsceneBorder_Script : MonoBehaviour
 		{
 			cutsceneBorderPrefab.SetActive(false);
 			cutsceneFinished = false;
+
+			//HUD remove stuff
+			if( gameManagerRef.saveData.SettingsData.ToggleHUD )
+			{
+				gameManagerRef.uiManager.hUDGameObject.SetActive(true);
+			}
 		}
 	}
 
